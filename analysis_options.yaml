@@ -18,7 +18,6 @@ linter:
     - require_trailing_commas
     - secure_pubspec_urls
     - sized_box_shrink_expand
-    - sort_pub_dependencies
     - sort_unnamed_constructors_first
     - throw_in_finally
     - unnecessary_await_in_return
