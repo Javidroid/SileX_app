@@ -22,9 +22,11 @@ This project complements with the NodeJS API.
 * Repasar fuentes y ver una forma mejor de ponerlas
 * Hacer los estilos de texto
     * Revisar fuentes
+* Revisar themes
 * Repasar inyección de dependencias
 * Añadir localización
 * Entornos
 * Gestion de errores
     * Mirar Either
 * Ver cómo separar las distintas carpetas de model
+* Refactorizar a inglés
