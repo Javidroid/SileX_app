@@ -1,4 +1,5 @@
 {
   "URL_REST_SERVICE": "https://localhost:8080",
-  "ENVIRONMENT": "prod"
+  "ENVIRONMENT": "prod",
+  "PACKAGE_NAME": "com.example.tfg_v2"
 }

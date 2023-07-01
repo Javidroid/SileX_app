@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tfg_v2/di/dependency_injection.dart';
+import 'package:tfg_v2/ui/navigation/navigator.dart';
 import 'package:tfg_v2/ui/styles/theme.dart';
 
 void main() async {
@@ -25,23 +26,22 @@ class TfgApp extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (_) => ThemeNotifier(),
       child: Consumer<ThemeNotifier>(
-          builder: (context, ThemeNotifier themeNotifier, child) {
-        return MaterialApp.router(
-          title: 'TFG App',
-
-          theme: ThemeGenerator.generateLightTheme(),
-          darkTheme: ThemeGenerator.generateDarkTheme(),
-          themeMode: themeNotifier.modo
-              ? // según el modo guardado en SharedPreferences
-              ThemeMode.light
-              : ThemeMode.dark,
-
-          localizationsDelegates: context.localizationDelegates,
-          supportedLocales: context.supportedLocales,
-          locale: context.locale,
-          // routerConfig: getIt<EPueyoNavigator>().router,
-        );
-      }),
+        builder: (context, ThemeNotifier themeNotifier, child) {
+          return MaterialApp.router(
+            title: 'TFG APP',
+            theme: ThemeGenerator.generateLightTheme(),
+            darkTheme: ThemeGenerator.generateDarkTheme(),
+            themeMode: themeNotifier.modo
+                ? // según el modo guardado en SharedPreferences
+                ThemeMode.light
+                : ThemeMode.dark,
+            localizationsDelegates: context.localizationDelegates,
+            supportedLocales: context.supportedLocales,
+            locale: context.locale,
+            routerConfig: getIt<TfgNavigator>().router,
+          );
+        },
+      ),
     );
   }
 }

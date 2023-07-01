@@ -12,6 +12,41 @@ future.
 
 This project complements with the NodeJS API.
 
+## Execution
+
+App has 2 environments:
+
+- dev
+- prod
+
+To run the app in a particular environment, run:
+
+- dev:
+
+```bash
+flutter run --flavor dev --dart-define-from-file=.env/dev.json
+```
+
+
+- prod:
+
+```bash
+flutter run --flavor prod --dart-define-from-file=.env/prod.json
+```
+
+Also, you can configure your IDE to automatically run a defined behaviour
+
+## Dependency Injection
+
+Depencency injection is done with [get_it](https://pub.dev/packages/get_it) and
+[injectable](https://pub.dev/packages/injectable).
+
+If a new dependency is added or changed, you must run:
+
+```bash
+flutter packages pub run build_runner build
+```
+
 ## To-Do List
 
 * Splash

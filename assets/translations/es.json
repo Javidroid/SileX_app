@@ -1,6 +1,7 @@
 {
   "msg": "Esto es un ejemplo de texto",
   "msg_args": "Esto es un ejemplo de texto con {} <- arg",
+  "app_title": "TFG App",
   "errors": {
     "not_found": "No se ha encontrado el recurso",
     "server": "Error en el servidor",
