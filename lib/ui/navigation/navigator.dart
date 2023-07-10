@@ -1,7 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:tfg_v2/ui/navigation/profile_screen.dart';
 import 'package:tfg_v2/ui/navigation/routes.dart';
+import 'package:tfg_v2/ui/widgets/screens/direct_messages/direct_messages_screen.dart';
+import 'package:tfg_v2/ui/widgets/screens/faq/faq_screen.dart';
 import 'package:tfg_v2/ui/widgets/screens/home/home_screen.dart';
+import 'package:tfg_v2/ui/widgets/screens/login/login_screen.dart';
+import 'package:tfg_v2/ui/widgets/screens/login/register_screen.dart';
+import 'package:tfg_v2/ui/widgets/screens/notifications/notifications_screen.dart';
+import 'package:tfg_v2/ui/widgets/screens/plans/plan_detail.dart';
+import 'package:tfg_v2/ui/widgets/screens/plans/plans_list.dart';
+import 'package:tfg_v2/ui/widgets/screens/search/search_screen.dart';
+import 'package:tfg_v2/ui/widgets/screens/settings/settings_screen.dart';
 import 'package:tfg_v2/ui/widgets/screens/splash/splash_screen.dart';
 
 final GlobalKey<NavigatorState> rootNavigatorKey =
@@ -18,9 +28,65 @@ class TfgNavigator {
             const SplashScreen(),
       ),
       GoRoute(
+        path: Routes.login,
+        builder: (BuildContext context, GoRouterState state) =>
+            const LoginScreen(),
+      ),
+      GoRoute(
+        path: Routes.signUp,
+        builder: (BuildContext context, GoRouterState state) =>
+            const SignUpScreen(),
+      ),
+      GoRoute(
         path: Routes.home,
         builder: (BuildContext context, GoRouterState state) =>
             const HomeScreen(),
+      ),
+      GoRoute(
+        path: Routes.plans,
+        builder: (BuildContext context, GoRouterState state) =>
+            const PlansList(),
+      ),
+      GoRoute(
+        // TODO: set plan id parameter
+        path: Routes.planDetail,
+        builder: (BuildContext context, GoRouterState state) =>
+            const PlanDetail(),
+      ),
+      GoRoute(
+        path: Routes.search,
+        builder: (BuildContext context, GoRouterState state) =>
+            const SearchScreen(),
+      ),
+      GoRoute(
+        path: Routes.notifications,
+        builder: (BuildContext context, GoRouterState state) =>
+            const NotificationsScreen(),
+      ),
+      GoRoute(
+        path: Routes.dms,
+        builder: (BuildContext context, GoRouterState state) =>
+            const MessagesScreen(),
+      ),
+      GoRoute(
+        path: Routes.profile,
+        builder: (BuildContext context, GoRouterState state) =>
+            const ProfileScreen(),
+      ),
+      GoRoute(
+        path: Routes.myPlans,
+        builder: (BuildContext context, GoRouterState state) =>
+            const PlansList(), // TODO: send own plan dataset
+      ),
+      GoRoute(
+        path: Routes.settings,
+        builder: (BuildContext context, GoRouterState state) =>
+            const SettingsScreen(),
+      ),
+      GoRoute(
+        path: Routes.faq,
+        builder: (BuildContext context, GoRouterState state) =>
+            const FaqScreen(),
       ),
     ],
   );

@@ -14,11 +14,12 @@ class HomeScreen extends RootScreen<HomeViewState> {
   @override
   Widget buildView(BuildContext context, HomeViewState state) {
     return switch (state) {
-      Loading _ => const Center(
-          child: CircularProgressIndicator(),
-        ), // todo meter en scaffold
-      Success _ => HomeSuccessScreen(),
-      // todo ver si pasar el state o ponerlo to en el mismo sitio
+      Loading _ => const Scaffold(
+          body: Center(
+            child: CircularProgressIndicator(),
+          ),
+        ),
+      Success _ => const HomeSuccessScreen(),
       Error _ => Text(state.error.toString()), // todo handle errors
     };
   }

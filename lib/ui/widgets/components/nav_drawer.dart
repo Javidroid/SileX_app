@@ -31,7 +31,8 @@ class _TfgNavigationDrawerState extends State<TfgNavigationDrawer> {
                     );
                   },
                   child: const CircleAvatar(
-                    foregroundImage: AssetImage("assets/SilenTheKid.jpg"),
+                    foregroundImage:
+                        AssetImage('assets/images/SilenTheKid.jpg'),
                   ),
                 ),
                 // todo cargar la foto de la BD / quitar const
