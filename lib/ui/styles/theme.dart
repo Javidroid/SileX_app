@@ -1,6 +1,7 @@
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
 import 'package:tfg_v2/shared_preferences/theme_preferences.dart';
+import 'package:tfg_v2/ui/styles/colors.dart';
 
 /// Clase encargada de crear los Temas Claro y Oscuro mediante la extensión
 /// [FlexColorScheme](https://pub.dev/packages/flex_color_scheme).
@@ -9,27 +10,11 @@ import 'package:tfg_v2/shared_preferences/theme_preferences.dart';
 /// DarkTheme: del Widget MaterialApp que se encarga de generar el Root de
 /// la aplicación en el método build() de [MyApp].
 class ThemeGenerator {
-  /// Constante que guarda el esquema de color
-  ///
-  /// Al ser estático, se puede utilizar para usar la paleta de colores
-  /// en momentos puntuales y concretos al desarrollar la IU sin necesidad
-  /// de recurrir a Theme.of(context), que suele dar errores.
-  static const FlexSchemeColor esquemaColor = FlexSchemeColor(
-    primary: Color(0xff00b28c),
-    primaryContainer: Color(0xffd0e4ff),
-    secondary: Color(0xffeaaf0f),
-    secondaryContainer: Color(0xffffdbcf),
-    tertiary: Color(0xff26d8b2),
-    tertiaryContainer: Color(0xff95f0ff),
-    appBarColor: Color(0xffffdbcf),
-    error: Color(0xffb00020),
-  );
-
   /// Método que genera la configuración necesaria para establecer el Tema Claro
   /// en los Widgets de la App de forma coherente y conjunta.
   static ThemeData generateLightTheme() {
     return FlexThemeData.light(
-      colors: esquemaColor,
+      colors: colorScheme,
       usedColors: 4,
       surfaceMode: FlexSurfaceMode.highScaffoldLevelSurface,
       blendLevel: 20,
@@ -66,7 +51,7 @@ class ThemeGenerator {
   /// Oscuro en los Widgets de la App de forma coherente y conjunta.
   static ThemeData generateDarkTheme() {
     return FlexThemeData.dark(
-      colors: esquemaColor,
+      colors: colorScheme,
       usedColors: 4,
       surfaceMode: FlexSurfaceMode.levelSurfacesLowScaffold,
       blendLevel: 15,

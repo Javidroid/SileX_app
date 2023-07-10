@@ -27,7 +27,6 @@ To run the app in a particular environment, run:
 flutter run --flavor dev --dart-define-from-file=.env/dev.json
 ```
 
-
 - prod:
 
 ```bash
@@ -44,7 +43,7 @@ Depencency injection is done with [get_it](https://pub.dev/packages/get_it) and
 If a new dependency is added or changed, you must run:
 
 ```bash
-flutter packages pub run build_runner build
+dart run packages pub run build_runner build
 ```
 
 ## To-Do List

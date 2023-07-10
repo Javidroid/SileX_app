@@ -16,6 +16,7 @@ void main() async {
       child: const TfgApp(),
     ),
   );
+  WidgetsFlutterBinding.ensureInitialized();
 }
 
 class TfgApp extends StatelessWidget {

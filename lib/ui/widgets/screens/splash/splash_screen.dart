@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:tfg_v2/di/dependency_injection.dart';
+import 'package:tfg_v2/ui/navigation/navigator.dart';
 import 'package:tfg_v2/ui/viewmodel/root_viewmodel.dart';
 import 'package:tfg_v2/ui/viewmodel/splash/splash_viewmodel.dart';
 import 'package:tfg_v2/ui/widgets/screens/root_screen.dart';
@@ -10,6 +11,8 @@ class SplashScreen extends RootScreen<SplashViewState> {
 
   @override
   RootViewModel<SplashViewState> get viewModel => getIt<SplashViewModel>();
+
+  TfgNavigator get navigator => getIt<TfgNavigator>();
 
   @override
   Widget buildView(BuildContext context, SplashViewState state) {
@@ -23,6 +26,10 @@ class SplashScreen extends RootScreen<SplashViewState> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text('Success: ${state.env.environment}\n${tr("app_title")}'),
+                ElevatedButton(
+                  onPressed: navigator.navigateToHome,
+                  child: const Text("Go to home"),
+                )
               ],
             ),
           ),
