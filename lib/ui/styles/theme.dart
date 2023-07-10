@@ -43,7 +43,7 @@ class ThemeGenerator {
       ),
       tones: FlexTones.highContrast(Brightness.light),
       visualDensity: FlexColorScheme.comfortablePlatformDensity,
-      fontFamily: 'Futura-Bold', // todo revisar fuente
+      fontFamily: 'Futura', // todo revisar fuente
     );
   }
 

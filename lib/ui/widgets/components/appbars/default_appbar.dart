@@ -14,7 +14,6 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
       actions: const [
         Icon(Icons.more_vert),
 
-        // todo poner foto de perfil con animación de hero a la foto del drawer
       ],
     );
   }

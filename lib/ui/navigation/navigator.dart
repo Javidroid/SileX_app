@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:tfg_v2/ui/navigation/profile_screen.dart';
 import 'package:tfg_v2/ui/navigation/routes.dart';
 import 'package:tfg_v2/ui/widgets/screens/direct_messages/direct_messages_screen.dart';
 import 'package:tfg_v2/ui/widgets/screens/faq/faq_screen.dart';
@@ -10,6 +9,8 @@ import 'package:tfg_v2/ui/widgets/screens/login/register_screen.dart';
 import 'package:tfg_v2/ui/widgets/screens/notifications/notifications_screen.dart';
 import 'package:tfg_v2/ui/widgets/screens/plans/plan_detail.dart';
 import 'package:tfg_v2/ui/widgets/screens/plans/plans_list.dart';
+import 'package:tfg_v2/ui/widgets/screens/profile/edit_profile_screen.dart';
+import 'package:tfg_v2/ui/widgets/screens/profile/profile_screen.dart';
 import 'package:tfg_v2/ui/widgets/screens/search/search_screen.dart';
 import 'package:tfg_v2/ui/widgets/screens/settings/settings_screen.dart';
 import 'package:tfg_v2/ui/widgets/screens/splash/splash_screen.dart';
@@ -33,6 +34,7 @@ class TfgNavigator {
             const LoginScreen(),
       ),
       GoRoute(
+        // todo put inside login?
         path: Routes.signUp,
         builder: (BuildContext context, GoRouterState state) =>
             const SignUpScreen(),
@@ -72,6 +74,13 @@ class TfgNavigator {
         path: Routes.profile,
         builder: (BuildContext context, GoRouterState state) =>
             const ProfileScreen(),
+        routes: [
+          GoRoute(
+            path: Routes.editProfile,
+            builder: (BuildContext context, GoRouterState state) =>
+                const EditProfileScreen(),
+          ),
+        ],
       ),
       GoRoute(
         path: Routes.myPlans,
@@ -95,8 +104,53 @@ class TfgNavigator {
     return router.push(Routes.splash);
   }
 
+  Future<void> navigateToLogin() {
+    return router.push(Routes.login);
+  }
+
+  Future<void> navigateToSignUp() {
+    return router.push(Routes.signUp);
+  }
+
   Future<void> navigateToHome() {
     return router.push(Routes.home);
+  }
+
+  Future<void> navigateToPlans() {
+    return router.push(Routes.plans);
+  }
+
+  Future<void> navigateToPlanDetail(String planId) {
+    // todo: insert plan id
+    return router.push(Routes.planDetail);
+  }
+
+  Future<void> navigateToSearch() {
+    return router.push(Routes.search);
+  }
+
+  Future<void> navigateToNotifications() {
+    return router.push(Routes.notifications);
+  }
+
+  Future<void> navigateToDms() {
+    return router.push(Routes.dms);
+  }
+
+  Future<void> navigateToProfile() {
+    return router.push(Routes.profile);
+  }
+
+  Future<void> navigateToMyPlans() {
+    return router.push(Routes.myPlans);
+  }
+
+  Future<void> navigateToSettings() {
+    return router.push(Routes.settings);
+  }
+
+  Future<void> navigateToFaq() {
+    return router.push(Routes.faq);
   }
 
   void pop() {

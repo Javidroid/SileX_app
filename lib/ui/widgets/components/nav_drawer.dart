@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:tfg_v2/di/dependency_injection.dart';
+import 'package:tfg_v2/ui/navigation/navigator.dart';
 import 'package:tfg_v2/ui/styles/theme.dart';
 
 class TfgNavigationDrawer extends StatefulWidget {
@@ -10,35 +12,30 @@ class TfgNavigationDrawer extends StatefulWidget {
 }
 
 class _TfgNavigationDrawerState extends State<TfgNavigationDrawer> {
+  TfgNavigator get navigator => getIt<TfgNavigator>();
+
   @override
   Widget build(BuildContext context) {
     return Consumer<ThemeNotifier>(
       builder: (context, ThemeNotifier themeNotifier, child) {
         return Drawer(
-          // ListView nos permitirá tener un Drawer scrolleable
           child: ListView(
             // Important: Remove any padding from the ListView.
             padding: EdgeInsets.zero,
             children: [
+              // todo poner foto de perfil con animación de hero a la foto del drawer
               UserAccountsDrawerHeader(
                 currentAccountPicture: GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const Placeholder(),
-                      ),
-                    );
-                  },
+                  onTap: () => navigator.navigateToProfile(),
                   child: const CircleAvatar(
                     foregroundImage:
+                        // todo load picture from repo
                         AssetImage('assets/images/SilenTheKid.jpg'),
                   ),
                 ),
-                // todo cargar la foto de la BD / quitar const
-                //currentAccountPictureSize: Size(width, height),
+
+                // todo load info from repo
                 accountName: const Text("[Username]"),
-                // todo quitar const cuando se recoja info de API
                 accountEmail: const Text("mail@alumnos.unex.es"),
                 otherAccountsPictures: [
                   IconButton(
@@ -56,42 +53,28 @@ class _TfgNavigationDrawerState extends State<TfgNavigationDrawer> {
               ListTile(
                 title: const Text('Perfil'),
                 onTap: () {
-                  Navigator.pop(context);
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const Placeholder(),
-                    ),
-                  );
+                  navigator.pop();
+                  navigator.navigateToProfile();
                 },
               ),
               ListTile(
                 title: const Text('Actividades Pendientes'),
                 onTap: () {
-                  // Update the state of the app
-                  // ...
-                  // Then close the drawer
-                  Navigator.pop(context);
+                  navigator.pop();
+                  navigator.navigateToMyPlans();
                 },
               ),
               ListTile(
                 title: const Text('Ajustes'),
                 onTap: () {
-                  Navigator.pop(context);
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const Placeholder(),
-                    ),
-                  );
+                  navigator.pop();
+                  navigator.navigateToSettings();
                 },
               ),
               ListTile(
                 title: const Text('Solicitudes de amistad'),
                 onTap: () {
-                  // Update the state of the app
-                  // ...
-                  // Then close the drawer
+                  // todo: check
                   Navigator.pop(context);
                 },
               ),
@@ -106,23 +89,18 @@ class _TfgNavigationDrawerState extends State<TfgNavigationDrawer> {
               ListTile(
                 title: const Text('FAQ'),
                 onTap: () {
-                  // Update the state of the app
-                  // ...
-                  // Then close the drawer
-                  Navigator.pop(context);
+                  navigator.pop();
+                  navigator.navigateToFaq();
                 },
               ),
               ListTile(
                 title: const Text('Invitar amigos'),
                 onTap: () {
-                  // Update the state of the app
-                  // ...
-                  // Then close the drawer
+                  // todo: check
                   Navigator.pop(context);
                 },
               ),
               const AboutListTile(
-                // <-- SEE HERE
                 icon: Icon(
                   Icons.info,
                 ),

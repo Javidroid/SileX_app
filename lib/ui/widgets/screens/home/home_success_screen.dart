@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
-
 import 'package:tfg_v2/ui/widgets/components/appbars/default_appbar.dart';
 import 'package:tfg_v2/ui/widgets/components/nav_drawer.dart';
+import 'package:tfg_v2/ui/widgets/screens/direct_messages/direct_messages_screen.dart';
+import 'package:tfg_v2/ui/widgets/screens/notifications/notifications_screen.dart';
+import 'package:tfg_v2/ui/widgets/screens/plans/plans_list.dart';
+import 'package:tfg_v2/ui/widgets/screens/search/search_screen.dart';
 
 class HomeSuccessScreen extends StatefulWidget {
   const HomeSuccessScreen({super.key});
@@ -11,7 +14,6 @@ class HomeSuccessScreen extends StatefulWidget {
 }
 
 class _HomeSuccessScreenState extends State<HomeSuccessScreen> {
-
   int currentPageIndex = 0;
 
   @override
@@ -21,22 +23,10 @@ class _HomeSuccessScreenState extends State<HomeSuccessScreen> {
       drawer: const TfgNavigationDrawer(),
       body: SafeArea(
         child: <Widget>[
-          Container(
-            alignment: Alignment.center,
-            child: const Text('Plans'),
-          ),
-          Container(
-            alignment: Alignment.center,
-            child: const Text('Buscar'),
-          ),
-          Container(
-            alignment: Alignment.center,
-            child: const Text('Notificaciones'),
-          ),
-          Container(
-            alignment: Alignment.center,
-            child: const Text('Mensajes Directos'),
-          ),
+          const PlansList(),
+          const SearchScreen(),
+          const NotificationsScreen(),
+          const MessagesScreen(),
         ][currentPageIndex],
       ),
       bottomNavigationBar: NavigationBar(
@@ -51,26 +41,25 @@ class _HomeSuccessScreenState extends State<HomeSuccessScreen> {
           NavigationDestination(
             selectedIcon: Icon(Icons.home),
             icon: Icon(Icons.home_outlined),
-            label: 'Actividades',
+            label: 'Plans',
           ),
           NavigationDestination(
             selectedIcon: Icon(Icons.search),
             icon: Icon(Icons.search_outlined),
-            label: 'Buscar',
+            label: 'Search',
           ),
           NavigationDestination(
             selectedIcon: Icon(Icons.notifications),
             icon: Icon(Icons.notifications_none_outlined),
-            label: 'Notificaciones',
+            label: 'Notifications',
           ),
           NavigationDestination(
             selectedIcon: Icon(Icons.mail),
             icon: Icon(Icons.mail_outline),
-            label: 'Mensajes',
+            label: 'Direct Messages',
           ),
         ],
       ),
     );
   }
 }
-
