@@ -21,7 +21,7 @@ final GlobalKey<NavigatorState> rootNavigatorKey =
 class TfgNavigator {
   final GoRouter router = GoRouter(
     navigatorKey: rootNavigatorKey,
-    initialLocation: Routes.splash,
+    initialLocation: Routes.home, // todo check
     routes: <RouteBase>[
       GoRoute(
         path: Routes.splash,
@@ -74,13 +74,11 @@ class TfgNavigator {
         path: Routes.profile,
         builder: (BuildContext context, GoRouterState state) =>
             const ProfileScreen(),
-        routes: [
-          GoRoute(
-            path: Routes.editProfile,
-            builder: (BuildContext context, GoRouterState state) =>
-                const EditProfileScreen(),
-          ),
-        ],
+      ),
+      GoRoute(
+        path: Routes.editProfile,
+        builder: (BuildContext context, GoRouterState state) =>
+            const EditProfileScreen(),
       ),
       GoRoute(
         path: Routes.myPlans,
@@ -116,6 +114,10 @@ class TfgNavigator {
     return router.push(Routes.home);
   }
 
+  Future<void> navigateToHomeReplacement() {
+    return router.pushReplacement(Routes.home);
+  }
+
   Future<void> navigateToPlans() {
     return router.push(Routes.plans);
   }
@@ -139,6 +141,10 @@ class TfgNavigator {
 
   Future<void> navigateToProfile() {
     return router.push(Routes.profile);
+  }
+
+  Future<void> navigateToEditProfile() {
+    return router.push(Routes.editProfile);
   }
 
   Future<void> navigateToMyPlans() {

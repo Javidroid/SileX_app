@@ -12,6 +12,7 @@ class SplashScreen extends RootScreen<SplashViewState> {
   @override
   RootViewModel<SplashViewState> get viewModel => getIt<SplashViewModel>();
 
+  // todo: see what to do with this screen
   TfgNavigator get navigator => getIt<TfgNavigator>();
 
   @override
@@ -26,10 +27,6 @@ class SplashScreen extends RootScreen<SplashViewState> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text('Success: ${state.env.environment}\n${tr("app_title")}'),
-                ElevatedButton(
-                  onPressed: navigator.navigateToHome,
-                  child: const Text("Go to home"),
-                )
               ],
             ),
           ),

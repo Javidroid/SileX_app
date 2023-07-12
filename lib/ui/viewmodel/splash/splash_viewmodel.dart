@@ -3,11 +3,14 @@ import 'package:tfg_v2/data/datasource/local/local_datasource.dart';
 import 'package:tfg_v2/di/dependency_injection.dart';
 import 'package:tfg_v2/domain/model/errors.dart';
 import 'package:tfg_v2/env/environment.dart';
+import 'package:tfg_v2/ui/navigation/navigator.dart';
 import 'package:tfg_v2/ui/viewmodel/root_viewmodel.dart';
 
 @Injectable()
 class SplashViewModel extends RootViewModel<SplashViewState> {
   final _repository = getIt<LocalDatasource>();
+
+  TfgNavigator get navigator => getIt<TfgNavigator>();
 
   SplashViewModel() : super(Loading());
 
@@ -17,8 +20,10 @@ class SplashViewModel extends RootViewModel<SplashViewState> {
     final response = await _repository.getEnvironment();
     response.fold(
       (left) => emitValue(Error(left)),
-      (right) => emitValue(Success(right)),
+      (right) => navigator.navigateToHomeReplacement(),
     );
+
+    // if (response.isRight) navigator.navigateToHome();
   }
 }
 

@@ -52,5 +52,6 @@ flutter:
     - family: Futura-Bold
       fonts:
         - asset: assets/fonts/Futura-Bold.ttf
+    - family: Futura-ExtraBold
+      fonts:
         - asset: assets/fonts/Futura-ExtraBold.otf
-          weight: 700

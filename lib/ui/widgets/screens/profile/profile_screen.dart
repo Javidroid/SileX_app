@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:tfg_v2/di/dependency_injection.dart';
+import 'package:tfg_v2/ui/navigation/navigator.dart';
+import 'package:tfg_v2/ui/styles/text_styles.dart';
+import 'package:tfg_v2/ui/widgets/components/profile/profile_content.dart';
 import 'package:tfg_v2/ui/widgets/components/profile/profile_header.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
+
+  TfgNavigator get navigator => getIt<TfgNavigator>();
 
   @override
   Widget build(BuildContext context) {
@@ -10,29 +16,22 @@ class ProfileScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text("[Username]"),
         actions: [
-          ElevatedButton(
+          TextButton(
             onPressed: () {
-              // todo editar perfil
+              navigator.navigateToEditProfile();
             },
-            child: const Text("Editar perfil"), // todo improve
+            child: const Text(
+              "Editar perfil",
+              style: TextStyles.whiteTextButton,
+            ), // todo improve
           )
         ],
       ),
       body: SafeArea(
         child: ListView(
-          padding: EdgeInsets.all(MediaQuery.of(context).size.height * 0.02),
           children: const [
             ProfileHeader(),
-            DefaultTabController(
-                length: 2,
-                child: TabBar(tabs: [
-                  Tab(
-                    text: "Actividades creadas",
-                  ),
-                  Tab(
-                    text: "Actividades apuntadas",
-                  ),
-                ]))
+            ProfileContent(),
           ],
         ),
       ),
