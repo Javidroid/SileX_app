@@ -20,7 +20,6 @@ class TextStyles {
     fontWeight: FontWeight.bold,
     fontSize: 28,
   );
-
   static const TextStyle profileTitle = TextStyle(
     fontFamily: Fonts.futuraMedium,
     fontSize: 18,
@@ -32,5 +31,16 @@ class TextStyles {
   static const TextStyle profileDescription = TextStyle(
     fontWeight: FontWeight.bold,
     fontSize: 15,
+  );
+
+  // PLAN PREVIEW
+  static const TextStyle planPreviewHeader = TextStyle(
+    fontWeight: FontWeight.bold,
+  );
+  static const TextStyle planPreviewDescription = TextStyle(
+    fontWeight: FontWeight.normal,
+  );
+  static const TextStyle planPreviewBottom = TextStyle(
+    fontSize: 12,
   );
 }

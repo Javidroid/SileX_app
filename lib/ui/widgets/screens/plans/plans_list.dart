@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:tfg_v2/ui/widgets/components/box_spacer.dart';
+import 'package:tfg_v2/ui/widgets/components/plan_preview_item.dart';
 
 class PlansList extends StatelessWidget {
   const PlansList({super.key});
@@ -7,7 +9,14 @@ class PlansList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       alignment: Alignment.center,
-      child: const Text('Plans'),
+      child: ListView(
+        children: [
+          BoxSpacer.v4(),
+          PlanPreviewItem(),
+          PlanPreviewItem(),
+          PlanPreviewItem(),
+        ],
+      ),
     );
   }
 }

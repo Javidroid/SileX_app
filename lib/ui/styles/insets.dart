@@ -8,6 +8,9 @@ class Insets {
   /// All with sp `4`
   static const a4 = EdgeInsets.all(Spacing.sp4);
 
+  /// All with sp `8`
+  static const a8 = EdgeInsets.all(Spacing.sp8);
+
   /// All with sp `12`
   static const a12 = EdgeInsets.all(Spacing.sp12);
 
