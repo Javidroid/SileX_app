@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 
 class UserListItem extends StatelessWidget {
-  const UserListItem({super.key, this.user});
+  const UserListItem({super.key, required this.user});
 
-  final dynamic user; // todo: type
+  final String user; // todo: type and transform to user with viewmodel
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder(); // todo: make list tile
+    return ListTile(
+      title: Text(user),
+    );
   }
 }

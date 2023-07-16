@@ -11,10 +11,6 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       title: Text(tr('app_title')),
-      actions: const [
-        Icon(Icons.more_vert),
-
-      ],
     );
   }
 }

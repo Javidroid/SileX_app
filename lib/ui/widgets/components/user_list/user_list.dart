@@ -9,7 +9,7 @@ class UserList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView(
-      children: userList.map((e) => UserListItem(user: e)).toList(),
+      children: [for (String user in userList) UserListItem(user: user)],
     );
   }
 }
