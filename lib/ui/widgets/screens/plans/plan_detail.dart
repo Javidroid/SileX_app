@@ -5,6 +5,7 @@ import 'package:tfg_v2/ui/styles/text_styles.dart';
 import 'package:tfg_v2/ui/widgets/components/appbars/default_appbar.dart';
 import 'package:tfg_v2/ui/widgets/components/box_spacer.dart';
 import 'package:tfg_v2/ui/widgets/components/buttons/join2plan_button.dart';
+import 'package:tfg_v2/ui/widgets/components/user_list/user_list.dart';
 
 class PlanDetail extends StatelessWidget {
   const PlanDetail({super.key});
@@ -16,16 +17,19 @@ class PlanDetail extends StatelessWidget {
     return Scaffold(
       appBar: const DefaultAppBar(),
       body: Padding(
-        padding: Insets.a8,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start, // todo revisar
+        padding: Insets.a16,
+        child: ListView(
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const CircleAvatar(
-                  foregroundImage: // todo pic from plan creator
-                      AssetImage('assets/images/no_user_pic.png'),
+                GestureDetector(
+                  child: const CircleAvatar(
+                    foregroundImage: // todo pic from plan creator
+                        AssetImage('assets/images/no_user_pic.png'),
+                    radius: 30,
+                  ),
+                  onTap: () {}, // TODO: navigate to profile
                 ),
                 const Text(
                   'place', // todo place from plan
@@ -52,15 +56,17 @@ class PlanDetail extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 Text(
-                  "x gente inscrita", // todo parameter string
+                  "x/y personas apuntadas", // todo parameter string
                   style: TextStyles.planPreviewBottom,
                 ),
                 JoinToPlanButton(isJoined: false),
               ],
             ),
             BoxSpacer.v12(),
+            const Divider(),
+            BoxSpacer.v12(),
             const Text("Usuarios apuntados: "),
-            // todo: put user list
+            const UserList(userList: ['user1', 'user2', 'user3']),
           ],
         ),
       ),

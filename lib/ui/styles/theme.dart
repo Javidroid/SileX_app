@@ -12,6 +12,9 @@ import 'package:tfg_v2/ui/styles/colors.dart';
 class ThemeGenerator {
   /// Método que genera la configuración necesaria para establecer el Tema Claro
   /// en los Widgets de la App de forma coherente y conjunta.
+
+  // TODO: REMAKE THEME
+  // TODO: ADD TILE THEME
   static ThemeData generateLightTheme() {
     return FlexThemeData.light(
       colors: colorScheme,

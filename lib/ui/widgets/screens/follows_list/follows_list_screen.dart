@@ -8,7 +8,7 @@ class FollowsList extends StatelessWidget {
     required this.followingOrFollowers,
   });
 
-  final List<dynamic> followsList;
+  final List<String> followsList; // todo: type
   final bool followingOrFollowers;
 
   @override

@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:tfg_v2/di/dependency_injection.dart';
 import 'package:tfg_v2/ui/navigation/navigator.dart';
 import 'package:tfg_v2/ui/styles/theme.dart';
+import 'package:tfg_v2/ui/widgets/components/profile/navigable_profile_pic.dart';
 
 class TfgNavigationDrawer extends StatefulWidget {
   const TfgNavigationDrawer({super.key});
@@ -25,13 +26,9 @@ class _TfgNavigationDrawerState extends State<TfgNavigationDrawer> {
             children: [
               // todo poner foto de perfil con animación de hero a la foto del drawer
               UserAccountsDrawerHeader(
-                currentAccountPicture: GestureDetector(
-                  onTap: () => navigator.navigateToProfile(),
-                  child: const CircleAvatar(
-                    foregroundImage:
-                        // todo load picture from repo
-                        AssetImage('assets/images/SilenTheKid.jpg'),
-                  ),
+                currentAccountPicture: NavigableProfilePic(
+                  onTap: navigator.navigateToProfile,
+                  asset: 'assets/images/SilenTheKid.jpg',
                 ),
 
                 // todo load info from repo

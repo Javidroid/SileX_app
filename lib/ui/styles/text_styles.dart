@@ -11,6 +11,10 @@ class Fonts {
 class TextStyles {
   // TODO: define & improve default text styles
 
+  static const TextStyle defaultStyle = TextStyle(
+    fontSize: 16,
+  );
+
   static const TextStyle whiteTextButton = TextStyle(
     color: Colors.white, // todo: stardardize
   );
@@ -22,25 +26,34 @@ class TextStyles {
   );
   static const TextStyle profileTitle = TextStyle(
     fontFamily: Fonts.futuraMedium,
-    fontSize: 18,
+    fontSize: 20,
   );
   static const TextStyle profileSubtitle = TextStyle(
     fontWeight: FontWeight.bold,
-    fontSize: 15,
+    fontSize: 18,
   );
   static const TextStyle profileDescription = TextStyle(
     fontWeight: FontWeight.bold,
-    fontSize: 15,
+    fontSize: 18,
   );
 
   // PLAN PREVIEW
   static const TextStyle planPreviewHeader = TextStyle(
     fontWeight: FontWeight.bold,
+    fontSize: 18,
   );
   static const TextStyle planPreviewDescription = TextStyle(
     fontWeight: FontWeight.normal,
+    fontSize: 18,
   );
   static const TextStyle planPreviewBottom = TextStyle(
-    fontSize: 12,
+    fontSize: 16,
+  );
+
+  // USER LIST
+  static const TextStyle userListUsername =
+      TextStyle(fontSize: 16, fontWeight: FontWeight.bold);
+  static const TextStyle userListRealName = TextStyle(
+    fontSize: 14,
   );
 }

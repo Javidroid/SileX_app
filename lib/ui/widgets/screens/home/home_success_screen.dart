@@ -29,6 +29,7 @@ class _HomeSuccessScreenState extends State<HomeSuccessScreen> {
           const MessagesScreen(),
         ][currentPageIndex],
       ),
+      // todo change to BottomNavigationBar
       bottomNavigationBar: NavigationBar(
         onDestinationSelected: (int index) {
           setState(() {
@@ -39,10 +40,9 @@ class _HomeSuccessScreenState extends State<HomeSuccessScreen> {
         destinations: const <Widget>[
           // los iconos de la barra
           NavigationDestination(
-            selectedIcon: Icon(Icons.home),
-            icon: Icon(Icons.home_outlined),
-            label: 'Plans',
-          ),
+              selectedIcon: Icon(Icons.home),
+              icon: Icon(Icons.home_outlined),
+              label: 'Plans'),
           NavigationDestination(
             selectedIcon: Icon(Icons.search),
             icon: Icon(Icons.search_outlined),
