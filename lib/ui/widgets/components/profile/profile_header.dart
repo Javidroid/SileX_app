@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:expandable_text/expandable_text.dart';
 import 'package:flutter/material.dart';
 import 'package:tfg_v2/ui/styles/insets.dart';
@@ -23,42 +24,43 @@ class ProfileHeader extends StatelessWidget {
                 foregroundImage:
                     const AssetImage('assets/images/SilenTheKid.jpg'),
               ),
-              const ProfileNumberButton(value: 32, text: 'Seguidores'),
-              const ProfileNumberButton(value: 23, text: 'Siguiendo'),
-              const ProfileNumberButton(value: 12, text: 'Planes'),
+              ProfileNumberButton(value: 32, text: 'profile.followers'.tr()),
+              ProfileNumberButton(value: 23, text: 'profile.following'.tr()),
+              ProfileNumberButton(value: 12, text: 'profile.n_plans'.tr()),
             ],
           ),
           BoxSpacer.v8(),
-          const Column(
+          Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "nombre, edad",
+                "${'lorem.name'.tr()}, ${'lorem.age'.tr()}",
                 style: TextStyles.profileTitle,
               ),
               Text(
-                "titulacion (centro)",
-                style: TextStyles.profileSubtitle,
+                "${'lorem.degree'.tr()} (${'lorem.center'.tr()})",
+                style: TextStyles.defaultStyleBold,
               ),
               ExpandableText(
-                'descripcion',
+                'lorem.description'.tr(),
                 textAlign: TextAlign.justify,
-                expandText: 'más',
-                collapseText: '(mostrar menos)',
+                expandText: 'profile.show_more'.tr(),
+                collapseText: 'profile.show_less'.tr(),
+                style: TextStyles.defaultStyleLight,
                 maxLines: 3,
                 animation: true,
                 expandOnTextTap: true,
-                //collapseOnTextTap: true,
+                collapseOnTextTap: true,
                 linkEllipsis: false,
               ),
             ],
           ),
           BoxSpacer.v16(),
-          const Row(
+          Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              Text("Intereses"),
-              Text("Logros"),
+              Text('profile.interests'.tr()),
+              Text('profile.achievements'.tr()),
             ],
           ),
         ],

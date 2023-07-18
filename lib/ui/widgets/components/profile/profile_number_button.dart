@@ -27,7 +27,7 @@ class ProfileNumberButton extends StatelessWidget {
           const SizedBox(height: 2),
           Text(
             text,
-            style: const TextStyle(fontSize: 18),
+            style: TextStyles.defaultStyleLight,
           ),
         ],
       ),

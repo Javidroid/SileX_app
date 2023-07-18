@@ -28,7 +28,7 @@ class UserListItem extends StatelessWidget {
         tileColor: Colors.white,
         // todo change color
         // todo navigate to user prof
-        shape: const RoundedRectangleBorder(),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
       ),
     );
   }

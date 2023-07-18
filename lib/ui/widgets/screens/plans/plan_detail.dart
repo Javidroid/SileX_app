@@ -16,59 +16,55 @@ class PlanDetail extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const DefaultAppBar(),
-      body: Padding(
+      body: ListView(
         padding: Insets.a16,
-        child: ListView(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                GestureDetector(
-                  child: const CircleAvatar(
-                    foregroundImage: // todo pic from plan creator
-                        AssetImage('assets/images/no_user_pic.png'),
-                    radius: 30,
-                  ),
-                  onTap: () {}, // TODO: navigate to profile
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              GestureDetector(
+                child: const CircleAvatar(
+                  foregroundImage: // todo pic from plan creator
+                      AssetImage('assets/images/no_user_pic.png'),
+                  radius: 30,
                 ),
-                const Text(
-                  'place', // todo place from plan
-                  style: TextStyles.planPreviewHeader,
-                ),
-                Text(
-                  DateFormat('dd-MM-yyyy, kk:mm')
-                      .format(DateTime.now()), // todo date from plan
-                  style: TextStyles.planPreviewHeader,
-                )
-              ],
-            ),
-            const Padding(
-              padding: Insets.a4,
-              child: Text(
-                'description', // todo desc from plan
-                textAlign: TextAlign.justify,
-                style: TextStyles.planPreviewDescription,
-                maxLines: 5,
+                onTap: () {}, // TODO: navigate to profile
               ),
+              Text(
+                'lorem.place'.tr(), // todo place from plan
+                style: TextStyles.defaultStyleBold,
+              ),
+              Text(
+                DateFormat('dd-MM-yyyy, kk:mm')
+                    .format(DateTime.now()), // todo date from plan
+                style: TextStyles.defaultStyleBold,
+              )
+            ],
+          ),
+          Padding(
+            padding: Insets.a4,
+            child: Text(
+              'lorem.description'.tr(), // todo desc from plan
+              textAlign: TextAlign.justify,
+              style: TextStyles.defaultStyle,
             ),
-            const Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                Text(
-                  "x/y personas apuntadas", // todo parameter string
-                  style: TextStyles.planPreviewBottom,
-                ),
-                JoinToPlanButton(isJoined: false),
-              ],
-            ),
-            BoxSpacer.v12(),
-            const Divider(),
-            BoxSpacer.v12(),
-            const Text("Usuarios apuntados: "),
-            const UserList(userList: ['user1', 'user2', 'user3']),
-          ],
-        ),
+          ),
+          const Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Text(
+                "x/y personas apuntadas", // todo parameter string
+                style: TextStyles.planPreviewBottom,
+              ),
+              JoinToPlanButton(isJoined: false),
+            ],
+          ),
+          BoxSpacer.v12(),
+          const Divider(),
+          BoxSpacer.v12(),
+          const Text("Usuarios apuntados: "),
+          const UserList(userList: ['user1', 'user2', 'user3']),
+        ],
       ),
     );
   }

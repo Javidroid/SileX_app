@@ -29,24 +29,25 @@ class PlanPreviewItem extends StatelessWidget {
                     foregroundImage: // todo pic from plan creator
                         AssetImage('assets/images/no_user_pic.png'),
                   ),
-                  const Text(
-                    'place', // todo place from plan
-                    style: TextStyles.planPreviewHeader,
+                  Text(
+                    'lorem.place'.tr(), // todo place from plan
+                    style: TextStyles.defaultStyleBold,
                   ),
                   Text(
                     DateFormat('dd-MM-yyyy, kk:mm')
                         .format(DateTime.now()), // todo date from plan
-                    style: TextStyles.planPreviewHeader,
+                    style: TextStyles.defaultStyleBold,
                   )
                 ],
               ),
-              const Padding(
-                padding: Insets.a4,
+              Padding(
+                padding: Insets.a8,
                 child: Text(
-                  'description', // todo desc from plan
+                  'lorem.description'.tr(), // todo desc from plan
                   textAlign: TextAlign.justify,
-                  style: TextStyles.planPreviewDescription,
-                  maxLines: 5,
+                  style: TextStyles.defaultStyleLight,
+                  maxLines: 3,
+                  overflow: TextOverflow.ellipsis,
                 ),
               ),
               const Row(
@@ -55,7 +56,7 @@ class PlanPreviewItem extends StatelessWidget {
                 children: [
                   Text(
                     "x gente inscrita", // todo parameter string
-                    style: TextStyles.planPreviewBottom,
+                    style: TextStyles.defaultStyleBold,
                   ),
                   JoinToPlanButton(isJoined: false),
                 ],

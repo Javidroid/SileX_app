@@ -12,7 +12,15 @@ class TextStyles {
   // TODO: define & improve default text styles
 
   static const TextStyle defaultStyle = TextStyle(
-    fontSize: 16,
+    fontSize: 18,
+  );
+  static const TextStyle defaultStyleBold = TextStyle(
+    fontWeight: FontWeight.bold,
+    fontSize: 18,
+  );
+  static const TextStyle defaultStyleLight = TextStyle(
+    fontFamily: Fonts.futuraLight,
+    fontSize: 18,
   );
 
   static const TextStyle whiteTextButton = TextStyle(
@@ -28,24 +36,8 @@ class TextStyles {
     fontFamily: Fonts.futuraMedium,
     fontSize: 20,
   );
-  static const TextStyle profileSubtitle = TextStyle(
-    fontWeight: FontWeight.bold,
-    fontSize: 18,
-  );
-  static const TextStyle profileDescription = TextStyle(
-    fontWeight: FontWeight.bold,
-    fontSize: 18,
-  );
 
   // PLAN PREVIEW
-  static const TextStyle planPreviewHeader = TextStyle(
-    fontWeight: FontWeight.bold,
-    fontSize: 18,
-  );
-  static const TextStyle planPreviewDescription = TextStyle(
-    fontWeight: FontWeight.normal,
-    fontSize: 18,
-  );
   static const TextStyle planPreviewBottom = TextStyle(
     fontSize: 16,
   );
