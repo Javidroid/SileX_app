@@ -21,28 +21,27 @@ class _HomeSuccessScreenState extends State<HomeSuccessScreen> {
     return Scaffold(
       appBar: const DefaultAppBar(),
       drawer: const TfgNavigationDrawer(),
-      body: SafeArea(
-        child: <Widget>[
-          const PlansList(),
-          const SearchScreen(),
-          const NotificationsScreen(),
-          const MessagesScreen(),
-        ][currentPageIndex],
-      ),
+      body: [
+        const PlansList(),
+        const SearchScreen(),
+        const NotificationsScreen(),
+        const MessagesScreen(),
+      ][currentPageIndex],
       // todo change to BottomNavigationBar
       bottomNavigationBar: NavigationBar(
+        selectedIndex: currentPageIndex,
         onDestinationSelected: (int index) {
           setState(() {
             currentPageIndex = index;
           });
         },
-        selectedIndex: currentPageIndex,
         destinations: const <Widget>[
           // los iconos de la barra
           NavigationDestination(
-              selectedIcon: Icon(Icons.home),
-              icon: Icon(Icons.home_outlined),
-              label: 'Plans'),
+            selectedIcon: Icon(Icons.home),
+            icon: Icon(Icons.home_outlined),
+            label: 'Plans',
+          ),
           NavigationDestination(
             selectedIcon: Icon(Icons.search),
             icon: Icon(Icons.search_outlined),

@@ -43,9 +43,9 @@ class TextStyles {
   );
 
   // USER LIST
-  static const TextStyle userListUsername =
+  static const TextStyle userListTitle =
       TextStyle(fontSize: 16, fontWeight: FontWeight.bold);
-  static const TextStyle userListRealName = TextStyle(
+  static const TextStyle userListSubtitle = TextStyle(
     fontSize: 14,
   );
 }

@@ -21,7 +21,7 @@ class ThemeGenerator {
       usedColors: 4,
       surfaceMode: FlexSurfaceMode.highScaffoldLevelSurface,
       blendLevel: 20,
-      appBarOpacity: 0.98,
+      appBarOpacity: 1,
       appBarElevation: 4.0,
       subThemesData: const FlexSubThemesData(
         elevatedButtonSchemeColor: SchemeColor.secondary,
@@ -38,6 +38,8 @@ class ThemeGenerator {
         popupMenuElevation: 15.0,
         tabBarIndicatorSchemeColor: SchemeColor.primary,
         navigationBarIndicatorSchemeColor: SchemeColor.primary,
+        navigationBarElevation: 20,
+        navigationBarBackgroundSchemeColor: SchemeColor.background,
       ),
       keyColors: const FlexKeyColors(
         useSecondary: true,
@@ -92,7 +94,9 @@ class ThemeGenerator {
         // mod
         navigationBarSelectedIconSchemeColor: SchemeColor.secondary,
         // mod
-        navigationBarIndicatorSchemeColor: SchemeColor.secondary, // mod
+        navigationBarIndicatorSchemeColor: SchemeColor.secondary,
+        // mod
+        navigationBarBackgroundSchemeColor: SchemeColor.background,
       ),
       keyColors: const FlexKeyColors(
         useSecondary: true,

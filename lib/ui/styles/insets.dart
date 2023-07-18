@@ -32,6 +32,9 @@ class Insets {
   /// Horizontal with sp `24`
   static const h24 = EdgeInsets.symmetric(horizontal: Spacing.sp24);
 
+  /// Vertical with sp `4`
+  static const v4 = EdgeInsets.symmetric(vertical: Spacing.sp4);
+
   /// Vertical with sp `8`
   static const v8 = EdgeInsets.symmetric(vertical: Spacing.sp8);
 

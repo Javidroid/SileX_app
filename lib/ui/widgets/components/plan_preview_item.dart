@@ -18,7 +18,7 @@ class PlanPreviewItem extends StatelessWidget {
       child: Card(
         elevation: 5,
         child: Padding(
-          padding: Insets.a8,
+          padding: Insets.a12,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start, // todo revisar
             children: [
@@ -41,9 +41,9 @@ class PlanPreviewItem extends StatelessWidget {
                 ],
               ),
               Padding(
-                padding: Insets.a8,
+                padding: Insets.v8,
                 child: Text(
-                  'lorem.description'.tr(), // todo desc from plan
+                  'lorem.plan_title'.tr(), // todo desc from plan
                   textAlign: TextAlign.justify,
                   style: TextStyles.defaultStyleLight,
                   maxLines: 3,
@@ -56,7 +56,7 @@ class PlanPreviewItem extends StatelessWidget {
                 children: [
                   Text(
                     "x gente inscrita", // todo parameter string
-                    style: TextStyles.defaultStyleBold,
+                    style: TextStyles.defaultStyle,
                   ),
                   JoinToPlanButton(isJoined: false),
                 ],

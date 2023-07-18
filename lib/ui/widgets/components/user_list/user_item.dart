@@ -1,4 +1,6 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:tfg_v2/ui/styles/colors.dart';
 import 'package:tfg_v2/ui/styles/insets.dart';
 import 'package:tfg_v2/ui/styles/text_styles.dart';
 import 'package:tfg_v2/ui/widgets/components/profile/navigable_profile_pic.dart';
@@ -11,21 +13,22 @@ class UserListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: Insets.a4,
+      padding: Insets.v4,
       child: ListTile(
-        title: const Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text("Username", style: TextStyles.userListUsername),
-            Text("RealName", style: TextStyles.userListRealName),
-          ],
+        title: Text('lorem.name'.tr(), style: TextStyles.userListTitle),
+        subtitle: Text(
+          'lorem.username'.tr(),
+          style: TextStyles.userListSubtitle,
         ),
+
         leading: const NavigableProfilePic(
           asset: 'assets/images/no_user_pic.png',
           radius: 20,
         ),
         onTap: () {},
-        tileColor: Colors.white,
+        tileColor: colorScheme.tertiary,
+
+        // todo refactor
         // todo change color
         // todo navigate to user prof
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),

@@ -15,7 +15,7 @@ class PlanDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const DefaultAppBar(),
+      appBar: DefaultAppBar(title: 'lorem.plan_title'.tr()),
       body: ListView(
         padding: Insets.a16,
         children: [
@@ -42,9 +42,9 @@ class PlanDetail extends StatelessWidget {
             ],
           ),
           Padding(
-            padding: Insets.a4,
+            padding: Insets.v8,
             child: Text(
-              'lorem.description'.tr(), // todo desc from plan
+              'lorem.plan_description'.tr(), // todo desc from plan
               textAlign: TextAlign.justify,
               style: TextStyles.defaultStyle,
             ),
@@ -59,10 +59,9 @@ class PlanDetail extends StatelessWidget {
               JoinToPlanButton(isJoined: false),
             ],
           ),
-          BoxSpacer.v12(),
-          const Divider(),
-          BoxSpacer.v12(),
-          const Text("Usuarios apuntados: "),
+          const Padding(padding: Insets.v12, child: Divider(thickness: 2)),
+          const Padding(padding: Insets.h4, child: Text("Usuarios apuntados:")),
+          BoxSpacer.v4(),
           const UserList(userList: ['user1', 'user2', 'user3']),
         ],
       ),
