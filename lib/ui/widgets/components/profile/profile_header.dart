@@ -19,10 +19,13 @@ class ProfileHeader extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              CircleAvatar(
-                radius: MediaQuery.of(context).size.height * 0.06,
-                foregroundImage:
-                    const AssetImage('assets/images/SilenTheKid.jpg'),
+              Hero(
+                tag: 'prof_pic',
+                child: CircleAvatar(
+                  radius: MediaQuery.of(context).size.height * 0.06,
+                  foregroundImage:
+                      const AssetImage('assets/images/SilenTheKid.jpg'),
+                ),
               ),
               ProfileNumberButton(value: 32, text: 'profile.followers'.tr()),
               ProfileNumberButton(value: 23, text: 'profile.following'.tr()),
@@ -41,6 +44,7 @@ class ProfileHeader extends StatelessWidget {
                 "${'lorem.degree'.tr()} (${'lorem.center'.tr()})",
                 style: TextStyles.defaultStyleBold,
               ),
+              BoxSpacer.v8(),
               ExpandableText(
                 'lorem.description'.tr(),
                 textAlign: TextAlign.justify,

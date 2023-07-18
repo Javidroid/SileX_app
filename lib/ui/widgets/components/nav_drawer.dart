@@ -26,9 +26,12 @@ class _TfgNavigationDrawerState extends State<TfgNavigationDrawer> {
             children: [
               // todo poner foto de perfil con animación de hero a la foto del drawer
               UserAccountsDrawerHeader(
-                currentAccountPicture: NavigableProfilePic(
-                  onTap: navigator.navigateToProfile,
-                  asset: 'assets/images/SilenTheKid.jpg',
+                currentAccountPicture: Hero(
+                  tag: 'prof_pic',
+                  child: NavigableProfilePic(
+                    onTap: navigator.navigateToProfile,
+                    asset: 'assets/images/SilenTheKid.jpg',
+                  ),
                 ),
 
                 // todo load info from repo
