@@ -27,9 +27,10 @@ class UserListItem extends StatelessWidget {
         ),
         onTap: () {},
         tileColor: colorScheme.tertiary,
-
+        dense: true,
+        visualDensity: VisualDensity.compact,
+        // TODO selected: if current user,
         // todo refactor
-        // todo change color
         // todo navigate to user prof
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
       ),
