@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:tfg_v2/ui/styles/colors.dart';
 
@@ -11,7 +12,7 @@ class JoinToPlanButton extends StatelessWidget {
     return isJoined
         ? ElevatedButton(
             onPressed: () {},
-            child: const Text("Unirse"),
+            child: Text('components.buttons.join'.tr()),
           )
         : ElevatedButton(
             onPressed: () {},
@@ -20,7 +21,7 @@ class JoinToPlanButton extends StatelessWidget {
                 colorScheme.errorContainer,
               ),
             ),
-            child: const Text("Desapuntarse"),
+            child: Text('components.buttons.quit'.tr()),
           );
   }
 }
