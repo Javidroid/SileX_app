@@ -15,12 +15,14 @@ class UserListItem extends StatelessWidget {
     return Padding(
       padding: Insets.v4,
       child: ListTile(
-        title: Text('lorem.name'.tr(), style: TextStyles.userListTitle),
+        title: Text(
+          'lorem.name'.tr(),
+          style: TextStyles.userListTitle,
+        ),
         subtitle: Text(
           'lorem.username'.tr(),
           style: TextStyles.userListSubtitle,
         ),
-
         leading: const NavigableProfilePic(
           asset: 'assets/images/no_user_pic.png',
           radius: 20,

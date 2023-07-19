@@ -48,7 +48,7 @@ class ThemeGenerator {
       ),
       tones: FlexTones.highContrast(Brightness.light),
       visualDensity: FlexColorScheme.comfortablePlatformDensity,
-      fontFamily: 'Futura', // todo revisar fuente
+      fontFamily: 'Futura',
     );
   }
 
@@ -103,7 +103,7 @@ class ThemeGenerator {
       ),
       tones: FlexTones.highContrast(Brightness.dark),
       visualDensity: FlexColorScheme.comfortablePlatformDensity,
-      fontFamily: 'Futura', // todo revisar fuente
+      fontFamily: 'Futura',
     );
   }
 }

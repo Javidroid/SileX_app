@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tfg_v2/ui/widgets/components/box_spacer.dart';
-import 'package:tfg_v2/ui/widgets/components/plan_preview_item.dart';
+import 'package:tfg_v2/ui/widgets/components/items/plan_preview_item.dart';
 
 class PlansList extends StatelessWidget {
   const PlansList({super.key});

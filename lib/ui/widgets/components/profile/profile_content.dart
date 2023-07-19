@@ -10,10 +10,10 @@ class ProfileContent extends StatelessWidget {
       child: TabBar(
         tabs: [
           Tab(
-            text: "Actividades creadas",
+            text: "Planes creados",
           ),
           Tab(
-            text: "Actividades apuntadas",
+            text: "Planes apuntados",
           ),
         ],
       ),

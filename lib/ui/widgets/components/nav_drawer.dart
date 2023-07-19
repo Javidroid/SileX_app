@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tfg_v2/di/dependency_injection.dart';
@@ -24,7 +25,7 @@ class _TfgNavigationDrawerState extends State<TfgNavigationDrawer> {
             // Important: Remove any padding from the ListView.
             padding: EdgeInsets.zero,
             children: [
-              // todo poner foto de perfil con animación de hero a la foto del drawer
+              // todo foto de perfil con animación de hero a la foto del drawer
               UserAccountsDrawerHeader(
                 currentAccountPicture: Hero(
                   tag: 'prof_pic',
@@ -35,14 +36,14 @@ class _TfgNavigationDrawerState extends State<TfgNavigationDrawer> {
                 ),
 
                 // todo load info from repo
-                accountName: const Text("[Username]"),
-                accountEmail: const Text("mail@alumnos.unex.es"),
+                accountName: Text('lorem.username'.tr()),
+                accountEmail: Text('lorem.mail'.tr()),
                 otherAccountsPictures: [
                   IconButton(
                     icon: Icon(
                       themeNotifier.modo
-                          ? Icons.wb_sunny
-                          : Icons.nightlight_round,
+                          ? Icons.nightlight_round
+                          : Icons.wb_sunny,
                     ),
                     onPressed: () {
                       themeNotifier.modo = !themeNotifier.modo;

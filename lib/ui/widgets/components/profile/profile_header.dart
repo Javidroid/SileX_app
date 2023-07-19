@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:expandable_text/expandable_text.dart';
 import 'package:flutter/material.dart';
+import 'package:tfg_v2/ui/styles/colors.dart';
 import 'package:tfg_v2/ui/styles/insets.dart';
 import 'package:tfg_v2/ui/styles/text_styles.dart';
 import 'package:tfg_v2/ui/widgets/components/box_spacer.dart';
@@ -56,6 +57,7 @@ class ProfileHeader extends StatelessWidget {
                 expandOnTextTap: true,
                 collapseOnTextTap: true,
                 linkEllipsis: false,
+                linkColor: colorScheme.primary, // todo check
               ),
             ],
           ),

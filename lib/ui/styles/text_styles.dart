@@ -43,9 +43,24 @@ class TextStyles {
   );
 
   // USER LIST
-  static const TextStyle userListTitle =
-      TextStyle(fontSize: 16, fontWeight: FontWeight.bold);
+  static const TextStyle userListTitle = TextStyle(
+    color: Colors.black,
+    fontSize: 16,
+    fontWeight: FontWeight.bold,
+  );
   static const TextStyle userListSubtitle = TextStyle(
+    color: Colors.black,
     fontSize: 14,
+  );
+
+  // FAQ
+  static const TextStyle faqQuestion = TextStyle(
+    color: Colors.black,
+    fontSize: 20,
+    fontWeight: FontWeight.bold,
+  );
+  static const TextStyle faqAnswer = TextStyle(
+    color: Colors.black,
+    fontSize: 16,
   );
 }
