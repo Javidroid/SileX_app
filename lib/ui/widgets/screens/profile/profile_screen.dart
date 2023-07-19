@@ -21,8 +21,8 @@ class ProfileScreen extends StatelessWidget {
             onPressed: () {
               navigator.navigateToEditProfile();
             },
-            child: const Text(
-              "Editar perfil",
+            child: Text(
+              'profile.edit'.tr(),
               style: TextStyles.whiteTextButton,
             ), // todo improve
           )

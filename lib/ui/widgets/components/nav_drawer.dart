@@ -52,31 +52,24 @@ class _TfgNavigationDrawerState extends State<TfgNavigationDrawer> {
                 ],
               ),
               ListTile(
-                title: const Text('Perfil'),
+                title: Text('components.nav_drawer.profile'.tr()),
                 onTap: () {
                   navigator.pop();
                   navigator.navigateToProfile();
                 },
               ),
               ListTile(
-                title: const Text('Actividades Pendientes'),
+                title: Text('components.nav_drawer.pending_plans'.tr()),
                 onTap: () {
                   navigator.pop();
                   navigator.navigateToMyPlans();
                 },
               ),
               ListTile(
-                title: const Text('Ajustes'),
+                title: Text('components.nav_drawer.settings'.tr()),
                 onTap: () {
                   navigator.pop();
                   navigator.navigateToSettings();
-                },
-              ),
-              ListTile(
-                title: const Text('Solicitudes de amistad'),
-                onTap: () {
-                  // todo: check
-                  Navigator.pop(context);
                 },
               ),
               const Divider(
@@ -88,33 +81,30 @@ class _TfgNavigationDrawerState extends State<TfgNavigationDrawer> {
                 endIndent: 20,
               ),
               ListTile(
-                title: const Text('FAQ'),
+                title: Text('components.nav_drawer.faq'.tr()),
                 onTap: () {
                   navigator.pop();
                   navigator.navigateToFaq();
                 },
               ),
               ListTile(
-                title: const Text('Invitar amigos'),
+                title: Text('components.nav_drawer.invite_friends'.tr()),
                 onTap: () {
                   // todo: check
                   Navigator.pop(context);
                 },
               ),
-              const AboutListTile(
-                icon: Icon(
+              AboutListTile(
+                icon: const Icon(
                   Icons.info,
                 ),
-                applicationIcon: Icon(
+                applicationIcon: const Icon(
                   Icons.info_outline,
                 ),
-                applicationName: 'SilenApp',
+                applicationName: 'app_title'.tr(),
                 applicationVersion: 'v1.0.0',
                 applicationLegalese: 'Javier Florido Cartolano (UEx, 2023)',
-                aboutBoxChildren: [
-                  // contenido
-                ],
-                child: Text('About'),
+                child: Text('components.nav_drawer.about'.tr()),
               ),
             ],
           ),

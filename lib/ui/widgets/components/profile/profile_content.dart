@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class ProfileContent extends StatelessWidget {
@@ -5,15 +6,15 @@ class ProfileContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const DefaultTabController(
+    return DefaultTabController(
       length: 2,
       child: TabBar(
         tabs: [
           Tab(
-            text: "Planes creados",
+            text: 'profile.created_plans'.tr(),
           ),
           Tab(
-            text: "Planes apuntados",
+            text: 'profile.joined_plans'.tr(),
           ),
         ],
       ),

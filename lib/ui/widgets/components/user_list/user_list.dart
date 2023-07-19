@@ -1,5 +1,9 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:tfg_v2/ui/widgets/components/user_list/user_item.dart';
+import 'package:tfg_v2/ui/styles/colors.dart';
+import 'package:tfg_v2/ui/styles/insets.dart';
+import 'package:tfg_v2/ui/styles/text_styles.dart';
+import 'package:tfg_v2/ui/widgets/components/profile/navigable_profile_pic.dart';
 
 class UserList extends StatelessWidget {
   const UserList({super.key, required this.userList});
@@ -9,7 +13,43 @@ class UserList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: userList.map((e) => UserListItem(user: e)).toList(),
+      children: userList.map((e) => _UserListItem(user: e)).toList(),
+    );
+  }
+}
+
+class _UserListItem extends StatelessWidget {
+  const _UserListItem({required this.user});
+
+  final String user; // todo: type and transform to user with viewmodel
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: Insets.v4,
+      child: ListTile(
+        title: Text(
+          'lorem.name'.tr(),
+          style: TextStyles.userListTitle,
+        ),
+        subtitle: Text(
+          'lorem.username'.tr(),
+          style: TextStyles.userListSubtitle,
+        ),
+        leading: const NavigableProfilePic(
+          asset: 'assets/images/no_user_pic.png',
+          radius: 20,
+        ),
+        onTap: () {},
+        // todo navigate to profile
+        tileColor: colorScheme.tertiary,
+        dense: true,
+        visualDensity: VisualDensity.compact,
+        // TODO selected: if current user,
+        // todo refactor
+        // todo navigate to user prof
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+      ),
     );
   }
 }

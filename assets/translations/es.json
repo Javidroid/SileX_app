@@ -1,9 +1,20 @@
 {
-  "app_title": "TFG App",
+  "app_title": "SilenApp",
   "components": {
     "buttons": {
       "join": "Apuntarse",
       "quit": "Desapuntarse"
+    },
+    "plan_preview": {
+      "people": "{} personas inscritas"
+    },
+    "nav_drawer": {
+      "profile": "Perfil",
+      "pending_plans": "Planes pendientes",
+      "settings": "Ajustes",
+      "faq": "FAQ",
+      "invite_friends": "Invitar amigos",
+      "about": "Acerca de..."
     }
   },
   "lorem": {
@@ -13,8 +24,8 @@
     "plan_description": "Ir al parque con los colegas a echarnos unas pipitas y pasarlo super guay con mucho texto de relleno que no sé qué más meter para ocupar unas cuantas de linea pero esto servirá, supongo.",
     "degree": "Ingeniería de Software",
     "center": "Escuela Politécnica de Cáceres",
-    "username": "pepe_garcia",
-    "name": "Pepe García",
+    "username": "SilenTheKid",
+    "name": "Javier Florido Cartolano",
     "mail": "jaflorido@alumnos.unex.es",
     "age": "23",
     "question": "¿Cómo crear una actividad?",
@@ -28,7 +39,9 @@
     "show_more": "más",
     "show_less": "(mostrar menos)",
     "interests": "Intereses",
-    "achievements": "Logros"
+    "achievements": "Logros",
+    "created_plans": "Planes creados",
+    "joined_plans": "Planes apuntados"
   },
   "faq": {
     "title": "Preguntas frecuentes"

@@ -50,15 +50,16 @@ class PlanPreviewItem extends StatelessWidget {
                   overflow: TextOverflow.ellipsis,
                 ),
               ),
-              const Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   Text(
-                    "x gente inscrita", // todo parameter string
+                    // todo put parameter
+                    'components.plan_preview.people'.tr(args: ['x/y']),
                     style: TextStyles.defaultStyle,
                   ),
-                  JoinToPlanButton(isJoined: false),
+                  const JoinToPlanButton(isJoined: false),
                 ],
               ),
             ],
