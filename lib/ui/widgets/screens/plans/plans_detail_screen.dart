@@ -7,8 +7,8 @@ import 'package:tfg_v2/ui/widgets/components/box_spacer.dart';
 import 'package:tfg_v2/ui/widgets/components/buttons/join2plan_button.dart';
 import 'package:tfg_v2/ui/widgets/components/user_list/user_list.dart';
 
-class PlanDetail extends StatelessWidget {
-  const PlanDetail({super.key});
+class PlanDetailScreen extends StatelessWidget {
+  const PlanDetailScreen({super.key});
 
   // TODO: get plan with viewmodel
 

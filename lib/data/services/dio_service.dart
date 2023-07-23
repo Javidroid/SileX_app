@@ -72,11 +72,11 @@ class DioRestService<V> {
   }
 
   Future<Either<V, T>> get<T>(
-      Uri uri, {
-        Map<String, dynamic>? headers,
-      }) async {
+    Uri uri, {
+    Map<String, dynamic>? headers,
+  }) async {
     return _tryCatch(
-          () async {
+      () async {
         final response = await dio.getUri<T>(
           uri,
           options: Options(headers: headers),
@@ -87,12 +87,12 @@ class DioRestService<V> {
   }
 
   Future<Either<V, T>> post<T>(
-      Uri uri, {
-        Object? data,
-        Map<String, dynamic>? headers,
-      }) async {
+    Uri uri, {
+    Object? data,
+    Map<String, dynamic>? headers,
+  }) async {
     return _tryCatch(
-          () async {
+      () async {
         final response = await dio.postUri<T>(
           uri,
           data: data,

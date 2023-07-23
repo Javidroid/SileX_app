@@ -7,8 +7,8 @@ import 'package:tfg_v2/ui/widgets/screens/home/home_screen.dart';
 import 'package:tfg_v2/ui/widgets/screens/login/login_screen.dart';
 import 'package:tfg_v2/ui/widgets/screens/login/register_screen.dart';
 import 'package:tfg_v2/ui/widgets/screens/notifications/notifications_screen.dart';
-import 'package:tfg_v2/ui/widgets/screens/plans/plan_detail.dart';
-import 'package:tfg_v2/ui/widgets/screens/plans/plans_list.dart';
+import 'package:tfg_v2/ui/widgets/screens/plans/plans_detail_screen.dart';
+import 'package:tfg_v2/ui/widgets/screens/plans/plans_screen.dart';
 import 'package:tfg_v2/ui/widgets/screens/profile/edit_profile_screen.dart';
 import 'package:tfg_v2/ui/widgets/screens/profile/profile_screen.dart';
 import 'package:tfg_v2/ui/widgets/screens/search/search_screen.dart';
@@ -47,13 +47,13 @@ class TfgNavigator {
       GoRoute(
         path: Routes.plans,
         builder: (BuildContext context, GoRouterState state) =>
-            const PlansList(),
+            const PlansScreen(),
       ),
       GoRoute(
         // TODO: set plan id parameter
         path: Routes.planDetail,
         builder: (BuildContext context, GoRouterState state) =>
-            const PlanDetail(),
+            const PlanDetailScreen(),
       ),
       GoRoute(
         path: Routes.search,
@@ -83,7 +83,7 @@ class TfgNavigator {
       GoRoute(
         path: Routes.myPlans,
         builder: (BuildContext context, GoRouterState state) =>
-            const PlansList(), // TODO: send own plan dataset
+            const PlansScreen(), // TODO: send own plan dataset
       ),
       GoRoute(
         path: Routes.settings,

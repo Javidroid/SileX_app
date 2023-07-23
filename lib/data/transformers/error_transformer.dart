@@ -11,6 +11,8 @@ AppError errorsHandler(DioException error) {
       return ForbiddenError();
     case 404:
       return NotFoundError();
+    case 409:
+      return ConflictError();
     case 500:
     case 510:
       return ServerError();

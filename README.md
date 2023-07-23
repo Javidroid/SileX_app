@@ -43,7 +43,7 @@ Depencency injection is done with [get_it](https://pub.dev/packages/get_it) and
 If a new dependency is added or changed, you must run:
 
 ```bash
-dart run packages pub run build_runner build
+flutter pub run build_runner build
 ```
 
 ## To-Do List

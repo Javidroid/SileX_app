@@ -3,7 +3,7 @@ import 'package:tfg_v2/ui/widgets/components/appbars/default_appbar.dart';
 import 'package:tfg_v2/ui/widgets/components/nav_drawer.dart';
 import 'package:tfg_v2/ui/widgets/screens/direct_messages/direct_messages_screen.dart';
 import 'package:tfg_v2/ui/widgets/screens/notifications/notifications_screen.dart';
-import 'package:tfg_v2/ui/widgets/screens/plans/plans_list.dart';
+import 'package:tfg_v2/ui/widgets/screens/plans/plans_screen.dart';
 import 'package:tfg_v2/ui/widgets/screens/search/search_screen.dart';
 
 class HomeSuccessScreen extends StatefulWidget {
@@ -22,7 +22,7 @@ class _HomeSuccessScreenState extends State<HomeSuccessScreen> {
       appBar: const DefaultAppBar(),
       drawer: const TfgNavigationDrawer(),
       body: [
-        const PlansList(),
+        const PlansScreen(),
         const SearchScreen(),
         const NotificationsScreen(),
         const MessagesScreen(),

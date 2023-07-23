@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:tfg_v2/domain/model/plan.dart';
 import 'package:tfg_v2/ui/widgets/components/box_spacer.dart';
 import 'package:tfg_v2/ui/widgets/components/items/plan_preview_item.dart';
 
 class PlansList extends StatelessWidget {
-  const PlansList({super.key});
+  const PlansList({super.key, required this.planSet});
+
+  final Set<Plan> planSet;
 
   @override
   Widget build(BuildContext context) {
@@ -12,9 +15,7 @@ class PlansList extends StatelessWidget {
       child: ListView(
         children: [
           BoxSpacer.v4(),
-          PlanPreviewItem(),
-          PlanPreviewItem(),
-          PlanPreviewItem(),
+          for (Plan plan in planSet) PlanPreviewItem(plan: plan)
         ],
       ),
     );

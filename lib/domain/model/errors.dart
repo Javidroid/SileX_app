@@ -12,6 +12,8 @@ class NotFoundError extends AppError {}
 
 class UnauthError extends AppError {}
 
+class ConflictError extends AppError {}
+
 class ExpiredSessionError extends AppError {}
 
 class UnknownError extends AppError {}
