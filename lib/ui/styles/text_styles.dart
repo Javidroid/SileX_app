@@ -55,12 +55,10 @@ class TextStyles {
 
   // FAQ
   static const TextStyle faqQuestion = TextStyle(
-    color: Colors.black,
     fontSize: 20,
     fontWeight: FontWeight.bold,
   );
   static const TextStyle faqAnswer = TextStyle(
-    color: Colors.black,
     fontSize: 16,
   );
 }

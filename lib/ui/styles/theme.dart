@@ -20,9 +20,8 @@ class ThemeGenerator {
       colors: colorScheme,
       usedColors: 4,
       surfaceMode: FlexSurfaceMode.highScaffoldLevelSurface,
-      blendLevel: 20,
-      appBarOpacity: 1,
-      appBarElevation: 4.0,
+      blendLevel: 30,
+      appBarElevation: 2,
       subThemesData: const FlexSubThemesData(
         elevatedButtonSchemeColor: SchemeColor.secondary,
         elevatedButtonSecondarySchemeColor: SchemeColor.onSecondary,
@@ -33,12 +32,10 @@ class ThemeGenerator {
         inputDecoratorRadius: 25.0,
         inputDecoratorUnfocusedHasBorder: false,
         chipSchemeColor: SchemeColor.primary,
-        chipRadius: 30.0,
         popupMenuRadius: 10.0,
         popupMenuElevation: 15.0,
         tabBarIndicatorSchemeColor: SchemeColor.primary,
         navigationBarIndicatorSchemeColor: SchemeColor.primary,
-        navigationBarElevation: 20,
         navigationBarBackgroundSchemeColor: SchemeColor.background,
       ),
       keyColors: const FlexKeyColors(
@@ -59,44 +56,32 @@ class ThemeGenerator {
       colors: colorScheme,
       usedColors: 4,
       surfaceMode: FlexSurfaceMode.levelSurfacesLowScaffold,
-      blendLevel: 15,
+      blendLevel: 20,
+      appBarElevation: 2,
       subThemesData: const FlexSubThemesData(
         textButtonSchemeColor: SchemeColor.secondary,
-        // mod
         elevatedButtonSchemeColor: SchemeColor.secondary,
         elevatedButtonSecondarySchemeColor: SchemeColor.onSecondary,
         outlinedButtonSchemeColor: SchemeColor.secondary,
-        // mod
         toggleButtonsSchemeColor: SchemeColor.secondary,
-        // mod
         switchSchemeColor: SchemeColor.secondary,
-        // mod
         checkboxSchemeColor: SchemeColor.secondary,
-        // mod
         radioSchemeColor: SchemeColor.secondary,
-        // mod
         sliderBaseSchemeColor: SchemeColor.secondary,
-        // mod
         inputDecoratorRadius: 25.0,
         inputDecoratorUnfocusedHasBorder: false,
         chipSchemeColor: SchemeColor.secondary,
-        // mod
-        chipRadius: 30.0,
         popupMenuRadius: 10.0,
         popupMenuElevation: 15.0,
         tabBarItemSchemeColor: SchemeColor.secondary,
-        tabBarIndicatorSchemeColor: SchemeColor.primary,
+        tabBarIndicatorSchemeColor: SchemeColor.secondary,
         bottomNavigationBarSelectedLabelSchemeColor: SchemeColor.secondary,
-        // mod
         bottomNavigationBarSelectedIconSchemeColor: SchemeColor.secondary,
-        // mod
         navigationBarSelectedLabelSchemeColor: SchemeColor.secondary,
-        // mod
         navigationBarSelectedIconSchemeColor: SchemeColor.secondary,
-        // mod
         navigationBarIndicatorSchemeColor: SchemeColor.secondary,
-        // mod
         navigationBarBackgroundSchemeColor: SchemeColor.background,
+        useTextTheme: true,
       ),
       keyColors: const FlexKeyColors(
         useSecondary: true,
