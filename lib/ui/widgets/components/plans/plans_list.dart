@@ -4,9 +4,9 @@ import 'package:tfg_v2/ui/widgets/components/box_spacer.dart';
 import 'package:tfg_v2/ui/widgets/components/items/plan_preview_item.dart';
 
 class PlansList extends StatelessWidget {
-  const PlansList({super.key, required this.planSet});
+  const PlansList({super.key, required this.planList});
 
-  final Set<Plan> planSet;
+  final List<Plan> planList;
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +15,7 @@ class PlansList extends StatelessWidget {
       child: ListView(
         children: [
           BoxSpacer.v4(),
-          for (Plan plan in planSet) PlanPreviewItem(plan: plan)
+          for (Plan plan in planList) PlanPreviewItem(plan: plan)
         ],
       ),
     );

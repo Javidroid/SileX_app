@@ -8,6 +8,7 @@ import 'package:tfg_v2/ui/styles/theme.dart';
 void main() async {
   configureDependencies(env: const String.fromEnvironment("ENVIRONMENT"));
   await EasyLocalization.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(
     EasyLocalization(
       supportedLocales: const [Locale('es')],

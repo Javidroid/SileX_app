@@ -5,7 +5,7 @@ import 'package:tfg_v2/domain/model/errors.dart';
 import 'package:tfg_v2/domain/model/plan.dart';
 
 abstract interface class PlanRepository {
-  Future<Either<AppError, Set<Plan>>> getPlans();
+  Future<Either<AppError, List<Plan>>> getPlans();
 
   Future<Either<AppError, Plan>> getPlan(String idPlan);
 
@@ -45,7 +45,7 @@ class PlanRepositoryImpl implements PlanRepository {
   }
 
   @override
-  Future<Either<AppError, Set<Plan>>> getPlans() {
+  Future<Either<AppError, List<Plan>>> getPlans() {
     return _remoteDatasource.getPlans();
   }
 

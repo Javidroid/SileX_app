@@ -2,7 +2,7 @@ import 'package:tfg_v2/domain/model/plan.dart';
 
 class PlanDto {
   String idPlan;
-  String creator;
+  String creatorUser;
   String title;
   String description;
   String place;
@@ -13,7 +13,7 @@ class PlanDto {
 
   PlanDto({
     required this.idPlan,
-    required this.creator,
+    required this.creatorUser,
     required this.title,
     required this.description,
     required this.place,
@@ -25,22 +25,22 @@ class PlanDto {
 
   factory PlanDto.fromJson(Map<String, dynamic> json) {
     return PlanDto(
-      idPlan: json["id_plan"],
-      creator: json["creator_id"],
+      idPlan: json["_id"],
+      creatorUser: json["creator_user"],
       title: json["title"],
       description: json["description"],
       place: json["place"],
       date: DateTime.parse(json["date"]),
-      categories: List<String>.from(json["categories"].map((x) => x)),
-      maxUsers: int.parse(json["max_users"]),
-      signedUpUser: List<String>.from(json["signed_up_users"].map((x) => x)),
+      categories: List.from(json["categories"].map((x) => x)),
+      maxUsers: json["max_users"],
+      signedUpUser: List.from(json["signed_up_users"].map((x) => x)),
     );
   }
 
   Map<String, dynamic> toJson() {
     return {
-      "id_plan": idPlan,
-      "creator_id": creator,
+      "_id": idPlan,
+      "creator_user": creatorUser,
       "title": title,
       "description": description,
       "place": place,
@@ -54,7 +54,7 @@ class PlanDto {
   Plan toModel() {
     return Plan(
       idPlan,
-      creator,
+      creatorUser,
       title,
       description,
       place,

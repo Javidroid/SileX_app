@@ -20,7 +20,7 @@ class PlansScreen extends RootScreen<PlansViewState> {
         Success _ => Center(
             child: Column(
               mainAxisSize: MainAxisSize.min,
-              children: state.planSet.map((e) => Text(e.toString())).toList(),
+              children: state.planList.map((e) => Text(e.toString())).toList(),
             ),
           ),
         Error _ => Text(state.error.toString()), // todo handle errors

@@ -17,7 +17,7 @@ class PlansViewModel extends RootViewModel<PlansViewState> {
     final result = _repository.getPlans();
     result.fold(
       (left) => emitValue(Error(left)),
-      (right) => emitValue(Success(planSet: right)),
+      (right) => emitValue(Success(planList: right)),
     );
   }
 }
@@ -27,9 +27,9 @@ sealed class PlansViewState extends ViewState {}
 class Loading extends PlansViewState {}
 
 class Success extends PlansViewState {
-  final Set<Plan> planSet;
+  final List<Plan> planList;
 
-  Success({required this.planSet});
+  Success({required this.planList});
 }
 
 class Error extends PlansViewState {

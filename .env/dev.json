@@ -1,5 +1,5 @@
 {
-  "BASE_REST_URL": "http://localhost:8000",
+  "BASE_REST_URL": "http://10.0.2.2:8000",
   "ENVIRONMENT": "dev",
   "PACKAGE_NAME": "com.example.tfg_v2"
 }

@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:either_dart/either.dart';
 import 'package:injectable/injectable.dart';
 import 'package:tfg_v2/data/datasource/remote/remote_datasource.dart';
@@ -59,17 +57,15 @@ class DefaultRemoteDatasource implements RemoteDatasource {
   }
 
   @override
-  Future<Either<AppError, Set<Plan>>> getPlans() {
+  Future<Either<AppError, List<Plan>>> getPlans() async {
     final uri = Uri.parse('$_baseUrl/getPlans');
-    print(uri);
 
-    final result = _apiService.get(uri);
+    final result = await _apiService.get(uri);
 
-    return result.either<AppError, Set<Plan>>(
+    return result.either<AppError, List<Plan>>(
       (left) => left,
-      (right) => Set.of(jsonDecode(right))
-          .map((e) => PlanDto.fromJson(e).toModel())
-          .toSet(),
+      (right) =>
+          List.of(right).map((e) => PlanDto.fromJson(e).toModel()).toList(),
     );
   }
 
@@ -99,7 +95,9 @@ class DefaultRemoteDatasource implements RemoteDatasource {
 
   @override
   Future<Either<AppError, bool>> unfollowUser(
-      String username, String targetUser,) {
+    String username,
+    String targetUser,
+  ) {
     // TODO: implement unfollowUser
     throw UnimplementedError();
   }

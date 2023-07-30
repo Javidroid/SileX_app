@@ -19,7 +19,7 @@ abstract interface class RemoteDatasource {
     String targetUser,
   );
 
-  Future<Either<AppError, Set<Plan>>> getPlans();
+  Future<Either<AppError, List<Plan>>> getPlans();
 
   Future<Either<AppError, Plan>> getPlan(String idPlan);
 
