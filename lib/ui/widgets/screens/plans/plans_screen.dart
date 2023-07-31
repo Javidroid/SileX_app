@@ -19,7 +19,10 @@ class PlansScreen extends RootScreen<PlansViewState> {
             child: CircularProgressIndicator(),
           ),
         Success _ => Center(
-            child: PlansList(planList: state.planList),
+            child: RefreshIndicator(
+              onRefresh: () => state.onRefresh(),
+              child: PlansList(planList: state.planList),
+            ),
           ),
         Error _ => Text(state.error.toString()), // todo handle errors
       },

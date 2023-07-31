@@ -1,4 +1,3 @@
-import 'package:either_dart/either.dart';
 import 'package:injectable/injectable.dart';
 import 'package:tfg_v2/di/dependency_injection.dart';
 import 'package:tfg_v2/domain/model/errors.dart';
@@ -14,10 +13,14 @@ class PlansViewModel extends RootViewModel<PlansViewState> {
 
   @override
   void onAttach() async {
-    final result = _repository.getPlans();
+    refreshPlans();
+  }
+
+  Future<void> refreshPlans() async {
+    final result = await _repository.getPlans();
     result.fold(
       (left) => emitValue(Error(left)),
-      (right) => emitValue(Success(planList: right)),
+      (right) => emitValue(Success(planList: right, onRefresh: refreshPlans)),
     );
   }
 }
@@ -28,8 +31,9 @@ class Loading extends PlansViewState {}
 
 class Success extends PlansViewState {
   final List<Plan> planList;
+  final Function() onRefresh;
 
-  Success({required this.planList});
+  Success({required this.planList, required this.onRefresh});
 }
 
 class Error extends PlansViewState {
