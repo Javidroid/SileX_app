@@ -17,7 +17,7 @@ class PlanPreviewItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => navigator.navigateToPlanDetail('INSERTid'),
+      onTap: () => navigator.navigateToPlanDetail(plan.idPlan, plan),
       child: Card(
         elevation: 5,
         child: Padding(
@@ -63,7 +63,7 @@ class PlanPreviewItem extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   Text(
-                    'components.plan_preview.people'.tr(
+                    'components.plans.people'.tr(
                       args: [
                         plan.joinedUsers.toString(),
                         plan.maxUsers.toString(),
@@ -71,7 +71,7 @@ class PlanPreviewItem extends StatelessWidget {
                     ),
                     style: TextStyles.defaultStyle,
                   ),
-                  const JoinToPlanButton(isJoined: false),
+                  const JoinToPlanButton(isJoined: false), // TODO: logic
                 ],
               ),
             ],

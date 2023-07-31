@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:tfg_v2/domain/model/plan.dart';
 import 'package:tfg_v2/ui/styles/insets.dart';
 import 'package:tfg_v2/ui/styles/text_styles.dart';
 import 'package:tfg_v2/ui/widgets/components/appbars/default_appbar.dart';
@@ -8,14 +9,15 @@ import 'package:tfg_v2/ui/widgets/components/buttons/join2plan_button.dart';
 import 'package:tfg_v2/ui/widgets/components/user_list/user_list.dart';
 
 class PlanDetailScreen extends StatelessWidget {
-  const PlanDetailScreen({super.key});
+  const PlanDetailScreen({super.key, required this.plan, required this.planId});
 
-  // TODO: get plan with viewmodel
+  final Plan plan;
+  final String planId; // TODO: get plan from remote call
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: DefaultAppBar(title: 'lorem.plan_title'.tr()),
+      appBar: DefaultAppBar(title: plan.title),
       body: ListView(
         padding: Insets.a16,
         children: [
@@ -31,12 +33,11 @@ class PlanDetailScreen extends StatelessWidget {
                 onTap: () {}, // TODO: navigate to profile
               ),
               Text(
-                'lorem.place'.tr(), // todo place from plan
+                plan.place,
                 style: TextStyles.defaultStyleBold,
               ),
               Text(
-                DateFormat('dd-MM-yyyy, kk:mm')
-                    .format(DateTime.now()), // todo date from plan
+                DateFormat('dd-MM-yyyy, kk:mm').format(plan.date),
                 style: TextStyles.defaultStyleBold,
               )
             ],
@@ -44,25 +45,33 @@ class PlanDetailScreen extends StatelessWidget {
           Padding(
             padding: Insets.v8,
             child: Text(
-              'lorem.plan_description'.tr(), // todo desc from plan
+              plan.description,
               textAlign: TextAlign.justify,
               style: TextStyles.defaultStyle,
             ),
           ),
-          const Row(
+          Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               Text(
-                "x/y personas apuntadas", // todo parameter string
-                style: TextStyles.planPreviewBottom,
+                'components.plans.people'.tr(
+                  args: [
+                    plan.joinedUsers.toString(),
+                    plan.maxUsers.toString(),
+                  ],
+                ),
+                style: TextStyles.defaultStyle,
               ),
-              JoinToPlanButton(isJoined: false),
+              const JoinToPlanButton(isJoined: false),
             ],
           ),
           const Padding(padding: Insets.v12, child: Divider(thickness: 2)),
-          const Padding(padding: Insets.h4, child: Text("Usuarios apuntados:")),
+          Padding(
+            padding: Insets.h4,
+            child: Text('components.plans.joined_users'.tr()),
+          ),
           BoxSpacer.v4(),
-          const UserList(userList: ['user1', 'user2', 'user3']),
+          UserList(userList: plan.signedUpUsers),
         ],
       ),
     );

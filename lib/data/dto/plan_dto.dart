@@ -62,7 +62,7 @@ class PlanDto {
       categories: categories,
       joinedUsers: signedUpUsers.length,
       maxUsers: maxUsers,
-      signedUpUser: signedUpUsers,
+      signedUpUsers: signedUpUsers,
     );
   }
 }

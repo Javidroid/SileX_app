@@ -5,8 +5,9 @@
       "join": "Apuntarse",
       "quit": "Desapuntarse"
     },
-    "plan_preview": {
-      "people": "{}/{} personas inscritas"
+    "plans": {
+      "people": "{}/{} personas inscritas",
+      "joined_users": "Usuarios apuntados:"
     },
     "nav_drawer": {
       "profile": "Perfil",

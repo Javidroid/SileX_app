@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:tfg_v2/domain/model/plan.dart';
 import 'package:tfg_v2/ui/navigation/routes.dart';
 import 'package:tfg_v2/ui/widgets/screens/direct_messages/direct_messages_screen.dart';
 import 'package:tfg_v2/ui/widgets/screens/faq/faq_screen.dart';
@@ -50,11 +51,17 @@ class TfgNavigator {
             const PlansScreen(),
       ),
       GoRoute(
-        // TODO: set plan id parameter
-        path: Routes.planDetail,
-        builder: (BuildContext context, GoRouterState state) =>
-            const PlanDetailScreen(),
-      ),
+          // TODO: set plan id parameter
+          path: '${Routes.plans}/:id',
+          builder: (BuildContext context, GoRouterState state) {
+            final planId = state.pathParameters['id'];
+            final plan = state.extra! as Plan;
+            print(planId);
+            return PlanDetailScreen(
+              plan: plan,
+              planId: planId!,
+            );
+          }),
       GoRoute(
         path: Routes.search,
         builder: (BuildContext context, GoRouterState state) =>
@@ -122,9 +129,8 @@ class TfgNavigator {
     return router.push(Routes.plans);
   }
 
-  Future<void> navigateToPlanDetail(String planId) {
-    // todo: insert plan id
-    return router.push(Routes.planDetail);
+  Future<void> navigateToPlanDetail(String planId, Plan plan) {
+    return router.push("${Routes.plans}/$planId", extra: plan);
   }
 
   Future<void> navigateToSearch() {

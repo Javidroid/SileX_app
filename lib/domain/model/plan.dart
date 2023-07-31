@@ -10,7 +10,7 @@ class Plan {
   List<String> categories;
   int joinedUsers;
   int maxUsers;
-  List<String> signedUpUser;
+  List<String> signedUpUsers;
 
   Plan({
     required this.idPlan,
@@ -22,6 +22,6 @@ class Plan {
     required this.categories,
     required this.joinedUsers,
     required this.maxUsers,
-    required this.signedUpUser,
+    required this.signedUpUsers,
   });
 }
