@@ -9,7 +9,7 @@ class PlanDto {
   DateTime date;
   List<String> categories;
   int maxUsers;
-  List<String> signedUpUser;
+  List<String> signedUpUsers;
 
   PlanDto({
     required this.idPlan,
@@ -20,7 +20,7 @@ class PlanDto {
     required this.date,
     required this.categories,
     required this.maxUsers,
-    required this.signedUpUser,
+    required this.signedUpUsers,
   });
 
   factory PlanDto.fromJson(Map<String, dynamic> json) {
@@ -33,7 +33,7 @@ class PlanDto {
       date: DateTime.parse(json["date"]),
       categories: List.from(json["categories"].map((x) => x)),
       maxUsers: json["max_users"],
-      signedUpUser: List.from(json["signed_up_users"].map((x) => x)),
+      signedUpUsers: List.from(json["signed_up_users"].map((x) => x)),
     );
   }
 
@@ -47,21 +47,22 @@ class PlanDto {
       "date": date.toIso8601String(),
       "categories": List<dynamic>.from(categories.map((x) => x)),
       "max_users": maxUsers,
-      "signed_up_users": List<dynamic>.from(signedUpUser.map((x) => x)),
+      "signed_up_users": List<dynamic>.from(signedUpUsers.map((x) => x)),
     };
   }
 
   Plan toModel() {
     return Plan(
-      idPlan,
-      creatorUser,
-      title,
-      description,
-      place,
-      date,
-      categories.toSet(),
-      maxUsers,
-      signedUpUser.toSet(),
+      idPlan: idPlan,
+      creator: creatorUser,
+      title: title,
+      description: description,
+      place: place,
+      date: date,
+      categories: categories,
+      joinedUsers: signedUpUsers.length,
+      maxUsers: maxUsers,
+      signedUpUser: signedUpUsers,
     );
   }
 }

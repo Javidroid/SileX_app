@@ -6,7 +6,7 @@
       "quit": "Desapuntarse"
     },
     "plan_preview": {
-      "people": "{} personas inscritas"
+      "people": "{}/{} personas inscritas"
     },
     "nav_drawer": {
       "profile": "Perfil",

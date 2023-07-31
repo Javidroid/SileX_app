@@ -32,13 +32,18 @@ class PlanPreviewItem extends StatelessWidget {
                     foregroundImage: // todo pic from plan creator
                         AssetImage('assets/images/no_user_pic.png'),
                   ),
-                  Text(
-                    'lorem.place'.tr(), // todo place from plan
-                    style: TextStyles.defaultStyleBold,
+                  Expanded(
+                    child: Padding(
+                      padding: Insets.h4,
+                      child: Text(
+                        plan.title,
+                        style: TextStyles.defaultStyleBold,
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
                   ),
                   Text(
-                    DateFormat('dd-MM-yyyy, kk:mm')
-                        .format(DateTime.now()), // todo date from plan
+                    DateFormat('dd-MM-yyyy, kk:mm').format(plan.date),
                     style: TextStyles.defaultStyleBold,
                   )
                 ],
@@ -46,7 +51,7 @@ class PlanPreviewItem extends StatelessWidget {
               Padding(
                 padding: Insets.v8,
                 child: Text(
-                  'lorem.plan_title'.tr(), // todo desc from plan
+                  plan.description,
                   textAlign: TextAlign.justify,
                   style: TextStyles.defaultStyleLight,
                   maxLines: 3,
@@ -58,8 +63,12 @@ class PlanPreviewItem extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   Text(
-                    // todo put parameter
-                    'components.plan_preview.people'.tr(args: ['x/y']),
+                    'components.plan_preview.people'.tr(
+                      args: [
+                        plan.joinedUsers.toString(),
+                        plan.maxUsers.toString(),
+                      ],
+                    ),
                     style: TextStyles.defaultStyle,
                   ),
                   const JoinToPlanButton(isJoined: false),

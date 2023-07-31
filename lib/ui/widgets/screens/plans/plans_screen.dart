@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tfg_v2/di/dependency_injection.dart';
 import 'package:tfg_v2/ui/viewmodel/plans/plans_viewmodel.dart';
-import 'package:tfg_v2/ui/widgets/components/items/plan_preview_item.dart';
+import 'package:tfg_v2/ui/widgets/components/plans/plans_list.dart';
 import 'package:tfg_v2/ui/widgets/screens/root_screen.dart';
 
 class PlansScreen extends RootScreen<PlansViewState> {
@@ -19,11 +19,7 @@ class PlansScreen extends RootScreen<PlansViewState> {
             child: CircularProgressIndicator(),
           ),
         Success _ => Center(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children:
-                  state.planList.map((e) => PlanPreviewItem(plan: e)).toList(),
-            ),
+            child: PlansList(planList: state.planList),
           ),
         Error _ => Text(state.error.toString()), // todo handle errors
       },

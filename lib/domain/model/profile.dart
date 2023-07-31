@@ -6,7 +6,7 @@ class Profile {
   String profilePic;
   Set<String> followers;
   Set<String> following;
-  Set<String> createdPlansId;
+  List<String> createdPlansId;
   String idUniversity;
   String idDegree;
   String idCenter;

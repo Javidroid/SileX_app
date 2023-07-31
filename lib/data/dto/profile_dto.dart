@@ -65,7 +65,7 @@ class ProfileDto {
       profilePic: profilePic,
       followers: followers.toSet(),
       following: following.toSet(),
-      createdPlansId: createdPlansId.toSet(),
+      createdPlansId: createdPlansId,
       idUniversity: idUniversity,
       idDegree: idDegree,
       idCenter: idCenter,

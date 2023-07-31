@@ -7,19 +7,21 @@ class Plan {
   String description;
   String place;
   DateTime date;
-  Set<String> categories;
+  List<String> categories;
+  int joinedUsers;
   int maxUsers;
-  Set<String> signedUpUser;
+  List<String> signedUpUser;
 
-  Plan(
-    this.idPlan,
-    this.creator,
-    this.title,
-    this.description,
-    this.place,
-    this.date,
-    this.categories,
-    this.maxUsers,
-    this.signedUpUser,
-  );
+  Plan({
+    required this.idPlan,
+    required this.creator,
+    required this.title,
+    required this.description,
+    required this.place,
+    required this.date,
+    required this.categories,
+    required this.joinedUsers,
+    required this.maxUsers,
+    required this.signedUpUser,
+  });
 }
