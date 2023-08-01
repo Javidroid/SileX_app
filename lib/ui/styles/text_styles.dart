@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tfg_v2/ui/styles/colors.dart';
 
 class Fonts {
   // TODO: import fonts
@@ -25,6 +26,10 @@ class TextStyles {
 
   static const TextStyle whiteTextButton = TextStyle(
     color: Colors.white, // todo: stardardize
+  );
+
+  static TextStyle logout = TextStyle(
+    color: colorScheme.error,
   );
 
   // PROFILE

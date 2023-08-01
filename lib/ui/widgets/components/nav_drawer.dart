@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tfg_v2/di/dependency_injection.dart';
 import 'package:tfg_v2/ui/navigation/navigator.dart';
+import 'package:tfg_v2/ui/styles/text_styles.dart';
 import 'package:tfg_v2/ui/styles/theme.dart';
 import 'package:tfg_v2/ui/widgets/components/profile/navigable_profile_pic.dart';
 
@@ -70,6 +71,15 @@ class _TfgNavigationDrawerState extends State<TfgNavigationDrawer> {
                 onTap: () {
                   navigator.pop();
                   navigator.navigateToSettings();
+                },
+              ),
+              ListTile(
+                title: Text(
+                  'components.nav_drawer.logout'.tr(),
+                  style: TextStyles.logout,
+                ),
+                onTap: () {
+                  // TODO: log out
                 },
               ),
               const Divider(
