@@ -40,8 +40,7 @@ class PlanRepositoryImpl implements PlanRepository {
 
   @override
   Future<Either<AppError, Plan>> getPlan(String idPlan) {
-    // TODO: implement getPlan
-    throw UnimplementedError();
+    return _remoteDatasource.getPlan(idPlan);
   }
 
   @override

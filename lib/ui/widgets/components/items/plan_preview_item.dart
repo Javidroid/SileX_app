@@ -65,7 +65,7 @@ class PlanPreviewItem extends StatelessWidget {
                   Text(
                     'components.plans.people'.tr(
                       args: [
-                        plan.joinedUsers.toString(),
+                        plan.joinedUsers.length.toString(),
                         plan.maxUsers.toString(),
                       ],
                     ),

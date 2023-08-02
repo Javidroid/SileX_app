@@ -8,9 +8,8 @@ class Plan {
   String place;
   DateTime date;
   List<String> categories;
-  int joinedUsers;
   int maxUsers;
-  List<String> signedUpUsers;
+  List<String> joinedUsers;
 
   Plan({
     required this.idPlan,
@@ -20,8 +19,7 @@ class Plan {
     required this.place,
     required this.date,
     required this.categories,
-    required this.joinedUsers,
     required this.maxUsers,
-    required this.signedUpUsers,
+    required this.joinedUsers,
   });
 }

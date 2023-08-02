@@ -51,17 +51,16 @@ class TfgNavigator {
             const PlansScreen(),
       ),
       GoRoute(
-          // TODO: set plan id parameter
-          path: '${Routes.plans}/:id',
-          builder: (BuildContext context, GoRouterState state) {
-            final planId = state.pathParameters['id'];
-            final plan = state.extra! as Plan;
-            print(planId);
-            return PlanDetailScreen(
-              plan: plan,
-              planId: planId!,
-            );
-          }),
+        path: '${Routes.plans}/:id',
+        builder: (BuildContext context, GoRouterState state) {
+          final planId = state.pathParameters['id'];
+          final plan = state.extra! as Plan;
+          return PlanDetailScreen(
+            plan: plan,
+            planId: planId!,
+          );
+        },
+      ),
       GoRoute(
         path: Routes.search,
         builder: (BuildContext context, GoRouterState state) =>

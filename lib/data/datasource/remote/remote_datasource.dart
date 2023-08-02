@@ -6,6 +6,8 @@ import 'package:tfg_v2/domain/model/user.dart';
 abstract interface class RemoteDatasource {
   Future<Either<AppError, User>> getUser(String username);
 
+  Future<Either<AppError, List<User>>> getUserList(List<String> usernames);
+
   Future<Either<AppError, bool>> createUser(User username);
 
   Future<Either<AppError, bool>> updateUser(User username, String preUsername);

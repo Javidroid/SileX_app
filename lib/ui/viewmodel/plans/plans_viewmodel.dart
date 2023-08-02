@@ -1,5 +1,4 @@
 import 'package:injectable/injectable.dart';
-import 'package:tfg_v2/di/dependency_injection.dart';
 import 'package:tfg_v2/domain/model/errors.dart';
 import 'package:tfg_v2/domain/model/plan.dart';
 import 'package:tfg_v2/domain/repository/social/plan_repository.dart';
@@ -7,9 +6,9 @@ import 'package:tfg_v2/ui/viewmodel/root_viewmodel.dart';
 
 @Injectable()
 class PlansViewModel extends RootViewModel<PlansViewState> {
-  final _repository = getIt<PlanRepository>();
+  final PlanRepository _planRepository;
 
-  PlansViewModel() : super(Loading());
+  PlansViewModel(this._planRepository) : super(Loading());
 
   @override
   void onAttach() async {
@@ -17,7 +16,7 @@ class PlansViewModel extends RootViewModel<PlansViewState> {
   }
 
   Future<void> refreshPlans() async {
-    final result = await _repository.getPlans();
+    final result = await _planRepository.getPlans();
     result.fold(
       (left) => emitValue(Error(left)),
       (right) => emitValue(Success(planList: right, onRefresh: refreshPlans)),

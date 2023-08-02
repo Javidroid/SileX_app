@@ -51,9 +51,15 @@ class DefaultRemoteDatasource implements RemoteDatasource {
   }
 
   @override
-  Future<Either<AppError, Plan>> getPlan(String idPlan) {
-    // TODO: implement getPlan
-    throw UnimplementedError();
+  Future<Either<AppError, Plan>> getPlan(String idPlan) async {
+    final uri = Uri.parse('$_baseUrl/plan?id_plan=$idPlan');
+
+    final result = await _apiService.get(uri);
+
+    return result.either<AppError, Plan>(
+      (left) => left,
+      (right) => PlanDto.fromJson(right).toModel(),
+    );
   }
 
   @override
@@ -112,5 +118,26 @@ class DefaultRemoteDatasource implements RemoteDatasource {
   Future<Either<AppError, bool>> updateUser(User username, String preUsername) {
     // TODO: implement updateUser
     throw UnimplementedError();
+  }
+
+  @override
+  Future<Either<AppError, List<User>>> getUserList(
+    List<String> usernames,
+  ) async {
+    final List<User> usernameList = [];
+    print(usernames);
+
+    // todo hacer método para recuperar user por ID
+
+    for (String username in usernames) {
+      final resp = await getUser(username);
+      if (resp.isRight) {
+        usernameList.add(resp.right);
+      } else {
+        return Left(resp.left);
+      }
+    }
+
+    return Right(usernameList);
   }
 }

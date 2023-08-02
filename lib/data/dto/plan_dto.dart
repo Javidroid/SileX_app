@@ -60,9 +60,8 @@ class PlanDto {
       place: place,
       date: date,
       categories: categories,
-      joinedUsers: signedUpUsers.length,
       maxUsers: maxUsers,
-      signedUpUsers: signedUpUsers,
+      joinedUsers: signedUpUsers,
     );
   }
 }

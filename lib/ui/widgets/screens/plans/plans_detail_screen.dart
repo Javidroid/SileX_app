@@ -3,19 +3,24 @@ import 'package:flutter/material.dart';
 import 'package:tfg_v2/domain/model/plan.dart';
 import 'package:tfg_v2/ui/styles/insets.dart';
 import 'package:tfg_v2/ui/styles/text_styles.dart';
+import 'package:tfg_v2/ui/viewmodel/plans/plan_detail_viewmodel.dart';
 import 'package:tfg_v2/ui/widgets/components/appbars/default_appbar.dart';
 import 'package:tfg_v2/ui/widgets/components/box_spacer.dart';
 import 'package:tfg_v2/ui/widgets/components/buttons/join2plan_button.dart';
 import 'package:tfg_v2/ui/widgets/components/user_list/user_list.dart';
+import 'package:tfg_v2/ui/widgets/screens/root_screen.dart';
 
-class PlanDetailScreen extends StatelessWidget {
+class PlanDetailScreen extends RootScreen<PlanDetailViewState> {
   const PlanDetailScreen({super.key, required this.plan, required this.planId});
 
   final Plan plan;
-  final String planId; // TODO: get plan from remote call
+  final String planId; // TODO: get plan from remote call with joined user list
 
   @override
-  Widget build(BuildContext context) {
+  PlanDetailViewModel get viewModel => PlanDetailViewModel(planId: planId);
+
+  @override
+  Widget buildView(BuildContext context, PlanDetailViewState state) {
     return Scaffold(
       appBar: DefaultAppBar(title: plan.title),
       body: ListView(
@@ -56,7 +61,7 @@ class PlanDetailScreen extends StatelessWidget {
               Text(
                 'components.plans.people'.tr(
                   args: [
-                    plan.joinedUsers.toString(),
+                    plan.joinedUsers.length.toString(),
                     plan.maxUsers.toString(),
                   ],
                 ),
@@ -71,7 +76,7 @@ class PlanDetailScreen extends StatelessWidget {
             child: Text('components.plans.joined_users'.tr()),
           ),
           BoxSpacer.v4(),
-          UserList(userList: plan.signedUpUsers),
+          UserList(userList: plan.joinedUsers),
         ],
       ),
     );
