@@ -53,11 +53,9 @@ class TfgNavigator {
       GoRoute(
         path: '${Routes.plans}/:id',
         builder: (BuildContext context, GoRouterState state) {
-          final planId = state.pathParameters['id'];
           final plan = state.extra! as Plan;
           return PlanDetailScreen(
             plan: plan,
-            planId: planId!,
           );
         },
       ),
@@ -128,8 +126,8 @@ class TfgNavigator {
     return router.push(Routes.plans);
   }
 
-  Future<void> navigateToPlanDetail(String planId, Plan plan) {
-    return router.push("${Routes.plans}/$planId", extra: plan);
+  Future<void> navigateToPlanDetail(Plan plan) {
+    return router.push("${Routes.plans}/${plan.idPlan}", extra: plan);
   }
 
   Future<void> navigateToSearch() {

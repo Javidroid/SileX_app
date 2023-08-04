@@ -7,7 +7,7 @@ import 'package:tfg_v2/domain/model/user.dart';
 abstract interface class UserRepository {
   Future<Either<AppError, User>> getUser(String username);
 
-  Future<Either<AppError, List<User>>> getUserList(List<String> usernames);
+  Future<Either<AppError, List<User>>> getUserListById(List<String> ids);
 
   Future<Either<AppError, bool>> createUser(User username);
 
@@ -71,7 +71,7 @@ class UserRepositoryImpl implements UserRepository {
   }
 
   @override
-  Future<Either<AppError, List<User>>> getUserList(List<String> usernames) {
-    return _remoteDatasource.getUserList(usernames);
+  Future<Either<AppError, List<User>>> getUserListById(List<String> ids) {
+    return _remoteDatasource.getUserListById(ids);
   }
 }

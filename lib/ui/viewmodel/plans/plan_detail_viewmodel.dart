@@ -8,8 +8,10 @@ import 'package:tfg_v2/ui/navigation/navigator.dart';
 import 'package:tfg_v2/ui/viewmodel/root_viewmodel.dart';
 
 class PlanDetailViewModel extends RootViewModel<PlanDetailViewState> {
-  PlanDetailViewModel({required this.planId}) : super(Loading());
-  final String planId;
+  PlanDetailViewModel({required this.planFromList})
+      : super(Loading(plan: planFromList));
+
+  final Plan planFromList; // could be outdated, but is used for fast-render
 
   TfgNavigator get navigator => getIt<TfgNavigator>();
 
@@ -19,42 +21,46 @@ class PlanDetailViewModel extends RootViewModel<PlanDetailViewState> {
 
   @override
   void onAttach() async {
+    emitValue(Loading(plan: planFromList));
     refresh();
   }
 
   Future<void> refresh() async {
-    final plan = await _planRepository.getPlan(planId);
+    final plan = await _planRepository.getPlan(planFromList.idPlan);
 
     if (plan.isLeft) {
-      emitValue(Error(plan.left));
+      emitValue(Error(error: plan.left, plan: planFromList));
     }
 
     final joinedUsers =
-        await _userRepository.getUserList(plan.right.joinedUsers);
-
-    print(joinedUsers.right.length);
+        await _userRepository.getUserListById(plan.right.joinedUsers);
 
     if (joinedUsers.isLeft) {
-      emitValue(Error(joinedUsers.left));
+      emitValue(Error(error: joinedUsers.left, plan: planFromList));
     }
 
     emitValue(Success(plan: plan.right, joinedUsers: joinedUsers.right));
   }
 }
 
-sealed class PlanDetailViewState extends ViewState {}
+sealed class PlanDetailViewState extends ViewState {
+  final Plan plan;
 
-class Loading extends PlanDetailViewState {}
+  PlanDetailViewState({required this.plan});
+}
+
+class Loading extends PlanDetailViewState {
+  Loading({required super.plan});
+}
 
 class Success extends PlanDetailViewState {
-  final Plan plan;
   final List<User> joinedUsers;
 
-  Success({required this.plan, required this.joinedUsers});
+  Success({required super.plan, required this.joinedUsers});
 }
 
 class Error extends PlanDetailViewState {
   final AppError error;
 
-  Error(this.error);
+  Error({required this.error, required super.plan});
 }

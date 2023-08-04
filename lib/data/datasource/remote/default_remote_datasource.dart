@@ -88,6 +88,18 @@ class DefaultRemoteDatasource implements RemoteDatasource {
   }
 
   @override
+  Future<Either<AppError, User>> getUserById(String userId) {
+    final uri = Uri.parse('$_baseUrl/userById/$userId');
+
+    final result = _apiService.get(uri);
+
+    return result.either<AppError, User>(
+      (left) => left,
+      (right) => UserDto.fromJson(right).toModel(),
+    );
+  }
+
+  @override
   Future<Either<AppError, bool>> quitFromPlan(String idPlan, String username) {
     // TODO: implement quitFromPlan
     throw UnimplementedError();
@@ -121,23 +133,20 @@ class DefaultRemoteDatasource implements RemoteDatasource {
   }
 
   @override
-  Future<Either<AppError, List<User>>> getUserList(
-    List<String> usernames,
+  Future<Either<AppError, List<User>>> getUserListById(
+    List<String> ids,
   ) async {
-    final List<User> usernameList = [];
-    print(usernames);
+    final List<User> userList = [];
 
-    // todo hacer método para recuperar user por ID
-
-    for (String username in usernames) {
-      final resp = await getUser(username);
+    for (String id in ids) {
+      final resp = await getUserById(id);
       if (resp.isRight) {
-        usernameList.add(resp.right);
+        userList.add(resp.right);
       } else {
         return Left(resp.left);
       }
     }
 
-    return Right(usernameList);
+    return Right(userList);
   }
 }

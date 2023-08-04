@@ -17,7 +17,7 @@ class PlanPreviewItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => navigator.navigateToPlanDetail(plan.idPlan, plan),
+      onTap: () => navigator.navigateToPlanDetail(plan),
       child: Card(
         elevation: 5,
         child: Padding(

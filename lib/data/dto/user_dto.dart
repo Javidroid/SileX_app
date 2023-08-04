@@ -21,7 +21,7 @@ class UserDto {
     return UserDto(
       username: json["username"],
       email: json["email"],
-      isVerified: json["is_verified"].toLowerCase() == 'true',
+      isVerified: json["is_verified"],
       userRole: json["role"],
       profile: ProfileDto.fromJson(json["profile"]),
     );
