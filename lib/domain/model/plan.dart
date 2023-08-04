@@ -10,6 +10,7 @@ class Plan {
   List<String> categories;
   int maxUsers;
   List<String> joinedUsers;
+  String creatorProfPic;
 
   Plan({
     required this.idPlan,
@@ -21,5 +22,6 @@ class Plan {
     required this.categories,
     required this.maxUsers,
     required this.joinedUsers,
+    this.creatorProfPic = '',
   });
 }

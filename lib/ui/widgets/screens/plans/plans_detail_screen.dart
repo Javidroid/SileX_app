@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:tfg_v2/domain/model/plan.dart';
+import 'package:tfg_v2/env/constants.dart';
 import 'package:tfg_v2/ui/styles/insets.dart';
 import 'package:tfg_v2/ui/styles/text_styles.dart';
 import 'package:tfg_v2/ui/viewmodel/plans/plan_detail_viewmodel.dart';
@@ -38,6 +39,7 @@ class PlanDetailScreen extends RootScreen<PlanDetailViewState> {
                     child: const CircleAvatar(
                       foregroundImage: // todo pic from plan creator
                           NetworkImage('https://via.placeholder.com/250'),
+                      backgroundImage: AssetImage(Constants.defaultProfilePic),
                       radius: 30,
                     ),
                     onTap: () {}, // TODO: navigate to profile

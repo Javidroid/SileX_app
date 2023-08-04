@@ -76,10 +76,10 @@ class DefaultRemoteDatasource implements RemoteDatasource {
   }
 
   @override
-  Future<Either<AppError, User>> getUser(String username) {
+  Future<Either<AppError, User>> getUser(String username) async {
     final uri = Uri.parse('$_baseUrl/user/$username');
 
-    final result = _apiService.get(uri);
+    final result = await _apiService.get(uri);
 
     return result.either<AppError, User>(
       (left) => left,
@@ -88,10 +88,10 @@ class DefaultRemoteDatasource implements RemoteDatasource {
   }
 
   @override
-  Future<Either<AppError, User>> getUserById(String userId) {
+  Future<Either<AppError, User>> getUserById(String userId) async {
     final uri = Uri.parse('$_baseUrl/userById/$userId');
 
-    final result = _apiService.get(uri);
+    final result = await _apiService.get(uri);
 
     return result.either<AppError, User>(
       (left) => left,
@@ -148,5 +148,14 @@ class DefaultRemoteDatasource implements RemoteDatasource {
     }
 
     return Right(userList);
+  }
+
+  @override
+  Future<Either<AppError, String>> getUserProfilePic(String userId) async {
+    final uri = Uri.parse('$_baseUrl/user/$userId/profilePicture');
+
+    final result = await _apiService.get(uri);
+
+    return result.either<AppError, String>((left) => left, (right) => right);
   }
 }

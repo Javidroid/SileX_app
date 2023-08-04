@@ -44,16 +44,20 @@ extension GetItInjectableX on _i1.GetIt {
     gh.factory<_i4.HomeViewModel>(() => _i4.HomeViewModel());
     gh.factory<_i5.LocalDatasource>(() => _i6.DefaultLocalDatasource());
     gh.factory<_i7.RemoteDatasource>(
-        () => _i8.DefaultRemoteDatasource(gh<_i3.ApiService>()));
+      () => _i8.DefaultRemoteDatasource(gh<_i3.ApiService>()),
+    );
     gh.factory<_i9.SplashViewModel>(() => _i9.SplashViewModel());
     gh.singleton<_i10.TfgEnv>(diModule.env);
     gh.singleton<_i11.TfgNavigator>(diModule.navigator);
     gh.factory<_i12.UserRepository>(
-        () => _i12.UserRepositoryImpl(gh<_i7.RemoteDatasource>()));
+      () => _i12.UserRepositoryImpl(gh<_i7.RemoteDatasource>()),
+    );
     gh.factory<_i13.PlanRepository>(
-        () => _i13.PlanRepositoryImpl(gh<_i7.RemoteDatasource>()));
+      () => _i13.PlanRepositoryImpl(gh<_i7.RemoteDatasource>()),
+    );
     gh.factory<_i14.PlansViewModel>(
-        () => _i14.PlansViewModel(gh<_i13.PlanRepository>()));
+      () => _i14.PlansViewModel(gh<_i13.PlanRepository>()),
+    );
     return this;
   }
 }

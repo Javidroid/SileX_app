@@ -2,13 +2,17 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:tfg_v2/di/dependency_injection.dart';
 import 'package:tfg_v2/domain/model/plan.dart';
+import 'package:tfg_v2/env/constants.dart';
 import 'package:tfg_v2/ui/navigation/navigator.dart';
 import 'package:tfg_v2/ui/styles/insets.dart';
 import 'package:tfg_v2/ui/styles/text_styles.dart';
 import 'package:tfg_v2/ui/widgets/components/buttons/join2plan_button.dart';
 
 class PlanPreviewItem extends StatelessWidget {
-  const PlanPreviewItem({super.key, required this.plan});
+  const PlanPreviewItem({
+    super.key,
+    required this.plan,
+  });
 
   final Plan plan;
 
@@ -28,9 +32,10 @@ class PlanPreviewItem extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const CircleAvatar(
-                    foregroundImage: // todo pic from plan creator
-                        AssetImage('assets/images/no_user_pic.png'),
+                  CircleAvatar(
+                    foregroundImage: NetworkImage(plan.creatorProfPic),
+                    backgroundImage:
+                        const AssetImage(Constants.defaultProfilePic),
                   ),
                   Expanded(
                     child: Padding(

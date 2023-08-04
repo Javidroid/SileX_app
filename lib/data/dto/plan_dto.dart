@@ -10,6 +10,7 @@ class PlanDto {
   List<String> categories;
   int maxUsers;
   List<String> signedUpUsers;
+  String creatorProfPic;
 
   PlanDto({
     required this.idPlan,
@@ -21,6 +22,7 @@ class PlanDto {
     required this.categories,
     required this.maxUsers,
     required this.signedUpUsers,
+    required this.creatorProfPic,
   });
 
   factory PlanDto.fromJson(Map<String, dynamic> json) {
@@ -34,6 +36,7 @@ class PlanDto {
       categories: List.from(json["categories"].map((x) => x)),
       maxUsers: json["max_users"],
       signedUpUsers: List.from(json["signed_up_users"].map((x) => x)),
+      creatorProfPic: json["creator_profile_pic"],
     );
   }
 
@@ -62,6 +65,7 @@ class PlanDto {
       categories: categories,
       maxUsers: maxUsers,
       joinedUsers: signedUpUsers,
+      creatorProfPic: creatorProfPic,
     );
   }
 }

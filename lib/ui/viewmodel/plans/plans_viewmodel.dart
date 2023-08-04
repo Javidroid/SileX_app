@@ -19,7 +19,12 @@ class PlansViewModel extends RootViewModel<PlansViewState> {
     final result = await _planRepository.getPlans();
     result.fold(
       (left) => emitValue(Error(left)),
-      (right) => emitValue(Success(planList: right, onRefresh: refreshPlans)),
+      (right) => emitValue(
+        Success(
+          planList: right,
+          onRefresh: refreshPlans,
+        ),
+      ),
     );
   }
 }
@@ -32,7 +37,10 @@ class Success extends PlansViewState {
   final List<Plan> planList;
   final Function() onRefresh;
 
-  Success({required this.planList, required this.onRefresh});
+  Success({
+    required this.planList,
+    required this.onRefresh,
+  });
 }
 
 class Error extends PlansViewState {
