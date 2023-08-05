@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:tfg_v2/ui/widgets/components/user_list/user_list.dart';
 
 class FollowsList extends StatelessWidget {
   const FollowsList({
@@ -17,7 +16,7 @@ class FollowsList extends StatelessWidget {
       appBar: AppBar(
         title: Text(followingOrFollowers ? 'Siguiendo' : 'Seguidores'),
       ),
-      body: UserList(userIdList: followsList),
+      body: const Placeholder(), //UserList(userList: followsList), // todo
     );
   }
 }

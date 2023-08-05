@@ -79,7 +79,12 @@ class PlanDetailScreen extends RootScreen<PlanDetailViewState> {
                 child: Text('components.plans.joined_users'.tr()),
               ),
               BoxSpacer.v4(),
-              UserList(userIdList: state.plan.joinedUsers),
+              (state is Success)
+                  ? UserList(
+                      userList: state.joinedUsers,
+                      howManyIfLoading: state.joinedUsers.length,
+                    )
+                  : UserList(howManyIfLoading: state.plan.joinedUsers.length)
             ],
           ),
         Error _ => Text(state.error.toString()), // todo handle errors

@@ -5,33 +5,30 @@ import 'package:tfg_v2/env/constants.dart';
 import 'package:tfg_v2/ui/styles/colors.dart';
 import 'package:tfg_v2/ui/styles/insets.dart';
 import 'package:tfg_v2/ui/styles/text_styles.dart';
-import 'package:tfg_v2/ui/viewmodel/components/user_list_viewmodel.dart';
 import 'package:tfg_v2/ui/widgets/components/profile/navigable_profile_pic.dart';
-import 'package:tfg_v2/ui/widgets/screens/root_screen.dart';
 
-class UserList extends RootScreen<UserListViewState> {
-  const UserList({super.key, required this.userIdList});
+class UserList extends StatelessWidget {
+  const UserList({
+    super.key,
+    this.userList,
+    this.howManyIfLoading = 3,
+  });
 
-  final List<String> userIdList;
+  /// The user list wanted to show. If null, shimmer is shown.
+  final List<User>? userList;
 
-  // TODO: fix: because state is updated twice, UserList renders twice,
-  //  making the userlist viewmodel make the call twice
-  //  should be linked ¿? to plan detail viewmodel?
+  /// How many tiles are wanted to show when loading data.
+  final int howManyIfLoading;
 
   @override
-  UserListViewModel get viewModel => UserListViewModel(userIdList: userIdList);
-
-  @override
-  Widget buildView(BuildContext context, UserListViewState state) {
-    return switch (state) {
-      Loading _ => _LoadingListItem(howMany: userIdList.length),
-      Success _ => Column(
-          children: [
-            for (User user in state.userList) _UserListItem(user: user),
-          ],
-        ),
-      Error _ => Text(state.error.toString()), // todo handle errors
-    };
+  Widget build(BuildContext context) {
+    return (userList != null)
+        ? Column(
+            children: [
+              for (User user in userList!) _UserListItem(user: user),
+            ],
+          )
+        : _LoadingListItem(howMany: howManyIfLoading);
   }
 }
 
@@ -72,9 +69,8 @@ class _UserListItem extends StatelessWidget {
 }
 
 class _LoadingListItem extends StatelessWidget {
-  const _LoadingListItem({this.howMany = 3});
+  const _LoadingListItem({required this.howMany});
 
-  /// Number of tiles wanted to print. Defaults to 3.
   final int howMany;
 
   @override
