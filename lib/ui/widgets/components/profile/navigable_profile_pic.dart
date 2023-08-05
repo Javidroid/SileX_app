@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tfg_v2/env/constants.dart';
 
 class NavigableProfilePic extends StatelessWidget {
   const NavigableProfilePic({
@@ -17,9 +18,8 @@ class NavigableProfilePic extends StatelessWidget {
     return GestureDetector(
       onTap: onTap ?? () {},
       child: CircleAvatar(
-        foregroundImage:
-            // todo load picture from repo
-            AssetImage(asset), // todo change to Network image
+        foregroundImage: NetworkImage(asset),
+        backgroundImage: const AssetImage(Constants.defaultProfilePic),
         radius: radius ?? 25,
       ),
     );
