@@ -33,13 +33,14 @@ class PlanPreviewItem extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   CircleAvatar(
+                    radius: 23,
                     foregroundImage: NetworkImage(plan.creatorProfPic),
                     backgroundImage:
                         const AssetImage(Constants.defaultProfilePic),
                   ),
                   Expanded(
                     child: Padding(
-                      padding: Insets.h4,
+                      padding: Insets.h12,
                       child: Text(
                         plan.title,
                         style: TextStyles.defaultStyleBold,

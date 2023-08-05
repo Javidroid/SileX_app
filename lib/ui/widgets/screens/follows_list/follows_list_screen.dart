@@ -17,7 +17,7 @@ class FollowsList extends StatelessWidget {
       appBar: AppBar(
         title: Text(followingOrFollowers ? 'Siguiendo' : 'Seguidores'),
       ),
-      body: UserList(userList: followsList),
+      body: UserList(userIdList: followsList),
     );
   }
 }

@@ -16,10 +16,6 @@ class PlanDetailScreen extends RootScreen<PlanDetailViewState> {
 
   final Plan plan;
 
-  // TODO: ver si juntar el enlace a la foto de perfil al plan,
-  //      crear un método para obtener solo la foto de perfil del user
-  //      o directamente pillar el user junto al plan para redirigir
-
   @override
   PlanDetailViewModel get viewModel => PlanDetailViewModel(planFromList: plan);
 
@@ -36,10 +32,10 @@ class PlanDetailScreen extends RootScreen<PlanDetailViewState> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   GestureDetector(
-                    child: const CircleAvatar(
-                      foregroundImage: // todo pic from plan creator
-                          NetworkImage('https://via.placeholder.com/250'),
-                      backgroundImage: AssetImage(Constants.defaultProfilePic),
+                    child: CircleAvatar(
+                      foregroundImage: NetworkImage(state.plan.creatorProfPic),
+                      backgroundImage:
+                          const AssetImage(Constants.defaultProfilePic),
                       radius: 30,
                     ),
                     onTap: () {}, // TODO: navigate to profile
@@ -83,10 +79,7 @@ class PlanDetailScreen extends RootScreen<PlanDetailViewState> {
                 child: Text('components.plans.joined_users'.tr()),
               ),
               BoxSpacer.v4(),
-              (state is Success)
-                  ? UserList(userList: state.plan.joinedUsers)
-                  : const Center(child: CircularProgressIndicator()),
-              // todo improve UI to not use circular progress
+              UserList(userIdList: state.plan.joinedUsers),
             ],
           ),
         Error _ => Text(state.error.toString()), // todo handle errors
