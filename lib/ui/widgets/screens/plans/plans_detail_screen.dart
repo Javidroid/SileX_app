@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:tfg_v2/di/dependency_injection.dart';
 import 'package:tfg_v2/domain/model/plan.dart';
+import 'package:tfg_v2/env/constants.dart';
 import 'package:tfg_v2/ui/navigation/navigator.dart';
 import 'package:tfg_v2/ui/styles/insets.dart';
 import 'package:tfg_v2/ui/styles/text_styles.dart';
@@ -35,15 +36,18 @@ class PlanDetailScreen extends RootScreen<PlanDetailViewState> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  NavigableProfilePic(
-                    asset: state.plan.creatorProfPic,
-                    onTap: (state is Success)
-                        ? () => navigator.navigateToProfile(
-                              userRef: plan.creatorId,
-                              isUserRefId: true,
-                            )
-                        : null,
-                    radius: 30,
+                  Hero(
+                    tag: Constants.profilePicHeroTag,
+                    child: NavigableProfilePic(
+                      asset: state.plan.creatorProfPic,
+                      onTap: (state is Success)
+                          ? () => navigator.navigateToProfile(
+                                userRef: plan.creatorId,
+                                isUserRefId: true,
+                              )
+                          : null,
+                      radius: 30,
+                    ),
                   ),
                   Text(
                     state.plan.place,

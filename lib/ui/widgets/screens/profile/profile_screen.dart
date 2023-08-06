@@ -31,7 +31,6 @@ class ProfileScreen extends RootScreen<ProfileViewState> {
     // TODO: handle cuando haya error para que enseñe el user outdated,
     //      indicando el error y que es una versión desactualizada
     return switch (state) {
-      // TODO: make a swipe to refresh
       Loading _ => Scaffold(
           appBar: AppBar(),
           body: const Center(child: CircularProgressIndicator()),

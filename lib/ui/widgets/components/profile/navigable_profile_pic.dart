@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:tfg_v2/env/constants.dart';
 
 class NavigableProfilePic extends StatelessWidget {
   const NavigableProfilePic({

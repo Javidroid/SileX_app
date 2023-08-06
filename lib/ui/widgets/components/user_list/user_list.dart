@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:tfg_v2/di/dependency_injection.dart';
 import 'package:tfg_v2/domain/model/user.dart';
 import 'package:tfg_v2/env/constants.dart';
+import 'package:tfg_v2/ui/navigation/navigator.dart';
 import 'package:tfg_v2/ui/styles/colors.dart';
 import 'package:tfg_v2/ui/styles/insets.dart';
 import 'package:tfg_v2/ui/styles/text_styles.dart';
@@ -37,6 +39,8 @@ class _UserListItem extends StatelessWidget {
 
   final User user;
 
+  TfgNavigator get navigator => getIt<TfgNavigator>();
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -50,18 +54,28 @@ class _UserListItem extends StatelessWidget {
           user.username,
           style: TextStyles.userListSubtitle,
         ),
-        leading: NavigableProfilePic(
-          asset: user.profile.profilePic,
-          radius: 20,
+        leading: Hero(
+          // FIXME: este hero no funciona y cuando se lanza desde el plan detail
+          //      sólamente se conecta con la foto de perfil del creador
+          tag: Constants.profilePicHeroTag,
+          child: NavigableProfilePic(
+            asset: user.profile.profilePic,
+            radius: 20,
+            onTap: () => navigator.navigateToProfile(
+              userRef: user.username,
+              isUserRefId: false,
+            ),
+          ),
         ),
-        onTap: () {},
+        onTap: () => navigator.navigateToProfile(
+          userRef: user.username,
+          isUserRefId: false,
+        ),
         // todo navigate to profile
         tileColor: colorScheme.tertiary,
         dense: true,
         visualDensity: VisualDensity.compact,
         // TODO selected: if current user,
-        // todo refactor
-        // todo navigate to user prof
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
       ),
     );
