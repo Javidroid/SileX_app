@@ -4,6 +4,7 @@ import 'package:tfg_v2/utils/age_calculator.dart';
 class ProfileDto {
   String name;
   String surnames;
+  String description;
   DateTime birthDate;
   String profilePic;
   List<String> followers;
@@ -16,6 +17,7 @@ class ProfileDto {
   ProfileDto({
     required this.name,
     required this.surnames,
+    required this.description,
     required this.birthDate,
     required this.profilePic,
     required this.followers,
@@ -30,6 +32,7 @@ class ProfileDto {
     return ProfileDto(
       name: json["name"],
       surnames: json["surnames"],
+      description: json["description"],
       birthDate: DateTime.parse(json["birth_date"]),
       profilePic: json["profile_pic"],
       followers: List<String>.from(json["followers"].map((x) => x)),
@@ -45,6 +48,7 @@ class ProfileDto {
     return {
       "name": name,
       "surnames": surnames,
+      "description": description,
       "birth_date": birthDate.toIso8601String(),
       "profile_pic": profilePic,
       "followers": List<dynamic>.from(followers.map((x) => x)),
@@ -56,10 +60,27 @@ class ProfileDto {
     };
   }
 
+  factory ProfileDto.fromModel(Profile profile) {
+    return ProfileDto(
+      name: profile.name,
+      surnames: profile.surnames,
+      description: profile.description,
+      birthDate: profile.birthDate,
+      profilePic: profile.profilePic,
+      followers: profile.followers.toList(),
+      following: profile.following.toList(),
+      createdPlansId: profile.createdPlansId,
+      idUniversity: profile.idUniversity,
+      idDegree: profile.idDegree,
+      idCenter: profile.idCenter,
+    );
+  }
+
   Profile toModel() {
     return Profile(
       name: name,
       surnames: surnames,
+      description: description,
       birthDate: birthDate,
       age: AgeCalculatorUtil.getAgeFromBirthDate(birthDate),
       profilePic: profilePic,

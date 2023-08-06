@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tfg_v2/di/dependency_injection.dart';
+import 'package:tfg_v2/env/constants.dart';
 import 'package:tfg_v2/ui/navigation/navigator.dart';
 import 'package:tfg_v2/ui/styles/text_styles.dart';
 import 'package:tfg_v2/ui/styles/theme.dart';
@@ -29,10 +30,11 @@ class _TfgNavigationDrawerState extends State<TfgNavigationDrawer> {
               // todo foto de perfil con animación de hero a la foto del drawer
               UserAccountsDrawerHeader(
                 currentAccountPicture: Hero(
-                  tag: 'prof_pic',
+                  tag: Constants.profilePicHeroTag,
                   child: NavigableProfilePic(
-                    onTap: navigator.navigateToProfile,
-                    asset: 'assets/images/SilenTheKid.jpg',
+                    onTap: () {}, //navigator.navigateToProfile,
+                    asset:
+                        'https://pbs.twimg.com/profile_images/1625060021611466755/CkyYiCFC_400x400.jpg',
                   ),
                 ),
 
@@ -56,7 +58,7 @@ class _TfgNavigationDrawerState extends State<TfgNavigationDrawer> {
                 title: Text('components.nav_drawer.profile'.tr()),
                 onTap: () {
                   navigator.pop();
-                  navigator.navigateToProfile();
+                  // navigator.navigateToProfile();
                 },
               ),
               ListTile(

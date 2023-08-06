@@ -1,14 +1,19 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:expandable_text/expandable_text.dart';
 import 'package:flutter/material.dart';
+import 'package:tfg_v2/domain/model/profile.dart';
+import 'package:tfg_v2/env/constants.dart';
 import 'package:tfg_v2/ui/styles/colors.dart';
 import 'package:tfg_v2/ui/styles/insets.dart';
 import 'package:tfg_v2/ui/styles/text_styles.dart';
 import 'package:tfg_v2/ui/widgets/components/box_spacer.dart';
+import 'package:tfg_v2/ui/widgets/components/profile/navigable_profile_pic.dart';
 import 'package:tfg_v2/ui/widgets/components/profile/profile_number_button.dart';
 
 class ProfileHeader extends StatelessWidget {
-  const ProfileHeader({super.key});
+  const ProfileHeader({super.key, required this.prof});
+
+  final Profile prof;
 
   @override
   Widget build(BuildContext context) {
@@ -21,16 +26,24 @@ class ProfileHeader extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               Hero(
-                tag: 'prof_pic',
-                child: CircleAvatar(
+                tag: Constants.profilePicHeroTag,
+                child: NavigableProfilePic(
                   radius: MediaQuery.of(context).size.height * 0.06,
-                  foregroundImage:
-                      const AssetImage('assets/images/SilenTheKid.jpg'),
+                  asset: prof.profilePic,
                 ),
               ),
-              ProfileNumberButton(value: 32, text: 'profile.followers'.tr()),
-              ProfileNumberButton(value: 23, text: 'profile.following'.tr()),
-              ProfileNumberButton(value: 12, text: 'profile.n_plans'.tr()),
+              ProfileNumberButton(
+                value: prof.followers.length,
+                text: 'profile.followers'.tr(),
+              ),
+              ProfileNumberButton(
+                value: prof.following.length,
+                text: 'profile.following'.tr(),
+              ),
+              ProfileNumberButton(
+                value: prof.createdPlansId.length,
+                text: 'profile.n_plans'.tr(),
+              ),
             ],
           ),
           BoxSpacer.v8(),
@@ -38,7 +51,7 @@ class ProfileHeader extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "${'lorem.name'.tr()}, ${'lorem.age'.tr()}",
+                "${prof.name} ${prof.surnames}, ${prof.age}",
                 style: TextStyles.profileTitle,
               ),
               Text(
@@ -47,7 +60,7 @@ class ProfileHeader extends StatelessWidget {
               ),
               BoxSpacer.v8(),
               ExpandableText(
-                'lorem.description'.tr(),
+                prof.description,
                 textAlign: TextAlign.justify,
                 expandText: 'profile.show_more'.tr(),
                 collapseText: 'profile.show_less'.tr(),

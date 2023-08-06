@@ -37,6 +37,16 @@ class UserDto {
     };
   }
 
+  factory UserDto.fromModel(User user) {
+    return UserDto(
+      username: user.username,
+      email: user.email,
+      isVerified: user.isVerified,
+      userRole: user.userRole.string,
+      profile: ProfileDto.fromModel(user.profile),
+    );
+  }
+
   User toModel() {
     return User(
       username,

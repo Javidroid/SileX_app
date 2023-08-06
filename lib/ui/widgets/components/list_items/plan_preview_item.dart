@@ -2,11 +2,11 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:tfg_v2/di/dependency_injection.dart';
 import 'package:tfg_v2/domain/model/plan.dart';
-import 'package:tfg_v2/env/constants.dart';
 import 'package:tfg_v2/ui/navigation/navigator.dart';
 import 'package:tfg_v2/ui/styles/insets.dart';
 import 'package:tfg_v2/ui/styles/text_styles.dart';
 import 'package:tfg_v2/ui/widgets/components/buttons/join2plan_button.dart';
+import 'package:tfg_v2/ui/widgets/components/profile/navigable_profile_pic.dart';
 
 class PlanPreviewItem extends StatelessWidget {
   const PlanPreviewItem({
@@ -32,11 +32,10 @@ class PlanPreviewItem extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  CircleAvatar(
+                  NavigableProfilePic(
+                    asset: plan.creatorProfPic,
+                    onTap: () {},
                     radius: 23,
-                    foregroundImage: NetworkImage(plan.creatorProfPic),
-                    backgroundImage:
-                        const AssetImage(Constants.defaultProfilePic),
                   ),
                   Expanded(
                     child: Padding(

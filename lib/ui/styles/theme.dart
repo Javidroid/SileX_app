@@ -103,12 +103,6 @@ class ThemeNotifier extends ChangeNotifier {
 
   bool get modo => _mode;
 
-  /// Instancia de [SharedPreferencesTheme] para acceder al Shared Preferences.
-  ///
-  /// Esto sirve para poder guardar localmente el tema que se haya elegido y que
-  /// se quede para futuras ejecuciones de la App.
-  late SharedPreferencesTheme _pref;
-
   /// El constructor genera un objeto con el [_mode] inicializado a Claro. Esto
   /// es por si es la primera vez que se ejecuta la app y no hay preferencias
   /// previas.
@@ -121,14 +115,13 @@ class ThemeNotifier extends ChangeNotifier {
   /// almacenado.
   ThemeNotifier() {
     _mode = true;
-    _pref = SharedPreferencesTheme();
     getPreferences();
   }
 
   /// Alterna el [_mode] entre Claro y Oscuro. Notifica a los observadores.
   set modo(bool value) {
     _mode = value;
-    _pref.setTheme(value: value);
+    SharedPreferencesTheme.setTheme(value: value);
     notifyListeners();
   }
 
@@ -136,7 +129,7 @@ class ThemeNotifier extends ChangeNotifier {
   /// SharedPreferences y almacena en [_mode] el valor que haya almacenado.
   /// Después, notifica a todos los observadores.
   void getPreferences() async {
-    _mode = await _pref.getTheme();
+    _mode = await SharedPreferencesTheme.getTheme();
     notifyListeners();
   }
 }

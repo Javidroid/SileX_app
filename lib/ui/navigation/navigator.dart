@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tfg_v2/domain/model/plan.dart';
+import 'package:tfg_v2/domain/model/user.dart';
 import 'package:tfg_v2/ui/navigation/routes.dart';
 import 'package:tfg_v2/ui/widgets/screens/direct_messages/direct_messages_screen.dart';
 import 'package:tfg_v2/ui/widgets/screens/faq/faq_screen.dart';
@@ -75,12 +76,14 @@ class TfgNavigator {
             const MessagesScreen(),
       ),
       GoRoute(
-        path: Routes.profile,
-        builder: (BuildContext context, GoRouterState state) =>
-            const ProfileScreen(),
+        path: '${Routes.profile}/:username',
+        builder: (BuildContext context, GoRouterState state) {
+          final user = state.extra! as User;
+          return ProfileScreen(user: user);
+        },
       ),
       GoRoute(
-        path: Routes.editProfile,
+        path: '${Routes.editProfile}/:username',
         builder: (BuildContext context, GoRouterState state) =>
             const EditProfileScreen(),
       ),
@@ -142,12 +145,12 @@ class TfgNavigator {
     return router.push(Routes.dms);
   }
 
-  Future<void> navigateToProfile() {
-    return router.push(Routes.profile);
+  Future<void> navigateToProfile(User user) {
+    return router.push("${Routes.profile}/${user.username}", extra: user);
   }
 
-  Future<void> navigateToEditProfile() {
-    return router.push(Routes.editProfile);
+  Future<void> navigateToEditProfile(User user) {
+    return router.push("${Routes.editProfile}/${user.username}", extra: user);
   }
 
   Future<void> navigateToMyPlans() {

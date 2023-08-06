@@ -16,4 +16,6 @@ class ConflictError extends AppError {}
 
 class ExpiredSessionError extends AppError {}
 
+class UninitializedSharedPreferencesError extends AppError {}
+
 class UnknownError extends AppError {}

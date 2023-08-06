@@ -1,8 +1,11 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:tfg_v2/domain/model/profile.dart';
 
 class ProfileContent extends StatelessWidget {
-  const ProfileContent({super.key});
+  const ProfileContent({super.key, required this.prof});
+
+  final Profile prof;
 
   @override
   Widget build(BuildContext context) {

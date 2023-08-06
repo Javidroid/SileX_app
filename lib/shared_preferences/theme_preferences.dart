@@ -13,7 +13,7 @@ class SharedPreferencesTheme {
   /// Relación de valores:
   /// - True: Claro (light).
   /// - False: Oscuro (dark).
-  void setTheme({required bool value}) async {
+  static void setTheme({required bool value}) async {
     final SharedPreferences sharedPreferences =
         await SharedPreferences.getInstance();
     sharedPreferences.setBool(currentTheme, value);
@@ -27,7 +27,7 @@ class SharedPreferencesTheme {
   /// Relación de valores:
   /// - True: Claro (light).
   /// - False: Oscuro (dark).
-  Future<bool> getTheme() async {
+  static Future<bool> getTheme() async {
     final SharedPreferences sharedPreferences =
         await SharedPreferences.getInstance();
     return sharedPreferences.getBool(currentTheme) ?? true;

@@ -1,11 +1,18 @@
 import 'package:either_dart/either.dart';
 import 'package:injectable/injectable.dart';
+import 'package:tfg_v2/data/datasource/local/local_datasource.dart';
 import 'package:tfg_v2/data/datasource/remote/remote_datasource.dart';
 import 'package:tfg_v2/domain/model/errors.dart';
 import 'package:tfg_v2/domain/model/user.dart';
 
 abstract interface class UserRepository {
   Future<Either<AppError, User>> getUser(String username);
+
+  Future<Either<AppError, User>> getUserById(String userId);
+
+  Future<Either<AppError, User>> getCurrentLoggedUser();
+
+  Future<Either<AppError, String>> getCurrentLoggedUsername();
 
   Future<Either<AppError, List<User>>> getUserListById(List<String> ids);
 
@@ -25,9 +32,10 @@ abstract interface class UserRepository {
 
 @Injectable(as: UserRepository)
 class UserRepositoryImpl implements UserRepository {
-  final RemoteDatasource _remoteDatasource;
+  final RemoteDatasource _remote;
+  final LocalDatasource _local;
 
-  UserRepositoryImpl(this._remoteDatasource);
+  UserRepositoryImpl(this._remote, this._local);
 
   @override
   Future<Either<AppError, bool>> createUser(User username) {
@@ -52,7 +60,7 @@ class UserRepositoryImpl implements UserRepository {
 
   @override
   Future<Either<AppError, User>> getUser(String username) {
-    return _remoteDatasource.getUser(username);
+    return _remote.getUser(username);
   }
 
   @override
@@ -72,6 +80,21 @@ class UserRepositoryImpl implements UserRepository {
 
   @override
   Future<Either<AppError, List<User>>> getUserListById(List<String> ids) {
-    return _remoteDatasource.getUserListById(ids);
+    return _remote.getUserListById(ids);
+  }
+
+  @override
+  Future<Either<AppError, User>> getCurrentLoggedUser() {
+    return _local.getCurrentLoggedUser();
+  }
+
+  @override
+  Future<Either<AppError, String>> getCurrentLoggedUsername() {
+    return _local.getCurrentLoggedUsername();
+  }
+
+  @override
+  Future<Either<AppError, User>> getUserById(String userId) {
+    return _remote.getUserById(userId);
   }
 }

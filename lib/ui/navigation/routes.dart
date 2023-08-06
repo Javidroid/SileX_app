@@ -10,8 +10,8 @@ class Routes {
   static const String notifications = '/home/notifications';
   static const String dms = '/home/messages';
 
-  static const String profile = '/profile/:username';
-  static const String editProfile = '/profile/:username/edit';
+  static const String profile = '/profile';
+  static const String editProfile = '/profile/edit';
 
   static const String myPlans = '/my-plans';
   static const String settings = '/settings';

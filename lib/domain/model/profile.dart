@@ -1,6 +1,7 @@
 class Profile {
   String name;
   String surnames;
+  String description;
   DateTime birthDate;
   int age;
   String profilePic;
@@ -15,6 +16,7 @@ class Profile {
     required this.name,
     required this.surnames,
     required this.birthDate,
+    required this.description,
     required this.age,
     required this.profilePic,
     required this.followers,

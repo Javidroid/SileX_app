@@ -1,13 +1,15 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:tfg_v2/di/dependency_injection.dart';
 import 'package:tfg_v2/domain/model/plan.dart';
-import 'package:tfg_v2/env/constants.dart';
+import 'package:tfg_v2/ui/navigation/navigator.dart';
 import 'package:tfg_v2/ui/styles/insets.dart';
 import 'package:tfg_v2/ui/styles/text_styles.dart';
 import 'package:tfg_v2/ui/viewmodel/plans/plan_detail_viewmodel.dart';
 import 'package:tfg_v2/ui/widgets/components/appbars/default_appbar.dart';
 import 'package:tfg_v2/ui/widgets/components/box_spacer.dart';
 import 'package:tfg_v2/ui/widgets/components/buttons/join2plan_button.dart';
+import 'package:tfg_v2/ui/widgets/components/profile/navigable_profile_pic.dart';
 import 'package:tfg_v2/ui/widgets/components/user_list/user_list.dart';
 import 'package:tfg_v2/ui/widgets/screens/root_screen.dart';
 
@@ -15,6 +17,8 @@ class PlanDetailScreen extends RootScreen<PlanDetailViewState> {
   const PlanDetailScreen({super.key, required this.plan});
 
   final Plan plan;
+
+  TfgNavigator get navigator => getIt<TfgNavigator>();
 
   @override
   PlanDetailViewModel get viewModel => PlanDetailViewModel(planFromList: plan);
@@ -31,14 +35,12 @@ class PlanDetailScreen extends RootScreen<PlanDetailViewState> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  GestureDetector(
-                    child: CircleAvatar(
-                      foregroundImage: NetworkImage(state.plan.creatorProfPic),
-                      backgroundImage:
-                          const AssetImage(Constants.defaultProfilePic),
-                      radius: 30,
-                    ),
-                    onTap: () {}, // TODO: navigate to profile
+                  NavigableProfilePic(
+                    asset: state.plan.creatorProfPic,
+                    onTap: (state is Success)
+                        ? () => navigator.navigateToProfile(state.creatorUser)
+                        : null,
+                    radius: 30,
                   ),
                   Text(
                     state.plan.place,
