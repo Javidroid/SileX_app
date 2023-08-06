@@ -34,7 +34,10 @@ class PlanPreviewItem extends StatelessWidget {
                 children: [
                   NavigableProfilePic(
                     asset: plan.creatorProfPic,
-                    onTap: () {},
+                    onTap: () => navigator.navigateToProfile(
+                      userRef: plan.creatorId,
+                      isUserRefId: true,
+                    ),
                     radius: 23,
                   ),
                   Expanded(

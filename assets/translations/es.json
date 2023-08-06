@@ -19,20 +19,6 @@
       "about": "Acerca de..."
     }
   },
-  "lorem": {
-    "place": "Badajoz",
-    "description": "Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen.",
-    "plan_title": "Ir al parque a echar unas pipitas",
-    "plan_description": "Ir al parque con los colegas a echarnos unas pipitas y pasarlo super guay con mucho texto de relleno que no sé qué más meter para ocupar unas cuantas de linea pero esto servirá, supongo.",
-    "degree": "Ingeniería de Software",
-    "center": "Escuela Politécnica de Cáceres",
-    "username": "SilenTheKid",
-    "name": "Javier Florido Cartolano",
-    "mail": "jaflorido@alumnos.unex.es",
-    "age": "23",
-    "question": "¿Cómo crear una actividad?",
-    "answer": "Pulsando el FAB de abajo a la derecha"
-  },
   "profile": {
     "followers": "Seguidores",
     "following": "Siguiendo",

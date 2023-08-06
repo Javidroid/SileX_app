@@ -19,7 +19,7 @@ class NavigableProfilePic extends StatelessWidget {
       onTap: onTap ?? () {},
       child: CircleAvatar(
         foregroundImage: NetworkImage(asset),
-        backgroundImage: const AssetImage(Constants.defaultProfilePic),
+        // backgroundImage: const AssetImage(Constants.defaultProfilePic),
         radius: radius ?? 25,
       ),
     );

@@ -57,7 +57,7 @@ class PlanDto {
   Plan toModel() {
     return Plan(
       idPlan: idPlan,
-      creator: creatorUser,
+      creatorId: creatorUser,
       title: title,
       description: description,
       place: place,

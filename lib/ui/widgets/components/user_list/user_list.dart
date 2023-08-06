@@ -99,8 +99,9 @@ class _LoadingListItem extends StatelessWidget {
                   color: Colors.white,
                 ),
               ),
-              leading: const NavigableProfilePic(
-                asset: Constants.defaultProfilePic,
+              leading: const CircleAvatar(
+                // TODO: improve so it doesnt consume resources
+                backgroundImage: AssetImage(Constants.defaultProfilePic),
                 radius: 20,
               ),
               tileColor: colorScheme.tertiary,

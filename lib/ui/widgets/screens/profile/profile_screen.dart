@@ -1,7 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:tfg_v2/di/dependency_injection.dart';
-import 'package:tfg_v2/domain/model/user.dart';
 import 'package:tfg_v2/ui/navigation/navigator.dart';
 import 'package:tfg_v2/ui/styles/text_styles.dart';
 import 'package:tfg_v2/ui/viewmodel/profile_viewmodel/profile_viewmodel.dart';
@@ -10,14 +9,22 @@ import 'package:tfg_v2/ui/widgets/components/profile/profile_header.dart';
 import 'package:tfg_v2/ui/widgets/screens/root_screen.dart';
 
 class ProfileScreen extends RootScreen<ProfileViewState> {
-  const ProfileScreen({super.key, required this.user});
+  const ProfileScreen({
+    super.key,
+    required this.userRef,
+    required this.isUserRefId,
+  });
 
   TfgNavigator get navigator => getIt<TfgNavigator>();
 
-  final User user;
+  final String userRef;
+  final bool isUserRefId;
 
   @override
-  ProfileViewModel get viewModel => ProfileViewModel(user: user);
+  ProfileViewModel get viewModel => ProfileViewModel(
+        userRef: userRef,
+        isUserRefId: isUserRefId,
+      );
 
   @override
   Widget buildView(BuildContext context, ProfileViewState state) {
@@ -26,7 +33,7 @@ class ProfileScreen extends RootScreen<ProfileViewState> {
     return switch (state) {
       // TODO: make a swipe to refresh
       Loading _ => Scaffold(
-          appBar: AppBar(title: Text(user.username)),
+          appBar: AppBar(),
           body: const Center(child: CircularProgressIndicator()),
         ),
       Success _ => Scaffold(
@@ -64,6 +71,7 @@ class ProfileScreen extends RootScreen<ProfileViewState> {
             ),
           ),
         ),
+      // TODO: put placeholder of old user
       Error _ => Text(state.error.toString()), // todo handle errors
     };
   }

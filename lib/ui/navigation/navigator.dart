@@ -76,14 +76,15 @@ class TfgNavigator {
             const MessagesScreen(),
       ),
       GoRoute(
-        path: '${Routes.profile}/:username',
+        path: '${Routes.profile}/:userRef',
         builder: (BuildContext context, GoRouterState state) {
-          final user = state.extra! as User;
-          return ProfileScreen(user: user);
+          final isUserRefId = state.extra! as bool;
+          final userRef = state.pathParameters['userRef'];
+          return ProfileScreen(userRef: userRef!, isUserRefId: isUserRefId);
         },
       ),
       GoRoute(
-        path: '${Routes.editProfile}/:username',
+        path: '${Routes.editProfile}/:userRef',
         builder: (BuildContext context, GoRouterState state) =>
             const EditProfileScreen(),
       ),
@@ -145,8 +146,14 @@ class TfgNavigator {
     return router.push(Routes.dms);
   }
 
-  Future<void> navigateToProfile(User user) {
-    return router.push("${Routes.profile}/${user.username}", extra: user);
+  Future<void> navigateToProfile({
+    required String userRef,
+    required bool isUserRefId,
+  }) {
+    return router.push(
+      "${Routes.profile}/$userRef",
+      extra: isUserRefId,
+    );
   }
 
   Future<void> navigateToEditProfile(User user) {

@@ -32,7 +32,7 @@ class PlanDetailViewModel extends RootViewModel<PlanDetailViewState> {
     }
 
     // TODO: mirar si hay otra mejor manera de pasar el usuario de "precarga"
-    final creatorUser = await _userRepository.getUserById(plan.right.creator);
+    final creatorUser = await _userRepository.getUserById(plan.right.creatorId);
     if (creatorUser.isLeft) {
       emitValue(Error(error: creatorUser.left, plan: planFromList));
     }

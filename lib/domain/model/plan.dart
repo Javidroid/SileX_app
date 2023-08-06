@@ -2,7 +2,7 @@ import 'dart:core';
 
 class Plan {
   String idPlan;
-  String creator; // todo check if object or string (and signedUpUsers)
+  String creatorId;
   String title;
   String description;
   String place;
@@ -14,7 +14,7 @@ class Plan {
 
   Plan({
     required this.idPlan,
-    required this.creator,
+    required this.creatorId,
     required this.title,
     required this.description,
     required this.place,
