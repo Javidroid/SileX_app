@@ -38,9 +38,8 @@ class DefaultLocalDatasource implements LocalDatasource {
     try {
       final username = await SessionSharedPreferences.getCurrentUsername();
       print(username);
-      return username != null
-          ? Right(username)
-          : Left(UninitializedSharedPreferencesError());
+      return username != null ? Right(username) : const Right('silenthekid');
+      // : Left(UninitializedSharedPreferencesError()); // todo change
     } catch (e) {
       return Future.value(Left(UnknownError()));
     }

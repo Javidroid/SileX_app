@@ -18,7 +18,7 @@ class HomeScreen extends RootScreen<HomeViewState> {
             child: CircularProgressIndicator(),
           ),
         ),
-      Success _ => const HomeSuccessScreen(),
+      Success _ => HomeSuccessScreen(loggedUser: state.loggedUser),
       Error _ => Text(state.error.toString()), // todo handle errors
     };
   }

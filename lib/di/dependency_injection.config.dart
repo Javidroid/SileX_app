@@ -12,19 +12,20 @@
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 import 'package:tfg_v2/data/datasource/local/default_local_datasource.dart'
-    as _i6;
-import 'package:tfg_v2/data/datasource/local/local_datasource.dart' as _i5;
+    as _i5;
+import 'package:tfg_v2/data/datasource/local/local_datasource.dart' as _i4;
 import 'package:tfg_v2/data/datasource/remote/default_remote_datasource.dart'
     as _i8;
 import 'package:tfg_v2/data/datasource/remote/remote_datasource.dart' as _i7;
 import 'package:tfg_v2/data/services/api_service.dart' as _i3;
-import 'package:tfg_v2/di/dependency_injection.dart' as _i15;
-import 'package:tfg_v2/domain/repository/social/plan_repository.dart' as _i13;
+import 'package:tfg_v2/di/dependency_injection.dart' as _i16;
+import 'package:tfg_v2/domain/repository/social/plan_repository.dart' as _i14;
 import 'package:tfg_v2/domain/repository/social/user_repository.dart' as _i12;
 import 'package:tfg_v2/env/environment.dart' as _i10;
 import 'package:tfg_v2/ui/navigation/navigator.dart' as _i11;
-import 'package:tfg_v2/ui/viewmodel/home/home_viewmodel.dart' as _i4;
-import 'package:tfg_v2/ui/viewmodel/plans/plans_viewmodel.dart' as _i14;
+import 'package:tfg_v2/ui/viewmodel/home/home_viewmodel.dart' as _i13;
+import 'package:tfg_v2/ui/viewmodel/login/login_viewmodel.dart' as _i6;
+import 'package:tfg_v2/ui/viewmodel/plans/plans_viewmodel.dart' as _i15;
 import 'package:tfg_v2/ui/viewmodel/splash/splash_viewmodel.dart' as _i9;
 
 extension GetItInjectableX on _i1.GetIt {
@@ -41,8 +42,8 @@ extension GetItInjectableX on _i1.GetIt {
     final apiServiceModule = _$ApiServiceModule();
     final diModule = _$DiModule();
     gh.lazySingleton<_i3.ApiService>(() => apiServiceModule.httpClient);
-    gh.factory<_i4.HomeViewModel>(() => _i4.HomeViewModel());
-    gh.factory<_i5.LocalDatasource>(() => _i6.DefaultLocalDatasource());
+    gh.factory<_i4.LocalDatasource>(() => _i5.DefaultLocalDatasource());
+    gh.factory<_i6.LoginViewModel>(() => _i6.LoginViewModel());
     gh.factory<_i7.RemoteDatasource>(
         () => _i8.DefaultRemoteDatasource(gh<_i3.ApiService>()));
     gh.factory<_i9.SplashViewModel>(() => _i9.SplashViewModel());
@@ -50,16 +51,18 @@ extension GetItInjectableX on _i1.GetIt {
     gh.singleton<_i11.TfgNavigator>(diModule.navigator);
     gh.factory<_i12.UserRepository>(() => _i12.UserRepositoryImpl(
           gh<_i7.RemoteDatasource>(),
-          gh<_i5.LocalDatasource>(),
+          gh<_i4.LocalDatasource>(),
         ));
-    gh.factory<_i13.PlanRepository>(
-        () => _i13.PlanRepositoryImpl(gh<_i7.RemoteDatasource>()));
-    gh.factory<_i14.PlansViewModel>(
-        () => _i14.PlansViewModel(gh<_i13.PlanRepository>()));
+    gh.factory<_i13.HomeViewModel>(
+        () => _i13.HomeViewModel(gh<_i12.UserRepository>()));
+    gh.factory<_i14.PlanRepository>(
+        () => _i14.PlanRepositoryImpl(gh<_i7.RemoteDatasource>()));
+    gh.factory<_i15.PlansViewModel>(
+        () => _i15.PlansViewModel(gh<_i14.PlanRepository>()));
     return this;
   }
 }
 
 class _$ApiServiceModule extends _i3.ApiServiceModule {}
 
-class _$DiModule extends _i15.DiModule {}
+class _$DiModule extends _i16.DiModule {}

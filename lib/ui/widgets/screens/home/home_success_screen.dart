@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tfg_v2/domain/model/user.dart';
 import 'package:tfg_v2/ui/widgets/components/appbars/default_appbar.dart';
 import 'package:tfg_v2/ui/widgets/components/nav_drawer.dart';
 import 'package:tfg_v2/ui/widgets/screens/direct_messages/direct_messages_screen.dart';
@@ -7,7 +8,9 @@ import 'package:tfg_v2/ui/widgets/screens/plans/plans_screen.dart';
 import 'package:tfg_v2/ui/widgets/screens/search/search_screen.dart';
 
 class HomeSuccessScreen extends StatefulWidget {
-  const HomeSuccessScreen({super.key});
+  const HomeSuccessScreen({super.key, required this.loggedUser});
+
+  final User loggedUser;
 
   @override
   State<HomeSuccessScreen> createState() => _HomeSuccessScreenState();
@@ -20,7 +23,7 @@ class _HomeSuccessScreenState extends State<HomeSuccessScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const DefaultAppBar(),
-      drawer: const TfgNavigationDrawer(),
+      drawer: NavigationDrawerWithUserHeader(loggedUser: widget.loggedUser),
       body: [
         const PlansScreen(),
         const SearchScreen(),

@@ -2,24 +2,32 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tfg_v2/di/dependency_injection.dart';
+import 'package:tfg_v2/domain/model/user.dart';
 import 'package:tfg_v2/env/constants.dart';
 import 'package:tfg_v2/ui/navigation/navigator.dart';
 import 'package:tfg_v2/ui/styles/text_styles.dart';
 import 'package:tfg_v2/ui/styles/theme.dart';
 import 'package:tfg_v2/ui/widgets/components/profile/navigable_profile_pic.dart';
 
-class TfgNavigationDrawer extends StatefulWidget {
-  const TfgNavigationDrawer({super.key});
+class NavigationDrawerWithUserHeader extends StatefulWidget {
+  const NavigationDrawerWithUserHeader({super.key, required this.loggedUser});
+
+  final User loggedUser;
 
   @override
-  State<TfgNavigationDrawer> createState() => _TfgNavigationDrawerState();
+  State<NavigationDrawerWithUserHeader> createState() =>
+      _NavigationDrawerWithUserHeaderState();
 }
 
-class _TfgNavigationDrawerState extends State<TfgNavigationDrawer> {
+class _NavigationDrawerWithUserHeaderState
+    extends State<NavigationDrawerWithUserHeader> {
   TfgNavigator get navigator => getIt<TfgNavigator>();
+
+  User get loggedUser => widget.loggedUser;
 
   @override
   Widget build(BuildContext context) {
+    // TODO: get current user y guardarlo
     return Consumer<ThemeNotifier>(
       builder: (context, ThemeNotifier themeNotifier, child) {
         return Drawer(
@@ -27,20 +35,21 @@ class _TfgNavigationDrawerState extends State<TfgNavigationDrawer> {
             // Important: Remove any padding from the ListView.
             padding: EdgeInsets.zero,
             children: [
-              // todo foto de perfil con animación de hero a la foto del drawer
               UserAccountsDrawerHeader(
                 currentAccountPicture: Hero(
                   tag: Constants.profilePicHeroTag,
                   child: NavigableProfilePic(
-                    onTap: () {}, //navigator.navigateToProfile,
-                    asset:
-                        'https://pbs.twimg.com/profile_images/1625060021611466755/CkyYiCFC_400x400.jpg',
+                    onTap: () {
+                      navigator.navigateToProfile(
+                        userRef: loggedUser.username,
+                        isUserRefId: false,
+                      );
+                    },
+                    asset: loggedUser.profile.profilePic,
                   ),
                 ),
-
-                // todo load info from repo
-                accountName: Text('lorem.username'.tr()),
-                accountEmail: Text('lorem.mail'.tr()),
+                accountName: Text(loggedUser.username),
+                accountEmail: Text(loggedUser.email),
                 otherAccountsPictures: [
                   IconButton(
                     icon: Icon(
@@ -58,14 +67,17 @@ class _TfgNavigationDrawerState extends State<TfgNavigationDrawer> {
                 title: Text('components.nav_drawer.profile'.tr()),
                 onTap: () {
                   navigator.pop();
-                  // navigator.navigateToProfile();
+                  navigator.navigateToProfile(
+                    userRef: loggedUser.username,
+                    isUserRefId: false,
+                  );
                 },
               ),
               ListTile(
                 title: Text('components.nav_drawer.pending_plans'.tr()),
                 onTap: () {
                   navigator.pop();
-                  navigator.navigateToMyPlans();
+                  navigator.navigateToMyPlans(); // todo bind user
                 },
               ),
               ListTile(
