@@ -1,11 +1,11 @@
 import 'package:either_dart/either.dart';
 import 'package:injectable/injectable.dart';
 import 'package:tfg_v2/data/datasource/local/local_datasource.dart';
+import 'package:tfg_v2/data/services/shared_preferences/session_preferences.dart';
 import 'package:tfg_v2/di/dependency_injection.dart';
 import 'package:tfg_v2/domain/model/errors.dart';
 import 'package:tfg_v2/domain/model/user.dart';
 import 'package:tfg_v2/env/environment.dart';
-import 'package:tfg_v2/shared_preferences/session_preferences.dart';
 
 @Injectable(as: LocalDatasource)
 class DefaultLocalDatasource implements LocalDatasource {
@@ -29,7 +29,7 @@ class DefaultLocalDatasource implements LocalDatasource {
           ? Right(user)
           : Left(UninitializedSharedPreferencesError());
     } catch (e) {
-      return Future.value(Left(UnknownError()));
+      return Left(UnknownError());
     }
   }
 
@@ -40,6 +40,15 @@ class DefaultLocalDatasource implements LocalDatasource {
       print(username);
       return username != null ? Right(username) : const Right('silenthekid');
       // : Left(UninitializedSharedPreferencesError()); // todo change
+    } catch (e) {
+      return Left(UnknownError());
+    }
+  }
+
+  @override
+  Future<Either<AppError, void>> setCurrentLoggedUser(User user) async {
+    try {
+      return Right(SessionSharedPreferences.setCurrentUser(user: user));
     } catch (e) {
       return Future.value(Left(UnknownError()));
     }

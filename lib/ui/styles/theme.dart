@@ -1,6 +1,6 @@
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
-import 'package:tfg_v2/shared_preferences/theme_preferences.dart';
+import 'package:tfg_v2/data/services/shared_preferences/theme_preferences.dart';
 import 'package:tfg_v2/ui/styles/colors.dart';
 
 /// Clase encargada de crear los Temas Claro y Oscuro mediante la extensión
