@@ -11,6 +11,7 @@ import 'package:tfg_v2/ui/widgets/components/appbars/default_appbar.dart';
 import 'package:tfg_v2/ui/widgets/components/box_spacer.dart';
 import 'package:tfg_v2/ui/widgets/components/buttons/join2plan_button.dart';
 import 'package:tfg_v2/ui/widgets/components/profile/navigable_profile_pic.dart';
+import 'package:tfg_v2/ui/widgets/components/shimmer.dart';
 import 'package:tfg_v2/ui/widgets/components/user_list/user_list.dart';
 import 'package:tfg_v2/ui/widgets/screens/root_screen.dart';
 
@@ -79,7 +80,25 @@ class PlanDetailScreen extends RootScreen<PlanDetailViewState> {
                     ),
                     style: TextStyles.defaultStyle,
                   ),
-                  const JoinToPlanButton(isJoined: false),
+                  (state is Success)
+                      ? JoinToPlanButton(
+                          isJoined: false, // todo check
+                          joinBehaviour: () => state.joinButtonBehaviour(
+                            idPlan: plan.idPlan,
+                            isJoin: false,
+                          ),
+                          quitBehaviour: () => state.joinButtonBehaviour(
+                            idPlan: plan.idPlan,
+                            isJoin: true,
+                          ),
+                        )
+                      : const AppShimmer(
+                          child: JoinToPlanButton(
+                            isJoined: false,
+                            joinBehaviour: null,
+                            quitBehaviour: null,
+                          ),
+                        )
                 ],
               ),
               const Padding(padding: Insets.v12, child: Divider(thickness: 2)),

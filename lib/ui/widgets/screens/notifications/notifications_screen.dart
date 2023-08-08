@@ -1,13 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:tfg_v2/di/dependency_injection.dart';
+import 'package:tfg_v2/ui/viewmodel/notifications/notifications_viewmodel.dart';
+import 'package:tfg_v2/ui/widgets/screens/root_screen.dart';
 
-class NotificationsScreen extends StatelessWidget {
+class NotificationsScreen extends RootScreen<NotificationsViewState> {
   const NotificationsScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return Container(
-      alignment: Alignment.center,
-      child: const Text('Notificaciones'),
+  NotificationsViewModel get viewModel => getIt<NotificationsViewModel>();
+
+  @override
+  Widget buildView(BuildContext context, NotificationsViewState state) {
+    return Scaffold(
+      body: switch (state) {
+        Loading _ => const Center(
+            child: CircularProgressIndicator(),
+          ),
+        Success _ => const Center(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text('Notifications'),
+              ],
+            ),
+          ),
+        Error _ => Text(state.error.toString()), // todo handle errors
+      },
     );
   }
 }

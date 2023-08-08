@@ -1,13 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:tfg_v2/di/dependency_injection.dart';
+import 'package:tfg_v2/ui/viewmodel/search/search_viewmodel.dart';
+import 'package:tfg_v2/ui/widgets/screens/root_screen.dart';
 
-class SearchScreen extends StatelessWidget {
+class SearchScreen extends RootScreen<SearchViewState> {
   const SearchScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return Container(
-      alignment: Alignment.center,
-      child: const Text('Buscar'),
+  SearchViewModel get viewModel => getIt<SearchViewModel>();
+
+  @override
+  Widget buildView(BuildContext context, SearchViewState state) {
+    return Scaffold(
+      body: switch (state) {
+        Loading _ => const Center(
+            child: CircularProgressIndicator(),
+          ),
+        Success _ => const Center(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text('Search'),
+              ],
+            ),
+          ),
+        Error _ => Text(state.error.toString()), // todo handle errors
+      },
     );
   }
 }

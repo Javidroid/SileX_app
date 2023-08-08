@@ -37,6 +37,7 @@ class ThemeGenerator {
         tabBarIndicatorSchemeColor: SchemeColor.primary,
         navigationBarIndicatorSchemeColor: SchemeColor.primary,
         navigationBarBackgroundSchemeColor: SchemeColor.background,
+        useTextTheme: true,
       ),
       keyColors: const FlexKeyColors(
         useSecondary: true,

@@ -23,6 +23,7 @@ class PlansScreen extends RootScreen<PlansViewState> {
               onRefresh: () => state.onRefresh(),
               child: PlansList(
                 planList: state.planList,
+                joinButtonBehaviour: state.joinButtonBehaviour,
               ),
             ),
           ),

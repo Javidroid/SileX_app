@@ -4,6 +4,7 @@ import 'package:tfg_v2/domain/model/plan.dart';
 import 'package:tfg_v2/domain/model/user.dart';
 import 'package:tfg_v2/domain/repository/social/plan_repository.dart';
 import 'package:tfg_v2/domain/repository/social/user_repository.dart';
+import 'package:tfg_v2/domain/use_cases/user_join_quit_plan.dart';
 import 'package:tfg_v2/ui/navigation/navigator.dart';
 import 'package:tfg_v2/ui/viewmodel/root_viewmodel.dart';
 
@@ -18,6 +19,9 @@ class PlanDetailViewModel extends RootViewModel<PlanDetailViewState> {
   PlanRepository get _planRepository => getIt<PlanRepository>();
 
   UserRepository get _userRepository => getIt<UserRepository>();
+
+  UserJoinQuitPlanUseCase get _joinQuitPlanUseCase =>
+      getIt<UserJoinQuitPlanUseCase>();
 
   @override
   void onAttach() async {
@@ -48,7 +52,19 @@ class PlanDetailViewModel extends RootViewModel<PlanDetailViewState> {
         plan: plan.right,
         joinedUsers: joinedUsers.right,
         creatorUser: creatorUser.right,
+        joinButtonBehaviour: joinButtonBehaviour,
       ),
+    );
+  }
+
+  Future<void> joinButtonBehaviour({
+    required String idPlan,
+    required bool isJoin,
+  }) async {
+    final result = await _joinQuitPlanUseCase(idPlan: idPlan, isJoin: isJoin);
+    result.fold(
+      (left) => print('usecase error'),
+      (right) => print('usecase success'),
     );
   }
 }
@@ -66,11 +82,16 @@ class Loading extends PlanDetailViewState {
 class Success extends PlanDetailViewState {
   final List<User> joinedUsers;
   final User creatorUser;
+  final Function({
+    required String idPlan,
+    required bool isJoin,
+  }) joinButtonBehaviour;
 
   Success({
     required super.plan,
     required this.joinedUsers,
     required this.creatorUser,
+    required this.joinButtonBehaviour,
   });
 }
 

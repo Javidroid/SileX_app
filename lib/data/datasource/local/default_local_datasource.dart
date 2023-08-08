@@ -24,7 +24,6 @@ class DefaultLocalDatasource implements LocalDatasource {
   Future<Either<AppError, User>> getCurrentLoggedUser() async {
     try {
       final user = await SessionSharedPreferences.getCurrentUser();
-      print(user);
       return user != null
           ? Right(user)
           : Left(UninitializedSharedPreferencesError());
@@ -37,7 +36,6 @@ class DefaultLocalDatasource implements LocalDatasource {
   Future<Either<AppError, String>> getCurrentLoggedUsername() async {
     try {
       final username = await SessionSharedPreferences.getCurrentUsername();
-      print(username);
       return username != null ? Right(username) : const Right('silenthekid');
       // : Left(UninitializedSharedPreferencesError()); // todo change
     } catch (e) {

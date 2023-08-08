@@ -2,13 +2,16 @@ import 'package:injectable/injectable.dart';
 import 'package:tfg_v2/domain/model/errors.dart';
 import 'package:tfg_v2/domain/model/plan.dart';
 import 'package:tfg_v2/domain/repository/social/plan_repository.dart';
+import 'package:tfg_v2/domain/use_cases/user_join_quit_plan.dart';
 import 'package:tfg_v2/ui/viewmodel/root_viewmodel.dart';
 
 @Injectable()
 class PlansViewModel extends RootViewModel<PlansViewState> {
   final PlanRepository _planRepository;
+  final UserJoinQuitPlanUseCase _joinQuitPlanUseCase;
 
-  PlansViewModel(this._planRepository) : super(Loading());
+  PlansViewModel(this._planRepository, this._joinQuitPlanUseCase)
+      : super(Loading());
 
   @override
   void onAttach() async {
@@ -23,8 +26,20 @@ class PlansViewModel extends RootViewModel<PlansViewState> {
         Success(
           planList: right,
           onRefresh: refreshPlans,
+          joinButtonBehaviour: joinButtonBehaviour,
         ),
       ),
+    );
+  }
+
+  Future<void> joinButtonBehaviour({
+    required String idPlan,
+    required bool isJoin,
+  }) async {
+    final result = await _joinQuitPlanUseCase(idPlan: idPlan, isJoin: isJoin);
+    result.fold(
+      (left) => print('usecase error'),
+      (right) => print('usecase success'),
     );
   }
 }
@@ -36,10 +51,15 @@ class Loading extends PlansViewState {}
 class Success extends PlansViewState {
   final List<Plan> planList;
   final Function() onRefresh;
+  final Function({
+    required String idPlan,
+    required bool isJoin,
+  }) joinButtonBehaviour;
 
   Success({
     required this.planList,
     required this.onRefresh,
+    required this.joinButtonBehaviour,
   });
 }
 

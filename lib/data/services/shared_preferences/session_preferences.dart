@@ -27,7 +27,6 @@ class SessionSharedPreferences {
   static Future<User?> getCurrentUser() async {
     final SharedPreferences sharedPref = await SharedPreferences.getInstance();
     final json = sharedPref.getString(_currentLoggedUser);
-    print(json);
     return json != null ? UserDto.fromJson(jsonDecode(json)).toModel() : null;
   }
 }

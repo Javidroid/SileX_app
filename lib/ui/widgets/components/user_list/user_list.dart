@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:shimmer/shimmer.dart';
 import 'package:tfg_v2/di/dependency_injection.dart';
 import 'package:tfg_v2/domain/model/user.dart';
-import 'package:tfg_v2/env/constants.dart';
 import 'package:tfg_v2/ui/navigation/navigator.dart';
 import 'package:tfg_v2/ui/styles/colors.dart';
 import 'package:tfg_v2/ui/styles/insets.dart';
 import 'package:tfg_v2/ui/styles/text_styles.dart';
 import 'package:tfg_v2/ui/widgets/components/profile/navigable_profile_pic.dart';
+import 'package:tfg_v2/ui/widgets/components/shimmer.dart';
 
 class UserList extends StatelessWidget {
   const UserList({
@@ -54,17 +53,13 @@ class _UserListItem extends StatelessWidget {
           user.username,
           style: TextStyles.userListSubtitle,
         ),
-        leading: Hero(
-          // FIXME: este hero no funciona y cuando se lanza desde el plan detail
-          //      sólamente se conecta con la foto de perfil del creador
-          tag: Constants.profilePicHeroTag,
-          child: NavigableProfilePic(
-            asset: user.profile.profilePic,
-            radius: 20,
-            onTap: () => navigator.navigateToProfile(
-              userRef: user.username,
-              isUserRefId: false,
-            ),
+        leading: NavigableProfilePic(
+          // todo: put hero
+          asset: user.profile.profilePic,
+          radius: 20,
+          onTap: () => navigator.navigateToProfile(
+            userRef: user.username,
+            isUserRefId: false,
           ),
         ),
         onTap: () => navigator.navigateToProfile(
@@ -94,9 +89,7 @@ class _LoadingListItem extends StatelessWidget {
         howMany,
         (index) => Padding(
           padding: Insets.v4,
-          child: Shimmer.fromColors(
-            baseColor: Colors.grey.shade300,
-            highlightColor: Colors.grey.shade100,
+          child: AppShimmer(
             child: ListTile(
               title: Container(
                 height: 11,
@@ -114,8 +107,6 @@ class _LoadingListItem extends StatelessWidget {
                 ),
               ),
               leading: const CircleAvatar(
-                // TODO: improve so it doesnt consume resources
-                backgroundImage: AssetImage(Constants.defaultProfilePic),
                 radius: 20,
               ),
               tileColor: colorScheme.tertiary,

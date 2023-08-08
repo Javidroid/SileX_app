@@ -12,9 +12,15 @@ class PlanPreviewItem extends StatelessWidget {
   const PlanPreviewItem({
     super.key,
     required this.plan,
+    required this.joinButtonBehaviour,
   });
 
   final Plan plan;
+
+  final Function({
+    required String idPlan,
+    required bool isJoin,
+  }) joinButtonBehaviour;
 
   TfgNavigator get navigator => getIt<TfgNavigator>();
 
@@ -79,7 +85,17 @@ class PlanPreviewItem extends StatelessWidget {
                     ),
                     style: TextStyles.defaultStyle,
                   ),
-                  const JoinToPlanButton(isJoined: false), // TODO: logic
+                  JoinToPlanButton(
+                    isJoined: true,
+                    joinBehaviour: () => joinButtonBehaviour(
+                      idPlan: plan.idPlan,
+                      isJoin: true,
+                    ),
+                    quitBehaviour: () => joinButtonBehaviour(
+                      idPlan: plan.idPlan,
+                      isJoin: false,
+                    ),
+                  ),
                 ],
               ),
             ],
