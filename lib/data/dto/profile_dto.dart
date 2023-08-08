@@ -10,9 +10,9 @@ class ProfileDto {
   List<String> followers;
   List<String> following;
   List<String> createdPlansId;
-  String idUniversity;
-  String idDegree;
-  String idCenter;
+  String university;
+  String degree;
+  String center;
 
   ProfileDto({
     required this.name,
@@ -23,9 +23,9 @@ class ProfileDto {
     required this.followers,
     required this.following,
     required this.createdPlansId,
-    required this.idUniversity,
-    required this.idDegree,
-    required this.idCenter,
+    required this.university,
+    required this.degree,
+    required this.center,
   });
 
   factory ProfileDto.fromJson(Map<String, dynamic> json) {
@@ -38,9 +38,9 @@ class ProfileDto {
       followers: List<String>.from(json["followers"].map((x) => x)),
       following: List<String>.from(json["following"].map((x) => x)),
       createdPlansId: List<String>.from(json["plans_id"].map((x) => x)),
-      idUniversity: json["id_university"],
-      idDegree: json["id_degree"],
-      idCenter: json["id_center"],
+      university: json["university"],
+      degree: json["degree"],
+      center: json["center"],
     );
   }
 
@@ -54,9 +54,9 @@ class ProfileDto {
       "followers": List<dynamic>.from(followers.map((x) => x)),
       "following": List<dynamic>.from(following.map((x) => x)),
       "plans_id": List<dynamic>.from(createdPlansId.map((x) => x)),
-      "id_university": idUniversity,
-      "id_degree": idDegree,
-      "id_center": idCenter,
+      "university": university,
+      "degree": degree,
+      "center": center,
     };
   }
 
@@ -70,9 +70,9 @@ class ProfileDto {
       followers: profile.followers.toList(),
       following: profile.following.toList(),
       createdPlansId: profile.createdPlansId,
-      idUniversity: profile.idUniversity,
-      idDegree: profile.idDegree,
-      idCenter: profile.idCenter,
+      university: profile.university,
+      degree: profile.degree,
+      center: profile.center,
     );
   }
 
@@ -87,9 +87,9 @@ class ProfileDto {
       followers: followers.toSet(),
       following: following.toSet(),
       createdPlansId: createdPlansId,
-      idUniversity: idUniversity,
-      idDegree: idDegree,
-      idCenter: idCenter,
+      university: university,
+      degree: degree,
+      center: center,
     );
   }
 }

@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:expandable_text/expandable_text.dart';
+import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
 import 'package:tfg_v2/domain/model/profile.dart';
 import 'package:tfg_v2/env/constants.dart';
@@ -55,7 +56,7 @@ class ProfileHeader extends StatelessWidget {
                 style: TextStyles.profileTitle,
               ),
               Text(
-                "${'lorem.degree'.tr()} (${'lorem.center'.tr()})",
+                "${prof.degree.toLowerCase().capitalize} (${prof.center})",
                 style: TextStyles.defaultStyleBold,
               ),
               BoxSpacer.v8(),

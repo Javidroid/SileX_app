@@ -8,9 +8,9 @@ class Profile {
   Set<String> followers;
   Set<String> following;
   List<String> createdPlansId;
-  String idUniversity;
-  String idDegree;
-  String idCenter;
+  String university;
+  String degree;
+  String center;
 
   Profile({
     required this.name,
@@ -22,8 +22,8 @@ class Profile {
     required this.followers,
     required this.following,
     required this.createdPlansId,
-    required this.idUniversity,
-    required this.idDegree,
-    required this.idCenter,
+    required this.university,
+    required this.degree,
+    required this.center,
   });
 }
