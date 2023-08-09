@@ -20,10 +20,10 @@ class PlansScreen extends RootScreen<PlansViewState> {
           ),
         Success _ => Center(
             child: RefreshIndicator(
-              onRefresh: () => state.onRefresh(),
+              onRefresh: () => viewModel.refreshPlans(),
               child: PlansList(
                 planList: state.planList,
-                joinButtonBehaviour: state.joinButtonBehaviour,
+                joinButtonBehaviour: viewModel.joinButtonBehaviour,
               ),
             ),
           ),

@@ -19,3 +19,6 @@ class ExpiredSessionError extends AppError {}
 class UninitializedSharedPreferencesError extends AppError {}
 
 class UnknownError extends AppError {}
+
+// TODO: add remote errors
+// TODO: add user limit reached error

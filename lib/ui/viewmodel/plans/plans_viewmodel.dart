@@ -25,8 +25,6 @@ class PlansViewModel extends RootViewModel<PlansViewState> {
       (right) => emitValue(
         Success(
           planList: right,
-          onRefresh: refreshPlans,
-          joinButtonBehaviour: joinButtonBehaviour,
         ),
       ),
     );
@@ -50,16 +48,9 @@ class Loading extends PlansViewState {}
 
 class Success extends PlansViewState {
   final List<Plan> planList;
-  final Function() onRefresh;
-  final Function({
-    required String idPlan,
-    required bool isJoin,
-  }) joinButtonBehaviour;
 
   Success({
     required this.planList,
-    required this.onRefresh,
-    required this.joinButtonBehaviour,
   });
 }
 

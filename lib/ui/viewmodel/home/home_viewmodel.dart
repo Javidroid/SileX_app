@@ -26,6 +26,7 @@ class HomeViewModel extends RootViewModel<HomeViewState> {
       return;
     }
 
+    // todo: save user in shared preferences here or in login
     final user = await _userRepository.getUser(username.right);
     user.fold(
       (left) => emitValue(Error(left)),

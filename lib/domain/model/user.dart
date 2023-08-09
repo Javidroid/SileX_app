@@ -2,17 +2,19 @@ import 'package:tfg_v2/domain/model/profile.dart';
 import 'package:tfg_v2/env/constants.dart';
 
 class User {
+  String id;
   String username;
   String email;
   bool isVerified;
   UserRole userRole;
   Profile profile;
 
-  User(
-    this.username,
-    this.email,
-    this.userRole,
-    this.profile, {
+  User({
+    required this.id,
+    required this.username,
+    required this.email,
+    required this.userRole,
+    required this.profile,
     required this.isVerified,
   });
 }

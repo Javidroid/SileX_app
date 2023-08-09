@@ -22,6 +22,7 @@ class UserJoinQuitPlanUseCase {
     if (username.isLeft) return Left(UninitializedSharedPreferencesError());
 
     // TODO: implement
+    // TODO: handle user limit
     return Right(
       isJoin
           ? print('Joined $username to $idPlan')

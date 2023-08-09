@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:tfg_v2/di/dependency_injection.dart';
 import 'package:tfg_v2/ui/navigation/navigator.dart';
 import 'package:tfg_v2/ui/styles/text_styles.dart';
-import 'package:tfg_v2/ui/viewmodel/profile_viewmodel/profile_viewmodel.dart';
+import 'package:tfg_v2/ui/viewmodel/profile/profile_viewmodel.dart';
 import 'package:tfg_v2/ui/widgets/components/profile/profile_content.dart';
 import 'package:tfg_v2/ui/widgets/components/profile/profile_header.dart';
 import 'package:tfg_v2/ui/widgets/screens/root_screen.dart';

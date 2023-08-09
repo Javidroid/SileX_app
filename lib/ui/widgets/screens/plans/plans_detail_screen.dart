@@ -83,11 +83,11 @@ class PlanDetailScreen extends RootScreen<PlanDetailViewState> {
                   (state is Success)
                       ? JoinToPlanButton(
                           isJoined: false, // todo check
-                          joinBehaviour: () => state.joinButtonBehaviour(
+                          joinBehaviour: () => viewModel.joinButtonBehaviour(
                             idPlan: plan.idPlan,
                             isJoin: false,
                           ),
-                          quitBehaviour: () => state.joinButtonBehaviour(
+                          quitBehaviour: () => viewModel.joinButtonBehaviour(
                             idPlan: plan.idPlan,
                             isJoin: true,
                           ),

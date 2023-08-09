@@ -15,6 +15,8 @@ class PlanPreviewItem extends StatelessWidget {
     required this.joinButtonBehaviour,
   });
 
+  TfgNavigator get navigator => getIt<TfgNavigator>();
+
   final Plan plan;
 
   final Function({
@@ -22,7 +24,7 @@ class PlanPreviewItem extends StatelessWidget {
     required bool isJoin,
   }) joinButtonBehaviour;
 
-  TfgNavigator get navigator => getIt<TfgNavigator>();
+  // TODO: pass check joined to plan
 
   @override
   Widget build(BuildContext context) {

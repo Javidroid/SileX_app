@@ -85,6 +85,7 @@ class UserRepositoryImpl implements UserRepository {
 
   @override
   Future<Either<AppError, User>> getCurrentLoggedUser() {
+    // TODO: apply repository pattern to get from remote and update it
     return _local.getCurrentLoggedUser();
   }
 
