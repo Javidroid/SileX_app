@@ -5,10 +5,10 @@ import 'package:tfg_v2/ui/widgets/components/plans/plans_list.dart';
 import 'package:tfg_v2/ui/widgets/screens/root_screen.dart';
 
 class PlansScreen extends RootScreen<PlansViewState> {
-  const PlansScreen({super.key});
+  PlansScreen({super.key});
 
   @override
-  PlansViewModel get viewModel => getIt<PlansViewModel>();
+  final PlansViewModel viewModel = getIt<PlansViewModel>();
 
   @override
   Widget buildView(BuildContext context, PlansViewState state) {
@@ -24,6 +24,7 @@ class PlansScreen extends RootScreen<PlansViewState> {
               child: PlansList(
                 planList: state.planList,
                 joinButtonBehaviour: viewModel.joinButtonBehaviour,
+                isJoinedChecker: viewModel.isJoinedChecker,
               ),
             ),
           ),

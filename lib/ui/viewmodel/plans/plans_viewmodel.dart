@@ -1,20 +1,33 @@
 import 'package:injectable/injectable.dart';
 import 'package:tfg_v2/domain/model/errors.dart';
 import 'package:tfg_v2/domain/model/plan.dart';
+import 'package:tfg_v2/domain/model/user.dart';
 import 'package:tfg_v2/domain/repository/social/plan_repository.dart';
+import 'package:tfg_v2/domain/repository/social/user_repository.dart';
 import 'package:tfg_v2/domain/use_cases/user_join_quit_plan.dart';
 import 'package:tfg_v2/ui/viewmodel/root_viewmodel.dart';
 
 @Injectable()
 class PlansViewModel extends RootViewModel<PlansViewState> {
   final PlanRepository _planRepository;
+  final UserRepository _userRepository;
   final UserJoinQuitPlanUseCase _joinQuitPlanUseCase;
 
-  PlansViewModel(this._planRepository, this._joinQuitPlanUseCase)
-      : super(Loading());
+  late User _currentUser;
+
+  PlansViewModel(
+    this._planRepository,
+    this._joinQuitPlanUseCase,
+    this._userRepository,
+  ) : super(Loading());
 
   @override
   void onAttach() async {
+    final currentUser = await _userRepository.getCurrentLoggedUser();
+    currentUser.fold(
+      (left) => emitValue(Error(left)),
+      (right) => _currentUser = right,
+    );
     refreshPlans();
   }
 
@@ -40,6 +53,9 @@ class PlansViewModel extends RootViewModel<PlansViewState> {
       (right) => print('usecase success'),
     );
   }
+
+  bool isJoinedChecker({required Plan plan}) =>
+      plan.joinedUsers.contains(_currentUser.id);
 }
 
 sealed class PlansViewState extends ViewState {}

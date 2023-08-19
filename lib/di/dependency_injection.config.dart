@@ -6,7 +6,6 @@
 
 // ignore_for_file: unnecessary_lambdas
 // ignore_for_file: lines_longer_than_80_chars
-// ignore_for_file: require_trailing_commas
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
@@ -19,20 +18,21 @@ import 'package:tfg_v2/data/datasource/remote/default_remote_datasource.dart'
     as _i10;
 import 'package:tfg_v2/data/datasource/remote/remote_datasource.dart' as _i9;
 import 'package:tfg_v2/data/services/api_service.dart' as _i3;
-import 'package:tfg_v2/di/dependency_injection.dart' as _i21;
-import 'package:tfg_v2/domain/repository/social/plan_repository.dart' as _i18;
+import 'package:tfg_v2/di/dependency_injection.dart' as _i22;
+import 'package:tfg_v2/domain/repository/social/plan_repository.dart' as _i19;
 import 'package:tfg_v2/domain/repository/social/user_repository.dart' as _i15;
 import 'package:tfg_v2/domain/use_cases/follow_user.dart' as _i16;
-import 'package:tfg_v2/domain/use_cases/user_join_quit_plan.dart' as _i19;
+import 'package:tfg_v2/domain/use_cases/get_updated_logged_user.dart' as _i17;
+import 'package:tfg_v2/domain/use_cases/user_join_quit_plan.dart' as _i20;
 import 'package:tfg_v2/env/environment.dart' as _i13;
 import 'package:tfg_v2/ui/navigation/navigator.dart' as _i14;
 import 'package:tfg_v2/ui/viewmodel/direct_messages/direct_messages_viewmodel.dart'
     as _i4;
-import 'package:tfg_v2/ui/viewmodel/home/home_viewmodel.dart' as _i17;
+import 'package:tfg_v2/ui/viewmodel/home/home_viewmodel.dart' as _i18;
 import 'package:tfg_v2/ui/viewmodel/login/login_viewmodel.dart' as _i7;
 import 'package:tfg_v2/ui/viewmodel/notifications/notifications_viewmodel.dart'
     as _i8;
-import 'package:tfg_v2/ui/viewmodel/plans/plans_viewmodel.dart' as _i20;
+import 'package:tfg_v2/ui/viewmodel/plans/plans_viewmodel.dart' as _i21;
 import 'package:tfg_v2/ui/viewmodel/search/search_viewmodel.dart' as _i11;
 import 'package:tfg_v2/ui/viewmodel/splash/splash_viewmodel.dart' as _i12;
 
@@ -67,17 +67,20 @@ extension GetItInjectableX on _i1.GetIt {
         ));
     gh.factory<_i16.FollowUserUseCase>(
         () => _i16.FollowUserUseCase(gh<_i15.UserRepository>()));
-    gh.factory<_i17.HomeViewModel>(
-        () => _i17.HomeViewModel(gh<_i15.UserRepository>()));
-    gh.factory<_i18.PlanRepository>(
-        () => _i18.PlanRepositoryImpl(gh<_i9.RemoteDatasource>()));
-    gh.factory<_i19.UserJoinQuitPlanUseCase>(() => _i19.UserJoinQuitPlanUseCase(
-          gh<_i18.PlanRepository>(),
+    gh.factory<_i17.GetUpdatedLoggedUserUseCase>(
+        () => _i17.GetUpdatedLoggedUserUseCase(gh<_i15.UserRepository>()));
+    gh.factory<_i18.HomeViewModel>(
+        () => _i18.HomeViewModel(gh<_i17.GetUpdatedLoggedUserUseCase>()));
+    gh.factory<_i19.PlanRepository>(
+        () => _i19.PlanRepositoryImpl(gh<_i9.RemoteDatasource>()));
+    gh.factory<_i20.UserJoinQuitPlanUseCase>(() => _i20.UserJoinQuitPlanUseCase(
+          gh<_i19.PlanRepository>(),
           gh<_i15.UserRepository>(),
         ));
-    gh.factory<_i20.PlansViewModel>(() => _i20.PlansViewModel(
-          gh<_i18.PlanRepository>(),
-          gh<_i19.UserJoinQuitPlanUseCase>(),
+    gh.factory<_i21.PlansViewModel>(() => _i21.PlansViewModel(
+          gh<_i19.PlanRepository>(),
+          gh<_i20.UserJoinQuitPlanUseCase>(),
+          gh<_i15.UserRepository>(),
         ));
     return this;
   }
@@ -85,4 +88,4 @@ extension GetItInjectableX on _i1.GetIt {
 
 class _$ApiServiceModule extends _i3.ApiServiceModule {}
 
-class _$DiModule extends _i21.DiModule {}
+class _$DiModule extends _i22.DiModule {}

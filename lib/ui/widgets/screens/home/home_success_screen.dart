@@ -25,7 +25,7 @@ class _HomeSuccessScreenState extends State<HomeSuccessScreen> {
       appBar: const DefaultAppBar(),
       drawer: NavigationDrawerWithUserHeader(loggedUser: widget.loggedUser),
       body: [
-        const PlansScreen(),
+        PlansScreen(),
         const SearchScreen(),
         const NotificationsScreen(),
         const MessagesScreen(),

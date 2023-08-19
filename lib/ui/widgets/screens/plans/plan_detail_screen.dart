@@ -16,14 +16,16 @@ import 'package:tfg_v2/ui/widgets/components/user_list/user_list.dart';
 import 'package:tfg_v2/ui/widgets/screens/root_screen.dart';
 
 class PlanDetailScreen extends RootScreen<PlanDetailViewState> {
-  const PlanDetailScreen({super.key, required this.plan});
+  PlanDetailScreen({super.key, required this.plan}) {
+    viewModel = PlanDetailViewModel(planFromList: plan);
+  }
 
   final Plan plan;
 
   TfgNavigator get navigator => getIt<TfgNavigator>();
 
   @override
-  PlanDetailViewModel get viewModel => PlanDetailViewModel(planFromList: plan);
+  late final PlanDetailViewModel viewModel;
 
   @override
   Widget buildView(BuildContext context, PlanDetailViewState state) {
@@ -82,7 +84,7 @@ class PlanDetailScreen extends RootScreen<PlanDetailViewState> {
                   ),
                   (state is Success)
                       ? JoinToPlanButton(
-                          isJoined: false, // todo check
+                          isJoined: viewModel.isJoinedChecker(plan: plan),
                           joinBehaviour: () => viewModel.joinButtonBehaviour(
                             idPlan: plan.idPlan,
                             isJoin: false,

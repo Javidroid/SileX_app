@@ -9,7 +9,7 @@ import 'package:tfg_v2/ui/widgets/screens/home/home_screen.dart';
 import 'package:tfg_v2/ui/widgets/screens/login/login_screen.dart';
 import 'package:tfg_v2/ui/widgets/screens/login/register_screen.dart';
 import 'package:tfg_v2/ui/widgets/screens/notifications/notifications_screen.dart';
-import 'package:tfg_v2/ui/widgets/screens/plans/plans_detail_screen.dart';
+import 'package:tfg_v2/ui/widgets/screens/plans/plan_detail_screen.dart';
 import 'package:tfg_v2/ui/widgets/screens/plans/plans_screen.dart';
 import 'package:tfg_v2/ui/widgets/screens/profile/edit_profile_screen.dart';
 import 'package:tfg_v2/ui/widgets/screens/profile/profile_screen.dart';
@@ -43,13 +43,12 @@ class TfgNavigator {
       ),
       GoRoute(
         path: Routes.home,
-        builder: (BuildContext context, GoRouterState state) =>
-            const HomeScreen(),
+        builder: (BuildContext context, GoRouterState state) => HomeScreen(),
       ),
       GoRoute(
         path: Routes.plans,
         builder: (BuildContext context, GoRouterState state) =>
-            const PlansScreen(),
+            PlansScreen(),
       ),
       GoRoute(
         path: '${Routes.plans}/:id',
@@ -91,7 +90,7 @@ class TfgNavigator {
       GoRoute(
         path: Routes.myPlans,
         builder: (BuildContext context, GoRouterState state) =>
-            const PlansScreen(), // TODO: send own plan dataset
+            PlansScreen(), // TODO: send own plan dataset
       ),
       GoRoute(
         path: Routes.settings,

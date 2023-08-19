@@ -12,6 +12,8 @@ abstract interface class UserRepository {
 
   Future<Either<AppError, User>> getCurrentLoggedUser();
 
+  Future<Either<AppError, void>> saveCurrentLoggedUser(User user);
+
   Future<Either<AppError, String>> getCurrentLoggedUsername();
 
   Future<Either<AppError, List<User>>> getUserListById(List<String> ids);
@@ -85,8 +87,13 @@ class UserRepositoryImpl implements UserRepository {
 
   @override
   Future<Either<AppError, User>> getCurrentLoggedUser() {
-    // TODO: apply repository pattern to get from remote and update it
+    // TODO: apply repository pattern to get from remote and update it?
     return _local.getCurrentLoggedUser();
+  }
+
+  @override
+  Future<Either<AppError, void>> saveCurrentLoggedUser(User user) {
+    return _local.saveCurrentLoggedUser(user);
   }
 
   @override

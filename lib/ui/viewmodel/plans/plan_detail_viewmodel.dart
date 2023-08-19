@@ -23,9 +23,15 @@ class PlanDetailViewModel extends RootViewModel<PlanDetailViewState> {
   UserJoinQuitPlanUseCase get _joinQuitPlanUseCase =>
       getIt<UserJoinQuitPlanUseCase>();
 
+  late User _currentUser;
+
   @override
   void onAttach() async {
-    emitValue(Loading(plan: planFromList));
+    final currentUser = await _userRepository.getCurrentLoggedUser();
+    currentUser.fold(
+      (left) => emitValue(Error(error: left, plan: planFromList)),
+      (right) => _currentUser = right,
+    );
     refresh();
   }
 
@@ -52,7 +58,6 @@ class PlanDetailViewModel extends RootViewModel<PlanDetailViewState> {
         plan: plan.right,
         joinedUsers: joinedUsers.right,
         creatorUser: creatorUser.right,
-        joinButtonBehaviour: joinButtonBehaviour,
       ),
     );
   }
@@ -67,6 +72,9 @@ class PlanDetailViewModel extends RootViewModel<PlanDetailViewState> {
       (right) => print('usecase success'),
     );
   }
+
+  bool isJoinedChecker({required Plan plan}) =>
+      plan.joinedUsers.contains(_currentUser.id);
 }
 
 sealed class PlanDetailViewState extends ViewState {
@@ -82,16 +90,11 @@ class Loading extends PlanDetailViewState {
 class Success extends PlanDetailViewState {
   final List<User> joinedUsers;
   final User creatorUser;
-  final Function({
-    required String idPlan,
-    required bool isJoin,
-  }) joinButtonBehaviour;
 
   Success({
     required super.plan,
     required this.joinedUsers,
     required this.creatorUser,
-    required this.joinButtonBehaviour,
   });
 }
 

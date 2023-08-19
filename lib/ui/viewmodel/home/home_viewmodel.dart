@@ -1,34 +1,20 @@
+import 'package:either_dart/either.dart';
 import 'package:injectable/injectable.dart';
-import 'package:tfg_v2/di/dependency_injection.dart';
 import 'package:tfg_v2/domain/model/errors.dart';
 import 'package:tfg_v2/domain/model/user.dart';
-import 'package:tfg_v2/domain/repository/social/user_repository.dart';
-import 'package:tfg_v2/ui/navigation/navigator.dart';
+import 'package:tfg_v2/domain/use_cases/get_updated_logged_user.dart';
 import 'package:tfg_v2/ui/viewmodel/root_viewmodel.dart';
 
 @Injectable()
 class HomeViewModel extends RootViewModel<HomeViewState> {
-  final UserRepository _userRepository;
+  final GetUpdatedLoggedUserUseCase _getCurrentUserUseCase;
 
-  TfgNavigator get navigator => getIt<TfgNavigator>();
-
-  HomeViewModel(this._userRepository) : super(Loading());
+  HomeViewModel(this._getCurrentUserUseCase) : super(Loading());
 
   @override
   void onAttach() async {
-    getLoggedUser();
-  }
-
-  Future<void> getLoggedUser() async {
-    final username = await _userRepository.getCurrentLoggedUsername();
-    if (username.isLeft) {
-      navigator.navigateToLogin();
-      return;
-    }
-
-    // todo: save user in shared preferences here or in login
-    final user = await _userRepository.getUser(username.right);
-    user.fold(
+    final result = _getCurrentUserUseCase();
+    result.fold(
       (left) => emitValue(Error(left)),
       (right) => emitValue(Success(loggedUser: right)),
     );

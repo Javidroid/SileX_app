@@ -44,7 +44,7 @@ class DefaultLocalDatasource implements LocalDatasource {
   }
 
   @override
-  Future<Either<AppError, void>> setCurrentLoggedUser(User user) async {
+  Future<Either<AppError, void>> saveCurrentLoggedUser(User user) async {
     try {
       return Right(SessionSharedPreferences.setCurrentUser(user: user));
     } catch (e) {

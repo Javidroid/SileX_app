@@ -8,6 +8,7 @@ class PlansList extends StatelessWidget {
     super.key,
     required this.planList,
     required this.joinButtonBehaviour,
+    required this.isJoinedChecker,
   });
 
   final List<Plan> planList;
@@ -16,6 +17,10 @@ class PlansList extends StatelessWidget {
     required String idPlan,
     required bool isJoin,
   }) joinButtonBehaviour;
+
+  final Function({
+    required Plan plan,
+  }) isJoinedChecker;
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +33,7 @@ class PlansList extends StatelessWidget {
             PlanPreviewItem(
               plan: plan,
               joinButtonBehaviour: joinButtonBehaviour,
+              checkIfJoined: isJoinedChecker,
             )
         ],
       ),

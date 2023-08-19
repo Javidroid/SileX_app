@@ -13,6 +13,7 @@ class PlanPreviewItem extends StatelessWidget {
     super.key,
     required this.plan,
     required this.joinButtonBehaviour,
+    required this.checkIfJoined,
   });
 
   TfgNavigator get navigator => getIt<TfgNavigator>();
@@ -23,6 +24,10 @@ class PlanPreviewItem extends StatelessWidget {
     required String idPlan,
     required bool isJoin,
   }) joinButtonBehaviour;
+
+  final Function({
+    required Plan plan,
+  }) checkIfJoined;
 
   // TODO: pass check joined to plan
 
@@ -88,7 +93,7 @@ class PlanPreviewItem extends StatelessWidget {
                     style: TextStyles.defaultStyle,
                   ),
                   JoinToPlanButton(
-                    isJoined: true,
+                    isJoined: checkIfJoined(plan: plan),
                     joinBehaviour: () => joinButtonBehaviour(
                       idPlan: plan.idPlan,
                       isJoin: true,

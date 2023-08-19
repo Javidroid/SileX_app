@@ -12,7 +12,7 @@ class SessionSharedPreferences {
     final SharedPreferences sharedPref = await SharedPreferences.getInstance();
 
     sharedPref.setString(_currentLoggedUsername, user.username);
-    print(jsonEncode(UserDto.fromModel(user).toJson()));
+
     sharedPref.setString(
       _currentLoggedUser,
       jsonEncode(UserDto.fromModel(user).toJson()),
