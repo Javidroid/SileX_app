@@ -71,7 +71,7 @@ class PlanDetailScreen extends RootScreen<PlanDetailViewState> {
                 ),
               ),
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
                     'components.plans.people'.tr(
@@ -84,13 +84,13 @@ class PlanDetailScreen extends RootScreen<PlanDetailViewState> {
                   ),
                   (state is Success)
                       ? JoinToPlanButton(
-                          isJoined: viewModel.isJoinedChecker(plan: plan),
+                          isJoined: viewModel.isJoinedChecker(plan: state.plan),
                           joinBehaviour: () => viewModel.joinButtonBehaviour(
-                            idPlan: plan.idPlan,
+                            plan: state.plan,
                             isJoin: true,
                           ),
                           quitBehaviour: () => viewModel.joinButtonBehaviour(
-                            idPlan: plan.idPlan,
+                            plan: state.plan,
                             isJoin: false,
                           ),
                         )

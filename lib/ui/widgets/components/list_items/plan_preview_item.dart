@@ -8,7 +8,7 @@ import 'package:tfg_v2/ui/styles/text_styles.dart';
 import 'package:tfg_v2/ui/widgets/components/buttons/join_to_plan_button.dart';
 import 'package:tfg_v2/ui/widgets/components/profile/navigable_profile_pic.dart';
 
-class PlanPreviewItem extends StatelessWidget {
+class PlanPreviewItem extends StatefulWidget {
   const PlanPreviewItem({
     super.key,
     required this.plan,
@@ -21,7 +21,7 @@ class PlanPreviewItem extends StatelessWidget {
   final Plan plan;
 
   final Function({
-    required String idPlan,
+    required Plan plan,
     required bool isJoin,
   }) joinButtonBehaviour;
 
@@ -32,9 +32,14 @@ class PlanPreviewItem extends StatelessWidget {
   // TODO: pass check joined to plan
 
   @override
+  State<PlanPreviewItem> createState() => _PlanPreviewItemState();
+}
+
+class _PlanPreviewItemState extends State<PlanPreviewItem> {
+  @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => navigator.navigateToPlanDetail(plan),
+      onTap: () => widget.navigator.navigateToPlanDetail(widget.plan),
       child: Card(
         elevation: 5,
         child: Padding(
@@ -46,9 +51,9 @@ class PlanPreviewItem extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   NavigableProfilePic(
-                    asset: plan.creatorProfPic,
-                    onTap: () => navigator.navigateToProfile(
-                      userRef: plan.creatorId,
+                    asset: widget.plan.creatorProfPic,
+                    onTap: () => widget.navigator.navigateToProfile(
+                      userRef: widget.plan.creatorId,
                       isUserRefId: true,
                     ),
                     radius: 23,
@@ -57,14 +62,14 @@ class PlanPreviewItem extends StatelessWidget {
                     child: Padding(
                       padding: Insets.h12,
                       child: Text(
-                        plan.title,
+                        widget.plan.title,
                         style: TextStyles.defaultStyleBold,
                         textAlign: TextAlign.center,
                       ),
                     ),
                   ),
                   Text(
-                    DateFormat('dd-MM-yyyy, kk:mm').format(plan.date),
+                    DateFormat('dd-MM-yyyy, kk:mm').format(widget.plan.date),
                     style: TextStyles.defaultStyleBold,
                   )
                 ],
@@ -72,7 +77,7 @@ class PlanPreviewItem extends StatelessWidget {
               Padding(
                 padding: Insets.v8,
                 child: Text(
-                  plan.description,
+                  widget.plan.description,
                   textAlign: TextAlign.justify,
                   style: TextStyles.defaultStyleLight,
                   maxLines: 3,
@@ -86,22 +91,28 @@ class PlanPreviewItem extends StatelessWidget {
                   Text(
                     'components.plans.people'.tr(
                       args: [
-                        plan.joinedUsers.length.toString(),
-                        plan.maxUsers.toString(),
+                        widget.plan.joinedUsers.length.toString(),
+                        widget.plan.maxUsers.toString(),
                       ],
                     ),
                     style: TextStyles.defaultStyle,
                   ),
                   JoinToPlanButton(
-                    isJoined: checkIfJoined(plan: plan),
-                    joinBehaviour: () => joinButtonBehaviour(
-                      idPlan: plan.idPlan,
-                      isJoin: true,
-                    ),
-                    quitBehaviour: () => joinButtonBehaviour(
-                      idPlan: plan.idPlan,
-                      isJoin: false,
-                    ),
+                    isJoined: widget.checkIfJoined(plan: widget.plan),
+                    joinBehaviour: () async {
+                      await widget.joinButtonBehaviour(
+                        plan: widget.plan,
+                        isJoin: true,
+                      );
+                      setState(() {});
+                    },
+                    quitBehaviour: () async {
+                      await widget.joinButtonBehaviour(
+                        plan: widget.plan,
+                        isJoin: false,
+                      );
+                      setState(() {});
+                    },
                   ),
                 ],
               ),

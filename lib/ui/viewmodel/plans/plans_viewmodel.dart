@@ -44,19 +44,25 @@ class PlansViewModel extends RootViewModel<PlansViewState> {
   }
 
   Future<void> joinButtonBehaviour({
-    required String idPlan,
+    required Plan plan,
     required bool isJoin,
   }) async {
     // TODO: check why doesnt update
-    final result = await _joinQuitPlanUseCase(idPlan: idPlan, isJoin: isJoin);
+    final result = await _joinQuitPlanUseCase(
+      localPlan: plan,
+      isJoin: isJoin,
+    );
     result.fold(
-      (left) => print('usecase error'),
-      (right) => print('usecase success'),
+      (left) => print('usecase error'), // TODO: emit error
+      (right) => print('usecase success'), // TODO: ¿?
     );
   }
 
-  bool isJoinedChecker({required Plan plan}) =>
-      plan.joinedUsers.contains(_currentUser.id);
+  bool isJoinedChecker({required Plan plan}) {
+    final a = plan.joinedUsers.contains(_currentUser.id);
+    print(a);
+    return a;
+  }
 }
 
 sealed class PlansViewState extends ViewState {}

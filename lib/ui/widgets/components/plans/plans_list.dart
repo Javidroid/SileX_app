@@ -14,7 +14,7 @@ class PlansList extends StatelessWidget {
   final List<Plan> planList;
 
   final Function({
-    required String idPlan,
+    required Plan plan,
     required bool isJoin,
   }) joinButtonBehaviour;
 

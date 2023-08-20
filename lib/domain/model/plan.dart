@@ -24,4 +24,12 @@ class Plan {
     required this.joinedUsers,
     this.creatorProfPic = '',
   });
+
+  void joinOrQuitUserToPlan({required String userId, required bool isJoin}) {
+    if (isJoin) {
+      if (!joinedUsers.contains(userId)) joinedUsers.add(userId);
+    } else {
+      if (joinedUsers.contains(userId)) joinedUsers.remove(userId);
+    }
+  }
 }

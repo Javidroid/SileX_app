@@ -36,6 +36,7 @@ class PlanDetailViewModel extends RootViewModel<PlanDetailViewState> {
   }
 
   Future<void> refresh() async {
+    // todo check get from remote
     final plan = await _planRepository.getPlan(planFromList.idPlan);
     if (plan.isLeft) {
       emitValue(Error(error: plan.left, plan: planFromList));
@@ -63,16 +64,16 @@ class PlanDetailViewModel extends RootViewModel<PlanDetailViewState> {
   }
 
   Future<void> joinButtonBehaviour({
-    required String idPlan,
+    required Plan plan,
     required bool isJoin,
   }) async {
-
     // TODO: check why doesnt update
-    final result = await _joinQuitPlanUseCase(idPlan: idPlan, isJoin: isJoin);
+    final result = await _joinQuitPlanUseCase(localPlan: plan, isJoin: isJoin);
     result.fold(
       (left) => print('usecase error'),
       (right) => print('usecase success'),
     );
+    refresh();
   }
 
   bool isJoinedChecker({required Plan plan}) =>
