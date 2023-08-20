@@ -14,19 +14,16 @@ class UserJoinQuitPlanUseCase {
   /// Joins or quits an [user] to/from a [plan] depending on [isJoin].
   ///
   /// If [isJoin] == true, the user is joined to the plan. Otherwise is quitted.
-  Future<Either<AppError, void>> call({
+  Future<Either<AppError, bool>> call({
     required String idPlan,
     bool isJoin = true,
   }) async {
     final username = await _userRepository.getCurrentLoggedUsername();
     if (username.isLeft) return Left(UninitializedSharedPreferencesError());
 
-    // TODO: implement
-    // TODO: handle user limit
-    return Right(
-      isJoin
-          ? print('Joined $username to $idPlan')
-          : print('Quitted $username from $idPlan'),
-    );
+    final operation =
+        isJoin ? _planRepository.signUpToPlan : _planRepository.quitFromPlan;
+
+    return operation(idPlan, username.right);
   }
 }

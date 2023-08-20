@@ -66,6 +66,8 @@ class PlanDetailViewModel extends RootViewModel<PlanDetailViewState> {
     required String idPlan,
     required bool isJoin,
   }) async {
+
+    // TODO: check why doesnt update
     final result = await _joinQuitPlanUseCase(idPlan: idPlan, isJoin: isJoin);
     result.fold(
       (left) => print('usecase error'),

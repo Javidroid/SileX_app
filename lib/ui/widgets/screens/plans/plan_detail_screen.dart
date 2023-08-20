@@ -9,7 +9,7 @@ import 'package:tfg_v2/ui/styles/text_styles.dart';
 import 'package:tfg_v2/ui/viewmodel/plans/plan_detail_viewmodel.dart';
 import 'package:tfg_v2/ui/widgets/components/appbars/default_appbar.dart';
 import 'package:tfg_v2/ui/widgets/components/box_spacer.dart';
-import 'package:tfg_v2/ui/widgets/components/buttons/join2plan_button.dart';
+import 'package:tfg_v2/ui/widgets/components/buttons/join_to_plan_button.dart';
 import 'package:tfg_v2/ui/widgets/components/profile/navigable_profile_pic.dart';
 import 'package:tfg_v2/ui/widgets/components/shimmer.dart';
 import 'package:tfg_v2/ui/widgets/components/user_list/user_list.dart';
@@ -87,11 +87,11 @@ class PlanDetailScreen extends RootScreen<PlanDetailViewState> {
                           isJoined: viewModel.isJoinedChecker(plan: plan),
                           joinBehaviour: () => viewModel.joinButtonBehaviour(
                             idPlan: plan.idPlan,
-                            isJoin: false,
+                            isJoin: true,
                           ),
                           quitBehaviour: () => viewModel.joinButtonBehaviour(
                             idPlan: plan.idPlan,
-                            isJoin: true,
+                            isJoin: false,
                           ),
                         )
                       : const AppShimmer(

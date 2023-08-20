@@ -50,14 +50,12 @@ class PlanRepositoryImpl implements PlanRepository {
 
   @override
   Future<Either<AppError, bool>> quitFromPlan(String idPlan, String username) {
-    // TODO: implement quitFromPlan
-    throw UnimplementedError();
+    return _remoteDatasource.quitFromPlan(idPlan, username);
   }
 
   @override
   Future<Either<AppError, bool>> signUpToPlan(String idPlan, String username) {
-    // TODO: implement signUpToPlan
-    throw UnimplementedError();
+    return _remoteDatasource.signUpToPlan(idPlan, username);
   }
 
   @override

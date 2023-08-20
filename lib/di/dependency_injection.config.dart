@@ -51,37 +51,49 @@ extension GetItInjectableX on _i1.GetIt {
     final diModule = _$DiModule();
     gh.lazySingleton<_i3.ApiService>(() => apiServiceModule.httpClient);
     gh.factory<_i4.DirectMessagesViewModel>(
-        () => _i4.DirectMessagesViewModel());
+      () => _i4.DirectMessagesViewModel(),
+    );
     gh.factory<_i5.LocalDatasource>(() => _i6.DefaultLocalDatasource());
     gh.factory<_i7.LoginViewModel>(() => _i7.LoginViewModel());
     gh.factory<_i8.NotificationsViewModel>(() => _i8.NotificationsViewModel());
     gh.factory<_i9.RemoteDatasource>(
-        () => _i10.DefaultRemoteDatasource(gh<_i3.ApiService>()));
+      () => _i10.DefaultRemoteDatasource(gh<_i3.ApiService>()),
+    );
     gh.factory<_i11.SearchViewModel>(() => _i11.SearchViewModel());
     gh.factory<_i12.SplashViewModel>(() => _i12.SplashViewModel());
     gh.singleton<_i13.TfgEnv>(diModule.env);
     gh.singleton<_i14.TfgNavigator>(diModule.navigator);
-    gh.factory<_i15.UserRepository>(() => _i15.UserRepositoryImpl(
-          gh<_i9.RemoteDatasource>(),
-          gh<_i5.LocalDatasource>(),
-        ));
+    gh.factory<_i15.UserRepository>(
+      () => _i15.UserRepositoryImpl(
+        gh<_i9.RemoteDatasource>(),
+        gh<_i5.LocalDatasource>(),
+      ),
+    );
     gh.factory<_i16.FollowUserUseCase>(
-        () => _i16.FollowUserUseCase(gh<_i15.UserRepository>()));
+      () => _i16.FollowUserUseCase(gh<_i15.UserRepository>()),
+    );
     gh.factory<_i17.GetUpdatedLoggedUserUseCase>(
-        () => _i17.GetUpdatedLoggedUserUseCase(gh<_i15.UserRepository>()));
+      () => _i17.GetUpdatedLoggedUserUseCase(gh<_i15.UserRepository>()),
+    );
     gh.factory<_i18.HomeViewModel>(
-        () => _i18.HomeViewModel(gh<_i17.GetUpdatedLoggedUserUseCase>()));
+      () => _i18.HomeViewModel(gh<_i17.GetUpdatedLoggedUserUseCase>()),
+    );
     gh.factory<_i19.PlanRepository>(
-        () => _i19.PlanRepositoryImpl(gh<_i9.RemoteDatasource>()));
-    gh.factory<_i20.UserJoinQuitPlanUseCase>(() => _i20.UserJoinQuitPlanUseCase(
-          gh<_i19.PlanRepository>(),
-          gh<_i15.UserRepository>(),
-        ));
-    gh.factory<_i21.PlansViewModel>(() => _i21.PlansViewModel(
-          gh<_i19.PlanRepository>(),
-          gh<_i20.UserJoinQuitPlanUseCase>(),
-          gh<_i15.UserRepository>(),
-        ));
+      () => _i19.PlanRepositoryImpl(gh<_i9.RemoteDatasource>()),
+    );
+    gh.factory<_i20.UserJoinQuitPlanUseCase>(
+      () => _i20.UserJoinQuitPlanUseCase(
+        gh<_i19.PlanRepository>(),
+        gh<_i15.UserRepository>(),
+      ),
+    );
+    gh.factory<_i21.PlansViewModel>(
+      () => _i21.PlansViewModel(
+        gh<_i19.PlanRepository>(),
+        gh<_i20.UserJoinQuitPlanUseCase>(),
+        gh<_i15.UserRepository>(),
+      ),
+    );
     return this;
   }
 }

@@ -103,6 +103,40 @@ class DioRestService<V> {
     );
   }
 
+  Future<Either<V, T>> put<T>(
+    Uri uri, {
+    Object? data,
+    Map<String, dynamic>? headers,
+  }) async {
+    return _tryCatch(
+      () async {
+        final response = await dio.putUri<T>(
+          uri,
+          data: data,
+          options: Options(headers: headers),
+        );
+        return Future.value(response.data);
+      },
+    );
+  }
+
+  Future<Either<V, T>> delete<T>(
+    Uri uri, {
+    Object? data,
+    Map<String, dynamic>? headers,
+  }) async {
+    return _tryCatch(
+      () async {
+        final response = await dio.deleteUri<T>(
+          uri,
+          data: data,
+          options: Options(headers: headers),
+        );
+        return Future.value(response.data);
+      },
+    );
+  }
+
   Future<Either<V, T>> _tryCatch<T>(Future<T> Function() function) async {
     try {
       final result = await function();

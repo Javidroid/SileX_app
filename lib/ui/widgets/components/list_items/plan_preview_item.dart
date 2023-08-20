@@ -5,7 +5,7 @@ import 'package:tfg_v2/domain/model/plan.dart';
 import 'package:tfg_v2/ui/navigation/navigator.dart';
 import 'package:tfg_v2/ui/styles/insets.dart';
 import 'package:tfg_v2/ui/styles/text_styles.dart';
-import 'package:tfg_v2/ui/widgets/components/buttons/join2plan_button.dart';
+import 'package:tfg_v2/ui/widgets/components/buttons/join_to_plan_button.dart';
 import 'package:tfg_v2/ui/widgets/components/profile/navigable_profile_pic.dart';
 
 class PlanPreviewItem extends StatelessWidget {

@@ -100,15 +100,33 @@ class DefaultRemoteDatasource implements RemoteDatasource {
   }
 
   @override
-  Future<Either<AppError, bool>> quitFromPlan(String idPlan, String username) {
-    // TODO: implement quitFromPlan
-    throw UnimplementedError();
+  Future<Either<AppError, bool>> quitFromPlan(
+    String idPlan,
+    String username,
+  ) async {
+    final uri = Uri.parse('$_baseUrl/plan/$idPlan/signUp/$username');
+
+    final result = await _apiService.delete(uri);
+
+    return result.either<AppError, bool>(
+      (left) => left,
+      (right) => true,
+    );
   }
 
   @override
-  Future<Either<AppError, bool>> signUpToPlan(String idPlan, String username) {
-    // TODO: implement signUpToPlan
-    throw UnimplementedError();
+  Future<Either<AppError, bool>> signUpToPlan(
+    String idPlan,
+    String username,
+  ) async {
+    final uri = Uri.parse('$_baseUrl/plan/$idPlan/signUp/$username');
+
+    final result = await _apiService.put(uri);
+
+    return result.either<AppError, bool>(
+      (left) => left,
+      (right) => true,
+    );
   }
 
   @override
