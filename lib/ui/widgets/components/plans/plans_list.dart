@@ -34,7 +34,7 @@ class PlansList extends StatelessWidget {
               plan: plan,
               joinButtonBehaviour: joinButtonBehaviour,
               checkIfJoined: isJoinedChecker,
-            )
+            ),
         ],
       ),
     );

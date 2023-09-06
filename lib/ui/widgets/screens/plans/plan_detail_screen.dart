@@ -15,20 +15,20 @@ import 'package:tfg_v2/ui/widgets/components/shimmer.dart';
 import 'package:tfg_v2/ui/widgets/components/user_list/user_list.dart';
 import 'package:tfg_v2/ui/widgets/screens/root_screen.dart';
 
-class PlanDetailScreen extends RootScreen<PlanDetailViewState> {
-  PlanDetailScreen({super.key, required this.plan}) {
-    viewModel = PlanDetailViewModel(planFromList: plan);
-  }
+class PlanDetailScreen
+    extends RootScreen<PlanDetailViewState, PlanDetailViewModel> {
+  const PlanDetailScreen({super.key, required this.plan}) : super(param1: plan);
 
   final Plan plan;
 
   TfgNavigator get navigator => getIt<TfgNavigator>();
 
   @override
-  late final PlanDetailViewModel viewModel;
-
-  @override
-  Widget buildView(BuildContext context, PlanDetailViewState state) {
+  Widget buildView(
+    BuildContext context,
+    PlanDetailViewState state,
+    PlanDetailViewModel viewModel,
+  ) {
     return Scaffold(
       appBar:
           DefaultAppBar(title: (state is Success) ? state.plan.title : null),
@@ -59,7 +59,7 @@ class PlanDetailScreen extends RootScreen<PlanDetailViewState> {
                   Text(
                     DateFormat('dd-MM-yyyy, kk:mm').format(state.plan.date),
                     style: TextStyles.defaultStyleBold,
-                  )
+                  ),
                 ],
               ),
               Padding(
@@ -100,7 +100,7 @@ class PlanDetailScreen extends RootScreen<PlanDetailViewState> {
                             joinBehaviour: null,
                             quitBehaviour: null,
                           ),
-                        )
+                        ),
                 ],
               ),
               const Padding(padding: Insets.v12, child: Divider(thickness: 2)),
@@ -114,7 +114,7 @@ class PlanDetailScreen extends RootScreen<PlanDetailViewState> {
                       userList: state.joinedUsers,
                       howManyIfLoading: state.joinedUsers.length,
                     )
-                  : UserList(howManyIfLoading: state.plan.joinedUsers.length)
+                  : UserList(howManyIfLoading: state.plan.joinedUsers.length),
             ],
           ),
         Error _ => Text(state.error.toString()), // todo handle errors

@@ -8,26 +8,27 @@ import 'package:tfg_v2/ui/widgets/components/profile/profile_content.dart';
 import 'package:tfg_v2/ui/widgets/components/profile/profile_header.dart';
 import 'package:tfg_v2/ui/widgets/screens/root_screen.dart';
 
-class ProfileScreen extends RootScreen<ProfileViewState> {
+class ProfileScreen extends RootScreen<ProfileViewState, ProfileViewModel> {
   const ProfileScreen({
     super.key,
     required this.userRef,
     required this.isUserRefId,
-  });
+  }) : super(param1: userRef, param2: isUserRefId);
 
   TfgNavigator get navigator => getIt<TfgNavigator>();
 
+  /// An user reference that can be their username or their ID
   final String userRef;
+
+  /// True if [userRef] is an ID. False if it's an username
   final bool isUserRefId;
 
   @override
-  ProfileViewModel get viewModel => ProfileViewModel(
-        userRef: userRef,
-        isUserRefId: isUserRefId,
-      );
-
-  @override
-  Widget buildView(BuildContext context, ProfileViewState state) {
+  Widget buildView(
+    BuildContext context,
+    ProfileViewState state,
+    ProfileViewModel viewModel,
+  ) {
     // TODO: handle cuando haya error para que enseñe el user outdated,
     //      indicando el error y que es una versión desactualizada
     return switch (state) {
@@ -55,7 +56,7 @@ class ProfileScreen extends RootScreen<ProfileViewState> {
                       child: Text(
                         'profile.follow'.tr(),
                       ),
-                    )
+                    ),
             ],
           ),
           body: SafeArea(

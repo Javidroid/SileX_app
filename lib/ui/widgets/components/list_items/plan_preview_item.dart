@@ -71,7 +71,7 @@ class _PlanPreviewItemState extends State<PlanPreviewItem> {
                   Text(
                     DateFormat('dd-MM-yyyy, kk:mm').format(widget.plan.date),
                     style: TextStyles.defaultStyleBold,
-                  )
+                  ),
                 ],
               ),
               Padding(

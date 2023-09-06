@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:tfg_v2/di/dependency_injection.dart';
 import 'package:tfg_v2/ui/viewmodel/plans/plans_viewmodel.dart';
 import 'package:tfg_v2/ui/widgets/components/plans/plans_list.dart';
 import 'package:tfg_v2/ui/widgets/screens/root_screen.dart';
 
-class PlansScreen extends RootScreen<PlansViewState> {
-  PlansScreen({super.key});
+class PlansScreen extends RootScreen<PlansViewState, PlansViewModel> {
+  const PlansScreen({super.key});
 
   @override
-  final PlansViewModel viewModel = getIt<PlansViewModel>();
-
-  @override
-  Widget buildView(BuildContext context, PlansViewState state) {
+  Widget buildView(
+    BuildContext context,
+    PlansViewState state,
+    PlansViewModel viewModel,
+  ) {
     return Container(
       alignment: Alignment.center,
       child: switch (state) {

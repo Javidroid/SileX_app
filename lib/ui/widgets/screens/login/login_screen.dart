@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:tfg_v2/di/dependency_injection.dart';
 import 'package:tfg_v2/ui/viewmodel/login/login_viewmodel.dart';
 import 'package:tfg_v2/ui/widgets/screens/root_screen.dart';
 
-class LoginScreen extends RootScreen<LoginViewState> {
+class LoginScreen extends RootScreen<LoginViewState, LoginViewModel> {
   const LoginScreen({super.key});
 
   @override
-  LoginViewModel get viewModel => getIt<LoginViewModel>();
-
-  @override
-  Widget buildView(BuildContext context, LoginViewState state) {
+  Widget buildView(
+    BuildContext context,
+    LoginViewState state,
+    LoginViewModel viewModel,
+  ) {
     return Scaffold(
       body: switch (state) {
         Loading _ => const Center(

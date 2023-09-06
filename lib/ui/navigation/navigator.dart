@@ -43,12 +43,13 @@ class TfgNavigator {
       ),
       GoRoute(
         path: Routes.home,
-        builder: (BuildContext context, GoRouterState state) => HomeScreen(),
+        builder: (BuildContext context, GoRouterState state) =>
+            const HomeScreen(),
       ),
       GoRoute(
         path: Routes.plans,
         builder: (BuildContext context, GoRouterState state) =>
-            PlansScreen(),
+            const PlansScreen(),
       ),
       GoRoute(
         path: '${Routes.plans}/:id',
@@ -90,7 +91,7 @@ class TfgNavigator {
       GoRoute(
         path: Routes.myPlans,
         builder: (BuildContext context, GoRouterState state) =>
-            PlansScreen(), // TODO: send own plan dataset
+            const PlansScreen(), // TODO: send own plan dataset
       ),
       GoRoute(
         path: Routes.settings,

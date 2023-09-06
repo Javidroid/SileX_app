@@ -60,7 +60,7 @@ class _NavigationDrawerWithUserHeaderState
                     onPressed: () {
                       themeNotifier.modo = !themeNotifier.modo;
                     },
-                  )
+                  ),
                 ],
               ),
               ListTile(

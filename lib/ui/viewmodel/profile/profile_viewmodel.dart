@@ -1,3 +1,4 @@
+import 'package:injectable/injectable.dart';
 import 'package:tfg_v2/di/dependency_injection.dart';
 import 'package:tfg_v2/domain/model/errors.dart';
 import 'package:tfg_v2/domain/model/user.dart';
@@ -5,6 +6,7 @@ import 'package:tfg_v2/domain/repository/social/user_repository.dart';
 import 'package:tfg_v2/ui/navigation/navigator.dart';
 import 'package:tfg_v2/ui/viewmodel/root_viewmodel.dart';
 
+@injectable
 class ProfileViewModel extends RootViewModel<ProfileViewState> {
   TfgNavigator get navigator => getIt<TfgNavigator>();
 
@@ -19,8 +21,8 @@ class ProfileViewModel extends RootViewModel<ProfileViewState> {
   final bool isUserRefId;
 
   ProfileViewModel({
-    required this.userRef,
-    required this.isUserRefId,
+    @factoryParam required this.userRef,
+    @factoryParam required this.isUserRefId,
   }) : super(Loading());
 
   @override

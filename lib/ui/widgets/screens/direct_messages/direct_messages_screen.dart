@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:tfg_v2/di/dependency_injection.dart';
 import 'package:tfg_v2/ui/viewmodel/direct_messages/direct_messages_viewmodel.dart';
 import 'package:tfg_v2/ui/widgets/screens/root_screen.dart';
 
-class MessagesScreen extends RootScreen<DirectMessagesViewState> {
+class MessagesScreen
+    extends RootScreen<DirectMessagesViewState, DirectMessagesViewModel> {
   const MessagesScreen({super.key});
 
   @override
-  DirectMessagesViewModel get viewModel => getIt<DirectMessagesViewModel>();
-
-  @override
-  Widget buildView(BuildContext context, DirectMessagesViewState state) {
+  Widget buildView(
+    BuildContext context,
+    DirectMessagesViewState state,
+    DirectMessagesViewModel viewModel,
+  ) {
     return Scaffold(
       body: switch (state) {
         Loading _ => const Center(

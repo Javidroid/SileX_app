@@ -22,8 +22,6 @@ class SplashViewModel extends RootViewModel<SplashViewState> {
       (left) => emitValue(Error(left)),
       (right) => navigator.replaceToHome(),
     );
-
-    // if (response.isRight) navigator.navigateToHome();
   }
 }
 

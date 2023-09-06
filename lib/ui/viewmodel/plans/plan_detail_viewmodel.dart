@@ -1,3 +1,4 @@
+import 'package:injectable/injectable.dart';
 import 'package:tfg_v2/di/dependency_injection.dart';
 import 'package:tfg_v2/domain/model/errors.dart';
 import 'package:tfg_v2/domain/model/plan.dart';
@@ -8,9 +9,11 @@ import 'package:tfg_v2/domain/use_cases/user_join_quit_plan.dart';
 import 'package:tfg_v2/ui/navigation/navigator.dart';
 import 'package:tfg_v2/ui/viewmodel/root_viewmodel.dart';
 
+@injectable
 class PlanDetailViewModel extends RootViewModel<PlanDetailViewState> {
-  PlanDetailViewModel({required this.planFromList})
-      : super(Loading(plan: planFromList));
+  PlanDetailViewModel({
+    @factoryParam required this.planFromList,
+  }) : super(Loading(plan: planFromList));
 
   final Plan planFromList; // could be outdated, but is used for fast-render
 
