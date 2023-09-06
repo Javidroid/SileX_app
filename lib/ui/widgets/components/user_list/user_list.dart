@@ -57,12 +57,12 @@ class _UserListItem extends StatelessWidget {
           // todo: put hero
           asset: user.profile.profilePic,
           radius: 20,
-          onTap: () => navigator.navigateToProfile(
+          onTap: () => navigator.toProfile(
             userRef: user.username,
             isUserRefId: false,
           ),
         ),
-        onTap: () => navigator.navigateToProfile(
+        onTap: () => navigator.toProfile(
           userRef: user.username,
           isUserRefId: false,
         ),

@@ -18,7 +18,7 @@ class GetUpdatedLoggedUserUseCase {
     // TODO: check por qué se hace dos veces
     final username = await _userRepository.getCurrentLoggedUsername();
     if (username.isLeft) {
-      navigator.navigateToLogin();
+      navigator.toLogin();
       return Left(UninitializedSharedPreferencesError());
     }
 

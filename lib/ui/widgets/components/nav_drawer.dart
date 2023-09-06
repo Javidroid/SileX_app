@@ -40,7 +40,7 @@ class _NavigationDrawerWithUserHeaderState
                   tag: Constants.profilePicHeroTag,
                   child: NavigableProfilePic(
                     onTap: () {
-                      navigator.navigateToProfile(
+                      navigator.toProfile(
                         userRef: loggedUser.username,
                         isUserRefId: false,
                       );
@@ -67,7 +67,7 @@ class _NavigationDrawerWithUserHeaderState
                 title: Text('components.nav_drawer.profile'.tr()),
                 onTap: () {
                   navigator.pop();
-                  navigator.navigateToProfile(
+                  navigator.toProfile(
                     userRef: loggedUser.username,
                     isUserRefId: false,
                   );
@@ -77,14 +77,14 @@ class _NavigationDrawerWithUserHeaderState
                 title: Text('components.nav_drawer.pending_plans'.tr()),
                 onTap: () {
                   navigator.pop();
-                  navigator.navigateToMyPlans(); // todo bind user
+                  navigator.toMyPlans(); // todo bind user
                 },
               ),
               ListTile(
                 title: Text('components.nav_drawer.settings'.tr()),
                 onTap: () {
                   navigator.pop();
-                  navigator.navigateToSettings();
+                  navigator.toSettings();
                 },
               ),
               ListTile(
@@ -108,7 +108,7 @@ class _NavigationDrawerWithUserHeaderState
                 title: Text('components.nav_drawer.faq'.tr()),
                 onTap: () {
                   navigator.pop();
-                  navigator.navigateToFaq();
+                  navigator.toFaq();
                 },
               ),
               ListTile(

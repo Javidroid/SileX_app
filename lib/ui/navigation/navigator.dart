@@ -105,47 +105,47 @@ class TfgNavigator {
     ],
   );
 
-  Future<void> navigateToSplash() {
+  Future<void> toSplash() {
     return router.push(Routes.splash);
   }
 
-  Future<void> navigateToLogin() {
+  Future<void> toLogin() {
     return router.push(Routes.login);
   }
 
-  Future<void> navigateToSignUp() {
+  Future<void> toSignUp() {
     return router.push(Routes.signUp);
   }
 
-  Future<void> navigateToHome() {
+  Future<void> toHome() {
     return router.push(Routes.home);
   }
 
-  Future<void> navigateToHomeReplacement() {
+  Future<void> replaceToHome() {
     return router.pushReplacement(Routes.home);
   }
 
-  Future<void> navigateToPlans() {
+  Future<void> toPlans() {
     return router.push(Routes.plans);
   }
 
-  Future<void> navigateToPlanDetail(Plan plan) {
+  Future<void> toPlandetail(Plan plan) {
     return router.push("${Routes.plans}/${plan.idPlan}", extra: plan);
   }
 
-  Future<void> navigateToSearch() {
+  Future<void> toSearch() {
     return router.push(Routes.search);
   }
 
-  Future<void> navigateToNotifications() {
+  Future<void> toNotifications() {
     return router.push(Routes.notifications);
   }
 
-  Future<void> navigateToDms() {
+  Future<void> toDms() {
     return router.push(Routes.dms);
   }
 
-  Future<void> navigateToProfile({
+  Future<void> toProfile({
     required String userRef,
     required bool isUserRefId,
   }) {
@@ -155,19 +155,19 @@ class TfgNavigator {
     );
   }
 
-  Future<void> navigateToEditProfile(User user) {
+  Future<void> toEditProfile(User user) {
     return router.push("${Routes.editProfile}/${user.username}", extra: user);
   }
 
-  Future<void> navigateToMyPlans() {
+  Future<void> toMyPlans() {
     return router.push(Routes.myPlans);
   }
 
-  Future<void> navigateToSettings() {
+  Future<void> toSettings() {
     return router.push(Routes.settings);
   }
 
-  Future<void> navigateToFaq() {
+  Future<void> toFaq() {
     return router.push(Routes.faq);
   }
 

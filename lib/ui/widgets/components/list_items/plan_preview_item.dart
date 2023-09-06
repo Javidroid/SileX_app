@@ -39,7 +39,7 @@ class _PlanPreviewItemState extends State<PlanPreviewItem> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => widget.navigator.navigateToPlanDetail(widget.plan),
+      onTap: () => widget.navigator.toPlandetail(widget.plan),
       child: Card(
         elevation: 5,
         child: Padding(
@@ -52,7 +52,7 @@ class _PlanPreviewItemState extends State<PlanPreviewItem> {
                 children: [
                   NavigableProfilePic(
                     asset: widget.plan.creatorProfPic,
-                    onTap: () => widget.navigator.navigateToProfile(
+                    onTap: () => widget.navigator.toProfile(
                       userRef: widget.plan.creatorId,
                       isUserRefId: true,
                     ),

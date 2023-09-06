@@ -20,7 +20,7 @@ class SplashViewModel extends RootViewModel<SplashViewState> {
     final response = await _repository.getEnvironment();
     response.fold(
       (left) => emitValue(Error(left)),
-      (right) => navigator.navigateToHomeReplacement(),
+      (right) => navigator.replaceToHome(),
     );
 
     // if (response.isRight) navigator.navigateToHome();

@@ -44,7 +44,7 @@ class PlanDetailScreen extends RootScreen<PlanDetailViewState> {
                     child: NavigableProfilePic(
                       asset: state.plan.creatorProfPic,
                       onTap: (state is Success)
-                          ? () => navigator.navigateToProfile(
+                          ? () => navigator.toProfile(
                                 userRef: plan.creatorId,
                                 isUserRefId: true,
                               )

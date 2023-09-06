@@ -58,11 +58,8 @@ class PlansViewModel extends RootViewModel<PlansViewState> {
     );
   }
 
-  bool isJoinedChecker({required Plan plan}) {
-    final a = plan.joinedUsers.contains(_currentUser.id);
-    print(a);
-    return a;
-  }
+  bool isJoinedChecker({required Plan plan}) =>
+      plan.joinedUsers.contains(_currentUser.id);
 }
 
 sealed class PlansViewState extends ViewState {}
