@@ -30,7 +30,11 @@ class _HomeSuccessScreenState extends State<HomeSuccessScreen> {
         const NotificationsScreen(),
         const MessagesScreen(),
       ][currentPageIndex],
-      // todo change to BottomNavigationBar
+      floatingActionButton: FloatingActionButton(
+        child: const Icon(Icons.add),
+        onPressed: () {},
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: NavigationBar(
         selectedIndex: currentPageIndex,
         onDestinationSelected: (int index) {
