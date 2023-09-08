@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:tfg_v2/di/dependency_injection.dart';
 import 'package:tfg_v2/domain/model/user.dart';
+import 'package:tfg_v2/ui/navigation/navigator.dart';
 import 'package:tfg_v2/ui/widgets/components/appbars/default_appbar.dart';
 import 'package:tfg_v2/ui/widgets/components/nav_drawer.dart';
 import 'package:tfg_v2/ui/widgets/screens/direct_messages/direct_messages_screen.dart';
@@ -9,6 +11,8 @@ import 'package:tfg_v2/ui/widgets/screens/search/search_screen.dart';
 
 class HomeSuccessScreen extends StatefulWidget {
   const HomeSuccessScreen({super.key, required this.loggedUser});
+
+  TfgNavigator get navigator => getIt<TfgNavigator>();
 
   final User loggedUser;
 
@@ -32,7 +36,7 @@ class _HomeSuccessScreenState extends State<HomeSuccessScreen> {
       ][currentPageIndex],
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
-        onPressed: () {},
+        onPressed: () => widget.navigator.toCreatePlan(),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: NavigationBar(

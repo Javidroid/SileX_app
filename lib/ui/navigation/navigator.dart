@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:tfg_v2/domain/model/plan.dart';
 import 'package:tfg_v2/domain/model/user.dart';
 import 'package:tfg_v2/ui/navigation/routes.dart';
+import 'package:tfg_v2/ui/widgets/screens/create_plan/create_plan_screen.dart';
 import 'package:tfg_v2/ui/widgets/screens/direct_messages/direct_messages_screen.dart';
 import 'package:tfg_v2/ui/widgets/screens/faq/faq_screen.dart';
 import 'package:tfg_v2/ui/widgets/screens/home/home_screen.dart';
@@ -36,7 +37,6 @@ class TfgNavigator {
             const LoginScreen(),
       ),
       GoRoute(
-        // todo put inside login?
         path: Routes.signUp,
         builder: (BuildContext context, GoRouterState state) =>
             const SignUpScreen(),
@@ -59,6 +59,11 @@ class TfgNavigator {
             plan: plan,
           );
         },
+      ),
+      GoRoute(
+        path: Routes.createPlan,
+        builder: (BuildContext context, GoRouterState state) =>
+            const CreatePlanScreen(),
       ),
       GoRoute(
         path: Routes.search,
@@ -132,6 +137,10 @@ class TfgNavigator {
 
   Future<void> toPlanDetail(Plan plan) {
     return router.push("${Routes.plans}/${plan.idPlan}", extra: plan);
+  }
+
+  Future<void> toCreatePlan() {
+    return router.push(Routes.createPlan);
   }
 
   Future<void> toSearch() {

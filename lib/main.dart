@@ -30,13 +30,10 @@ class TfgApp extends StatelessWidget {
       child: Consumer<ThemeNotifier>(
         builder: (context, ThemeNotifier themeNotifier, child) {
           return MaterialApp.router(
-            title: 'TFG APP',
+            title: 'SileX',
             theme: ThemeGenerator.generateLightTheme(),
             darkTheme: ThemeGenerator.generateDarkTheme(),
-            themeMode: themeNotifier.modo
-                ? // según el modo guardado en SharedPreferences
-                ThemeMode.light
-                : ThemeMode.dark,
+            themeMode: themeNotifier.modo ? ThemeMode.light : ThemeMode.dark,
             localizationsDelegates: context.localizationDelegates,
             supportedLocales: context.supportedLocales,
             locale: context.locale,

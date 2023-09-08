@@ -9,6 +9,9 @@
       "people": "{}/{} personas inscritas",
       "joined_users": "Usuarios apuntados:"
     },
+    "create_plans": {
+      "title": "Crear plan"
+    },
     "nav_drawer": {
       "profile": "Perfil",
       "pending_plans": "Planes pendientes",

@@ -6,6 +6,7 @@ class Routes {
 
   static const String home = '/home';
   static const String plans = '/home/plan';
+  static const String createPlan = '/home/create-plan';
   static const String search = '/home/search';
   static const String notifications = '/home/notifications';
   static const String dms = '/home/messages';
