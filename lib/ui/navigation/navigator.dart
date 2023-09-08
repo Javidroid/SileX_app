@@ -130,7 +130,7 @@ class TfgNavigator {
     return router.push(Routes.plans);
   }
 
-  Future<void> toPlandetail(Plan plan) {
+  Future<void> toPlanDetail(Plan plan) {
     return router.push("${Routes.plans}/${plan.idPlan}", extra: plan);
   }
 

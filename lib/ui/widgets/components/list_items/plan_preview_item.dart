@@ -14,6 +14,7 @@ class PlanPreviewItem extends StatefulWidget {
     required this.plan,
     required this.joinButtonBehaviour,
     required this.checkIfJoined,
+    required this.onPopBehaviour,
   });
 
   TfgNavigator get navigator => getIt<TfgNavigator>();
@@ -29,6 +30,8 @@ class PlanPreviewItem extends StatefulWidget {
     required Plan plan,
   }) checkIfJoined;
 
+  final VoidCallback onPopBehaviour;
+
   // TODO: pass check joined to plan
 
   @override
@@ -39,7 +42,9 @@ class _PlanPreviewItemState extends State<PlanPreviewItem> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => widget.navigator.toPlandetail(widget.plan),
+      onTap: () => widget.navigator
+          .toPlanDetail(widget.plan)
+          .then((value) => widget.onPopBehaviour()),
       child: Card(
         elevation: 5,
         child: Padding(

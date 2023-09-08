@@ -1,16 +1,16 @@
 import 'dart:core';
 
 class Plan {
-  String idPlan;
-  String creatorId;
-  String title;
-  String description;
-  String place;
-  DateTime date;
-  List<String> categories;
-  int maxUsers;
-  List<String> joinedUsers;
-  String creatorProfPic;
+  final String idPlan;
+  final String creatorId;
+  final String title;
+  final String description;
+  final String place;
+  final DateTime date;
+  final List<String> categories;
+  final int maxUsers;
+  final List<String> joinedUsers;
+  final String creatorProfPic;
 
   Plan({
     required this.idPlan,

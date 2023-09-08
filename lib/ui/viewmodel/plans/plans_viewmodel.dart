@@ -35,11 +35,7 @@ class PlansViewModel extends RootViewModel<PlansViewState> {
     final result = await _planRepository.getPlans();
     result.fold(
       (left) => emitValue(Error(left)),
-      (right) => emitValue(
-        Success(
-          planList: right,
-        ),
-      ),
+      (right) => emitValue(Success(planList: right)),
     );
   }
 
@@ -47,7 +43,6 @@ class PlansViewModel extends RootViewModel<PlansViewState> {
     required Plan plan,
     required bool isJoin,
   }) async {
-    // TODO: check why doesnt update
     final result = await _joinQuitPlanUseCase(
       localPlan: plan,
       isJoin: isJoin,
@@ -56,6 +51,7 @@ class PlansViewModel extends RootViewModel<PlansViewState> {
       (left) => print('usecase error'), // TODO: emit error
       (right) => print('usecase success'), // TODO: ¿?
     );
+    emitValue(Success(planList: (state as Success).planList));
   }
 
   bool isJoinedChecker({required Plan plan}) =>

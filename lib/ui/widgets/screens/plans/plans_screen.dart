@@ -25,6 +25,7 @@ class PlansScreen extends RootScreen<PlansViewState, PlansViewModel> {
                 planList: state.planList,
                 joinButtonBehaviour: viewModel.joinButtonBehaviour,
                 isJoinedChecker: viewModel.isJoinedChecker,
+                onDetailPopBehaviour: viewModel.refreshPlans,
               ),
             ),
           ),

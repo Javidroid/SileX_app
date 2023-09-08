@@ -9,6 +9,7 @@ class PlansList extends StatelessWidget {
     required this.planList,
     required this.joinButtonBehaviour,
     required this.isJoinedChecker,
+    required this.onDetailPopBehaviour,
   });
 
   final List<Plan> planList;
@@ -22,6 +23,8 @@ class PlansList extends StatelessWidget {
     required Plan plan,
   }) isJoinedChecker;
 
+  final VoidCallback onDetailPopBehaviour;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -34,6 +37,7 @@ class PlansList extends StatelessWidget {
               plan: plan,
               joinButtonBehaviour: joinButtonBehaviour,
               checkIfJoined: isJoinedChecker,
+              onPopBehaviour: onDetailPopBehaviour,
             ),
         ],
       ),
