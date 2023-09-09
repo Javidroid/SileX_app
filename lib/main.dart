@@ -9,6 +9,7 @@ void main() async {
   configureDependencies(env: const String.fromEnvironment("ENVIRONMENT"));
   await EasyLocalization.ensureInitialized();
   WidgetsFlutterBinding.ensureInitialized();
+
   runApp(
     EasyLocalization(
       supportedLocales: const [Locale('es')],
@@ -17,7 +18,6 @@ void main() async {
       child: const TfgApp(),
     ),
   );
-  WidgetsFlutterBinding.ensureInitialized();
 }
 
 class TfgApp extends StatelessWidget {

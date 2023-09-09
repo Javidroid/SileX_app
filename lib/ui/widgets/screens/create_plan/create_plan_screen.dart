@@ -1,7 +1,11 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:tfg_v2/ui/styles/insets.dart';
 import 'package:tfg_v2/ui/viewmodel/create_plan/create_plan_viewmodel.dart';
 import 'package:tfg_v2/ui/widgets/components/appbars/default_appbar.dart';
+import 'package:tfg_v2/ui/widgets/screens/create_plan/date_and_place.dart';
+import 'package:tfg_v2/ui/widgets/screens/create_plan/pick_category.dart';
+import 'package:tfg_v2/ui/widgets/screens/create_plan/plan_info.dart';
 import 'package:tfg_v2/ui/widgets/screens/root_screen.dart';
 
 class CreatePlanScreen
@@ -19,7 +23,25 @@ class CreatePlanScreen
       body: Center(
         child: switch (state) {
           Loading _ => const CircularProgressIndicator(),
-          Success _ => Text('create_plan.title'.tr()),
+          Success _ => SingleChildScrollView(
+              child: Padding(
+                padding: Insets.a12,
+                child: [
+                  CreatePlanPickCategory(
+                    onNext: viewModel.nextPage,
+                    onCancel: viewModel.cancelOperation,
+                  ),
+                  CreatePlanDateAndPlace(
+                    onNext: viewModel.nextPage,
+                    onCancel: viewModel.cancelOperation,
+                  ),
+                  CreatePlanPlanInfo(
+                    onFinish: viewModel.finishOperation,
+                    onCancel: viewModel.cancelOperation,
+                  )
+                ][viewModel.currentPageIndex],
+              ),
+            ),
           Error _ => Text(state.error.toString()), // todo handle errors
         },
       ),

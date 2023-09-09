@@ -9,9 +9,6 @@
       "people": "{}/{} personas inscritas",
       "joined_users": "Usuarios apuntados:"
     },
-    "create_plans": {
-      "title": "Crear plan"
-    },
     "nav_drawer": {
       "profile": "Perfil",
       "pending_plans": "Planes pendientes",
@@ -37,5 +34,11 @@
   },
   "faq": {
     "title": "Preguntas frecuentes"
+  },
+  "create_plan": {
+    "title": "Crear plan",
+    "pick_category": "Elige la categoría",
+    "place_and_date": "Lugar y fecha",
+    "plan_info": "¿Cuál es tu plan?"
   }
 }

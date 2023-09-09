@@ -8,6 +8,18 @@ class CreatePlanViewModel extends RootViewModel<CreatePlanViewState> {
 
   // TfgNavigator get navigator => getIt<TfgNavigator>();
 
+  int get currentPageIndex => _currentPageIndex;
+  int _currentPageIndex = 0;
+
+  void nextPage() {
+    _currentPageIndex++;
+    emitValue(Success());
+  }
+
+  void finishOperation() {}
+
+  void cancelOperation() {}
+
   @override
   void onAttach() async {}
 }
