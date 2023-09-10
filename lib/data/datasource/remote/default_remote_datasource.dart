@@ -1,10 +1,12 @@
 import 'package:either_dart/either.dart';
 import 'package:injectable/injectable.dart';
 import 'package:tfg_v2/data/datasource/remote/remote_datasource.dart';
+import 'package:tfg_v2/data/dto/category_dto.dart';
 import 'package:tfg_v2/data/dto/plan_dto.dart';
 import 'package:tfg_v2/data/dto/user_dto.dart';
 import 'package:tfg_v2/data/services/api_service.dart';
 import 'package:tfg_v2/di/dependency_injection.dart';
+import 'package:tfg_v2/domain/model/category.dart';
 import 'package:tfg_v2/domain/model/errors.dart';
 import 'package:tfg_v2/domain/model/plan.dart';
 import 'package:tfg_v2/domain/model/user.dart';
@@ -175,5 +177,19 @@ class DefaultRemoteDatasource implements RemoteDatasource {
     final result = await _apiService.get(uri);
 
     return result.either<AppError, String>((left) => left, (right) => right);
+  }
+
+  @override
+  Future<Either<AppError, List<Category>>> getCategories() async {
+    final uri = Uri.parse('$_baseUrl/categories');
+
+    final result = await _apiService.get(uri);
+
+    return result.either<AppError, List<Category>>(
+      (left) => left,
+      (right) => List.of(right)
+          .map((e) => CategoryDto.fromJson(e).toModel())
+          .toList(),
+    );
   }
 }

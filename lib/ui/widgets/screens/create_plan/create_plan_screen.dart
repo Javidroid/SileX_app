@@ -30,6 +30,7 @@ class CreatePlanScreen
                   CreatePlanPickCategory(
                     onNext: viewModel.nextPage,
                     onCancel: viewModel.cancelOperation,
+                    categories: viewModel.categories,
                   ),
                   CreatePlanDateAndPlace(
                     onNext: viewModel.nextPage,
