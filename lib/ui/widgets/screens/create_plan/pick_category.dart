@@ -1,8 +1,7 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:tfg_v2/domain/model/category.dart';
 
-class CreatePlanPickCategory extends StatelessWidget {
+class CreatePlanPickCategory extends StatefulWidget {
   const CreatePlanPickCategory({
     super.key,
     required this.onNext,
@@ -15,11 +14,30 @@ class CreatePlanPickCategory extends StatelessWidget {
   final List<Category> categories;
 
   @override
+  State<CreatePlanPickCategory> createState() => _CreatePlanPickCategoryState();
+}
+
+class _CreatePlanPickCategoryState extends State<CreatePlanPickCategory> {
+  @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: onNext,
-      child: Text('create_plan.pick_category'.tr()),
-      // TODO: poner list con checkboxes
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          for (Category category in widget.categories)
+            ExpansionTile(
+              title: Text(category.name),
+              subtitle: Text('Trailing expansion arrow icon'),
+              children: [
+                for (String subcategory in category.subcategories)
+                  CheckboxListTile(
+                    title: Text(subcategory),
+                    value: true,
+                    onChanged: (bool? value) {},
+                  ),
+              ],
+            ),
+        ],
+      ),
     );
   }
 }

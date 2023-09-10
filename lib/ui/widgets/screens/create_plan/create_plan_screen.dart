@@ -20,32 +20,30 @@ class CreatePlanScreen
   ) {
     return Scaffold(
       appBar: DefaultAppBar(title: 'create_plan.title'.tr()),
-      body: Center(
-        child: switch (state) {
-          Loading _ => const CircularProgressIndicator(),
-          Success _ => SingleChildScrollView(
-              child: Padding(
-                padding: Insets.a12,
-                child: [
-                  CreatePlanPickCategory(
-                    onNext: viewModel.nextPage,
-                    onCancel: viewModel.cancelOperation,
-                    categories: viewModel.categories,
-                  ),
-                  CreatePlanDateAndPlace(
-                    onNext: viewModel.nextPage,
-                    onCancel: viewModel.cancelOperation,
-                  ),
-                  CreatePlanPlanInfo(
-                    onFinish: viewModel.finishOperation,
-                    onCancel: viewModel.cancelOperation,
-                  )
-                ][viewModel.currentPageIndex],
-              ),
+      body: switch (state) {
+        Loading _ => const Center(child: CircularProgressIndicator()),
+        Success _ => SingleChildScrollView(
+            child: Padding(
+              padding: Insets.a12,
+              child: [
+                CreatePlanPickCategory(
+                  onNext: viewModel.nextPage,
+                  onCancel: viewModel.cancelOperation,
+                  categories: viewModel.categories,
+                ),
+                CreatePlanDateAndPlace(
+                  onNext: viewModel.nextPage,
+                  onCancel: viewModel.cancelOperation,
+                ),
+                CreatePlanPlanInfo(
+                  onFinish: viewModel.finishOperation,
+                  onCancel: viewModel.cancelOperation,
+                )
+              ][viewModel.currentPageIndex],
             ),
-          Error _ => Text(state.error.toString()), // todo handle errors
-        },
-      ),
+          ),
+        Error _ => Text(state.error.toString()), // todo handle errors
+      },
     );
   }
 }
