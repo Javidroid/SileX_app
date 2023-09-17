@@ -37,8 +37,8 @@
   },
   "create_plan": {
     "title": "Crear plan",
-    "pick_category": "Elige la categoría",
-    "place_and_date": "Lugar y fecha",
-    "plan_info": "¿Cuál es tu plan?"
+    "pick_category": "1) Elige la/s categoría/s del plan",
+    "place_and_date": "2) Elige el lugar y la fecha",
+    "plan_info": "3) Finalmente, ¿cuál es tu plan?"
   }
 }

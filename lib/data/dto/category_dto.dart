@@ -1,26 +1,26 @@
-import 'package:tfg_v2/domain/model/category.dart';
+import 'package:tfg_v2/domain/model/plan_category.dart';
 
-class CategoryDto {
+class PlanCategoryDto {
   final String idCategory;
   final String name;
   final List<String> subcategories;
 
-  CategoryDto({
+  PlanCategoryDto({
     required this.idCategory,
     required this.name,
     required this.subcategories,
   });
 
-  factory CategoryDto.fromJson(Map<String, dynamic> json) {
-    return CategoryDto(
+  factory PlanCategoryDto.fromJson(Map<String, dynamic> json) {
+    return PlanCategoryDto(
       idCategory: json["_id"],
       name: json["name"],
       subcategories: List<String>.from(json["subcategories"].map((x) => x)),
     );
   }
 
-  Category toModel() {
-    return Category(
+  PlanCategory toModel() {
+    return PlanCategory(
       idCategory: idCategory,
       name: name,
       subcategories: subcategories,

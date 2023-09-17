@@ -30,6 +30,8 @@ class CreatePlanScreen
                   onNext: viewModel.nextPage,
                   onCancel: viewModel.cancelOperation,
                   categories: viewModel.categories,
+                  addOrRemoveSubcategories: viewModel.addOrDeletePlanCategory,
+                  selectedSubcategories: viewModel.selectedSubcategories,
                 ),
                 CreatePlanDateAndPlace(
                   onNext: viewModel.nextPage,
@@ -38,12 +40,21 @@ class CreatePlanScreen
                 CreatePlanPlanInfo(
                   onFinish: viewModel.finishOperation,
                   onCancel: viewModel.cancelOperation,
-                )
+                ),
               ][viewModel.currentPageIndex],
             ),
           ),
         Error _ => Text(state.error.toString()), // todo handle errors
       },
+      floatingActionButton: !viewModel.isLastPage
+          ? FloatingActionButton(
+              onPressed: viewModel.nextPage,
+              child: const Icon(Icons.navigate_next),
+            )
+          : FloatingActionButton(
+              onPressed: viewModel.finishOperation,
+              child: const Icon(Icons.check),
+            ),
     );
   }
 }

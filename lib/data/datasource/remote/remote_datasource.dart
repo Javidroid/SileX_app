@@ -1,7 +1,7 @@
 import 'package:either_dart/either.dart';
-import 'package:tfg_v2/domain/model/category.dart';
 import 'package:tfg_v2/domain/model/errors.dart';
 import 'package:tfg_v2/domain/model/plan.dart';
+import 'package:tfg_v2/domain/model/plan_category.dart';
 import 'package:tfg_v2/domain/model/user.dart';
 
 abstract interface class RemoteDatasource {
@@ -40,5 +40,5 @@ abstract interface class RemoteDatasource {
 
   Future<Either<AppError, bool>> quitFromPlan(String idPlan, String username);
 
-  Future<Either<AppError, List<Category>>> getCategories();
+  Future<Either<AppError, List<PlanCategory>>> getCategories();
 }

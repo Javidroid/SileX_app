@@ -58,6 +58,13 @@ class TextStyles {
     fontSize: 14,
   );
 
+  // CREATE PLAN
+  static const TextStyle screenAction = TextStyle(
+    fontSize: 20,
+    fontWeight: FontWeight.bold,
+  );
+
+
   // FAQ
   static const TextStyle faqQuestion = TextStyle(
     fontSize: 20,

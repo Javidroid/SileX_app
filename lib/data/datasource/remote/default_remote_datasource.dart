@@ -6,9 +6,9 @@ import 'package:tfg_v2/data/dto/plan_dto.dart';
 import 'package:tfg_v2/data/dto/user_dto.dart';
 import 'package:tfg_v2/data/services/api_service.dart';
 import 'package:tfg_v2/di/dependency_injection.dart';
-import 'package:tfg_v2/domain/model/category.dart';
 import 'package:tfg_v2/domain/model/errors.dart';
 import 'package:tfg_v2/domain/model/plan.dart';
+import 'package:tfg_v2/domain/model/plan_category.dart';
 import 'package:tfg_v2/domain/model/user.dart';
 import 'package:tfg_v2/env/environment.dart';
 
@@ -180,15 +180,15 @@ class DefaultRemoteDatasource implements RemoteDatasource {
   }
 
   @override
-  Future<Either<AppError, List<Category>>> getCategories() async {
+  Future<Either<AppError, List<PlanCategory>>> getCategories() async {
     final uri = Uri.parse('$_baseUrl/categories');
 
     final result = await _apiService.get(uri);
 
-    return result.either<AppError, List<Category>>(
+    return result.either<AppError, List<PlanCategory>>(
       (left) => left,
       (right) => List.of(right)
-          .map((e) => CategoryDto.fromJson(e).toModel())
+          .map((e) => PlanCategoryDto.fromJson(e).toModel())
           .toList(),
     );
   }
