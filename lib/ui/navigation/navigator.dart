@@ -128,6 +128,7 @@ class TfgNavigator {
   }
 
   Future<void> replaceToHome() {
+    _clearStack();
     return router.pushReplacement(Routes.home);
   }
 
@@ -183,5 +184,11 @@ class TfgNavigator {
 
   void pop() {
     if (router.canPop()) router.pop();
+  }
+
+  void _clearStack() {
+    while (router.canPop()) {
+      router.pop();
+    }
   }
 }

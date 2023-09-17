@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:tfg_v2/ui/widgets/components/title_with_info_tooltip.dart';
 
 class CreatePlanPlanInfo extends StatelessWidget {
   const CreatePlanPlanInfo({
@@ -13,9 +14,15 @@ class CreatePlanPlanInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: onFinish,
-      child: Text('create_plan.plan_info'.tr()),
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          TitleWithInfoTooltip(
+            title: 'create_plan.plan_info'.tr(),
+            infoTooltip: 'create_plan.plan_info_tooltip'.tr(),
+          ),
+        ],
+      ),
     );
   }
 }

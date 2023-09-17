@@ -38,7 +38,10 @@
   "create_plan": {
     "title": "Crear plan",
     "pick_category": "1) Elige la/s categoría/s del plan",
+    "pick_category_tooltip": "PONER TEXTO DESCRIPTIVO DE ESTA PANTALLA",
     "place_and_date": "2) Elige el lugar y la fecha",
-    "plan_info": "3) Finalmente, ¿cuál es tu plan?"
+    "place_and_date_tooltip": "PONER TEXTO DESCRIPTIVO DE ESTA PANTALLA",
+    "plan_info": "3) Finalmente, ¿cuál es tu plan?",
+    "plan_info_tooltip": "PONER TEXTO DESCRIPTIVO DE ESTA PANTALLA"
   }
 }

@@ -1,9 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:tfg_v2/domain/model/plan_category.dart';
-import 'package:tfg_v2/ui/styles/insets.dart';
-import 'package:tfg_v2/ui/styles/text_styles.dart';
 import 'package:tfg_v2/ui/widgets/components/box_spacer.dart';
+import 'package:tfg_v2/ui/widgets/components/title_with_info_tooltip.dart';
 
 class CreatePlanPickCategory extends StatefulWidget {
   const CreatePlanPickCategory({
@@ -32,15 +31,11 @@ class _CreatePlanPickCategoryState extends State<CreatePlanPickCategory> {
     return SingleChildScrollView(
       child: Column(
         children: [
-          Card(
-            child: Padding(
-              padding: Insets.a8,
-              child: Text(
-                'create_plan.pick_category'.tr(),
-                style: TextStyles.screenAction,
-              ),
-            ),
+          TitleWithInfoTooltip(
+            title: 'create_plan.pick_category'.tr(),
+            infoTooltip: 'create_plan.pick_category_tooltip'.tr(),
           ),
+
           for (PlanCategory category in widget.categories)
             ExpansionTile(
               title: Text(

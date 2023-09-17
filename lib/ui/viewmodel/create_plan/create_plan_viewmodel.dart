@@ -43,7 +43,7 @@ class CreatePlanViewModel extends RootViewModel<CreatePlanViewState> {
 
   void finishOperation() {
     // TODO: enviar llamada a backend
-    navigator.toHome();
+    navigator.replaceToHome();
   }
 
   void cancelOperation() {}

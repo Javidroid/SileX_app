@@ -53,7 +53,7 @@ class CreatePlanScreen
             )
           : FloatingActionButton(
               onPressed: viewModel.finishOperation,
-              child: const Icon(Icons.check),
+              child: const Icon(Icons.rocket_launch),
             ),
     );
   }
