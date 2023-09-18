@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:either_dart/either.dart';
 import 'package:injectable/injectable.dart';
 import 'package:tfg_v2/data/datasource/remote/remote_datasource.dart';
@@ -20,9 +22,23 @@ class DefaultRemoteDatasource implements RemoteDatasource {
   DefaultRemoteDatasource(this._apiService);
 
   @override
-  Future<Either<AppError, bool>> createPlan(Plan plan) {
-    // TODO: implement createPlan
-    throw UnimplementedError();
+  Future<Either<AppError, bool>> createPlan({
+    required Plan plan,
+    required String creatorUsername,
+  }) async {
+    final uri = Uri.parse('$_baseUrl/plan?username=$creatorUsername');
+
+    print(jsonEncode(PlanDto.fromModel(plan).toCreatePlanJson()));
+
+    final result = await _apiService.post(
+      uri,
+      headers: PlanDto.fromModel(plan).toCreatePlanJson(),
+    );
+
+    return result.either<AppError, bool>(
+      (left) => left,
+      (right) => true,
+    );
   }
 
   @override

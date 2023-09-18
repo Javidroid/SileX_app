@@ -15,8 +15,7 @@ class LoginViewModel extends RootViewModel<LoginViewState> {
     emitValue(Success());
   }
 
-  // TODO: check epueyo
-  // TODO: set user in sharedPreferences
+// TODO: set user in sharedPreferences
 }
 
 sealed class LoginViewState extends ViewState {}

@@ -40,18 +40,30 @@ class PlanDto {
     );
   }
 
-  Map<String, dynamic> toJson() {
+  Map<String, dynamic> toCreatePlanJson() {
     return {
-      "_id": idPlan,
-      "creator_user": creatorUser,
       "title": title,
       "description": description,
       "place": place,
       "date": date.toIso8601String(),
       "categories": List<dynamic>.from(categories.map((x) => x)),
       "max_users": maxUsers,
-      "signed_up_users": List<dynamic>.from(signedUpUsers.map((x) => x)),
     };
+  }
+
+  factory PlanDto.fromModel(Plan model) {
+    return PlanDto(
+      idPlan: model.idPlan,
+      creatorUser: model.creatorId,
+      title: model.title,
+      description: model.description,
+      place: model.place,
+      date: model.date,
+      categories: model.categories,
+      maxUsers: model.maxUsers,
+      signedUpUsers: model.joinedUsers,
+      creatorProfPic: model.creatorProfPic,
+    );
   }
 
   Plan toModel() {

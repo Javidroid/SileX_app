@@ -30,7 +30,10 @@ abstract interface class RemoteDatasource {
 
   Future<Either<AppError, Plan>> getPlan(String idPlan);
 
-  Future<Either<AppError, bool>> createPlan(Plan plan);
+  Future<Either<AppError, bool>> createPlan({
+    required Plan plan,
+    required String creatorUsername,
+  });
 
   Future<Either<AppError, bool>> updatePlan(Plan plan, String idPlan);
 

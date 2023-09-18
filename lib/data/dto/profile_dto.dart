@@ -1,5 +1,5 @@
 import 'package:tfg_v2/domain/model/profile.dart';
-import 'package:tfg_v2/utils/age_calculator.dart';
+import 'package:tfg_v2/utils/datetime_utils.dart';
 
 class ProfileDto {
   String name;
@@ -82,7 +82,7 @@ class ProfileDto {
       surnames: surnames,
       description: description,
       birthDate: birthDate,
-      age: AgeCalculatorUtil.getAgeFromBirthDate(birthDate),
+      age: DateTimeUtils.getAgeFromBirthDate(birthDate),
       profilePic: profilePic,
       followers: followers.toSet(),
       following: following.toSet(),

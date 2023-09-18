@@ -36,6 +36,10 @@ class CreatePlanScreen
                 CreatePlanDateAndPlace(
                   onNext: viewModel.nextPage,
                   onCancel: viewModel.cancelOperation,
+                  setDate: viewModel.setDate,
+                  setTime: viewModel.setTime,
+                  setPlace: viewModel.setPlace,
+                  controller: viewModel.placeController,
                 ),
                 CreatePlanPlanInfo(
                   onFinish: viewModel.finishOperation,

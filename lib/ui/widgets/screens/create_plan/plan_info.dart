@@ -21,6 +21,7 @@ class CreatePlanPlanInfo extends StatelessWidget {
             title: 'create_plan.plan_info'.tr(),
             infoTooltip: 'create_plan.plan_info_tooltip'.tr(),
           ),
+
         ],
       ),
     );

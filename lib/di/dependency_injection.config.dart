@@ -4,7 +4,7 @@
 // InjectableConfigGenerator
 // **************************************************************************
 
-// ignore_for_file: unnecessary_lambdas, require_trailing_commas
+// ignore_for_file: unnecessary_lambdas
 // ignore_for_file: lines_longer_than_80_chars
 // coverage:ignore-file
 
@@ -22,18 +22,18 @@ import 'package:tfg_v2/di/dependency_injection.dart' as _i27;
 import 'package:tfg_v2/domain/model/plan.dart' as _i10;
 import 'package:tfg_v2/domain/repository/social/category_repository.dart'
     as _i19;
-import 'package:tfg_v2/domain/repository/social/plan_repository.dart' as _i24;
+import 'package:tfg_v2/domain/repository/social/plan_repository.dart' as _i23;
 import 'package:tfg_v2/domain/repository/social/user_repository.dart' as _i18;
-import 'package:tfg_v2/domain/use_cases/follow_user.dart' as _i21;
-import 'package:tfg_v2/domain/use_cases/get_updated_logged_user.dart' as _i22;
-import 'package:tfg_v2/domain/use_cases/user_join_quit_plan.dart' as _i25;
+import 'package:tfg_v2/domain/use_cases/follow_user.dart' as _i20;
+import 'package:tfg_v2/domain/use_cases/get_updated_logged_user.dart' as _i21;
+import 'package:tfg_v2/domain/use_cases/user_join_quit_plan.dart' as _i24;
 import 'package:tfg_v2/env/environment.dart' as _i16;
 import 'package:tfg_v2/ui/navigation/navigator.dart' as _i17;
 import 'package:tfg_v2/ui/viewmodel/create_plan/create_plan_viewmodel.dart'
-    as _i20;
+    as _i25;
 import 'package:tfg_v2/ui/viewmodel/direct_messages/direct_messages_viewmodel.dart'
     as _i4;
-import 'package:tfg_v2/ui/viewmodel/home/home_viewmodel.dart' as _i23;
+import 'package:tfg_v2/ui/viewmodel/home/home_viewmodel.dart' as _i22;
 import 'package:tfg_v2/ui/viewmodel/login/login_viewmodel.dart' as _i7;
 import 'package:tfg_v2/ui/viewmodel/notifications/notifications_viewmodel.dart'
     as _i8;
@@ -87,23 +87,26 @@ extension GetItInjectableX on _i1.GetIt {
         ));
     gh.factory<_i19.CategoryRepository>(
         () => _i19.PlanRepositoryImpl(gh<_i12.RemoteDatasource>()));
-    gh.factory<_i20.CreatePlanViewModel>(
-        () => _i20.CreatePlanViewModel(gh<_i19.CategoryRepository>()));
-    gh.factory<_i21.FollowUserUseCase>(
-        () => _i21.FollowUserUseCase(gh<_i18.UserRepository>()));
-    gh.factory<_i22.GetUpdatedLoggedUserUseCase>(
-        () => _i22.GetUpdatedLoggedUserUseCase(gh<_i18.UserRepository>()));
-    gh.factory<_i23.HomeViewModel>(
-        () => _i23.HomeViewModel(gh<_i22.GetUpdatedLoggedUserUseCase>()));
-    gh.factory<_i24.PlanRepository>(
-        () => _i24.PlanRepositoryImpl(gh<_i12.RemoteDatasource>()));
-    gh.factory<_i25.UserJoinQuitPlanUseCase>(() => _i25.UserJoinQuitPlanUseCase(
-          gh<_i24.PlanRepository>(),
+    gh.factory<_i20.FollowUserUseCase>(
+        () => _i20.FollowUserUseCase(gh<_i18.UserRepository>()));
+    gh.factory<_i21.GetUpdatedLoggedUserUseCase>(
+        () => _i21.GetUpdatedLoggedUserUseCase(gh<_i18.UserRepository>()));
+    gh.factory<_i22.HomeViewModel>(
+        () => _i22.HomeViewModel(gh<_i21.GetUpdatedLoggedUserUseCase>()));
+    gh.factory<_i23.PlanRepository>(
+        () => _i23.PlanRepositoryImpl(gh<_i12.RemoteDatasource>()));
+    gh.factory<_i24.UserJoinQuitPlanUseCase>(() => _i24.UserJoinQuitPlanUseCase(
+          gh<_i23.PlanRepository>(),
+          gh<_i18.UserRepository>(),
+        ));
+    gh.factory<_i25.CreatePlanViewModel>(() => _i25.CreatePlanViewModel(
+          gh<_i19.CategoryRepository>(),
+          gh<_i23.PlanRepository>(),
           gh<_i18.UserRepository>(),
         ));
     gh.factory<_i26.PlansViewModel>(() => _i26.PlansViewModel(
-          gh<_i24.PlanRepository>(),
-          gh<_i25.UserJoinQuitPlanUseCase>(),
+          gh<_i23.PlanRepository>(),
+          gh<_i24.UserJoinQuitPlanUseCase>(),
           gh<_i18.UserRepository>(),
         ));
     return this;

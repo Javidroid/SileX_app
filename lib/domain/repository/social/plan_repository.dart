@@ -9,7 +9,10 @@ abstract interface class PlanRepository {
 
   Future<Either<AppError, Plan>> getPlan(String idPlan);
 
-  Future<Either<AppError, bool>> createPlan(Plan plan);
+  Future<Either<AppError, bool>> createPlan({
+    required Plan plan,
+    required String creatorUsername,
+  });
 
   Future<Either<AppError, bool>> updatePlan(Plan plan, String idPlan);
 
@@ -22,14 +25,16 @@ abstract interface class PlanRepository {
 
 @Injectable(as: PlanRepository)
 class PlanRepositoryImpl implements PlanRepository {
-  final RemoteDatasource _remoteDatasource;
+  final RemoteDatasource _remote;
 
-  PlanRepositoryImpl(this._remoteDatasource);
+  PlanRepositoryImpl(this._remote);
 
   @override
-  Future<Either<AppError, bool>> createPlan(Plan plan) {
-    // TODO: implement createPlan
-    throw UnimplementedError();
+  Future<Either<AppError, bool>> createPlan({
+    required Plan plan,
+    required String creatorUsername,
+  }) {
+    return _remote.createPlan(plan: plan, creatorUsername: creatorUsername);
   }
 
   @override
@@ -40,22 +45,22 @@ class PlanRepositoryImpl implements PlanRepository {
 
   @override
   Future<Either<AppError, Plan>> getPlan(String idPlan) {
-    return _remoteDatasource.getPlan(idPlan);
+    return _remote.getPlan(idPlan);
   }
 
   @override
   Future<Either<AppError, List<Plan>>> getPlans() {
-    return _remoteDatasource.getPlans();
+    return _remote.getPlans();
   }
 
   @override
   Future<Either<AppError, bool>> quitFromPlan(String idPlan, String username) {
-    return _remoteDatasource.quitFromPlan(idPlan, username);
+    return _remote.quitFromPlan(idPlan, username);
   }
 
   @override
   Future<Either<AppError, bool>> signUpToPlan(String idPlan, String username) {
-    return _remoteDatasource.signUpToPlan(idPlan, username);
+    return _remote.signUpToPlan(idPlan, username);
   }
 
   @override

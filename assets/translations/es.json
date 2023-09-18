@@ -41,6 +41,8 @@
     "pick_category_tooltip": "PONER TEXTO DESCRIPTIVO DE ESTA PANTALLA",
     "place_and_date": "2) Elige el lugar y la fecha",
     "place_and_date_tooltip": "PONER TEXTO DESCRIPTIVO DE ESTA PANTALLA",
+    "textfield_label": "Indica el lugar",
+    "textfield_hint": "Lugar",
     "plan_info": "3) Finalmente, ¿cuál es tu plan?",
     "plan_info_tooltip": "PONER TEXTO DESCRIPTIVO DE ESTA PANTALLA"
   }
