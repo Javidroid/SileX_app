@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:tfg_v2/ui/styles/insets.dart';
 import 'package:tfg_v2/ui/viewmodel/create_plan/create_plan_viewmodel.dart';
 import 'package:tfg_v2/ui/widgets/components/appbars/default_appbar.dart';
+import 'package:tfg_v2/ui/widgets/components/box_spacer.dart';
 import 'package:tfg_v2/ui/widgets/screens/create_plan/date_and_place.dart';
 import 'package:tfg_v2/ui/widgets/screens/create_plan/pick_category.dart';
 import 'package:tfg_v2/ui/widgets/screens/create_plan/plan_info.dart';
@@ -25,40 +26,35 @@ class CreatePlanScreen
         Success _ => SingleChildScrollView(
             child: Padding(
               padding: Insets.a12,
-              child: [
-                CreatePlanPickCategory(
-                  onNext: viewModel.nextPage,
-                  onCancel: viewModel.cancelOperation,
-                  categories: viewModel.categories,
-                  addOrRemoveSubcategories: viewModel.addOrDeletePlanCategory,
-                  selectedSubcategories: viewModel.selectedSubcategories,
-                ),
-                CreatePlanDateAndPlace(
-                  onNext: viewModel.nextPage,
-                  onCancel: viewModel.cancelOperation,
-                  setDate: viewModel.setDate,
-                  setTime: viewModel.setTime,
-                  setPlace: viewModel.setPlace,
-                  controller: viewModel.placeController,
-                ),
-                CreatePlanPlanInfo(
-                  onFinish: viewModel.finishOperation,
-                  onCancel: viewModel.cancelOperation,
-                ),
-              ][viewModel.currentPageIndex],
+              child: Column(
+                children: [
+                  CreatePlanPickCategory(
+                    categories: viewModel.categories,
+                    addOrRemoveSubcategories: viewModel.addOrDeletePlanCategory,
+                    selectedSubcategories: viewModel.selectedSubcategories,
+                  ),
+                  BoxSpacer.v12(),
+                  CreatePlanDateAndPlace(
+                    setDate: viewModel.setDate,
+                    setTime: viewModel.setTime,
+                    controller: viewModel.placeController,
+                  ),
+                  BoxSpacer.v12(),
+                  CreatePlanInfo(
+                    titleController: viewModel.titleController,
+                    descriptionController: viewModel.descriptionController,
+                    setMaxUsers: viewModel.setMaxUsers,
+                  ),
+                ],
+              ),
             ),
           ),
         Error _ => Text(state.error.toString()), // todo handle errors
       },
-      floatingActionButton: !viewModel.isLastPage
-          ? FloatingActionButton(
-              onPressed: viewModel.nextPage,
-              child: const Icon(Icons.navigate_next),
-            )
-          : FloatingActionButton(
-              onPressed: viewModel.finishOperation,
-              child: const Icon(Icons.rocket_launch),
-            ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: viewModel.finishOperation,
+        child: const Icon(Icons.rocket_launch),
+      ),
     );
   }
 }

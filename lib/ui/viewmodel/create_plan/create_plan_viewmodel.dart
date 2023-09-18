@@ -25,28 +25,23 @@ class CreatePlanViewModel extends RootViewModel<CreatePlanViewState> {
 
   TfgNavigator get navigator => getIt<TfgNavigator>();
 
-  int get currentPageIndex => _currentPageIndex;
-  int _currentPageIndex = 0;
-
   List<PlanCategory> categories = [];
   final Set<String> selectedSubcategories = {};
 
-  bool get isLastPage => currentPageIndex == 2;
-
   TimeOfDay _time = TimeOfDay.now();
   DateTime _date = DateTime.now();
-  String _place = '';
 
+  int _maxUsers = 2;
+
+  // TODO: crear controladores en la propia pantalla
+  // TODO: validar campos
   final placeController = TextEditingController();
+  final titleController = TextEditingController();
+  final descriptionController = TextEditingController();
 
   @override
   void onAttach() async {
     categories = await _getCategories();
-    emitValue(Success());
-  }
-
-  void nextPage() {
-    _currentPageIndex++;
     emitValue(Success());
   }
 
@@ -58,28 +53,30 @@ class CreatePlanViewModel extends RootViewModel<CreatePlanViewState> {
     );
   }
 
-  void finishOperation() {
-    // TODO: enviar llamada a backend
-    print(DateTimeUtils.getDateTimeFromDateAndTime(date: _date, time: _time));
-    print(placeController.text);
-    final createdPlan = Plan.createPlan(
-      // TODO: get current user id
-      title: 'title',
-      description: 'description',
-      place: placeController.text,
-      date: DateTimeUtils.getDateTimeFromDateAndTime(date: _date, time: _time),
-      categories: selectedSubcategories.toList(),
-      maxUsers: 12,
+  // TODO: check pasar parametros a la función en vez de coger de viewmodel
+  Future<void> finishOperation() async {
+    final currentUsername = await _userRepository.getCurrentLoggedUsername();
+    if (currentUsername.isLeft) return;
+
+    // TODO: handle errors
+    final result = await _planRepository.createPlan(
+      plan: Plan.createPlan(
+        title: titleController.text,
+        description: descriptionController.text,
+        place: placeController.text,
+        date:
+            DateTimeUtils.getDateTimeFromDateAndTime(date: _date, time: _time),
+        categories: selectedSubcategories.toList(),
+        maxUsers: _maxUsers,
+      ),
+      creatorUsername: currentUsername.right,
     );
 
-    _planRepository.createPlan(
-      plan: createdPlan,
-      creatorUsername: 'silenthekid',
+    result.fold(
+      (left) => print("Error: $left"),
+      (right) => navigator.replaceToHome(),
     );
-    navigator.replaceToHome();
   }
-
-  void cancelOperation() {}
 
   void addOrDeletePlanCategory({
     required String subcategory,
@@ -95,7 +92,7 @@ class CreatePlanViewModel extends RootViewModel<CreatePlanViewState> {
 
   void setDate(DateTime date) => _date = date;
 
-  void setPlace(String place) => _place = place;
+  void setMaxUsers(int max) => _maxUsers = max;
 }
 
 sealed class CreatePlanViewState extends ViewState {}

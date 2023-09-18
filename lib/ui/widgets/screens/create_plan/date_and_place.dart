@@ -5,22 +5,15 @@ import 'package:tfg_v2/ui/widgets/components/title_with_info_tooltip.dart';
 class CreatePlanDateAndPlace extends StatelessWidget {
   const CreatePlanDateAndPlace({
     super.key,
-    required this.onNext,
-    required this.onCancel,
     required this.setTime,
     required this.setDate,
-    required this.setPlace,
     required this.controller,
   });
-
-  final VoidCallback onNext;
-  final VoidCallback onCancel;
 
   // TODO: get date and time to show as text and as initial values
 
   final Function(TimeOfDay) setTime;
   final Function(DateTime) setDate;
-  final Function(String) setPlace;
   final TextEditingController controller;
 
   @override
@@ -61,9 +54,9 @@ class CreatePlanDateAndPlace extends StatelessWidget {
           TextField(
             controller: controller,
             decoration: InputDecoration(
-              labelText: 'create_plan.textfield_label'.tr(),
+              labelText: 'create_plan.place_textfield_label'.tr(),
               alignLabelWithHint: true,
-              hintText: 'create_plan.textfield_hint'.tr(),
+              hintText: 'create_plan.place_textfield_hint'.tr(),
             ),
           ),
         ],

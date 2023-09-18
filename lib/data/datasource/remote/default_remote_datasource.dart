@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:either_dart/either.dart';
 import 'package:injectable/injectable.dart';
 import 'package:tfg_v2/data/datasource/remote/remote_datasource.dart';
@@ -27,8 +25,6 @@ class DefaultRemoteDatasource implements RemoteDatasource {
     required String creatorUsername,
   }) async {
     final uri = Uri.parse('$_baseUrl/plan?username=$creatorUsername');
-
-    print(jsonEncode(PlanDto.fromModel(plan).toCreatePlanJson()));
 
     final result = await _apiService.post(
       uri,
