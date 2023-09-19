@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:numberpicker/numberpicker.dart';
+import 'package:tfg_v2/ui/styles/text_styles.dart';
 import 'package:tfg_v2/ui/widgets/components/box_spacer.dart';
 import 'package:tfg_v2/ui/widgets/components/title_with_info_tooltip.dart';
 
@@ -51,9 +52,10 @@ class _CreatePlanInfoState extends State<CreatePlanInfo> {
             ),
           ),
           BoxSpacer.v12(),
-          // TODO: put translate string
-          const Text("¿Hasta cuántas personas pueden unirse a tu plan?"),
-
+          Text(
+            'create_plan.max_users_description'.tr(),
+            style: TextStyles.defaultStyleBold,
+          ),
           NumberPicker(
             minValue: 2,
             maxValue: 30,

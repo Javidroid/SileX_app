@@ -48,6 +48,7 @@
     "title_textfield_label": "Ponle un título a tu plan",
     "title_textfield_hint": "Título",
     "description_textfield_label": "Describe tu plam",
-    "description_textfield_hint": "Descripción"
+    "description_textfield_hint": "Descripción",
+    "max_users_description": "¿Hasta cuántas personas pueden unirse a tu plan?"
   }
 }
