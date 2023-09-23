@@ -136,12 +136,16 @@ class PlanDetailScreen
                         padding: Insets.v12,
                         child: Divider(thickness: 2),
                       ),
-                      ElevatedButton(
+                      // TODO:
+                      TextButton(
                         onPressed: () => showDeletePlanDialog(
                           context: context,
                           onAccept: viewModel.deletePlan,
                         ),
-                        child: Text('delete_plan.button_text'.tr()),
+                        child: Text(
+                          'delete_plan.button_text'.tr(),
+                          style: TextStyles.cancelTextButton,
+                        ),
                       ),
                     ],
                   ),

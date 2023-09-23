@@ -64,8 +64,10 @@ class CreatePlanViewModel extends RootViewModel<CreatePlanViewState> {
         title: titleController.text,
         description: descriptionController.text,
         place: placeController.text,
-        date:
-            DateTimeUtils.getDateTimeFromDateAndTime(date: _date, time: _time),
+        date: DateTimeUtils.getDateTimeFromDateAndTime(
+          date: _date,
+          time: _time,
+        ),
         categories: selectedSubcategories.toList(),
         maxUsers: _maxUsers,
       ),
@@ -73,7 +75,7 @@ class CreatePlanViewModel extends RootViewModel<CreatePlanViewState> {
     );
 
     result.fold(
-      (left) => print("Error: $left"),
+      (left) => print("Error: $left"), // TODO: handle error
       (right) => navigator.replaceToHome(),
     );
   }
