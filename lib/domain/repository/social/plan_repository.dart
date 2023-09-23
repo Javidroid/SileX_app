@@ -39,8 +39,7 @@ class PlanRepositoryImpl implements PlanRepository {
 
   @override
   Future<Either<AppError, bool>> deletePlan(String idPlan) {
-    // TODO: implement deletePlan
-    throw UnimplementedError();
+    return _remote.deletePlan(idPlan);
   }
 
   @override

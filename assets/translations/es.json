@@ -47,8 +47,15 @@
     "place_textfield_hint": "Lugar",
     "title_textfield_label": "Ponle un título a tu plan",
     "title_textfield_hint": "Título",
-    "description_textfield_label": "Describe tu plam",
+    "description_textfield_label": "Describe tu plan",
     "description_textfield_hint": "Descripción",
     "max_users_description": "¿Hasta cuántas personas pueden unirse a tu plan?"
+  },
+  "delete_plan":{
+    "button_text": "Eliminar el plan",
+    "dialog_title": "¿Estás seguro de que quieres borrar el plan?",
+    "dialog_content": "Esta acción no se puede desjacer y el plan se borrará para todos los usuarios",
+    "accept": "Sí, borrar el plan",
+    "cancel": "Cancelar"
   }
 }

@@ -25,11 +25,11 @@ class TextStyles {
   );
 
   static const TextStyle whiteTextButton = TextStyle(
-    color: Colors.white, // todo: stardardize
+    color: Colors.white,
   );
-
-  static TextStyle logout = TextStyle(
+  static TextStyle cancelTextButton = TextStyle(
     color: colorScheme.error,
+    fontWeight: FontWeight.bold,
   );
 
   // PROFILE
@@ -63,7 +63,6 @@ class TextStyles {
     fontSize: 20,
     fontWeight: FontWeight.bold,
   );
-
 
   // FAQ
   static const TextStyle faqQuestion = TextStyle(

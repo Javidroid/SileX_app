@@ -44,9 +44,18 @@ class DefaultRemoteDatasource implements RemoteDatasource {
   }
 
   @override
-  Future<Either<AppError, bool>> deletePlan(String idPlan) {
-    // TODO: implement deletePlan
-    throw UnimplementedError();
+  Future<Either<AppError, bool>> deletePlan(String idPlan) async {
+    final uri = Uri.parse('$_baseUrl/plan');
+
+    final result = await _apiService.delete(
+      uri,
+      headers: {"id_plan": idPlan},
+    );
+
+    return result.either<AppError, bool>(
+      (left) => left,
+      (right) => true,
+    );
   }
 
   @override

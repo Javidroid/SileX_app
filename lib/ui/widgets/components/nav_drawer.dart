@@ -90,7 +90,7 @@ class _NavigationDrawerWithUserHeaderState
               ListTile(
                 title: Text(
                   'components.nav_drawer.logout'.tr(),
-                  style: TextStyles.logout,
+                  style: TextStyles.cancelTextButton,
                 ),
                 onTap: () {
                   // TODO: log out

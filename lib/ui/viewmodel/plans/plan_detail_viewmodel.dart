@@ -1,3 +1,4 @@
+import 'package:either_dart/either.dart';
 import 'package:injectable/injectable.dart';
 import 'package:tfg_v2/di/dependency_injection.dart';
 import 'package:tfg_v2/domain/model/errors.dart';
@@ -12,10 +13,10 @@ import 'package:tfg_v2/ui/viewmodel/root_viewmodel.dart';
 @injectable
 class PlanDetailViewModel extends RootViewModel<PlanDetailViewState> {
   PlanDetailViewModel({
-    @factoryParam required this.planFromList,
-  }) : super(Loading(plan: planFromList));
+    @factoryParam required this.currentPlan,
+  }) : super(Loading(plan: currentPlan));
 
-  final Plan planFromList; // could be outdated, but is used for fast-render
+  Plan currentPlan; // inits from outdated list, but updates on refresh
 
   TfgNavigator get navigator => getIt<TfgNavigator>();
 
@@ -26,40 +27,49 @@ class PlanDetailViewModel extends RootViewModel<PlanDetailViewState> {
   UserJoinQuitPlanUseCase get _joinQuitPlanUseCase =>
       getIt<UserJoinQuitPlanUseCase>();
 
-  late User _currentUser;
+  User? _currentUser;
+
+  bool get isPlanCreatedByCurrentUser {
+    if (_currentUser == null) return false;
+    return currentPlan.creatorId == _currentUser!.id;
+  }
 
   @override
   void onAttach() async {
     final currentUser = await _userRepository.getCurrentLoggedUser();
     currentUser.fold(
-      (left) => emitValue(Error(error: left, plan: planFromList)),
+      (left) => emitValue(Error(error: left, plan: currentPlan)),
       (right) => _currentUser = right,
     );
     refresh();
   }
 
   Future<void> refresh() async {
-    // todo check get from remote
-    final plan = await _planRepository.getPlan(planFromList.idPlan);
+    final plan = await _planRepository.getPlan(currentPlan.idPlan);
     if (plan.isLeft) {
-      emitValue(Error(error: plan.left, plan: planFromList));
+      emitValue(Error(error: plan.left, plan: currentPlan));
     }
+
+    currentPlan = plan.right;
 
     // TODO: mirar si hay otra mejor manera de pasar el usuario de "precarga"
-    final creatorUser = await _userRepository.getUserById(plan.right.creatorId);
+    final creatorUser = await _userRepository.getUserById(
+      currentPlan.creatorId,
+    );
     if (creatorUser.isLeft) {
-      emitValue(Error(error: creatorUser.left, plan: planFromList));
+      emitValue(Error(error: creatorUser.left, plan: currentPlan));
     }
 
-    final joinedUsers =
-        await _userRepository.getUserListById(plan.right.joinedUsers);
+    final joinedUsers = await _userRepository.getUserListById(
+      currentPlan.joinedUsers,
+    );
     if (joinedUsers.isLeft) {
-      emitValue(Error(error: joinedUsers.left, plan: planFromList));
+      emitValue(Error(error: joinedUsers.left, plan: currentPlan));
     }
 
     emitValue(
       Success(
-        plan: plan.right,
+        plan: currentPlan, // updated plan
         joinedUsers: joinedUsers.right,
         creatorUser: creatorUser.right,
       ),
@@ -79,7 +89,16 @@ class PlanDetailViewModel extends RootViewModel<PlanDetailViewState> {
   }
 
   bool isJoinedChecker({required Plan plan}) =>
-      plan.joinedUsers.contains(_currentUser.id);
+      plan.joinedUsers.contains(_currentUser!.id);
+
+  void deletePlan() {
+    final result = _planRepository.deletePlan(currentPlan.idPlan);
+    result.fold(
+      (left) => print('muymal'),
+      // TODO: indicar que no se ha borrado el plan bien
+      (right) => print('okidoki'),
+    );
+  }
 }
 
 sealed class PlanDetailViewState extends ViewState {
