@@ -94,9 +94,8 @@ class PlanDetailViewModel extends RootViewModel<PlanDetailViewState> {
   void deletePlan() {
     final result = _planRepository.deletePlan(currentPlan.idPlan);
     result.fold(
-      (left) => print('muymal'),
-      // TODO: indicar que no se ha borrado el plan bien
-      (right) => print('okidoki'),
+      (left) => null, // TODO: indicar que no se ha borrado el plan bien
+      (right) => null,
     );
   }
 }
