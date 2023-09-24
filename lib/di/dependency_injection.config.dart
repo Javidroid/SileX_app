@@ -15,33 +15,33 @@ import 'package:tfg_v2/data/datasource/local/default_local_datasource.dart'
     as _i6;
 import 'package:tfg_v2/data/datasource/local/local_datasource.dart' as _i5;
 import 'package:tfg_v2/data/datasource/remote/default_remote_datasource.dart'
-    as _i13;
-import 'package:tfg_v2/data/datasource/remote/remote_datasource.dart' as _i12;
+    as _i12;
+import 'package:tfg_v2/data/datasource/remote/remote_datasource.dart' as _i11;
 import 'package:tfg_v2/data/services/api_service.dart' as _i3;
 import 'package:tfg_v2/di/dependency_injection.dart' as _i27;
 import 'package:tfg_v2/domain/model/plan.dart' as _i10;
 import 'package:tfg_v2/domain/repository/social/category_repository.dart'
-    as _i19;
-import 'package:tfg_v2/domain/repository/social/plan_repository.dart' as _i23;
-import 'package:tfg_v2/domain/repository/social/user_repository.dart' as _i18;
-import 'package:tfg_v2/domain/use_cases/follow_user.dart' as _i20;
-import 'package:tfg_v2/domain/use_cases/get_updated_logged_user.dart' as _i21;
-import 'package:tfg_v2/domain/use_cases/user_join_quit_plan.dart' as _i24;
-import 'package:tfg_v2/env/environment.dart' as _i16;
-import 'package:tfg_v2/ui/navigation/navigator.dart' as _i17;
+    as _i18;
+import 'package:tfg_v2/domain/repository/social/plan_repository.dart' as _i22;
+import 'package:tfg_v2/domain/repository/social/user_repository.dart' as _i17;
+import 'package:tfg_v2/domain/use_cases/follow_user.dart' as _i19;
+import 'package:tfg_v2/domain/use_cases/get_updated_logged_user.dart' as _i20;
+import 'package:tfg_v2/domain/use_cases/user_join_quit_plan.dart' as _i23;
+import 'package:tfg_v2/env/environment.dart' as _i15;
+import 'package:tfg_v2/ui/navigation/navigator.dart' as _i16;
 import 'package:tfg_v2/ui/viewmodel/create_plan/create_plan_viewmodel.dart'
-    as _i25;
+    as _i24;
 import 'package:tfg_v2/ui/viewmodel/direct_messages/direct_messages_viewmodel.dart'
     as _i4;
-import 'package:tfg_v2/ui/viewmodel/home/home_viewmodel.dart' as _i22;
+import 'package:tfg_v2/ui/viewmodel/home/home_viewmodel.dart' as _i21;
 import 'package:tfg_v2/ui/viewmodel/login/login_viewmodel.dart' as _i7;
 import 'package:tfg_v2/ui/viewmodel/notifications/notifications_viewmodel.dart'
     as _i8;
 import 'package:tfg_v2/ui/viewmodel/plans/plan_detail_viewmodel.dart' as _i9;
-import 'package:tfg_v2/ui/viewmodel/plans/plans_viewmodel.dart' as _i26;
-import 'package:tfg_v2/ui/viewmodel/profile/profile_viewmodel.dart' as _i11;
-import 'package:tfg_v2/ui/viewmodel/search/search_viewmodel.dart' as _i14;
-import 'package:tfg_v2/ui/viewmodel/splash/splash_viewmodel.dart' as _i15;
+import 'package:tfg_v2/ui/viewmodel/plans/plans_viewmodel.dart' as _i25;
+import 'package:tfg_v2/ui/viewmodel/profile/profile_viewmodel.dart' as _i26;
+import 'package:tfg_v2/ui/viewmodel/search/search_viewmodel.dart' as _i13;
+import 'package:tfg_v2/ui/viewmodel/splash/splash_viewmodel.dart' as _i14;
 
 extension GetItInjectableX on _i1.GetIt {
   // initializes the registration of main-scope dependencies inside of GetIt
@@ -67,47 +67,48 @@ extension GetItInjectableX on _i1.GetIt {
       _,
     ) =>
         _i9.PlanDetailViewModel(currentPlan: currentPlan));
-    gh.factoryParam<_i11.ProfileViewModel, String, bool>((
+    gh.factory<_i11.RemoteDatasource>(
+        () => _i12.DefaultRemoteDatasource(gh<_i3.ApiService>()));
+    gh.factory<_i13.SearchViewModel>(() => _i13.SearchViewModel());
+    gh.factory<_i14.SplashViewModel>(() => _i14.SplashViewModel());
+    gh.singleton<_i15.TfgEnv>(diModule.env);
+    gh.singleton<_i16.TfgNavigator>(diModule.navigator);
+    gh.factory<_i17.UserRepository>(() => _i17.UserRepositoryImpl(
+          gh<_i11.RemoteDatasource>(),
+          gh<_i5.LocalDatasource>(),
+        ));
+    gh.factory<_i18.CategoryRepository>(
+        () => _i18.PlanRepositoryImpl(gh<_i11.RemoteDatasource>()));
+    gh.factory<_i19.FollowUserUseCase>(
+        () => _i19.FollowUserUseCase(gh<_i17.UserRepository>()));
+    gh.factory<_i20.GetUpdatedLoggedUserUseCase>(
+        () => _i20.GetUpdatedLoggedUserUseCase(gh<_i17.UserRepository>()));
+    gh.factory<_i21.HomeViewModel>(
+        () => _i21.HomeViewModel(gh<_i20.GetUpdatedLoggedUserUseCase>()));
+    gh.factory<_i22.PlanRepository>(
+        () => _i22.PlanRepositoryImpl(gh<_i11.RemoteDatasource>()));
+    gh.factory<_i23.UserJoinQuitPlanUseCase>(() => _i23.UserJoinQuitPlanUseCase(
+          gh<_i22.PlanRepository>(),
+          gh<_i17.UserRepository>(),
+        ));
+    gh.factory<_i24.CreatePlanViewModel>(() => _i24.CreatePlanViewModel(
+          gh<_i18.CategoryRepository>(),
+          gh<_i22.PlanRepository>(),
+          gh<_i17.UserRepository>(),
+        ));
+    gh.factory<_i25.PlansViewModel>(() => _i25.PlansViewModel(
+          gh<_i22.PlanRepository>(),
+          gh<_i23.UserJoinQuitPlanUseCase>(),
+          gh<_i17.UserRepository>(),
+        ));
+    gh.factoryParam<_i26.ProfileViewModel, String, bool>((
       userRef,
       isUserRefId,
     ) =>
-        _i11.ProfileViewModel(
+        _i26.ProfileViewModel(
           userRef: userRef,
           isUserRefId: isUserRefId,
-        ));
-    gh.factory<_i12.RemoteDatasource>(
-        () => _i13.DefaultRemoteDatasource(gh<_i3.ApiService>()));
-    gh.factory<_i14.SearchViewModel>(() => _i14.SearchViewModel());
-    gh.factory<_i15.SplashViewModel>(() => _i15.SplashViewModel());
-    gh.singleton<_i16.TfgEnv>(diModule.env);
-    gh.singleton<_i17.TfgNavigator>(diModule.navigator);
-    gh.factory<_i18.UserRepository>(() => _i18.UserRepositoryImpl(
-          gh<_i12.RemoteDatasource>(),
-          gh<_i5.LocalDatasource>(),
-        ));
-    gh.factory<_i19.CategoryRepository>(
-        () => _i19.PlanRepositoryImpl(gh<_i12.RemoteDatasource>()));
-    gh.factory<_i20.FollowUserUseCase>(
-        () => _i20.FollowUserUseCase(gh<_i18.UserRepository>()));
-    gh.factory<_i21.GetUpdatedLoggedUserUseCase>(
-        () => _i21.GetUpdatedLoggedUserUseCase(gh<_i18.UserRepository>()));
-    gh.factory<_i22.HomeViewModel>(
-        () => _i22.HomeViewModel(gh<_i21.GetUpdatedLoggedUserUseCase>()));
-    gh.factory<_i23.PlanRepository>(
-        () => _i23.PlanRepositoryImpl(gh<_i12.RemoteDatasource>()));
-    gh.factory<_i24.UserJoinQuitPlanUseCase>(() => _i24.UserJoinQuitPlanUseCase(
-          gh<_i23.PlanRepository>(),
-          gh<_i18.UserRepository>(),
-        ));
-    gh.factory<_i25.CreatePlanViewModel>(() => _i25.CreatePlanViewModel(
-          gh<_i19.CategoryRepository>(),
-          gh<_i23.PlanRepository>(),
-          gh<_i18.UserRepository>(),
-        ));
-    gh.factory<_i26.PlansViewModel>(() => _i26.PlansViewModel(
-          gh<_i23.PlanRepository>(),
-          gh<_i24.UserJoinQuitPlanUseCase>(),
-          gh<_i18.UserRepository>(),
+          joinQuitPlanUseCase: gh<_i23.UserJoinQuitPlanUseCase>(),
         ));
     return this;
   }

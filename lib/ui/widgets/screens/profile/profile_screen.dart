@@ -1,10 +1,12 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:tfg_v2/di/dependency_injection.dart';
+import 'package:tfg_v2/domain/model/plan.dart';
 import 'package:tfg_v2/ui/navigation/navigator.dart';
+import 'package:tfg_v2/ui/styles/insets.dart';
 import 'package:tfg_v2/ui/styles/text_styles.dart';
 import 'package:tfg_v2/ui/viewmodel/profile/profile_viewmodel.dart';
-import 'package:tfg_v2/ui/widgets/components/profile/profile_content.dart';
+import 'package:tfg_v2/ui/widgets/components/list_items/plan_preview_item.dart';
 import 'package:tfg_v2/ui/widgets/components/profile/profile_header.dart';
 import 'package:tfg_v2/ui/widgets/screens/root_screen.dart';
 
@@ -65,13 +67,36 @@ class ProfileScreen extends RootScreen<ProfileViewState, ProfileViewModel> {
               child: ListView(
                 children: [
                   ProfileHeader(prof: state.updatedUser.profile),
-                  ProfileContent(prof: state.updatedUser.profile),
+                  DefaultTabController(
+                    length: 1,
+                    child: Column(
+                      children: [
+                        TabBar(
+                          tabs: [Tab(text: 'profile.created_plans'.tr())],
+                        ),
+                        Padding(
+                          padding: Insets.a12,
+                          child: Column(
+                            children: [
+                              for (Plan plan in state.createdPlans)
+                                PlanPreviewItem(
+                                  plan: plan,
+                                  joinButtonBehaviour:
+                                      viewModel.joinButtonBehaviour,
+                                  checkIfJoined: viewModel.isJoinedChecker,
+                                  onPopBehaviour: viewModel.refreshProfile,
+                                ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ],
               ),
             ),
           ),
         ),
-      // TODO: put placeholder of old user
       Error _ => Text(state.error.toString()), // todo handle errors
     };
   }

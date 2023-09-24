@@ -213,4 +213,17 @@ class DefaultRemoteDatasource implements RemoteDatasource {
           .toList(),
     );
   }
+
+  @override
+  Future<Either<AppError, List<Plan>>> getUserPlans(String username) async {
+    final uri = Uri.parse('$_baseUrl/user/$username/plans');
+
+    final result = await _apiService.get(uri);
+
+    return result.either<AppError, List<Plan>>(
+      (left) => left,
+      (right) =>
+          List.of(right).map((e) => PlanDto.fromJson(e).toModel()).toList(),
+    );
+  }
 }

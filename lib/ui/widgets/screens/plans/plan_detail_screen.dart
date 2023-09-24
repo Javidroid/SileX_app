@@ -117,7 +117,7 @@ class PlanDetailScreen
                   ],
                 ),
                 const Padding(
-                    padding: Insets.v12, child: Divider(thickness: 2)),
+                    padding: Insets.v12, child: Divider(thickness: 2),),
                 Padding(
                   padding: Insets.h4,
                   child: Text('components.plans.joined_users'.tr()),

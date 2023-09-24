@@ -21,6 +21,8 @@ abstract interface class PlanRepository {
   Future<Either<AppError, bool>> signUpToPlan(String idPlan, String username);
 
   Future<Either<AppError, bool>> quitFromPlan(String idPlan, String username);
+
+  Future<Either<AppError, List<Plan>>> getUserPlans(String username);
 }
 
 @Injectable(as: PlanRepository)
@@ -66,5 +68,10 @@ class PlanRepositoryImpl implements PlanRepository {
   Future<Either<AppError, bool>> updatePlan(Plan plan, String idPlan) {
     // TODO: implement updatePlan
     throw UnimplementedError();
+  }
+
+  @override
+  Future<Either<AppError, List<Plan>>> getUserPlans(String username) {
+    return _remote.getUserPlans(username);
   }
 }

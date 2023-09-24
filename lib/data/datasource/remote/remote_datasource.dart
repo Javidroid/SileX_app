@@ -44,4 +44,7 @@ abstract interface class RemoteDatasource {
   Future<Either<AppError, bool>> quitFromPlan(String idPlan, String username);
 
   Future<Either<AppError, List<PlanCategory>>> getCategories();
+
+  Future<Either<AppError, List<Plan>>> getUserPlans(String username);
+
 }
