@@ -72,7 +72,14 @@ class ProfileScreen extends RootScreen<ProfileViewState, ProfileViewModel> {
                     child: Column(
                       children: [
                         TabBar(
-                          tabs: [Tab(text: 'profile.created_plans'.tr())],
+                          tabs: [
+                            Tab(
+                              child: Text(
+                                'profile.created_plans'.tr(),
+                                style: TextStyles.defaultStyleBold,
+                              ),
+                            ),
+                          ],
                         ),
                         Padding(
                           padding: Insets.a12,

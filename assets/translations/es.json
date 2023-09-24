@@ -19,6 +19,9 @@
       "about": "Acerca de..."
     }
   },
+  "home": {
+    "empty_list": "Todavía no hay ningún plan :(\n¿Por qué no eres la primera persona en crearlo?"
+  },
   "profile": {
     "followers": "Seguidores",
     "following": "Siguiendo",
@@ -51,7 +54,7 @@
     "description_textfield_hint": "Descripción",
     "max_users_description": "¿Hasta cuántas personas pueden unirse a tu plan?"
   },
-  "delete_plan":{
+  "delete_plan": {
     "button_text": "Eliminar el plan",
     "dialog_title": "¿Estás seguro de que quieres borrar el plan?",
     "dialog_content": "Esta acción no se puede desjacer y el plan se borrará para todos los usuarios",
