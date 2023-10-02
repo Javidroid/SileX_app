@@ -59,7 +59,24 @@ class TextStyles {
   );
 
   // CREATE PLAN
-  static const TextStyle screenAction = TextStyle(
+  static const TextStyle stepTitle = TextStyle(
+    fontSize: 20,
+    fontWeight: FontWeight.bold,
+  );
+  static const TextStyle createPlanText = TextStyle(
+    fontSize: 20,
+  );
+  static const TextStyle createPlanTextParameter = TextStyle(
+    fontSize: 20,
+    fontWeight: FontWeight.bold,
+  );
+  static TextStyle createPlanTextButton = TextStyle(
+    color: colorScheme.primary,
+    fontSize: 20,
+    fontWeight: FontWeight.bold,
+  );
+  static TextStyle createPlanNumber = TextStyle(
+    color: colorScheme.primary,
     fontSize: 20,
     fontWeight: FontWeight.bold,
   );

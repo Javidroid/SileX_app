@@ -1,6 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:tfg_v2/ui/styles/insets.dart';
+import 'package:tfg_v2/ui/styles/text_styles.dart';
 import 'package:tfg_v2/ui/widgets/components/title_with_info_tooltip.dart';
+import 'package:tfg_v2/utils/datetime_utils.dart';
 
 class CreatePlanDateAndPlace extends StatelessWidget {
   const CreatePlanDateAndPlace({
@@ -8,6 +11,8 @@ class CreatePlanDateAndPlace extends StatelessWidget {
     required this.setTime,
     required this.setDate,
     required this.controller,
+    required this.date,
+    required this.time,
   });
 
   // TODO: get date and time to show as text and as initial values
@@ -15,6 +20,8 @@ class CreatePlanDateAndPlace extends StatelessWidget {
   final Function(TimeOfDay) setTime;
   final Function(DateTime) setDate;
   final TextEditingController controller;
+  final DateTime date;
+  final TimeOfDay time;
 
   @override
   Widget build(BuildContext context) {
@@ -25,31 +32,62 @@ class CreatePlanDateAndPlace extends StatelessWidget {
             title: 'create_plan.place_and_date'.tr(),
             infoTooltip: 'create_plan.place_and_date_tooltip'.tr(),
           ),
-          ElevatedButton(
-            child: const Text("PICK DATE"),
-            onPressed: () async {
-              setDate(
-                await showDatePicker(
-                      context: context,
-                      initialDate: DateTime.now(),
-                      firstDate: DateTime.now(),
-                      lastDate: DateTime(DateTime.now().year + 1), // next year
-                    ) ??
-                    DateTime.now(),
-              );
-            },
-          ),
-          ElevatedButton(
-            child: const Text("PICK TIME"),
-            onPressed: () async {
-              setTime(
-                await showTimePicker(
-                      context: context,
-                      initialTime: TimeOfDay.now(),
-                    ) ??
-                    TimeOfDay.now(),
-              );
-            },
+          Padding(
+            padding: Insets.h12,
+            child: Column(
+              children: [
+                Row(
+                  children: [
+                    Text(
+                      'create_plan.date_text'.tr(),
+                      style: TextStyles.createPlanText,
+                    ),
+                    TextButton(
+                      child: Text(
+                        DateTimeUtils.dateTimeToString(date),
+                        style: TextStyles.createPlanTextButton,
+                      ),
+                      onPressed: () async {
+                        setDate(
+                          await showDatePicker(
+                                context: context,
+                                initialDate: date,
+                                firstDate: DateTime.now(),
+                                lastDate: DateTime(
+                                  DateTime.now().year + 1,
+                                ), // next year
+                              ) ??
+                              DateTime.now(),
+                        );
+                      },
+                    ),
+                  ],
+                ),
+                Row(
+                  children: [
+                    Text(
+                      'create_plan.time_text'.tr(),
+                      style: TextStyles.createPlanText,
+                    ),
+                    TextButton(
+                      child: Text(
+                        DateTimeUtils.timeOfDayToString(time),
+                        style: TextStyles.createPlanTextButton,
+                      ),
+                      onPressed: () async {
+                        setTime(
+                          await showTimePicker(
+                                context: context,
+                                initialTime: TimeOfDay.now(),
+                              ) ??
+                              TimeOfDay.now(),
+                        );
+                      },
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
           TextField(
             controller: controller,

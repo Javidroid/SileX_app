@@ -71,6 +71,7 @@ class _CreatePlanInfoState extends State<CreatePlanInfo> {
               borderRadius: BorderRadius.circular(16),
               border: Border.all(color: Colors.black26),
             ),
+            selectedTextStyle: TextStyles.createPlanNumber,
           ),
         ],
       ),

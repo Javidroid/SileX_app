@@ -41,16 +41,18 @@
   "create_plan": {
     "title": "Crear plan",
     "pick_category": "1) Elige la/s categoría/s del plan",
-    "pick_category_tooltip": "PONER TEXTO DESCRIPTIVO DE ESTA PANTALLA",
+    "pick_category_tooltip": "La categoría del plan ayuda al resto de usuarios a entender y buscar planes que encajen mejor con lo que buscan.",
     "place_and_date": "2) Elige el lugar y la fecha",
-    "place_and_date_tooltip": "PONER TEXTO DESCRIPTIVO DE ESTA PANTALLA",
+    "place_and_date_tooltip": "Es muy importante quedar en un sitio y a una hora. Ten en cuenta que diferentes planes, tienen diferentes horas ideales para llevarlos a cabo.",
+    "date_text": "Tu plan será el",
+    "time_text": "A las",
     "plan_info": "3) Finalmente, ¿cuál es tu plan?",
-    "plan_info_tooltip": "PONER TEXTO DESCRIPTIVO DE ESTA PANTALLA",
+    "plan_info_tooltip": "Haz que el resto de gente se interese por tu plan. Un título debe ser corto y descriptivo. Para poner los detalles, tienes el apartado inferior.\nFinalmente, marca el límite de personas que pueden unirse a tu plan. Si no lo sabes, pon el máximo.",
     "place_textfield_label": "Indica el lugar",
     "place_textfield_hint": "Lugar",
     "title_textfield_label": "Ponle un título a tu plan",
     "title_textfield_hint": "Título",
-    "description_textfield_label": "Describe tu plan",
+    "description_textfield_label": "Describe y detalla tu plan",
     "description_textfield_hint": "Descripción",
     "max_users_description": "¿Hasta cuántas personas pueden unirse a tu plan?"
   },
@@ -60,5 +62,14 @@
     "dialog_content": "Esta acción no se puede desjacer y el plan se borrará para todos los usuarios",
     "accept": "Sí, borrar el plan",
     "cancel": "Cancelar"
+  },
+  "weekdays": {
+    "monday": "Lunes",
+    "tuesday": "Martes",
+    "wednesday": "Miércoles",
+    "thursday": "Jueves",
+    "friday": "Viernes",
+    "saturday": "Sábado",
+    "sunday": "Domingo"
   }
 }

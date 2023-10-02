@@ -38,6 +38,8 @@ class CreatePlanScreen
                     setDate: viewModel.setDate,
                     setTime: viewModel.setTime,
                     controller: viewModel.placeController,
+                    date: viewModel.date,
+                    time: viewModel.time,
                   ),
                   BoxSpacer.v24(),
                   CreatePlanInfo(
@@ -45,7 +47,7 @@ class CreatePlanScreen
                     descriptionController: viewModel.descriptionController,
                     setMaxUsers: viewModel.setMaxUsers,
                   ),
-                  BoxSpacer.v24(),
+                  BoxSpacer.v80(),
                 ],
               ),
             ),

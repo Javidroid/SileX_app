@@ -28,7 +28,10 @@ class CreatePlanViewModel extends RootViewModel<CreatePlanViewState> {
   List<PlanCategory> categories = [];
   final Set<String> selectedSubcategories = {};
 
+  TimeOfDay get time => _time;
   TimeOfDay _time = TimeOfDay.now();
+
+  DateTime get date => _date;
   DateTime _date = DateTime.now();
 
   int _maxUsers = 2;
@@ -90,9 +93,15 @@ class CreatePlanViewModel extends RootViewModel<CreatePlanViewState> {
     emitValue(Success());
   }
 
-  void setTime(TimeOfDay time) => _time = time;
+  void setTime(TimeOfDay time) {
+    _time = time;
+    emitValue(Success());
+  }
 
-  void setDate(DateTime date) => _date = date;
+  void setDate(DateTime date) {
+    _date = date;
+    emitValue(Success());
+  }
 
   void setMaxUsers(int max) => _maxUsers = max;
 }

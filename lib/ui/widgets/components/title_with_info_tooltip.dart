@@ -24,7 +24,7 @@ class TitleWithInfoTooltip extends StatelessWidget {
           children: [
             Text(
               title,
-              style: TextStyles.screenAction,
+              style: TextStyles.stepTitle,
             ),
             InfoWidget(
               infoText: infoTooltip,
