@@ -34,7 +34,7 @@ class _CreatePlanInfoState extends State<CreatePlanInfo> {
             infoTooltip: 'create_plan.plan_info_tooltip'.tr(),
           ),
           BoxSpacer.v12(),
-          TextField(
+          TextFormField(
             controller: widget.titleController,
             decoration: InputDecoration(
               labelText: 'create_plan.title_textfield_label'.tr(),
@@ -43,7 +43,7 @@ class _CreatePlanInfoState extends State<CreatePlanInfo> {
             ),
           ),
           BoxSpacer.v12(),
-          TextField(
+          TextFormField(
             controller: widget.descriptionController,
             decoration: InputDecoration(
               labelText: 'create_plan.description_textfield_label'.tr(),

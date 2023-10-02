@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:tfg_v2/ui/styles/colors.dart';
 import 'package:tfg_v2/ui/styles/insets.dart';
 import 'package:tfg_v2/ui/viewmodel/create_plan/create_plan_viewmodel.dart';
 import 'package:tfg_v2/ui/widgets/components/appbars/default_appbar.dart';
@@ -10,8 +11,30 @@ import 'package:tfg_v2/ui/widgets/screens/create_plan/plan_info.dart';
 import 'package:tfg_v2/ui/widgets/screens/root_screen.dart';
 
 class CreatePlanScreen
-    extends RootScreen<CreatePlanViewState, CreatePlanViewModel> {
+    extends RootScreenStateful<CreatePlanViewState, CreatePlanViewModel> {
   const CreatePlanScreen({super.key});
+
+  @override
+  RootScreenState<CreatePlanViewState, CreatePlanViewModel,
+          RootScreenStateful<CreatePlanViewState, CreatePlanViewModel>>
+      createState() => CreatePlanState();
+}
+
+class CreatePlanState extends RootScreenState<
+    CreatePlanViewState,
+    CreatePlanViewModel,
+    RootScreenStateful<CreatePlanViewState, CreatePlanViewModel>> {
+  final _formKey = GlobalKey<FormState>();
+  bool _validated = false;
+
+  // TODO: validar campos
+  final placeController = TextEditingController();
+  final titleController = TextEditingController();
+  final descriptionController = TextEditingController();
+
+  bool validateInput() {
+    return _formKey.currentState!.validate();
+  }
 
   @override
   Widget buildView(
@@ -26,38 +49,59 @@ class CreatePlanScreen
         Success _ => SingleChildScrollView(
             child: Padding(
               padding: Insets.a12,
-              child: Column(
-                children: [
-                  CreatePlanPickCategory(
-                    categories: viewModel.categories,
-                    addOrRemoveSubcategories: viewModel.addOrDeletePlanCategory,
-                    selectedSubcategories: viewModel.selectedSubcategories,
-                  ),
-                  BoxSpacer.v24(),
-                  CreatePlanDateAndPlace(
-                    setDate: viewModel.setDate,
-                    setTime: viewModel.setTime,
-                    controller: viewModel.placeController,
-                    date: viewModel.date,
-                    time: viewModel.time,
-                  ),
-                  BoxSpacer.v24(),
-                  CreatePlanInfo(
-                    titleController: viewModel.titleController,
-                    descriptionController: viewModel.descriptionController,
-                    setMaxUsers: viewModel.setMaxUsers,
-                  ),
-                  BoxSpacer.v80(),
-                ],
+              child: Form(
+                key: _formKey,
+                onChanged: () => setState(() => _validated = validateInput()),
+                child: Column(
+                  children: [
+                    CreatePlanPickCategory(
+                      categories: viewModel.categories,
+                      addOrRemoveSubcategories:
+                          viewModel.addOrDeletePlanCategory,
+                      selectedSubcategories: viewModel.selectedSubcategories,
+                    ),
+                    BoxSpacer.v24(),
+                    CreatePlanDateAndPlace(
+                      setDate: viewModel.setDate,
+                      setTime: viewModel.setTime,
+                      controller: placeController,
+                      date: viewModel.date,
+                      time: viewModel.time,
+                    ),
+                    BoxSpacer.v24(),
+                    CreatePlanInfo(
+                      titleController: titleController,
+                      descriptionController: descriptionController,
+                      setMaxUsers: viewModel.setMaxUsers,
+                    ),
+                    BoxSpacer.v80(),
+                  ],
+                ),
               ),
             ),
           ),
         Error _ => Text(state.error.toString()), // todo handle errors
       },
       floatingActionButton: FloatingActionButton(
-        onPressed: viewModel.finishOperation,
+        onPressed: _validated
+            ? () => viewModel.finishOperation(
+                  title: titleController.text,
+                  description: descriptionController.text,
+                  place: placeController.text,
+                )
+            : null,
+        disabledElevation: 0,
+        backgroundColor: _validated ? colorScheme.secondary : Colors.grey,
         child: const Icon(Icons.rocket_launch),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    placeController.dispose();
+    titleController.dispose();
+    descriptionController.dispose();
+    super.dispose();
   }
 }

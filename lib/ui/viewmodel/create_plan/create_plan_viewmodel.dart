@@ -36,12 +36,6 @@ class CreatePlanViewModel extends RootViewModel<CreatePlanViewState> {
 
   int _maxUsers = 2;
 
-  // TODO: crear controladores en la propia pantalla
-  // TODO: validar campos
-  final placeController = TextEditingController();
-  final titleController = TextEditingController();
-  final descriptionController = TextEditingController();
-
   @override
   void onAttach() async {
     categories = await _getCategories();
@@ -57,16 +51,20 @@ class CreatePlanViewModel extends RootViewModel<CreatePlanViewState> {
   }
 
   // TODO: check pasar parametros a la función en vez de coger de viewmodel
-  Future<void> finishOperation() async {
+  Future<void> finishOperation({
+    required String title,
+    required String description,
+    required String place,
+  }) async {
     final currentUsername = await _userRepository.getCurrentLoggedUsername();
     if (currentUsername.isLeft) return;
 
     // TODO: handle errors
     final result = await _planRepository.createPlan(
       plan: Plan.createPlan(
-        title: titleController.text,
-        description: descriptionController.text,
-        place: placeController.text,
+        title: title,
+        description: description,
+        place: place,
         date: DateTimeUtils.getDateTimeFromDateAndTime(
           date: _date,
           time: _time,

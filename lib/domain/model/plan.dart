@@ -26,12 +26,12 @@ class Plan {
   });
 
   factory Plan.createPlan({
-    required title,
-    required description,
-    required place,
-    required date,
-    required categories,
-    required maxUsers,
+    required String title,
+    required String description,
+    required String place,
+    required DateTime date,
+    required List<String> categories,
+    required int maxUsers,
   }) {
     return Plan(
       idPlan: '',
