@@ -50,7 +50,6 @@ class CreatePlanViewModel extends RootViewModel<CreatePlanViewState> {
     );
   }
 
-  // TODO: check pasar parametros a la función en vez de coger de viewmodel
   Future<void> finishOperation({
     required String title,
     required String description,

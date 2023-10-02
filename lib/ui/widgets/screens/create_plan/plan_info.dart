@@ -36,6 +36,9 @@ class _CreatePlanInfoState extends State<CreatePlanInfo> {
           BoxSpacer.v12(),
           TextFormField(
             controller: widget.titleController,
+            validator: (value) => (value == null) || (value.isEmpty)
+                ? 'create_plan.empty_textfield'.tr()
+                : null,
             decoration: InputDecoration(
               labelText: 'create_plan.title_textfield_label'.tr(),
               alignLabelWithHint: true,

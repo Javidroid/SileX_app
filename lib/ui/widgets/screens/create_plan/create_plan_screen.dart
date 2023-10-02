@@ -92,7 +92,7 @@ class CreatePlanState extends RootScreenState<
             : null,
         disabledElevation: 0,
         backgroundColor: _validated ? colorScheme.secondary : Colors.grey,
-        child: const Icon(Icons.rocket_launch),
+        child: Icon(Icons.rocket_launch),
       ),
     );
   }

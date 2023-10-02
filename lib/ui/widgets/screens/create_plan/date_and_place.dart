@@ -89,8 +89,11 @@ class CreatePlanDateAndPlace extends StatelessWidget {
               ],
             ),
           ),
-          TextField(
+          TextFormField(
             controller: controller,
+            validator: (value) => (value == null) || (value.isEmpty)
+                ? 'create_plan.empty_textfield'.tr()
+                : null,
             decoration: InputDecoration(
               labelText: 'create_plan.place_textfield_label'.tr(),
               alignLabelWithHint: true,
