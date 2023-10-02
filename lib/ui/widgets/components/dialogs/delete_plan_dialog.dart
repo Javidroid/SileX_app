@@ -26,9 +26,7 @@ class DeletePlanDialog extends StatelessWidget {
         TextButton(
           onPressed: () {
             onAccept();
-            // pop twice to not arrive at just deleted plan
-            navigator.pop();
-            navigator.pop();
+            navigator.replaceToHome();
           },
           child: Text(
             'delete_plan.accept'.tr(),
