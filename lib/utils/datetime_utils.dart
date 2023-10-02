@@ -20,7 +20,17 @@ class DateTimeUtils {
   }
 
   static String timeOfDayToString(TimeOfDay time) {
-    return "${time.hour}:${time.minute}";
+    String addLeadingZeroIfNeeded(int value) {
+      if (value < 10) {
+        return '0$value';
+      }
+      return value.toString();
+    }
+
+    final String hourLabel = addLeadingZeroIfNeeded(time.hour);
+    final String minuteLabel = addLeadingZeroIfNeeded(time.minute);
+
+    return '$hourLabel:$minuteLabel';
   }
 
   static String getTranslatedWeekday(int weekday) {
