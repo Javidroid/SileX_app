@@ -36,9 +36,9 @@ class CreatePlanViewModel extends RootViewModel<CreatePlanViewState> {
 
   int _maxUsers = 2;
 
-  final String titleRegex = ''; // TODO
-  final String descriptionRegex = ''; // TODO
-  final String placeRegex = ''; // TODO
+  final String titleRegex = ""; // TODO
+  final String descriptionRegex = ""; // TODO
+  final String placeRegex = ""; // TODO
 
   @override
   void onAttach() async {

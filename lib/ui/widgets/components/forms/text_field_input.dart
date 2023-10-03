@@ -24,7 +24,7 @@ class TextFieldInput extends StatelessWidget {
         if ((value == null) || (value.isEmpty)) {
           return 'create_plan.empty_textfield'.tr();
         }
-        if (regex != null) {
+        if (regex != null && regex!.isNotEmpty) {
           return RegExp(regex!).hasMatch(value)
               ? null
               : 'create_plan.unmatched_regex'.tr();
