@@ -55,7 +55,8 @@
     "description_textfield_label": "Describe y detalla tu plan",
     "description_textfield_hint": "Descripción",
     "max_users_description": "¿Hasta cuántas personas pueden unirse a tu plan?",
-    "empty_textfield": "Por favor, rellena este campo."
+    "empty_textfield": "Por favor, rellena este campo.",
+    "unmatched_regex": "TODO RELLENAR"
   },
   "delete_plan": {
     "button_text": "Eliminar el plan",

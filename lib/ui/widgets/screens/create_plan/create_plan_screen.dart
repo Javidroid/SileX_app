@@ -27,7 +27,6 @@ class CreatePlanState extends RootScreenState<
   final _formKey = GlobalKey<FormState>();
   bool _validated = false;
 
-  // TODO: validar campos
   final placeController = TextEditingController();
   final titleController = TextEditingController();
   final descriptionController = TextEditingController();
@@ -67,12 +66,15 @@ class CreatePlanState extends RootScreenState<
                       controller: placeController,
                       date: viewModel.date,
                       time: viewModel.time,
+                      placeRegex: viewModel.placeRegex,
                     ),
                     BoxSpacer.v24(),
                     CreatePlanInfo(
                       titleController: titleController,
                       descriptionController: descriptionController,
                       setMaxUsers: viewModel.setMaxUsers,
+                      titleRegex: viewModel.titleRegex,
+                      descriptionRegex: viewModel.descriptionRegex,
                     ),
                     BoxSpacer.v80(),
                   ],

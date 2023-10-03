@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:numberpicker/numberpicker.dart';
 import 'package:tfg_v2/ui/styles/text_styles.dart';
 import 'package:tfg_v2/ui/widgets/components/box_spacer.dart';
+import 'package:tfg_v2/ui/widgets/components/forms/text_field_input.dart';
 import 'package:tfg_v2/ui/widgets/components/title_with_info_tooltip.dart';
 
 class CreatePlanInfo extends StatefulWidget {
@@ -11,11 +12,15 @@ class CreatePlanInfo extends StatefulWidget {
     required this.titleController,
     required this.descriptionController,
     required this.setMaxUsers,
+    required this.titleRegex,
+    required this.descriptionRegex,
   });
 
   final TextEditingController titleController;
   final TextEditingController descriptionController;
   final Function(int) setMaxUsers;
+  final String titleRegex;
+  final String descriptionRegex;
 
   @override
   State<CreatePlanInfo> createState() => _CreatePlanInfoState();
@@ -34,25 +39,18 @@ class _CreatePlanInfoState extends State<CreatePlanInfo> {
             infoTooltip: 'create_plan.plan_info_tooltip'.tr(),
           ),
           BoxSpacer.v12(),
-          TextFormField(
+          TextFieldInput(
             controller: widget.titleController,
-            validator: (value) => (value == null) || (value.isEmpty)
-                ? 'create_plan.empty_textfield'.tr()
-                : null,
-            decoration: InputDecoration(
-              labelText: 'create_plan.title_textfield_label'.tr(),
-              alignLabelWithHint: true,
-              hintText: 'create_plan.title_textfield_hint'.tr(),
-            ),
+            label: 'create_plan.title_textfield_label'.tr(),
+            hintText: 'create_plan.title_textfield_hint'.tr(),
+            regex: widget.titleRegex,
           ),
           BoxSpacer.v12(),
-          TextFormField(
+          TextFieldInput(
             controller: widget.descriptionController,
-            decoration: InputDecoration(
-              labelText: 'create_plan.description_textfield_label'.tr(),
-              alignLabelWithHint: true,
-              hintText: 'create_plan.description_textfield_hint'.tr(),
-            ),
+            label: 'create_plan.description_textfield_label'.tr(),
+            hintText: 'create_plan.description_textfield_hint'.tr(),
+            regex: widget.descriptionRegex,
           ),
           BoxSpacer.v12(),
           Text(

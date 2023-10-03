@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:tfg_v2/ui/styles/insets.dart';
 import 'package:tfg_v2/ui/styles/text_styles.dart';
+import 'package:tfg_v2/ui/widgets/components/forms/text_field_input.dart';
 import 'package:tfg_v2/ui/widgets/components/title_with_info_tooltip.dart';
 import 'package:tfg_v2/utils/datetime_utils.dart';
 
@@ -13,6 +14,7 @@ class CreatePlanDateAndPlace extends StatelessWidget {
     required this.controller,
     required this.date,
     required this.time,
+    required this.placeRegex,
   });
 
   // TODO: get date and time to show as text and as initial values
@@ -22,6 +24,7 @@ class CreatePlanDateAndPlace extends StatelessWidget {
   final TextEditingController controller;
   final DateTime date;
   final TimeOfDay time;
+  final String placeRegex;
 
   @override
   Widget build(BuildContext context) {
@@ -89,16 +92,11 @@ class CreatePlanDateAndPlace extends StatelessWidget {
               ],
             ),
           ),
-          TextFormField(
+          TextFieldInput(
             controller: controller,
-            validator: (value) => (value == null) || (value.isEmpty)
-                ? 'create_plan.empty_textfield'.tr()
-                : null,
-            decoration: InputDecoration(
-              labelText: 'create_plan.place_textfield_label'.tr(),
-              alignLabelWithHint: true,
-              hintText: 'create_plan.place_textfield_hint'.tr(),
-            ),
+            label: 'create_plan.place_textfield_label'.tr(),
+            hintText: 'create_plan.place_textfield_hint'.tr(),
+            regex: placeRegex,
           ),
         ],
       ),
