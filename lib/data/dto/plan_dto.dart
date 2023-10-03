@@ -1,4 +1,5 @@
 import 'package:tfg_v2/domain/model/plan.dart';
+import 'package:tfg_v2/utils/url_parser.dart';
 
 class PlanDto {
   String idPlan;
@@ -29,9 +30,9 @@ class PlanDto {
     return PlanDto(
       idPlan: json["_id"],
       creatorUser: json["creator_user"],
-      title: json["title"],
-      description: json["description"],
-      place: json["place"],
+      title: UrlParserUtil.tryDecodeUrl(json["title"]),
+      description: UrlParserUtil.tryDecodeUrl(json["description"]),
+      place: UrlParserUtil.tryDecodeUrl(json["place"]),
       date: DateTime.parse(json["date"]),
       categories: List.from(json["categories"].map((x) => x)),
       maxUsers: json["max_users"],
@@ -42,9 +43,9 @@ class PlanDto {
 
   Map<String, dynamic> toCreatePlanJson() {
     return {
-      "title": title,
-      "description": description,
-      "place": place,
+      "title": Uri.encodeComponent(title),
+      "description": Uri.encodeComponent(description),
+      "place": Uri.encodeComponent(place),
       "date": date.toIso8601String(),
       "categories": List<dynamic>.from(categories.map((x) => x)),
       "max_users": maxUsers,
