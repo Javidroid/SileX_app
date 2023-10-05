@@ -11,11 +11,11 @@
     },
     "nav_drawer": {
       "profile": "Perfil",
-      "pending_plans": "Planes pendientes",
+      "pending_plans": "Planes pendientes [IN PROGRESS]",
       "settings": "Ajustes",
-      "logout": "Cerrar sesión...",
+      "logout": "Cerrar sesión... [IN PROGRESS]",
       "faq": "FAQ",
-      "invite_friends": "Invitar amigos",
+      "invite_friends": "Invitar amigos [IN PROGRESS]",
       "about": "Acerca de..."
     }
   },
@@ -64,6 +64,9 @@
     "dialog_content": "Esta acción no se puede deshacer y el plan se borrará para todos los usuarios",
     "accept": "Sí, borrar el plan",
     "cancel": "Cancelar"
+  },
+  "settings": {
+    "theme_mode": "Activar modo claro"
   },
   "weekdays": {
     "monday": "Lunes",

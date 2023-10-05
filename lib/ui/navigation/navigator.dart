@@ -96,7 +96,7 @@ class TfgNavigator {
       GoRoute(
         path: Routes.myPlans,
         builder: (BuildContext context, GoRouterState state) =>
-            const PlansScreen(), // TODO: send own plan dataset
+            const Placeholder(),
       ),
       GoRoute(
         path: Routes.settings,

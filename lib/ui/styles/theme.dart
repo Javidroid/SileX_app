@@ -13,8 +13,6 @@ class ThemeGenerator {
   /// Método que genera la configuración necesaria para establecer el Tema Claro
   /// en los Widgets de la App de forma coherente y conjunta.
 
-  // TODO: REMAKE THEME
-  // TODO: ADD TILE THEME
   static ThemeData generateLightTheme() {
     return FlexThemeData.light(
       colors: colorScheme,
@@ -120,6 +118,13 @@ class ThemeNotifier extends ChangeNotifier {
   }
 
   /// Alterna el [_mode] entre Claro y Oscuro. Notifica a los observadores.
+  void toggleTheme() {
+    _mode = !_mode;
+    SharedPreferencesTheme.setTheme(value: _mode);
+    notifyListeners();
+  }
+
+  /// Establece manualmente el [_mode] y notifica a los observadores.
   set modo(bool value) {
     _mode = value;
     SharedPreferencesTheme.setTheme(value: value);

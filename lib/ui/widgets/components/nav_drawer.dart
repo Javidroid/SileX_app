@@ -58,7 +58,7 @@ class _NavigationDrawerWithUserHeaderState
                           : Icons.wb_sunny,
                     ),
                     onPressed: () {
-                      themeNotifier.modo = !themeNotifier.modo;
+                      themeNotifier.toggleTheme();
                     },
                   ),
                 ],
