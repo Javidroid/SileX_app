@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:tfg_v2/ui/styles/insets.dart';
 import 'package:tfg_v2/ui/styles/text_styles.dart';
+import 'package:tfg_v2/ui/widgets/components/box_spacer.dart';
 import 'package:tfg_v2/ui/widgets/components/forms/text_field_input.dart';
 import 'package:tfg_v2/ui/widgets/components/title_with_info_tooltip.dart';
 import 'package:tfg_v2/utils/datetime_utils.dart';
@@ -44,9 +45,15 @@ class CreatePlanDateAndPlace extends StatelessWidget {
                       style: TextStyles.createPlanText,
                     ),
                     TextButton(
-                      child: Text(
-                        DateTimeUtils.dateTimeToString(date),
-                        style: TextStyles.createPlanTextButton,
+                      child: Row(
+                        children: [
+                          Text(
+                            DateTimeUtils.dateTimeToString(date),
+                            style: TextStyles.createPlanTextButton,
+                          ),
+                          BoxSpacer.h8(),
+                          const Icon(Icons.edit),
+                        ],
                       ),
                       onPressed: () async {
                         setDate(
@@ -71,9 +78,15 @@ class CreatePlanDateAndPlace extends StatelessWidget {
                       style: TextStyles.createPlanText,
                     ),
                     TextButton(
-                      child: Text(
-                        DateTimeUtils.timeOfDayToString(time),
-                        style: TextStyles.createPlanTextButton,
+                      child: Row(
+                        children: [
+                          Text(
+                            DateTimeUtils.timeOfDayToString(time),
+                            style: TextStyles.createPlanTextButton,
+                          ),
+                          BoxSpacer.h4(),
+                          const Icon(Icons.edit),
+                        ],
                       ),
                       onPressed: () async {
                         setTime(
