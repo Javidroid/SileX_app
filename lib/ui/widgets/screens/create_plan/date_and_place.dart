@@ -14,17 +14,15 @@ class CreatePlanDateAndPlace extends StatelessWidget {
     required this.controller,
     required this.date,
     required this.time,
-    required this.placeRegex,
+    this.placeRegex,
   });
-
-  // TODO: get date and time to show as text and as initial values
 
   final Function(TimeOfDay) setTime;
   final Function(DateTime) setDate;
   final TextEditingController controller;
   final DateTime date;
   final TimeOfDay time;
-  final String placeRegex;
+  final String? placeRegex;
 
   @override
   Widget build(BuildContext context) {

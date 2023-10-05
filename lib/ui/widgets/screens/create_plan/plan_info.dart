@@ -12,15 +12,15 @@ class CreatePlanInfo extends StatefulWidget {
     required this.titleController,
     required this.descriptionController,
     required this.setMaxUsers,
-    required this.titleRegex,
-    required this.descriptionRegex,
+    this.titleRegex,
+    this.descriptionRegex,
   });
 
   final TextEditingController titleController;
   final TextEditingController descriptionController;
   final Function(int) setMaxUsers;
-  final String titleRegex;
-  final String descriptionRegex;
+  final String? titleRegex;
+  final String? descriptionRegex;
 
   @override
   State<CreatePlanInfo> createState() => _CreatePlanInfoState();

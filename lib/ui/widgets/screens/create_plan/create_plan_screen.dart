@@ -66,15 +66,12 @@ class CreatePlanState extends RootScreenState<
                       controller: placeController,
                       date: viewModel.date,
                       time: viewModel.time,
-                      placeRegex: viewModel.placeRegex,
                     ),
                     BoxSpacer.v24(),
                     CreatePlanInfo(
                       titleController: titleController,
                       descriptionController: descriptionController,
                       setMaxUsers: viewModel.setMaxUsers,
-                      titleRegex: viewModel.titleRegex,
-                      descriptionRegex: viewModel.descriptionRegex,
                     ),
                     BoxSpacer.v80(),
                   ],
@@ -94,7 +91,7 @@ class CreatePlanState extends RootScreenState<
             : null,
         disabledElevation: 0,
         backgroundColor: _validated ? colorScheme.secondary : Colors.grey,
-        child: Icon(Icons.rocket_launch),
+        child: const Icon(Icons.rocket_launch),
       ),
     );
   }
