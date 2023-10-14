@@ -25,7 +25,7 @@ class GetUpdatedLoggedUserUseCase {
     final updatedUser = await _userRepository.getUser(username.right);
     if (updatedUser.isLeft) return Left(updatedUser.left);
 
-    // save into shared pref // TODO: check if should be local DB
+    // save into shared pref
     _userRepository.saveCurrentLoggedUser(updatedUser.right);
     return Right(updatedUser.right);
   }

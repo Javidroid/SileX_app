@@ -19,7 +19,10 @@ class FollowButton extends StatelessWidget {
     return !isFollowing
         ? TextButton(
             onPressed: follow,
-            child: Text('profile.follow'.tr()),
+            child: Text(
+              'profile.follow'.tr(),
+              style: TextStyles.whiteTextButton,
+            ),
           )
         : TextButton(
             onPressed: unfollow,

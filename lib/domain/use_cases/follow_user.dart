@@ -1,6 +1,7 @@
 import 'package:either_dart/either.dart';
 import 'package:injectable/injectable.dart';
 import 'package:tfg_v2/domain/model/errors.dart';
+import 'package:tfg_v2/domain/model/user.dart';
 import 'package:tfg_v2/domain/repository/social/user_repository.dart';
 
 @Injectable()
@@ -9,22 +10,28 @@ class FollowUserUseCase {
 
   FollowUserUseCase(this._userRepository);
 
-  /// Makes [username] follow/unfollow [targetUser]
+  /// Makes current logged user follow/unfollow [targetUser]
   ///
   /// If [isFollow] == true, the action is follow. Otherwise is unfollow.
-  Future<Either<AppError, void>> call({
-    required String username,
-    required String targetUser,
+  Future<Either<AppError, bool>> call({
+    required User targetUser,
     bool isFollow = true,
   }) async {
-    final username = await _userRepository.getCurrentLoggedUsername();
-    if (username.isLeft) return Left(UninitializedSharedPreferencesError());
-    // TODO: implement
+    final currentUser = await _userRepository.getCurrentLoggedUser();
+    if (currentUser.isLeft) return Left(UninitializedSharedPreferencesError());
 
-    return Right(
-      isFollow
-          ? print('$username followed $targetUser')
-          : print('$username unfollowed $targetUser'),
+    final operation =
+        isFollow ? _userRepository.followUser : _userRepository.unfollowUser;
+
+    return operation(
+      username: currentUser.right.username,
+      targetUser: targetUser.username,
+    ).fold(
+      (left) => Left(left),
+      (right) {
+        // targetUser.profile.followers.add(currentUser.)
+        return Right(right);
+      },
     );
   }
 }

@@ -6,6 +6,7 @@ import 'package:tfg_v2/ui/navigation/navigator.dart';
 import 'package:tfg_v2/ui/styles/insets.dart';
 import 'package:tfg_v2/ui/styles/text_styles.dart';
 import 'package:tfg_v2/ui/viewmodel/profile/profile_viewmodel.dart';
+import 'package:tfg_v2/ui/widgets/components/box_spacer.dart';
 import 'package:tfg_v2/ui/widgets/components/buttons/follow_button.dart';
 import 'package:tfg_v2/ui/widgets/components/list_items/plan_preview_item.dart';
 import 'package:tfg_v2/ui/widgets/components/profile/profile_header.dart';
@@ -53,7 +54,13 @@ class ProfileScreen extends RootScreen<ProfileViewState, ProfileViewModel> {
                         style: TextStyles.whiteTextButton,
                       ), // todo improve
                     )
-                  : FollowButton(isFollowing: true),
+                  : FollowButton(
+                      isFollowing: viewModel.isFollowingChecker(),
+                      follow: () => viewModel.onFollowPressed(isFollow: true),
+                      unfollow: () =>
+                          viewModel.onFollowPressed(isFollow: false),
+                    ),
+              BoxSpacer.h16(),
             ],
           ),
           body: SafeArea(

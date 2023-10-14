@@ -24,12 +24,15 @@ abstract interface class UserRepository {
 
   Future<Either<AppError, bool>> deleteUser(String username);
 
-  Future<Either<AppError, bool>> followUser(String username, String targetUser);
+  Future<Either<AppError, bool>> followUser({
+    required String username,
+    required String targetUser,
+  });
 
-  Future<Either<AppError, bool>> unfollowUser(
-    String username,
-    String targetUser,
-  );
+  Future<Either<AppError, bool>> unfollowUser({
+    required String username,
+    required String targetUser,
+  });
 }
 
 @Injectable(as: UserRepository)
@@ -52,12 +55,11 @@ class UserRepositoryImpl implements UserRepository {
   }
 
   @override
-  Future<Either<AppError, bool>> followUser(
-    String username,
-    String targetUser,
-  ) {
-    // TODO: implement followUser
-    throw UnimplementedError();
+  Future<Either<AppError, bool>> followUser({
+    required String username,
+    required String targetUser,
+  }) {
+    return _remote.followUser(username, targetUser);
   }
 
   @override
@@ -66,12 +68,11 @@ class UserRepositoryImpl implements UserRepository {
   }
 
   @override
-  Future<Either<AppError, bool>> unfollowUser(
-    String username,
-    String targetUser,
-  ) {
-    // TODO: implement unfollowUser
-    throw UnimplementedError();
+  Future<Either<AppError, bool>> unfollowUser({
+    required String username,
+    required String targetUser,
+  }) {
+    return _remote.unfollowUser(username, targetUser);
   }
 
   @override

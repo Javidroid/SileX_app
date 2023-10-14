@@ -68,9 +68,15 @@ class DefaultRemoteDatasource implements RemoteDatasource {
   Future<Either<AppError, bool>> followUser(
     String username,
     String targetUser,
-  ) {
-    // TODO: implement followUser
-    throw UnimplementedError();
+  ) async {
+    final uri = Uri.parse('$_baseUrl/$username/follow/$targetUser');
+
+    final result = await _apiService.put(uri);
+
+    return result.either<AppError, bool>(
+      (left) => left,
+      (right) => true,
+    );
   }
 
   @override
@@ -156,9 +162,15 @@ class DefaultRemoteDatasource implements RemoteDatasource {
   Future<Either<AppError, bool>> unfollowUser(
     String username,
     String targetUser,
-  ) {
-    // TODO: implement unfollowUser
-    throw UnimplementedError();
+  ) async {
+    final uri = Uri.parse('$_baseUrl/$username/follow/$targetUser');
+
+    final result = await _apiService.delete(uri);
+
+    return result.either<AppError, bool>(
+      (left) => left,
+      (right) => true,
+    );
   }
 
   @override

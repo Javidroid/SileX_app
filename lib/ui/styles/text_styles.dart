@@ -26,6 +26,8 @@ class TextStyles {
 
   static const TextStyle whiteTextButton = TextStyle(
     color: Colors.white,
+    // fontWeight: FontWeight.bold,
+    fontSize: 18,
   );
   static TextStyle cancelTextButton = TextStyle(
     color: colorScheme.error,

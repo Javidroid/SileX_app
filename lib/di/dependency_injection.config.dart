@@ -109,6 +109,8 @@ extension GetItInjectableX on _i1.GetIt {
           userRef: userRef,
           isUserRefId: isUserRefId,
           joinQuitPlanUseCase: gh<_i23.UserJoinQuitPlanUseCase>(),
+          followUserUseCase: gh<_i19.FollowUserUseCase>(),
+          getUpdatedLoggedUserUseCase: gh<_i20.GetUpdatedLoggedUserUseCase>(),
         ));
     return this;
   }
