@@ -32,8 +32,6 @@ class PlanPreviewItem extends StatefulWidget {
 
   final VoidCallback onPopBehaviour;
 
-  // TODO: pass check joined to plan
-
   @override
   State<PlanPreviewItem> createState() => _PlanPreviewItemState();
 }
@@ -50,7 +48,7 @@ class _PlanPreviewItemState extends State<PlanPreviewItem> {
         child: Padding(
           padding: Insets.a12,
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start, // todo revisar
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -76,10 +76,19 @@ class PlanDetailScreen
                 ),
                 Padding(
                   padding: Insets.v8,
-                  child: Text(
-                    state.plan.description,
-                    textAlign: TextAlign.justify,
-                    style: TextStyles.defaultStyle,
+                  child: Column(
+                    children: [
+                      Text(
+                        state.plan.title,
+                        textAlign: TextAlign.center,
+                        style: TextStyles.defaultStyleBold,
+                      ),
+                      Text(
+                        state.plan.description,
+                        textAlign: TextAlign.justify,
+                        style: TextStyles.defaultStyle,
+                      ),
+                    ],
                   ),
                 ),
                 Row(
@@ -117,7 +126,9 @@ class PlanDetailScreen
                   ],
                 ),
                 const Padding(
-                    padding: Insets.v12, child: Divider(thickness: 2),),
+                  padding: Insets.v12,
+                  child: Divider(thickness: 2),
+                ),
                 Padding(
                   padding: Insets.h4,
                   child: Text('components.plans.joined_users'.tr()),

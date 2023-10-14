@@ -69,8 +69,7 @@ class ProfileViewModel extends RootViewModel<ProfileViewState> {
     required bool isJoin,
   }) async {
     await joinQuitPlanUseCase(localPlan: plan, isJoin: isJoin);
-
-    refreshProfile(); // TODO: check
+    refreshProfile();
   }
 
   bool isJoinedChecker({required Plan plan}) =>
