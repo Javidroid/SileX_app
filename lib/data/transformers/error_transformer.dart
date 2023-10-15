@@ -2,7 +2,18 @@ import 'package:dio/dio.dart';
 import 'package:tfg_v2/domain/model/errors.dart';
 
 AppError errorsHandler(DioException error) {
-  switch (error.response?.statusCode) {
+  print(error);
+
+  if (error.type == DioExceptionType.connectionError ||
+      error.type == DioExceptionType.connectionTimeout ||
+      error.type == DioExceptionType.receiveTimeout ||
+      error.type == DioExceptionType.sendTimeout) {
+    return NoInternetError();
+  }
+
+  final int statusCode = error.response?.statusCode ?? 0;
+
+  switch (statusCode) {
     case 400:
       return BadRequestError();
     case 401:
