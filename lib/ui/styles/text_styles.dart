@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:tfg_v2/ui/styles/colors.dart';
 
 class Fonts {
-  // TODO: import fonts
   static const String futuraLight = 'Futura-Light';
   static const String futuraMedium = 'Futura';
   static const String futuraBold = 'Futura-Bold';
@@ -10,8 +9,6 @@ class Fonts {
 }
 
 class TextStyles {
-  // TODO: define & improve default text styles
-
   static const TextStyle defaultStyle = TextStyle(
     fontSize: 18,
   );
@@ -90,5 +87,11 @@ class TextStyles {
   );
   static const TextStyle faqAnswer = TextStyle(
     fontSize: 16,
+  );
+
+  // ERROR
+  static TextStyle errorMessage = const TextStyle(
+    color: Colors.white,
+    fontSize: 18,
   );
 }

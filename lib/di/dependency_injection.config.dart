@@ -27,8 +27,8 @@ import 'package:tfg_v2/domain/repository/social/user_repository.dart' as _i17;
 import 'package:tfg_v2/domain/use_cases/follow_user.dart' as _i19;
 import 'package:tfg_v2/domain/use_cases/get_updated_logged_user.dart' as _i20;
 import 'package:tfg_v2/domain/use_cases/user_join_quit_plan.dart' as _i23;
-import 'package:tfg_v2/env/environment.dart' as _i15;
-import 'package:tfg_v2/ui/navigation/navigator.dart' as _i16;
+import 'package:tfg_v2/env/environment.dart' as _i14;
+import 'package:tfg_v2/ui/navigation/navigator.dart' as _i15;
 import 'package:tfg_v2/ui/viewmodel/create_plan/create_plan_viewmodel.dart'
     as _i24;
 import 'package:tfg_v2/ui/viewmodel/direct_messages/direct_messages_viewmodel.dart'
@@ -41,7 +41,8 @@ import 'package:tfg_v2/ui/viewmodel/plans/plan_detail_viewmodel.dart' as _i9;
 import 'package:tfg_v2/ui/viewmodel/plans/plans_viewmodel.dart' as _i25;
 import 'package:tfg_v2/ui/viewmodel/profile/profile_viewmodel.dart' as _i26;
 import 'package:tfg_v2/ui/viewmodel/search/search_viewmodel.dart' as _i13;
-import 'package:tfg_v2/ui/viewmodel/splash/splash_viewmodel.dart' as _i14;
+import 'package:tfg_v2/ui/viewmodel/unavailable/unavailable_viewmodel.dart'
+    as _i16;
 
 extension GetItInjectableX on _i1.GetIt {
   // initializes the registration of main-scope dependencies inside of GetIt
@@ -70,9 +71,9 @@ extension GetItInjectableX on _i1.GetIt {
     gh.factory<_i11.RemoteDatasource>(
         () => _i12.DefaultRemoteDatasource(gh<_i3.ApiService>()));
     gh.factory<_i13.SearchViewModel>(() => _i13.SearchViewModel());
-    gh.factory<_i14.SplashViewModel>(() => _i14.SplashViewModel());
-    gh.singleton<_i15.TfgEnv>(diModule.env);
-    gh.singleton<_i16.TfgNavigator>(diModule.navigator);
+    gh.singleton<_i14.TfgEnv>(diModule.env);
+    gh.singleton<_i15.TfgNavigator>(diModule.navigator);
+    gh.factory<_i16.UnavailableViewModel>(() => _i16.UnavailableViewModel());
     gh.factory<_i17.UserRepository>(() => _i17.UserRepositoryImpl(
           gh<_i11.RemoteDatasource>(),
           gh<_i5.LocalDatasource>(),

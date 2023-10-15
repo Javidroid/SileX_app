@@ -1,5 +1,18 @@
 {
   "app_title": "SileX",
+  "errors": {
+    "no_internet": "No hay conexión a Internet",
+    "generic": "Ha ocurrido un error",
+    "uninitialized": "",
+    "server": "",
+    "bad_request": "",
+    "forbidden": "",
+    "not_found": "",
+    "unauth": "",
+    "confict": "",
+    "expired": "",
+    "limit_reached": ""
+  },
   "components": {
     "buttons": {
       "join": "Apuntarse",
