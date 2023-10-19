@@ -52,7 +52,6 @@ class PlanDetailViewModel extends RootViewModel<PlanDetailViewState> {
 
     currentPlan = plan.right;
 
-    // TODO: mirar si hay otra mejor manera de pasar el usuario de "precarga"
     final creatorUser = await _userRepository.getUserById(
       currentPlan.creatorId,
     );

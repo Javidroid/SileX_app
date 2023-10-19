@@ -56,7 +56,7 @@ class CreatePlanViewModel extends RootViewModel<CreatePlanViewState> {
     required String place,
   }) async {
     final currentUsername = await _userRepository.getCurrentLoggedUsername();
-    if (currentUsername.isLeft) return;
+    if (currentUsername.isLeft) return; // todo emit error
 
     // TODO: handle errors
     final result = await _planRepository.createPlan(
@@ -75,7 +75,7 @@ class CreatePlanViewModel extends RootViewModel<CreatePlanViewState> {
     );
 
     result.fold(
-      (left) => print("Error: $left"), // TODO: handle error
+      (left) => print("Error: $left"), // TODO: emit error
       (right) => navigator.replaceToHome(),
     );
   }

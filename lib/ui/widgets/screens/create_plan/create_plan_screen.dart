@@ -5,6 +5,7 @@ import 'package:tfg_v2/ui/styles/insets.dart';
 import 'package:tfg_v2/ui/viewmodel/create_plan/create_plan_viewmodel.dart';
 import 'package:tfg_v2/ui/widgets/components/appbars/default_appbar.dart';
 import 'package:tfg_v2/ui/widgets/components/box_spacer.dart';
+import 'package:tfg_v2/ui/widgets/components/error_card.dart';
 import 'package:tfg_v2/ui/widgets/screens/create_plan/date_and_place.dart';
 import 'package:tfg_v2/ui/widgets/screens/create_plan/pick_category.dart';
 import 'package:tfg_v2/ui/widgets/screens/create_plan/plan_info.dart';
@@ -79,7 +80,7 @@ class CreatePlanState extends RootScreenState<
               ),
             ),
           ),
-        Error _ => Text(state.error.toString()), // todo handle errors
+        Error _ => ErrorCard(error: state.error),
       },
       floatingActionButton: FloatingActionButton(
         onPressed: _validated

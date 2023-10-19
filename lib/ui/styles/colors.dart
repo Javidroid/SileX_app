@@ -11,5 +11,5 @@ const FlexSchemeColor colorScheme = FlexSchemeColor(
   tertiaryContainer: Color(0xff95f0ff),
   appBarColor: Color(0xffffdbcf),
   error: Color(0xffb00020),
-  errorContainer: Color(0xffDC4547),
+  errorContainer: Color(0xffe86366),
 );

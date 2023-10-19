@@ -5,6 +5,8 @@ sealed class AppError {}
 
 class NoInternetError extends AppError {}
 
+class TimeOutError extends AppError {}
+
 class UninitializedSharedPreferencesError extends AppError {}
 
 class UnknownError extends AppError {}
@@ -25,11 +27,8 @@ class ExpiredSessionError extends AppError {}
 
 class LimitReachedError extends AppError {}
 
-
 extension ErrorMessage on AppError {
   String get message {
-    return switch (runtimeType) {
-      _ => 'errors.generic'.tr()
-    };
+    return switch (runtimeType) { _ => 'errors.generic'.tr() };
   }
 }

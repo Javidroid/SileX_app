@@ -30,6 +30,9 @@ class PlansList extends StatelessWidget {
     return Container(
       alignment: Alignment.center,
       child: ListView(
+        physics: const AlwaysScrollableScrollPhysics(
+          parent: BouncingScrollPhysics(),
+        ),
         children: [
           BoxSpacer.v4(),
           for (Plan plan in planList)

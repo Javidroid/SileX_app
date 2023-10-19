@@ -1,7 +1,7 @@
 {
   "app_title": "SileX",
   "errors": {
-    "no_internet": "No hay conexión a Internet",
+    "no_internet": "No hay internet",
     "generic": "Ha ocurrido un error",
     "uninitialized": "",
     "server": "",
@@ -16,7 +16,10 @@
   "components": {
     "buttons": {
       "join": "Apuntarse",
-      "quit": "Desapuntarse"
+      "quit": "Desapuntarse",
+      "follow": "Seguir",
+      "unfollow": "Dejar de seguir",
+      "try_again": "Volver a intentar"
     },
     "plans": {
       "people": "{}/{} personas inscritas",
@@ -40,8 +43,6 @@
     "following": "Siguiendo",
     "n_plans": "Planes",
     "edit": "Editar perfil",
-    "follow": "Seguir",
-    "unfollow": "Dejar de seguir",
     "show_more": "más",
     "show_less": "(mostrar menos)",
     "interests": "Intereses",

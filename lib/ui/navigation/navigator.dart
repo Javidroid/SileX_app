@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:tfg_v2/domain/model/errors.dart';
 import 'package:tfg_v2/domain/model/plan.dart';
 import 'package:tfg_v2/domain/model/user.dart';
 import 'package:tfg_v2/ui/navigation/routes.dart';
@@ -17,7 +16,6 @@ import 'package:tfg_v2/ui/widgets/screens/profile/edit_profile_screen.dart';
 import 'package:tfg_v2/ui/widgets/screens/profile/profile_screen.dart';
 import 'package:tfg_v2/ui/widgets/screens/search/search_screen.dart';
 import 'package:tfg_v2/ui/widgets/screens/settings/settings_screen.dart';
-import 'package:tfg_v2/ui/widgets/screens/unavailable/unavailable_screen.dart';
 
 final GlobalKey<NavigatorState> rootNavigatorKey =
     GlobalKey<NavigatorState>(debugLabel: 'root');
@@ -104,17 +102,8 @@ class TfgNavigator {
         builder: (BuildContext context, GoRouterState state) =>
             const FaqScreen(),
       ),
-      GoRoute(
-        path: Routes.unavailable,
-        builder: (BuildContext context, GoRouterState state) =>
-            UnavailableScreen(error: state.extra! as AppError),
-      ),
     ],
   );
-
-  Future<void> toUnavailable(AppError error) {
-    return router.pushReplacement(Routes.unavailable, extra: error);
-  }
 
   Future<void> toLogin() {
     return router.push(Routes.login);

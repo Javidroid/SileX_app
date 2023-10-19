@@ -37,7 +37,13 @@ class PlansScreen extends RootScreen<PlansViewState, PlansViewModel> {
                       ),
                     ),
             ),
-          Error _ => ErrorCard(error: state.error),
+          Error _ => RefreshIndicator(
+              onRefresh: () => viewModel.refreshPlans(),
+              child: ErrorCard(
+                onRetry: viewModel.refreshPlans,
+                error: state.error,
+              ),
+            ),
         },
       ),
     );

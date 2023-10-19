@@ -94,4 +94,8 @@ class TextStyles {
     color: Colors.white,
     fontSize: 18,
   );
+  static TextStyle noInternetText = const TextStyle(
+    fontSize: 24,
+    fontWeight: FontWeight.bold,
+  );
 }

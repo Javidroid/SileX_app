@@ -1,6 +1,4 @@
 class Routes {
-  static const String unavailable = '/unavailable';
-
   static const String login = '/login';
   static const String signUp = '/login/sign-up';
 

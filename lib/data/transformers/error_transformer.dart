@@ -8,7 +8,7 @@ AppError errorsHandler(DioException error) {
       error.type == DioExceptionType.connectionTimeout ||
       error.type == DioExceptionType.receiveTimeout ||
       error.type == DioExceptionType.sendTimeout) {
-    return NoInternetError();
+    return TimeOutError();
   }
 
   final int statusCode = error.response?.statusCode ?? 0;

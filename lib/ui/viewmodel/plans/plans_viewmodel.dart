@@ -32,6 +32,7 @@ class PlansViewModel extends RootViewModel<PlansViewState> {
   }
 
   Future<void> refreshPlans() async {
+    emitValue(Loading());
     final result = await _planRepository.getPlans();
     result.fold(
       (left) => emitValue(Error(left)),
@@ -48,8 +49,8 @@ class PlansViewModel extends RootViewModel<PlansViewState> {
       isJoin: isJoin,
     );
     result.fold(
-      (left) => print('usecase error'), // TODO: emit error
-      (right) => print('usecase success'), // TODO: ¿?
+      (left) => print('usecase error'), // TODO: emit error snackbar
+      (right) => {},
     );
     emitValue(Success(planList: (state as Success).planList));
   }

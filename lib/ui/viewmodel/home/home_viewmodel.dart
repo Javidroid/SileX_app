@@ -19,7 +19,7 @@ class HomeViewModel extends RootViewModel<HomeViewState> {
   void onAttach() async {
     final result = _getCurrentUserUseCase();
     result.fold(
-      (left) => navigator.toUnavailable(left), // todo make redirector
+      (left) => emitValue(Error(left)),
       (right) => emitValue(Success(loggedUser: right)),
     );
   }
