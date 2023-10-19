@@ -28,6 +28,7 @@ class ExpiredSessionError extends AppError {}
 class LimitReachedError extends AppError {}
 
 extension ErrorMessage on AppError {
+  // TODO: bind messages to errors
   String get message {
     return switch (runtimeType) { _ => 'errors.generic'.tr() };
   }

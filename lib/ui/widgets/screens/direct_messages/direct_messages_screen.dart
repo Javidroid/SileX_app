@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tfg_v2/ui/viewmodel/direct_messages/direct_messages_viewmodel.dart';
+import 'package:tfg_v2/ui/widgets/components/error_card.dart';
 import 'package:tfg_v2/ui/widgets/screens/root_screen.dart';
 
 class MessagesScreen
@@ -25,7 +26,7 @@ class MessagesScreen
               ],
             ),
           ),
-        Error _ => Text(state.error.toString()), // todo handle errors
+        Error _ => ErrorCard(error: state.error),
       },
     );
   }
