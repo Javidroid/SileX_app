@@ -8,6 +8,7 @@ import 'package:tfg_v2/ui/styles/text_styles.dart';
 import 'package:tfg_v2/ui/viewmodel/profile/profile_viewmodel.dart';
 import 'package:tfg_v2/ui/widgets/components/box_spacer.dart';
 import 'package:tfg_v2/ui/widgets/components/buttons/follow_button.dart';
+import 'package:tfg_v2/ui/widgets/components/error_card.dart';
 import 'package:tfg_v2/ui/widgets/components/list_items/plan_preview_item.dart';
 import 'package:tfg_v2/ui/widgets/components/profile/profile_header.dart';
 import 'package:tfg_v2/ui/widgets/screens/root_screen.dart';
@@ -36,9 +37,16 @@ class ProfileScreen extends RootScreen<ProfileViewState, ProfileViewModel> {
     // TODO: handle cuando haya error para que enseñe el user outdated,
     //      indicando el error y que es una versión desactualizada
     return switch (state) {
-      Loading _ => Scaffold(
+      Loading _ || Error _ => Scaffold(
           appBar: AppBar(),
-          body: const Center(child: CircularProgressIndicator()),
+          body: Center(
+            child: (state is Error)
+                ? ErrorCard(
+                    error: state.error,
+                    onRetry: viewModel.refreshProfile,
+                  )
+                : const CircularProgressIndicator(),
+          ),
         ),
       Success _ => Scaffold(
           appBar: AppBar(
@@ -106,7 +114,6 @@ class ProfileScreen extends RootScreen<ProfileViewState, ProfileViewModel> {
             ),
           ),
         ),
-      Error _ => Text(state.error.toString()), // todo handle errors
     };
   }
 }

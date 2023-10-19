@@ -4,8 +4,9 @@ import 'package:tfg_v2/domain/model/errors.dart';
 AppError errorsHandler(DioException error) {
   print(error);
 
-  if (error.type == DioExceptionType.connectionError ||
-      error.type == DioExceptionType.connectionTimeout ||
+  if (error.type == DioExceptionType.connectionError) return NoInternetError();
+
+  if (error.type == DioExceptionType.connectionTimeout ||
       error.type == DioExceptionType.receiveTimeout ||
       error.type == DioExceptionType.sendTimeout) {
     return TimeOutError();

@@ -58,7 +58,6 @@ class CreatePlanViewModel extends RootViewModel<CreatePlanViewState> {
     final currentUsername = await _userRepository.getCurrentLoggedUsername();
     if (currentUsername.isLeft) return; // todo emit error
 
-    // TODO: handle errors
     final result = await _planRepository.createPlan(
       plan: Plan.createPlan(
         title: title,

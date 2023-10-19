@@ -52,6 +52,7 @@ class ProfileViewModel extends RootViewModel<ProfileViewState> {
   }
 
   Future<void> refreshProfile() async {
+    emitValue(Loading());
     final tempCurrentUser = await _getUpdatedLoggedUserUseCase();
     if (tempCurrentUser.isLeft) {
       return emitValue(Error(error: tempCurrentUser.left));
@@ -88,6 +89,7 @@ class ProfileViewModel extends RootViewModel<ProfileViewState> {
   /// If [isFollow] is true, then it follows. Unfollows otherwise.
   Future<void> onFollowPressed({required bool isFollow}) async {
     await _followUserUseCase(isFollow: isFollow, targetUser: profileOwner!);
+    // todo: emit error snackbar
     refreshProfile();
   }
 
@@ -96,6 +98,7 @@ class ProfileViewModel extends RootViewModel<ProfileViewState> {
     required bool isJoin,
   }) async {
     await _joinQuitPlanUseCase(localPlan: plan, isJoin: isJoin);
+    // todo emit error snackbar
   }
 
   /// Checks if [currentUser] is following [profileOwner]
