@@ -6,6 +6,7 @@ import 'package:tfg_v2/ui/viewmodel/create_plan/create_plan_viewmodel.dart';
 import 'package:tfg_v2/ui/widgets/components/appbars/default_appbar.dart';
 import 'package:tfg_v2/ui/widgets/components/box_spacer.dart';
 import 'package:tfg_v2/ui/widgets/components/error_card.dart';
+import 'package:tfg_v2/ui/widgets/components/snackbars/error_snackbar.dart';
 import 'package:tfg_v2/ui/widgets/screens/create_plan/date_and_place.dart';
 import 'package:tfg_v2/ui/widgets/screens/create_plan/pick_category.dart';
 import 'package:tfg_v2/ui/widgets/screens/create_plan/plan_info.dart';
@@ -34,6 +35,16 @@ class CreatePlanState extends RootScreenState<
 
   bool validateInput() {
     return _formKey.currentState!.validate();
+  }
+
+  void showErrorSnackbar({String? title, String? body}) {
+    ErrorSnackbar.show(context: context, title: title, body: body);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    viewModel.bindShowSnackbar(showErrorSnackbar); // Bind AFTER initState
   }
 
   @override

@@ -25,6 +25,9 @@ class CreatePlanViewModel extends RootViewModel<CreatePlanViewState> {
 
   TfgNavigator get navigator => getIt<TfgNavigator>();
 
+  /// This variable holds a function to show a snackbar
+  late void Function({String? title, String? body}) _showSnackbar;
+
   List<PlanCategory> categories = [];
   final Set<String> selectedSubcategories = {};
 
@@ -41,6 +44,11 @@ class CreatePlanViewModel extends RootViewModel<CreatePlanViewState> {
     categories = await _getCategories();
     emitValue(Success());
   }
+
+  void bindShowSnackbar(
+    void Function({String? title, String? body}) showSnackbar,
+  ) =>
+      _showSnackbar = showSnackbar;
 
   Future<List<PlanCategory>> _getCategories() async {
     final result = await _categoryRepository.getCategories();
@@ -75,7 +83,7 @@ class CreatePlanViewModel extends RootViewModel<CreatePlanViewState> {
 
     result.fold(
       (left) => print("Error: $left"), // TODO: emit error
-      (right) => navigator.replaceToHome(),
+      (right) => _showSnackbar(),
     );
   }
 
