@@ -71,16 +71,8 @@ class ProfileHeader extends StatelessWidget {
                 expandOnTextTap: true,
                 collapseOnTextTap: true,
                 linkEllipsis: false,
-                linkColor: colorScheme.primary, // todo check
+                linkColor: colorScheme.primary,
               ),
-            ],
-          ),
-          BoxSpacer.v16(),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Text('profile.interests'.tr()),
-              Text('profile.achievements'.tr()),
             ],
           ),
         ],

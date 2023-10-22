@@ -19,10 +19,10 @@ class CreatePlanScreen
   @override
   RootScreenState<CreatePlanViewState, CreatePlanViewModel,
           RootScreenStateful<CreatePlanViewState, CreatePlanViewModel>>
-      createState() => CreatePlanState();
+      createState() => _CreatePlanState();
 }
 
-class CreatePlanState extends RootScreenState<
+class _CreatePlanState extends RootScreenState<
     CreatePlanViewState,
     CreatePlanViewModel,
     RootScreenStateful<CreatePlanViewState, CreatePlanViewModel>> {

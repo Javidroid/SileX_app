@@ -1,8 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:tfg_v2/di/dependency_injection.dart';
 import 'package:tfg_v2/domain/model/plan.dart';
-import 'package:tfg_v2/ui/navigation/navigator.dart';
 import 'package:tfg_v2/ui/styles/insets.dart';
 import 'package:tfg_v2/ui/styles/text_styles.dart';
 import 'package:tfg_v2/ui/viewmodel/profile/profile_viewmodel.dart';
@@ -20,8 +18,6 @@ class ProfileScreen extends RootScreen<ProfileViewState, ProfileViewModel> {
     required this.isUserRefId,
   }) : super(param1: userRef, param2: isUserRefId);
 
-  TfgNavigator get navigator => getIt<TfgNavigator>();
-
   /// An user reference that can be their username or their ID
   final String userRef;
 
@@ -34,8 +30,6 @@ class ProfileScreen extends RootScreen<ProfileViewState, ProfileViewModel> {
     ProfileViewState state,
     ProfileViewModel viewModel,
   ) {
-    // TODO: handle cuando haya error para que enseñe el user outdated,
-    //      indicando el error y que es una versión desactualizada
     return switch (state) {
       Loading _ || Error _ => Scaffold(
           appBar: AppBar(),
@@ -55,12 +49,12 @@ class ProfileScreen extends RootScreen<ProfileViewState, ProfileViewModel> {
               state.isCurrentUser
                   ? TextButton(
                       onPressed: () {
-                        // navigator.navigateToEditProfile();
+                        // todo: navigator.navigateToEditProfile();
                       },
                       child: Text(
                         'profile.edit'.tr(),
                         style: TextStyles.whiteTextButton,
-                      ), // todo improve
+                      ),
                     )
                   : FollowButton(
                       isFollowing: viewModel.isFollowingChecker(),
