@@ -3,15 +3,12 @@
   "errors": {
     "no_internet": "No hay internet",
     "generic": "Ha ocurrido un error",
-    "uninitialized": "",
-    "server": "",
-    "bad_request": "",
-    "forbidden": "",
-    "not_found": "",
-    "unauth": "",
-    "confict": "",
-    "expired": "",
-    "limit_reached": ""
+    "server": "Ha ocurrido un error en el servidor",
+    "forbidden": "Acceso prohibido",
+    "not_found": "No se ha podido encontrar lo que buscas",
+    "unauth": "Necesitas autenticarte para entrar",
+    "confict": "Ha ocurrido un conflicto",
+    "expired": "La sesión ha caducado"
   },
   "components": {
     "buttons": {
@@ -33,6 +30,20 @@
       "faq": "FAQ",
       "invite_friends": "Invitar amigos [IN PROGRESS]",
       "about": "Acerca de..."
+    },
+    "snackbar": {
+      "success": {
+        "title": "¡Olé!",
+        "body": "Todo ha ido correctamente"
+      },
+      "warning": {
+        "title": "¡Cuidado!",
+        "body": "¡Zona de peligro!"
+      },
+      "error": {
+        "title": "Error :(",
+        "body": "Ha ocurrido un error"
+      }
     }
   },
   "home": {
@@ -71,7 +82,8 @@
     "description_textfield_hint": "Descripción",
     "max_users_description": "¿Hasta cuántas personas pueden unirse a tu plan?",
     "empty_textfield": "Por favor, rellena este campo.",
-    "unmatched_regex": "TODO RELLENAR"
+    "unmatched_regex": "TODO RELLENAR",
+    "snackbar_success": "Plan creado correctamente"
   },
   "delete_plan": {
     "button_text": "Eliminar el plan",

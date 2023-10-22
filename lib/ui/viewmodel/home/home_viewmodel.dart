@@ -17,6 +17,11 @@ class HomeViewModel extends RootViewModel<HomeViewState> {
 
   @override
   void onAttach() async {
+    onStart();
+  }
+
+  void onStart() {
+    emitValue(Loading());
     final result = _getCurrentUserUseCase();
     result.fold(
       (left) => emitValue(Error(left)),

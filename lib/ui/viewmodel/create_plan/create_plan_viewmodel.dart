@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 import 'package:tfg_v2/di/dependency_injection.dart';
@@ -9,6 +10,7 @@ import 'package:tfg_v2/domain/repository/social/plan_repository.dart';
 import 'package:tfg_v2/domain/repository/social/user_repository.dart';
 import 'package:tfg_v2/ui/navigation/navigator.dart';
 import 'package:tfg_v2/ui/viewmodel/root_viewmodel.dart';
+import 'package:tfg_v2/ui/widgets/components/snackbars/custom_snackbar.dart';
 import 'package:tfg_v2/utils/datetime_utils.dart';
 
 @Injectable()
@@ -26,7 +28,11 @@ class CreatePlanViewModel extends RootViewModel<CreatePlanViewState> {
   TfgNavigator get navigator => getIt<TfgNavigator>();
 
   /// This variable holds a function to show a snackbar
-  late void Function({String? title, String? body}) _showSnackbar;
+  late void Function({
+    String? title,
+    String? body,
+    required SnackbarType snackbarType,
+  }) _showSnackbar;
 
   List<PlanCategory> categories = [];
   final Set<String> selectedSubcategories = {};
@@ -46,7 +52,11 @@ class CreatePlanViewModel extends RootViewModel<CreatePlanViewState> {
   }
 
   void bindShowSnackbar(
-    void Function({String? title, String? body}) showSnackbar,
+    void Function({
+      String? title,
+      String? body,
+      required SnackbarType snackbarType,
+    }) showSnackbar,
   ) =>
       _showSnackbar = showSnackbar;
 
@@ -64,7 +74,10 @@ class CreatePlanViewModel extends RootViewModel<CreatePlanViewState> {
     required String place,
   }) async {
     final currentUsername = await _userRepository.getCurrentLoggedUsername();
-    if (currentUsername.isLeft) return; // todo emit error
+    if (currentUsername.isLeft) {
+      _showSnackbar(snackbarType: SnackbarType.error);
+      return;
+    }
 
     final result = await _planRepository.createPlan(
       plan: Plan.createPlan(
@@ -82,8 +95,17 @@ class CreatePlanViewModel extends RootViewModel<CreatePlanViewState> {
     );
 
     result.fold(
-      (left) => print("Error: $left"), // TODO: emit error
-      (right) => _showSnackbar(),
+      (left) => _showSnackbar(
+        body: left.message,
+        snackbarType: SnackbarType.error,
+      ),
+      (right) {
+        _showSnackbar(
+          body: 'create_plan.snackbar_success'.tr(),
+          snackbarType: SnackbarType.success,
+        );
+        navigator.replaceToHome();
+      },
     );
   }
 

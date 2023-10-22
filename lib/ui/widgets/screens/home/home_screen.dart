@@ -87,7 +87,7 @@ class _HomeScreenState
         ),
       Error _ => Scaffold(
           body: Center(
-            child: ErrorCard(error: state.error),
+            child: ErrorCard(error: state.error, onRetry: viewModel.onStart),
           ),
         ),
     };
