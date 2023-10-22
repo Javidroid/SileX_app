@@ -59,7 +59,9 @@
     "interests": "Intereses",
     "achievements": "Logros",
     "created_plans": "Planes creados",
-    "joined_plans": "Planes apuntados"
+    "joined_plans": "Planes apuntados",
+    "follow_error": "No se ha podido seguir a {}",
+    "join_error": "No se ha podido unir al plan"
   },
   "faq": {
     "title": "Preguntas frecuentes"

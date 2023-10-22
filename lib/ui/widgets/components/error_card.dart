@@ -42,6 +42,7 @@ class ErrorCard extends StatelessWidget {
               ),
               if (onRetry != null)
                 Column(
+                  mainAxisSize: MainAxisSize.min,
                   children: [
                     BoxSpacer.v8(),
                     const Divider(thickness: 3),

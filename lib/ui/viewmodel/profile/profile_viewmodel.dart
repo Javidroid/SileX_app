@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:injectable/injectable.dart';
 import 'package:tfg_v2/di/dependency_injection.dart';
 import 'package:tfg_v2/domain/model/errors.dart';
@@ -10,6 +11,7 @@ import 'package:tfg_v2/domain/use_cases/get_updated_logged_user.dart';
 import 'package:tfg_v2/domain/use_cases/user_join_quit_plan.dart';
 import 'package:tfg_v2/ui/navigation/navigator.dart';
 import 'package:tfg_v2/ui/viewmodel/root_viewmodel.dart';
+import 'package:tfg_v2/ui/widgets/components/snackbars/custom_snackbar.dart';
 
 @injectable
 class ProfileViewModel extends RootViewModel<ProfileViewState> {
@@ -35,6 +37,13 @@ class ProfileViewModel extends RootViewModel<ProfileViewState> {
   /// Can be or not the [profileOwner]
   User? currentUser;
 
+  /// This variable holds a function to show a snackbar
+  late void Function({
+    String? title,
+    String? body,
+    required SnackbarType snackbarType,
+  }) _showSnackbar;
+
   ProfileViewModel({
     @factoryParam required this.userRef,
     @factoryParam required this.isUserRefId,
@@ -49,6 +58,16 @@ class ProfileViewModel extends RootViewModel<ProfileViewState> {
   @override
   void onAttach() async {
     refreshProfile();
+  }
+
+  void bindShowSnackbar(
+    void Function({
+      String? title,
+      String? body,
+      required SnackbarType snackbarType,
+    }) showSnackbar,
+  ) {
+    _showSnackbar = showSnackbar;
   }
 
   Future<void> refreshProfile() async {
@@ -88,28 +107,41 @@ class ProfileViewModel extends RootViewModel<ProfileViewState> {
   /// When follow/unfollow button is pressed, runs consequent operation.
   /// If [isFollow] is true, then it follows. Unfollows otherwise.
   Future<void> onFollowPressed({required bool isFollow}) async {
-    await _followUserUseCase(isFollow: isFollow, targetUser: profileOwner!);
-    // todo: emit error snackbar
-    refreshProfile();
+    final result = await _followUserUseCase(
+      isFollow: isFollow,
+      targetUser: profileOwner!,
+    );
+
+    result.fold(
+      (left) => _showSnackbar(
+        body: 'profile.follow_error'.tr(args: [profileOwner!.username]),
+        snackbarType: SnackbarType.error,
+      ),
+      (right) => refreshProfile(),
+    );
   }
 
   Future<void> joinButtonBehaviour({
     required Plan plan,
     required bool isJoin,
   }) async {
-    await _joinQuitPlanUseCase(localPlan: plan, isJoin: isJoin);
-    // todo emit error snackbar
+    final result = await _joinQuitPlanUseCase(localPlan: plan, isJoin: isJoin);
+    if (result.isLeft) {
+      _showSnackbar(
+        body: 'profile.join_error'.tr(),
+        snackbarType: SnackbarType.error,
+      );
+    }
   }
 
   /// Checks if [currentUser] is following [profileOwner]
   bool isFollowingChecker() {
-    final a = currentUser != null &&
+    return currentUser != null &&
         currentUser!.profile.following.contains(profileOwner!.id);
-    return a;
   }
 
   bool isJoinedChecker({required Plan plan}) =>
-      plan.joinedUsers.contains(profileOwner!.id);
+      plan.joinedUsers.contains(currentUser!.id);
 }
 
 sealed class ProfileViewState extends ViewState {}

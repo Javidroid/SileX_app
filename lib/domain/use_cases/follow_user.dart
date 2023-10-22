@@ -26,12 +26,6 @@ class FollowUserUseCase {
     return operation(
       username: currentUser.right.username,
       targetUser: targetUser.username,
-    ).fold(
-      (left) => Left(left),
-      (right) {
-        // targetUser.profile.followers.add(currentUser.)
-        return Right(right);
-      },
     );
   }
 }

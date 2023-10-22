@@ -57,8 +57,9 @@ class CreatePlanViewModel extends RootViewModel<CreatePlanViewState> {
       String? body,
       required SnackbarType snackbarType,
     }) showSnackbar,
-  ) =>
-      _showSnackbar = showSnackbar;
+  ) {
+    _showSnackbar = showSnackbar;
+  }
 
   Future<List<PlanCategory>> _getCategories() async {
     final result = await _categoryRepository.getCategories();
