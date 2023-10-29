@@ -1,4 +1,3 @@
-import 'package:either_dart/either.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 import 'package:tfg_v2/di/dependency_injection.dart';
@@ -92,10 +91,12 @@ class PlanDetailViewModel extends RootViewModel<PlanDetailViewState> {
   bool isJoinedChecker({required Plan plan}) =>
       plan.joinedUsers.contains(_currentUser!.id);
 
-  void deletePlan() {
-    final result = _planRepository.deletePlan(currentPlan.idPlan);
+  Future<void> deletePlan({
+    required void Function(BuildContext context) onError,
+  }) async {
+    final result = await _planRepository.deletePlan(currentPlan.idPlan);
     result.fold(
-      (left) => null, // TODO: indicar que no se ha borrado el plan bien
+      (left) => onError,
       (right) => null,
     );
   }

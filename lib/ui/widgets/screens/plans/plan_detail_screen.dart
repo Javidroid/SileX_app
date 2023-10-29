@@ -170,7 +170,9 @@ class PlanDetailScreen
                         TextButton(
                           onPressed: () => showConfirmDeletePlanDialog(
                             context: context,
-                            onAccept: viewModel.deletePlan,
+                            onAccept: () => viewModel.deletePlan(
+                              onError: (context) => showErrorSnackbar(context),
+                            ),
                           ),
                           child: Text(
                             'delete_plan.button_text'.tr(),
