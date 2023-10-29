@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tfg_v2/di/dependency_injection.dart';
 import 'package:tfg_v2/domain/model/user.dart';
+import 'package:tfg_v2/domain/use_cases/logout.dart';
 import 'package:tfg_v2/env/constants.dart';
 import 'package:tfg_v2/ui/navigation/navigator.dart';
 import 'package:tfg_v2/ui/styles/text_styles.dart';
@@ -23,11 +24,12 @@ class _NavigationDrawerWithUserHeaderState
     extends State<NavigationDrawerWithUserHeader> {
   TfgNavigator get navigator => getIt<TfgNavigator>();
 
+  LogoutUseCase get logout => getIt<LogoutUseCase>();
+
   User get loggedUser => widget.loggedUser;
 
   @override
   Widget build(BuildContext context) {
-    // TODO: get current user y guardarlo
     return Consumer<ThemeNotifier>(
       builder: (context, ThemeNotifier themeNotifier, child) {
         return Drawer(
@@ -93,11 +95,10 @@ class _NavigationDrawerWithUserHeaderState
                   style: TextStyles.cancelTextButton,
                 ),
                 onTap: () {
-                  // TODO: log out
+                  logout();
                 },
               ),
               const Divider(
-                // todo revisar barrita separadora cambiar según tema
                 color: Colors.black,
                 thickness: 1,
                 height: 20,
@@ -125,6 +126,7 @@ class _NavigationDrawerWithUserHeaderState
                 applicationIcon: const Icon(
                   Icons.info_outline,
                 ),
+                // todo: formalize
                 applicationName: 'app_title'.tr(),
                 applicationVersion: 'v1.0.0',
                 applicationLegalese: 'Javier Florido Cartolano (UEx, 2023)',

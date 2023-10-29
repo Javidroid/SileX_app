@@ -68,11 +68,11 @@ class _LoginScreenState extends RootScreenState<LoginViewState, LoginViewModel,
                         style: TextStyles.defaultStyle,
                       ),
                     ),
-                    Container(
+                    SizedBox(
                       height: 50,
                       width: 250,
                       child: ElevatedButton(
-                        onPressed: () {}, // todo: submit login
+                        onPressed: viewModel.submitLogin,
                         child: Text(
                           'login.login'.tr(),
                           style: TextStyles.defaultStyleBoldLarge,
