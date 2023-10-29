@@ -9,6 +9,8 @@ class TimeOutError extends AppError {}
 
 class UninitializedSharedPreferencesError extends AppError {}
 
+class NotLoggedInError extends AppError {}
+
 class UnknownError extends AppError {}
 
 class ServerError extends AppError {}

@@ -16,6 +16,7 @@ import 'package:tfg_v2/ui/widgets/screens/profile/edit_profile_screen.dart';
 import 'package:tfg_v2/ui/widgets/screens/profile/profile_screen.dart';
 import 'package:tfg_v2/ui/widgets/screens/search/search_screen.dart';
 import 'package:tfg_v2/ui/widgets/screens/settings/settings_screen.dart';
+import 'package:tfg_v2/ui/widgets/screens/splash/splash_screen.dart';
 
 final GlobalKey<NavigatorState> rootNavigatorKey =
     GlobalKey<NavigatorState>(debugLabel: 'root');
@@ -23,8 +24,13 @@ final GlobalKey<NavigatorState> rootNavigatorKey =
 class TfgNavigator {
   final GoRouter router = GoRouter(
     navigatorKey: rootNavigatorKey,
-    initialLocation: Routes.home, // todo check
+    initialLocation: Routes.splash,
     routes: <RouteBase>[
+      GoRoute(
+        path: Routes.splash,
+        builder: (BuildContext context, GoRouterState state) =>
+            const SplashScreen(),
+      ),
       GoRoute(
         path: Routes.login,
         builder: (BuildContext context, GoRouterState state) =>

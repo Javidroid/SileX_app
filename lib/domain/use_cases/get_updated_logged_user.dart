@@ -15,11 +15,10 @@ class GetUpdatedLoggedUserUseCase {
   GetUpdatedLoggedUserUseCase(this._userRepository);
 
   Future<Either<AppError, User>> call() async {
-    // TODO: check por qué se hace dos veces
     final username = await _userRepository.getCurrentLoggedUsername();
     if (username.isLeft) {
       navigator.toLogin();
-      return Left(UninitializedSharedPreferencesError());
+      return Left(NotLoggedInError());
     }
 
     final updatedUser = await _userRepository.getUser(username.right);

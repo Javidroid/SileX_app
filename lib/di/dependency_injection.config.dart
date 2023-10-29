@@ -18,7 +18,7 @@ import 'package:tfg_v2/data/datasource/remote/default_remote_datasource.dart'
     as _i12;
 import 'package:tfg_v2/data/datasource/remote/remote_datasource.dart' as _i11;
 import 'package:tfg_v2/data/services/api_service.dart' as _i3;
-import 'package:tfg_v2/di/dependency_injection.dart' as _i26;
+import 'package:tfg_v2/di/dependency_injection.dart' as _i27;
 import 'package:tfg_v2/domain/model/plan.dart' as _i10;
 import 'package:tfg_v2/domain/repository/social/category_repository.dart'
     as _i17;
@@ -26,11 +26,11 @@ import 'package:tfg_v2/domain/repository/social/plan_repository.dart' as _i21;
 import 'package:tfg_v2/domain/repository/social/user_repository.dart' as _i16;
 import 'package:tfg_v2/domain/use_cases/follow_user.dart' as _i18;
 import 'package:tfg_v2/domain/use_cases/get_updated_logged_user.dart' as _i19;
-import 'package:tfg_v2/domain/use_cases/user_join_quit_plan.dart' as _i22;
+import 'package:tfg_v2/domain/use_cases/user_join_quit_plan.dart' as _i23;
 import 'package:tfg_v2/env/environment.dart' as _i14;
 import 'package:tfg_v2/ui/navigation/navigator.dart' as _i15;
 import 'package:tfg_v2/ui/viewmodel/create_plan/create_plan_viewmodel.dart'
-    as _i23;
+    as _i24;
 import 'package:tfg_v2/ui/viewmodel/direct_messages/direct_messages_viewmodel.dart'
     as _i4;
 import 'package:tfg_v2/ui/viewmodel/home/home_viewmodel.dart' as _i20;
@@ -38,9 +38,10 @@ import 'package:tfg_v2/ui/viewmodel/login/login_viewmodel.dart' as _i7;
 import 'package:tfg_v2/ui/viewmodel/notifications/notifications_viewmodel.dart'
     as _i8;
 import 'package:tfg_v2/ui/viewmodel/plans/plan_detail_viewmodel.dart' as _i9;
-import 'package:tfg_v2/ui/viewmodel/plans/plans_viewmodel.dart' as _i24;
-import 'package:tfg_v2/ui/viewmodel/profile/profile_viewmodel.dart' as _i25;
+import 'package:tfg_v2/ui/viewmodel/plans/plans_viewmodel.dart' as _i25;
+import 'package:tfg_v2/ui/viewmodel/profile/profile_viewmodel.dart' as _i26;
 import 'package:tfg_v2/ui/viewmodel/search/search_viewmodel.dart' as _i13;
+import 'package:tfg_v2/ui/viewmodel/splash/splash_viewmodel.dart' as _i22;
 
 extension GetItInjectableX on _i1.GetIt {
   // initializes the registration of main-scope dependencies inside of GetIt
@@ -85,28 +86,30 @@ extension GetItInjectableX on _i1.GetIt {
         () => _i20.HomeViewModel(gh<_i19.GetUpdatedLoggedUserUseCase>()));
     gh.factory<_i21.PlanRepository>(
         () => _i21.PlanRepositoryImpl(gh<_i11.RemoteDatasource>()));
-    gh.factory<_i22.UserJoinQuitPlanUseCase>(() => _i22.UserJoinQuitPlanUseCase(
+    gh.factory<_i22.SplashViewModel>(
+        () => _i22.SplashViewModel(gh<_i19.GetUpdatedLoggedUserUseCase>()));
+    gh.factory<_i23.UserJoinQuitPlanUseCase>(() => _i23.UserJoinQuitPlanUseCase(
           gh<_i21.PlanRepository>(),
           gh<_i16.UserRepository>(),
         ));
-    gh.factory<_i23.CreatePlanViewModel>(() => _i23.CreatePlanViewModel(
+    gh.factory<_i24.CreatePlanViewModel>(() => _i24.CreatePlanViewModel(
           gh<_i17.CategoryRepository>(),
           gh<_i21.PlanRepository>(),
           gh<_i16.UserRepository>(),
         ));
-    gh.factory<_i24.PlansViewModel>(() => _i24.PlansViewModel(
+    gh.factory<_i25.PlansViewModel>(() => _i25.PlansViewModel(
           gh<_i21.PlanRepository>(),
-          gh<_i22.UserJoinQuitPlanUseCase>(),
+          gh<_i23.UserJoinQuitPlanUseCase>(),
           gh<_i16.UserRepository>(),
         ));
-    gh.factoryParam<_i25.ProfileViewModel, String, bool>((
+    gh.factoryParam<_i26.ProfileViewModel, String, bool>((
       userRef,
       isUserRefId,
     ) =>
-        _i25.ProfileViewModel(
+        _i26.ProfileViewModel(
           userRef: userRef,
           isUserRefId: isUserRefId,
-          joinQuitPlanUseCase: gh<_i22.UserJoinQuitPlanUseCase>(),
+          joinQuitPlanUseCase: gh<_i23.UserJoinQuitPlanUseCase>(),
           followUserUseCase: gh<_i18.FollowUserUseCase>(),
           getUpdatedLoggedUserUseCase: gh<_i19.GetUpdatedLoggedUserUseCase>(),
         ));
@@ -116,4 +119,4 @@ extension GetItInjectableX on _i1.GetIt {
 
 class _$ApiServiceModule extends _i3.ApiServiceModule {}
 
-class _$DiModule extends _i26.DiModule {}
+class _$DiModule extends _i27.DiModule {}
