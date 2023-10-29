@@ -2,8 +2,6 @@ import 'package:dio/dio.dart';
 import 'package:tfg_v2/domain/model/errors.dart';
 
 AppError errorsHandler(DioException error) {
-  print(error);
-
   if (error.type == DioExceptionType.connectionError) return NoInternetError();
 
   if (error.type == DioExceptionType.connectionTimeout ||

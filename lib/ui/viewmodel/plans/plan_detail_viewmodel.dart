@@ -1,4 +1,5 @@
 import 'package:either_dart/either.dart';
+import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 import 'package:tfg_v2/di/dependency_injection.dart';
 import 'package:tfg_v2/domain/model/errors.dart';
@@ -78,11 +79,12 @@ class PlanDetailViewModel extends RootViewModel<PlanDetailViewState> {
   Future<void> joinButtonBehaviour({
     required Plan plan,
     required bool isJoin,
+    required void Function(BuildContext context) onError,
   }) async {
     final result = await _joinQuitPlanUseCase(localPlan: plan, isJoin: isJoin);
     result.fold(
-      (left) => print('usecase error'),
-      (right) => print('usecase success'),
+      (left) => onError,
+      (right) => null,
     );
     refresh();
   }

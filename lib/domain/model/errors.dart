@@ -32,7 +32,7 @@ extension ErrorMessage on AppError {
   String get message {
     return switch (runtimeType) {
       NoInternetError => 'errors.no_internet'.tr(),
-      ServerError => 'errors.server'.tr(),
+      ServerError || TimeOutError => 'errors.server'.tr(),
       UnauthError => 'errors.unauth'.tr(),
       NotFoundError => 'errors.not_found'.tr(),
       ExpiredSessionError => 'errors.expired'.tr(),

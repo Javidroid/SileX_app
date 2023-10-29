@@ -14,6 +14,7 @@ import 'package:tfg_v2/ui/widgets/components/dialogs/delete_plan_dialog.dart';
 import 'package:tfg_v2/ui/widgets/components/error_card.dart';
 import 'package:tfg_v2/ui/widgets/components/profile/navigable_profile_pic.dart';
 import 'package:tfg_v2/ui/widgets/components/shimmer.dart';
+import 'package:tfg_v2/ui/widgets/components/snackbars/custom_snackbar.dart';
 import 'package:tfg_v2/ui/widgets/components/user_list/user_list.dart';
 import 'package:tfg_v2/ui/widgets/screens/root_screen.dart';
 
@@ -25,7 +26,7 @@ class PlanDetailScreen
 
   TfgNavigator get navigator => getIt<TfgNavigator>();
 
-  void showDeletePlanDialog({
+  void showConfirmDeletePlanDialog({
     required BuildContext context,
     required VoidCallback onAccept,
   }) {
@@ -35,6 +36,10 @@ class PlanDetailScreen
     );
   }
 
+  void showErrorSnackbar(BuildContext context) {
+    CustomSnackbar.show(snackbarType: SnackbarType.error, context: context);
+  }
+
   @override
   Widget buildView(
     BuildContext context,
@@ -42,8 +47,9 @@ class PlanDetailScreen
     PlanDetailViewModel viewModel,
   ) {
     return Scaffold(
-      appBar:
-          DefaultAppBar(title: (state is Success) ? state.plan.title : null),
+      appBar: DefaultAppBar(
+        title: (state is Success) ? state.plan.title : null,
+      ),
       body: RefreshIndicator(
         onRefresh: viewModel.refresh,
         child: switch (state) {
@@ -117,11 +123,15 @@ class PlanDetailScreen
                                   viewModel.joinButtonBehaviour(
                                 plan: state.plan,
                                 isJoin: true,
+                                onError: (context) =>
+                                    showErrorSnackbar(context),
                               ),
                               quitBehaviour: () =>
                                   viewModel.joinButtonBehaviour(
                                 plan: state.plan,
                                 isJoin: false,
+                                onError: (context) =>
+                                    showErrorSnackbar(context),
                               ),
                             )
                           : const AppShimmer(
@@ -158,7 +168,7 @@ class PlanDetailScreen
                           child: Divider(thickness: 2),
                         ),
                         TextButton(
-                          onPressed: () => showDeletePlanDialog(
+                          onPressed: () => showConfirmDeletePlanDialog(
                             context: context,
                             onAccept: viewModel.deletePlan,
                           ),

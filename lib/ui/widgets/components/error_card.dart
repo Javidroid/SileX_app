@@ -1,4 +1,3 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:tfg_v2/domain/model/errors.dart';
 import 'package:tfg_v2/ui/styles/colors.dart';
@@ -35,9 +34,7 @@ class ErrorCard extends StatelessWidget {
               ),
               BoxSpacer.v16(),
               Text(
-                isNoInternet
-                    ? 'errors.no_internet'.tr()
-                    : 'errors.generic'.tr(),
+                error.message,
                 style: TextStyles.noInternetText,
               ),
               if (onRetry != null)
