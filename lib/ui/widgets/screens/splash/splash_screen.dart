@@ -15,8 +15,9 @@ class SplashScreen extends RootScreen<SplashViewState, SplashViewModel> {
     return Scaffold(
       body: Center(
         child: switch (state) {
-          Loading _ => Image.asset('assets/images/splash.png'),
-          Success _ => Image.asset('assets/images/splash.png'),
+          // TODO: set splash
+          Loading _ => Image.asset('assets/images/logo.png'),
+          Success _ => Image.asset('assets/images/logo.png'),
           Error _ => ErrorCard(error: state.error),
         },
       ),

@@ -1,10 +1,35 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:tfg_v2/ui/styles/insets.dart';
+import 'package:tfg_v2/ui/styles/text_styles.dart';
 import 'package:tfg_v2/ui/viewmodel/login/login_viewmodel.dart';
+import 'package:tfg_v2/ui/widgets/components/appbars/default_appbar.dart';
+import 'package:tfg_v2/ui/widgets/components/box_spacer.dart';
 import 'package:tfg_v2/ui/widgets/components/error_card.dart';
+import 'package:tfg_v2/ui/widgets/components/forms/pass_field_input.dart';
+import 'package:tfg_v2/ui/widgets/components/forms/text_field_input.dart';
 import 'package:tfg_v2/ui/widgets/screens/root_screen.dart';
 
-class LoginScreen extends RootScreen<LoginViewState, LoginViewModel> {
+class LoginScreen extends RootScreenStateful<LoginViewState, LoginViewModel> {
   const LoginScreen({super.key});
+
+  @override
+  RootScreenState<LoginViewState, LoginViewModel,
+          RootScreenStateful<LoginViewState, LoginViewModel>>
+      createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends RootScreenState<LoginViewState, LoginViewModel,
+    RootScreenStateful<LoginViewState, LoginViewModel>> {
+  final _formKey = GlobalKey<FormState>();
+  bool _validated = false;
+
+  final usernameController = TextEditingController();
+  final passController = TextEditingController();
+
+  bool validateInput() {
+    return _formKey.currentState!.validate();
+  }
 
   @override
   Widget buildView(
@@ -13,16 +38,58 @@ class LoginScreen extends RootScreen<LoginViewState, LoginViewModel> {
     LoginViewModel viewModel,
   ) {
     return Scaffold(
+      appBar: DefaultAppBar(title: 'login.login'.tr()),
       body: switch (state) {
         Loading _ => const Center(
             child: CircularProgressIndicator(),
           ),
-        Success _ => const Center(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text('Login'),
-              ],
+        Success _ => Center(
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: Insets.a20,
+                child: Column(
+                  children: [
+                    TextFieldInput(
+                      label: 'login.username'.tr(),
+                      hintText: 'login.username_hint'.tr(),
+                      controller: usernameController,
+                    ),
+                    BoxSpacer.v16(),
+                    PassFieldInput(
+                      label: 'login.password'.tr(),
+                      controller: passController,
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        //TODO FORGOT PASSWORD SCREEN GOES HERE
+                      },
+                      child: Text(
+                        'login.forgot_password'.tr(),
+                        style: TextStyles.defaultStyle,
+                      ),
+                    ),
+                    Container(
+                      height: 50,
+                      width: 250,
+                      child: ElevatedButton(
+                        onPressed: () {}, // todo: submit login
+                        child: Text(
+                          'login.login'.tr(),
+                          style: TextStyles.defaultStyleBoldLarge,
+                        ),
+                      ),
+                    ),
+                    BoxSpacer.v40(),
+                    TextButton(
+                      onPressed: viewModel.toRegisterScreen,
+                      child: Text(
+                        'login.register_button'.tr(),
+                        style: TextStyles.defaultStyle,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ),
           ),
         Error _ => ErrorCard(error: state.error),

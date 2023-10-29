@@ -112,7 +112,8 @@ class TfgNavigator {
   );
 
   Future<void> toLogin() {
-    return router.push(Routes.login);
+    _clearStack();
+    return router.pushReplacement(Routes.login);
   }
 
   Future<void> toSignUp() {

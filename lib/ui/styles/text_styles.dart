@@ -20,6 +20,10 @@ class TextStyles {
     fontFamily: Fonts.futuraLight,
     fontSize: 18,
   );
+  static const TextStyle defaultStyleBoldLarge = TextStyle(
+    fontWeight: FontWeight.bold,
+    fontSize: 25,
+  );
 
   static const TextStyle whiteTextButton = TextStyle(
     color: Colors.white,

@@ -16,6 +16,8 @@ class LoginViewModel extends RootViewModel<LoginViewState> {
   }
 
 // TODO: set user in sharedPreferences
+
+  void toRegisterScreen() => navigator.toSignUp();
 }
 
 sealed class LoginViewState extends ViewState {}

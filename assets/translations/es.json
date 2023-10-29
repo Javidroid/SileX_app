@@ -46,6 +46,14 @@
       }
     }
   },
+  "login": {
+    "login": "Iniciar sesión",
+    "username": "Usuario",
+    "username_hint": "Introduce el nombre de usuario",
+    "password": "Contraseña",
+    "forgot_password": "He olvidado mi contraseña",
+    "register_button": "¿Primera vez? Regístrate aquí"
+  },
   "home": {
     "empty_list": "Todavía no hay ningún plan :(\n¿Por qué no eres la primera persona en crearlo?"
   },
