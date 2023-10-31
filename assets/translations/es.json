@@ -8,7 +8,8 @@
     "not_found": "No se ha podido encontrar lo que buscas",
     "unauth": "Necesitas autenticarte para entrar",
     "confict": "Ha ocurrido un conflicto",
-    "expired": "La sesión ha caducado"
+    "expired": "La sesión ha caducado",
+    "invalid_credentials": "Las credenciales no son correctas"
   },
   "components": {
     "buttons": {

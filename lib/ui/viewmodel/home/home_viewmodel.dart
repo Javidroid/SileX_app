@@ -9,9 +9,9 @@ import 'package:tfg_v2/ui/viewmodel/root_viewmodel.dart';
 
 @Injectable()
 class HomeViewModel extends RootViewModel<HomeViewState> {
-  final GetUpdatedLoggedUserUseCase _getCurrentUserUseCase;
+  final GetUpdatedLoggedUserUseCase _getUpdatedCurrentUser;
 
-  HomeViewModel(this._getCurrentUserUseCase) : super(Loading());
+  HomeViewModel(this._getUpdatedCurrentUser) : super(Loading());
 
   TfgNavigator get navigator => getIt<TfgNavigator>();
 
@@ -22,7 +22,7 @@ class HomeViewModel extends RootViewModel<HomeViewState> {
 
   void onStart() {
     emitValue(Loading());
-    final result = _getCurrentUserUseCase();
+    final result = _getUpdatedCurrentUser();
     result.fold(
       (left) => emitValue(Error(left)),
       (right) => emitValue(Success(loggedUser: right)),

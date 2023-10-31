@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:tfg_v2/ui/styles/text_styles.dart';
 
 class PassFieldInput extends StatefulWidget {
   const PassFieldInput({
@@ -26,6 +27,7 @@ class _PassFieldInputState extends State<PassFieldInput> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      style: TextStyles.textInputDefault,
       controller: widget.controller,
       validator: (value) {
         if ((value == null) || (value.isEmpty)) {

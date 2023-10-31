@@ -253,8 +253,8 @@ class DefaultRemoteDatasource implements RemoteDatasource {
       password: password,
     );
 
-    // determine error types
-    return creds != null ? const Right(true) : Left(UnauthError());
+    // todo determine error types
+    return creds != null ? const Right(true) : Left(InvalidCredentials());
   }
 
   @override

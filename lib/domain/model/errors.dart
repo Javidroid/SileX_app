@@ -23,6 +23,8 @@ class NotFoundError extends AppError {}
 
 class UnauthError extends AppError {}
 
+class InvalidCredentials extends AppError {}
+
 class ConflictError extends AppError {}
 
 class ExpiredSessionError extends AppError {}
@@ -40,6 +42,7 @@ extension ErrorMessage on AppError {
       ExpiredSessionError => 'errors.expired'.tr(),
       ConflictError => 'errors.conflict'.tr(),
       ForbiddenError => 'errors.forbidden'.tr(),
+      InvalidCredentials => 'errors.invalid_credentials'.tr(),
       _ => 'errors.generic'.tr(),
     };
   }

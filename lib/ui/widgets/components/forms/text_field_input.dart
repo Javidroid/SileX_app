@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:tfg_v2/ui/styles/text_styles.dart';
 
 class TextFieldInput extends StatelessWidget {
   const TextFieldInput({
@@ -19,6 +20,7 @@ class TextFieldInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      style: TextStyles.textInputDefault,
       controller: controller,
       validator: (value) {
         if ((value == null) || (value.isEmpty)) {

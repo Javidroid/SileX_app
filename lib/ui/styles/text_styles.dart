@@ -84,6 +84,11 @@ class TextStyles {
     fontWeight: FontWeight.bold,
   );
 
+  // Text input
+  static TextStyle textInputDefault = const TextStyle(
+    fontSize: 20,
+  );
+
   // FAQ
   static const TextStyle faqQuestion = TextStyle(
     fontSize: 20,
