@@ -9,6 +9,7 @@
 .history
 .svn/
 migrate_working_dir/
+.env/auth_keys.env
 
 # IntelliJ related
 *.iml

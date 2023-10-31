@@ -47,7 +47,7 @@ android {
         applicationId "es.unex.silex"
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
-        minSdkVersion flutter.minSdkVersion
+        minSdkVersion 21
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
@@ -64,11 +64,11 @@ android {
     productFlavors {
         dev {
             applicationIdSuffix ".dev"
-            resValue "string", "app_name", "tfg dev"
+            resValue "string", "app_name", "SileX dev"
             dimension "default"
         }
         prod {
-            resValue "string", "app_name", "tfg"
+            resValue "string", "app_name", "SileX"
             dimension "default"
         }
     }
