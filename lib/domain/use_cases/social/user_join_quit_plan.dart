@@ -20,7 +20,7 @@ class UserJoinQuitPlanUseCase {
     bool isJoin = true,
   }) async {
     final user = await _userRepository.getCurrentLoggedUser();
-    if (user.isLeft) return Left(UninitializedSharedPreferencesError());
+    if (user.isLeft) return Left(UserNotFoundInLocalError());
 
     final operation =
         isJoin ? _planRepository.signUpToPlan : _planRepository.quitFromPlan;

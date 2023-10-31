@@ -18,13 +18,24 @@ class LoginViewModel extends RootViewModel<LoginViewState> {
     emitValue(Success());
   }
 
-// TODO: set user in sharedPreferences
-
   void toRegisterScreen() => navigator.toSignUp();
 
-  void submitLogin() {
-    // todo
-    loginUseCase();
+  Future<void> submitLogin({
+    required String username,
+    required String password,
+  }) async {
+    emitValue(Loading());
+
+    final result = await loginUseCase(
+      username: username,
+      password: password,
+    );
+
+    // todo handle error cases
+    result.fold(
+      (left) => emitValue(Error(left)),
+      (right) => navigator.replaceToHome(),
+    );
   }
 }
 

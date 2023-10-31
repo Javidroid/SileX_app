@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:tfg_v2/ui/styles/insets.dart';
 import 'package:tfg_v2/ui/viewmodel/splash/splash_viewmodel.dart';
+import 'package:tfg_v2/ui/widgets/components/app_logo.dart';
 import 'package:tfg_v2/ui/widgets/components/error_card.dart';
 import 'package:tfg_v2/ui/widgets/screens/root_screen.dart';
 
@@ -14,12 +16,14 @@ class SplashScreen extends RootScreen<SplashViewState, SplashViewModel> {
   ) {
     return Scaffold(
       body: Center(
-        child: switch (state) {
-          // TODO: set splash
-          Loading _ => Image.asset('assets/images/logo.png'),
-          Success _ => Image.asset('assets/images/logo.png'),
-          Error _ => ErrorCard(error: state.error),
-        },
+        child: Padding(
+          padding: Insets.a20,
+          child: switch (state) {
+            // TODO: set splash
+            Loading _ || Success _ => const AppLogo(),
+            Error _ => ErrorCard(error: state.error),
+          },
+        ),
       ),
     );
   }

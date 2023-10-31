@@ -5,7 +5,7 @@ import 'package:tfg_v2/domain/model/errors.dart';
 
 abstract interface class AuthRepository {
   Future<Either<AppError, bool>> login({
-    required String usernameOrEmail,
+    required String username,
     required String password,
   });
 
@@ -26,10 +26,10 @@ class PlanRepositoryImpl implements AuthRepository {
 
   @override
   Future<Either<AppError, bool>> login({
-    required String usernameOrEmail,
+    required String username,
     required String password,
   }) {
-    return _remote.login(usernameOrEmail: usernameOrEmail, password: password);
+    return _remote.login(username: username, password: password);
   }
 
   @override

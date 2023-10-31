@@ -8,6 +8,8 @@ abstract interface class LocalDatasource {
 
   Future<Either<AppError, void>> saveCurrentLoggedUser(User user);
 
+  Future<Either<AppError, void>> clearCurrentLoggedUser();
+
   Future<Either<AppError, User>> getCurrentLoggedUser();
 
   Future<Either<AppError, String>> getCurrentLoggedUsername();

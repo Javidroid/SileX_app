@@ -7,7 +7,7 @@ class NoInternetError extends AppError {}
 
 class TimeOutError extends AppError {}
 
-class UninitializedSharedPreferencesError extends AppError {}
+class UserNotFoundInLocalError extends AppError {}
 
 class NotLoggedInError extends AppError {}
 

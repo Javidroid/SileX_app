@@ -18,7 +18,7 @@ class FollowUserUseCase {
     bool isFollow = true,
   }) async {
     final currentUser = await _userRepository.getCurrentLoggedUser();
-    if (currentUser.isLeft) return Left(UninitializedSharedPreferencesError());
+    if (currentUser.isLeft) return Left(UserNotFoundInLocalError());
 
     final operation =
         isFollow ? _userRepository.followUser : _userRepository.unfollowUser;

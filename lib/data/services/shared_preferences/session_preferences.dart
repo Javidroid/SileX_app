@@ -11,8 +11,10 @@ class SessionSharedPreferences {
   static void setCurrentUser({required User user}) async {
     final SharedPreferences sharedPref = await SharedPreferences.getInstance();
 
+    // set the username
     sharedPref.setString(_currentLoggedUsername, user.username);
 
+    // set the whole user object
     sharedPref.setString(
       _currentLoggedUser,
       jsonEncode(UserDto.fromModel(user).toJson()),
@@ -28,5 +30,11 @@ class SessionSharedPreferences {
     final SharedPreferences sharedPref = await SharedPreferences.getInstance();
     final json = sharedPref.getString(_currentLoggedUser);
     return json != null ? UserDto.fromJson(jsonDecode(json)).toModel() : null;
+  }
+
+  static void clear() async {
+    final SharedPreferences sharedPref = await SharedPreferences.getInstance();
+
+    sharedPref.clear();
   }
 }

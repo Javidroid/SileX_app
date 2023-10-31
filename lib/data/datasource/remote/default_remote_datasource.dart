@@ -5,6 +5,7 @@ import 'package:tfg_v2/data/dto/category_dto.dart';
 import 'package:tfg_v2/data/dto/plan_dto.dart';
 import 'package:tfg_v2/data/dto/user_dto.dart';
 import 'package:tfg_v2/data/services/api_service.dart';
+import 'package:tfg_v2/data/services/auth/auth0_services.dart';
 import 'package:tfg_v2/di/dependency_injection.dart';
 import 'package:tfg_v2/domain/model/errors.dart';
 import 'package:tfg_v2/domain/model/plan.dart';
@@ -16,8 +17,9 @@ import 'package:tfg_v2/env/environment.dart';
 class DefaultRemoteDatasource implements RemoteDatasource {
   final ApiService _apiService;
   final _baseUrl = getIt<TfgEnv>().baseRestUrl;
+  final AuthService _authService;
 
-  DefaultRemoteDatasource(this._apiService);
+  DefaultRemoteDatasource(this._apiService, this._authService);
 
   @override
   Future<Either<AppError, bool>> createPlan({
@@ -241,16 +243,25 @@ class DefaultRemoteDatasource implements RemoteDatasource {
 
   @override
   Future<Either<AppError, bool>> login({
-    required String usernameOrEmail,
+    required String username,
     required String password,
-  }) {
+  }) async {
     // TODO: implement login
     // todo: store credentials, renew, clear etc
-    throw UnimplementedError();
+    try {
+      final creds = _authService.login(
+        username: username,
+        password: password,
+      );
+      return const Right(true);
+    } catch (e) {
+      print(e);
+      return Left(UnauthError());
+    }
   }
 
   @override
-  Future<Either<AppError, bool>> logout() {
+  Future<Either<AppError, bool>> logout() async {
     // TODO: implement logout
     // todo: store credentials, renew, clear etc
 
@@ -262,7 +273,7 @@ class DefaultRemoteDatasource implements RemoteDatasource {
     required String username,
     required String email,
     required String password,
-  }) {
+  }) async {
     // TODO: implement signUp
     // todo: store credentials, renew, clear etc
 
