@@ -36,6 +36,7 @@ class ErrorCard extends StatelessWidget {
               Text(
                 error.message,
                 style: TextStyles.noInternetText,
+                textAlign: TextAlign.center,
               ),
               if (onRetry != null)
                 Column(

@@ -248,16 +248,13 @@ class DefaultRemoteDatasource implements RemoteDatasource {
   }) async {
     // TODO: implement login
     // todo: store credentials, renew, clear etc
-    try {
-      final creds = _authService.login(
-        username: username,
-        password: password,
-      );
-      return const Right(true);
-    } catch (e) {
-      print(e);
-      return Left(UnauthError());
-    }
+    final creds = await _authService.login(
+      username: username,
+      password: password,
+    );
+
+    // determine error types
+    return creds != null ? const Right(true) : Left(UnauthError());
   }
 
   @override

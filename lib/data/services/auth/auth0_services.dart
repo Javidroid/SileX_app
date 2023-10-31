@@ -36,7 +36,7 @@ class AuthService {
 
       return result;
     } catch (e) {
-      print(e);
+      print(e); // todo catch & transform errors
       return null;
     }
   }

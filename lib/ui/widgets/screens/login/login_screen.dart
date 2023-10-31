@@ -58,8 +58,8 @@ class _LoginScreenState extends RootScreenState<LoginViewState, LoginViewModel,
                             children: [
                               state is Error
                                   ? ErrorCard(error: state.error)
-                                  : const AppLogo(),
-                              BoxSpacer.v24(),
+                                  : const AppLogo(withText: true),
+                              BoxSpacer.v32(),
                             ],
                           )
                         : BoxSpacer.v16(),

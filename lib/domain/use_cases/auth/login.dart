@@ -27,8 +27,6 @@ class LoginUseCase {
       password: password,
     );
 
-    print(creds);
-
     // unexpected error on getting credentials
     if (creds.isLeft) return Left(creds.left);
 
