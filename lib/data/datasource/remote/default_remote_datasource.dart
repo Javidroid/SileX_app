@@ -238,4 +238,34 @@ class DefaultRemoteDatasource implements RemoteDatasource {
           List.of(right).map((e) => PlanDto.fromJson(e).toModel()).toList(),
     );
   }
+
+  @override
+  Future<Either<AppError, bool>> login({
+    required String usernameOrEmail,
+    required String password,
+  }) {
+    // TODO: implement login
+    // todo: store credentials, renew, clear etc
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<Either<AppError, bool>> logout() {
+    // TODO: implement logout
+    // todo: store credentials, renew, clear etc
+
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<Either<AppError, bool>> signUp({
+    required String username,
+    required String email,
+    required String password,
+  }) {
+    // TODO: implement signUp
+    // todo: store credentials, renew, clear etc
+
+    throw UnimplementedError();
+  }
 }

@@ -5,9 +5,9 @@ import 'package:tfg_v2/domain/model/plan.dart';
 import 'package:tfg_v2/domain/model/user.dart';
 import 'package:tfg_v2/domain/repository/social/plan_repository.dart';
 import 'package:tfg_v2/domain/repository/social/user_repository.dart';
-import 'package:tfg_v2/domain/use_cases/follow_user.dart';
-import 'package:tfg_v2/domain/use_cases/get_updated_logged_user.dart';
-import 'package:tfg_v2/domain/use_cases/user_join_quit_plan.dart';
+import 'package:tfg_v2/domain/use_cases/social/follow_user.dart';
+import 'package:tfg_v2/domain/use_cases/social/get_updated_logged_user.dart';
+import 'package:tfg_v2/domain/use_cases/social/user_join_quit_plan.dart';
 import 'package:tfg_v2/ui/navigation/navigator.dart';
 import 'package:tfg_v2/ui/viewmodel/root_viewmodel.dart';
 

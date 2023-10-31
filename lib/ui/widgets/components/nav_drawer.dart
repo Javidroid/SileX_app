@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tfg_v2/di/dependency_injection.dart';
 import 'package:tfg_v2/domain/model/user.dart';
-import 'package:tfg_v2/domain/use_cases/logout.dart';
+import 'package:tfg_v2/domain/use_cases/auth/logout.dart';
 import 'package:tfg_v2/env/constants.dart';
 import 'package:tfg_v2/ui/navigation/navigator.dart';
 import 'package:tfg_v2/ui/styles/text_styles.dart';

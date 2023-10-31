@@ -47,4 +47,16 @@ abstract interface class RemoteDatasource {
 
   Future<Either<AppError, List<Plan>>> getUserPlans(String username);
 
+  Future<Either<AppError, bool>> login({
+    required String usernameOrEmail,
+    required String password,
+  });
+
+  Future<Either<AppError, bool>> logout();
+
+  Future<Either<AppError, bool>> signUp({
+    required String username,
+    required String email,
+    required String password,
+  });
 }
