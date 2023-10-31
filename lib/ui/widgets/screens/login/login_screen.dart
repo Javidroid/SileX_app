@@ -25,6 +25,8 @@ class _LoginScreenState extends RootScreenState<LoginViewState, LoginViewModel,
   final _formKey = GlobalKey<FormState>();
   bool _validated = false; // TODO: validate
 
+  bool _keyboardVisible = false;
+
   final usernameController = TextEditingController();
   final passController = TextEditingController();
 
@@ -38,71 +40,76 @@ class _LoginScreenState extends RootScreenState<LoginViewState, LoginViewModel,
     LoginViewState state,
     LoginViewModel viewModel,
   ) {
+    _keyboardVisible = MediaQuery.of(context).viewInsets.bottom != 0;
     return Scaffold(
       appBar: DefaultAppBar(title: 'login.login'.tr()),
-      body: switch (state) {
-        Loading _ => const Center(
-            child: CircularProgressIndicator(),
-          ),
-        Success _ || Error _ => SingleChildScrollView(
-            child: Padding(
-              padding: Insets.a20,
-              child: Column(
-                children: [
-                  state is Error
-                      ? Column(
-                          children: [
-                            ErrorCard(error: state.error),
-                            BoxSpacer.v40(),
-                          ],
-                        )
-                      : const AppLogo(),
-                  TextFieldInput(
-                    label: 'login.username'.tr(),
-                    hintText: 'login.username_hint'.tr(),
-                    controller: usernameController,
-                  ),
-                  BoxSpacer.v16(),
-                  PassFieldInput(
-                    label: 'login.password'.tr(),
-                    controller: passController,
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      //TODO FORGOT PASSWORD SCREEN GOES HERE
-                    },
-                    child: Text(
-                      'login.forgot_password'.tr(),
-                      style: TextStyles.defaultStyle,
+      body: Center(
+        child: switch (state) {
+          Loading _ => const Center(
+              child: CircularProgressIndicator(),
+            ),
+          Success _ || Error _ => SingleChildScrollView(
+              child: Padding(
+                padding: Insets.a20,
+                child: Column(
+                  children: [
+                    !_keyboardVisible
+                        ? Column(
+                            children: [
+                              state is Error
+                                  ? ErrorCard(error: state.error)
+                                  : const AppLogo(),
+                              BoxSpacer.v24(),
+                            ],
+                          )
+                        : BoxSpacer.v16(),
+                    TextFieldInput(
+                      label: 'login.username'.tr(),
+                      hintText: 'login.username_hint'.tr(),
+                      controller: usernameController,
                     ),
-                  ),
-                  SizedBox(
-                    height: 50,
-                    width: 250,
-                    child: ElevatedButton(
-                      onPressed: () => viewModel.submitLogin(
-                        username: usernameController.text,
-                        password: passController.text,
-                      ),
+                    BoxSpacer.v16(),
+                    PassFieldInput(
+                      label: 'login.password'.tr(),
+                      controller: passController,
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        //TODO FORGOT PASSWORD SCREEN GOES HERE
+                      },
                       child: Text(
-                        'login.login'.tr(),
-                        style: TextStyles.defaultStyleBoldLarge,
+                        'login.forgot_password'.tr(),
+                        style: TextStyles.defaultStyle,
                       ),
                     ),
-                  ),
-                  BoxSpacer.v40(),
-                  TextButton(
-                    onPressed: viewModel.toRegisterScreen,
-                    child: Text(
-                      'login.register_button'.tr(),
-                      style: TextStyles.defaultStyle,
+                    SizedBox(
+                      height: 50,
+                      width: 250,
+                      child: ElevatedButton(
+                        onPressed: () => viewModel.submitLogin(
+                          username: usernameController.text,
+                          password: passController.text,
+                        ),
+                        child: Text(
+                          'login.login'.tr(),
+                          style: TextStyles.defaultStyleBoldLarge,
+                        ),
+                      ),
                     ),
-                  ),
-                ],
+                    BoxSpacer.v40(),
+                    TextButton(
+                      onPressed: viewModel.toRegisterScreen,
+                      child: Text(
+                        'login.register_button'.tr(),
+                        style: TextStyles.defaultStyle,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
-          ),
-      },
+        },
+      ),
     );
   }
 }
