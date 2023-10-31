@@ -52,7 +52,7 @@ class ProfileViewModel extends RootViewModel<ProfileViewState> {
   }
 
   Future<void> refreshProfile() async {
-    emitValue(Loading());
+    // emitValue(Loading());
     final tempCurrentUser = await _getUpdatedLoggedUserUseCase();
     if (tempCurrentUser.isLeft) {
       return emitValue(Error(error: tempCurrentUser.left));

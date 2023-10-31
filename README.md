@@ -24,13 +24,13 @@ To run the app in a particular environment, run:
 - dev:
 
 ```bash
-flutter run --flavor dev --dart-define-from-file=.env/dev.json
+flutter run --flavor dev --dart-define-from-file=auth_keys.env/dev.json
 ```
 
 - prod:
 
 ```bash
-flutter run --flavor prod --dart-define-from-file=.env/prod.json
+flutter run --flavor prod --dart-define-from-file=auth_keys.env/prod.json
 ```
 
 Also, you can configure your IDE to automatically run a defined behaviour

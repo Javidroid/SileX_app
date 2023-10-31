@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:provider/provider.dart';
 import 'package:tfg_v2/di/dependency_injection.dart';
 import 'package:tfg_v2/ui/navigation/navigator.dart';
@@ -9,6 +10,7 @@ void main() async {
   configureDependencies(env: const String.fromEnvironment("ENVIRONMENT"));
   await EasyLocalization.ensureInitialized();
   WidgetsFlutterBinding.ensureInitialized();
+  await dotenv.load(fileName: ".env/auth_keys.env");
 
   runApp(
     EasyLocalization(
