@@ -67,6 +67,7 @@ class _LoginScreenState extends RootScreenState<LoginViewState, LoginViewModel,
                       label: 'login.username'.tr(),
                       hintText: 'login.username_hint'.tr(),
                       controller: usernameController,
+                      // TODO: add regex 3-25 chars
                     ),
                     BoxSpacer.v16(),
                     PassFieldInput(

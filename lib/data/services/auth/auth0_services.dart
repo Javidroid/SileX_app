@@ -29,11 +29,6 @@ class AuthService {
         connectionOrRealm: _connection,
       );
 
-      print(result.accessToken);
-      print(result.expiresAt);
-      print(result.user.name);
-      print(result.user.email);
-
       return result;
     } catch (e) {
       print(e); // todo catch & transform errors
