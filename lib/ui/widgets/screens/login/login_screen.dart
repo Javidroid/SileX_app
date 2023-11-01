@@ -53,16 +53,23 @@ class _LoginScreenState extends RootScreenState<LoginViewState, LoginViewModel,
                 padding: Insets.a20,
                 child: Column(
                   children: [
-                    !_keyboardVisible
-                        ? Column(
-                            children: [
-                              state is Error
-                                  ? ErrorCard(error: state.error)
-                                  : const AppLogo(withText: true),
-                              BoxSpacer.v32(),
-                            ],
-                          )
-                        : BoxSpacer.v16(),
+                    AnimatedScale(
+                      scale: _keyboardVisible ? 0.0 : 1.0,
+                      duration: const Duration(milliseconds: 200),
+                      child: Visibility(
+                        visible: !_keyboardVisible,
+                        maintainAnimation: true,
+                        maintainState: true,
+                        child: Column(
+                          children: [
+                            state is Error
+                                ? ErrorCard(error: state.error)
+                                : const AppLogo(withText: true),
+                            BoxSpacer.v32(),
+                          ],
+                        ),
+                      ),
+                    ),
                     TextFieldInput(
                       label: 'login.username'.tr(),
                       hintText: 'login.username_hint'.tr(),
@@ -97,7 +104,7 @@ class _LoginScreenState extends RootScreenState<LoginViewState, LoginViewModel,
                         ),
                       ),
                     ),
-                    BoxSpacer.v40(),
+                    BoxSpacer.v32(),
                     TextButton(
                       onPressed: viewModel.toRegisterScreen,
                       child: Text(
