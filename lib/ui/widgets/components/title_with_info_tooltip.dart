@@ -30,6 +30,7 @@ class TitleWithInfoTooltip extends StatelessWidget {
               infoText: infoTooltip,
               iconData: Icons.help,
               iconColor: colorScheme.secondary,
+              infoTextStyle: TextStyles.infoDescription,
             ),
           ],
         ),

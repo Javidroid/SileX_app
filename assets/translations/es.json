@@ -57,9 +57,20 @@
   },
   "signup": {
     "signup": "Registrarse",
+    "core_data_title": "Datos de inicio de sesión",
+    "core_data_tooltip": "Estos datos son los que se usarán para acceder a tu cuenta.\nEl nombre de usuario y el correo tienen que ser únicos. Debes utilizar el correo de tu universidad.",
     "username": "Usuario",
     "username_hint": "Introduce el nombre de usuario",
-    "password": "Contraseña"
+    "mail": "Correo",
+    "password": "Contraseña",
+    "user_info_title": "Información para tu perfil",
+    "user_info_tooltip": "Estos son los datos que se mostrarán a los demás usuarios. Los podrás cambiar más adelante.",
+    "name": "Nombre",
+    "surname": "Apellidos",
+    "description": "Descripción",
+    "degree": "Grado",
+    "center": "Centro (Facultad o escuela)",
+    "to_login_button": "¿Ya tienes cuenta? Inicia sesión"
   },
   "home": {
     "empty_list": "Todavía no hay ningún plan :(\n¿Por qué no eres la primera persona en crearlo?"

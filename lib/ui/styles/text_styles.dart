@@ -66,6 +66,9 @@ class TextStyles {
     fontSize: 20,
     fontWeight: FontWeight.bold,
   );
+  static const TextStyle infoDescription = TextStyle(
+    fontSize: 20,
+  );
   static const TextStyle createPlanText = TextStyle(
     fontSize: 20,
   );

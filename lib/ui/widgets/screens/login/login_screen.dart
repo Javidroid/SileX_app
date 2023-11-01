@@ -4,12 +4,13 @@ import 'package:tfg_v2/ui/styles/insets.dart';
 import 'package:tfg_v2/ui/styles/text_styles.dart';
 import 'package:tfg_v2/ui/viewmodel/login/login_viewmodel.dart';
 import 'package:tfg_v2/ui/widgets/components/app_logo.dart';
-import 'package:tfg_v2/ui/widgets/components/appbars/default_appbar.dart';
 import 'package:tfg_v2/ui/widgets/components/box_spacer.dart';
 import 'package:tfg_v2/ui/widgets/components/error_card.dart';
 import 'package:tfg_v2/ui/widgets/components/forms/pass_field_input.dart';
 import 'package:tfg_v2/ui/widgets/components/forms/text_field_input.dart';
 import 'package:tfg_v2/ui/widgets/screens/root_screen.dart';
+
+import '../../components/appbars/default_appbar.dart';
 
 class LoginScreen extends RootScreenStateful<LoginViewState, LoginViewModel> {
   const LoginScreen({super.key});
@@ -44,80 +45,85 @@ class _LoginScreenState extends RootScreenState<LoginViewState, LoginViewModel,
     return Scaffold(
       appBar: DefaultAppBar(title: 'login.login'.tr()),
       body: Center(
-        child: switch (state) {
-          Loading _ => const CircularProgressIndicator(),
-          Success _ || Error _ => SingleChildScrollView(
-              child: Padding(
-                padding: Insets.a20,
-                child: Column(
-                  children: [
-                    AnimatedScale(
-                      scale: _keyboardVisible ? 0.0 : 1.0,
-                      duration: const Duration(milliseconds: 200),
-                      child: Visibility(
-                        visible: !_keyboardVisible,
-                        maintainAnimation: true,
-                        maintainState: true,
-                        child: Column(
-                          children: [
-                            state is Error
-                                ? ErrorCard(error: state.error)
-                                : const Hero(
-                                    tag: 'main-logo',
-                                    child: AppLogo(withText: true),
-                                  ),
-                            BoxSpacer.v32(),
-                          ],
+        child: SafeArea(
+          child: switch (state) {
+            Loading _ => const CircularProgressIndicator(),
+            Success _ || Error _ => SingleChildScrollView(
+                child: Padding(
+                  padding: Insets.a20,
+                  child: Column(
+                    children: [
+                      AnimatedScale(
+                        scale: _keyboardVisible ? 0.0 : 1.0,
+                        duration: const Duration(milliseconds: 200),
+                        child: Visibility(
+                          visible: !_keyboardVisible,
+                          maintainAnimation: true,
+                          maintainState: true,
+                          child: Column(
+                            children: [
+                              state is Error
+                                  ? GestureDetector(
+                                      onTap: viewModel.resetError,
+                                      child: ErrorCard(error: state.error),
+                                    )
+                                  : const Hero(
+                                      tag: 'main-logo',
+                                      child: AppLogo(withText: true),
+                                    ),
+                              BoxSpacer.v32(),
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                    TextFieldInput(
-                      label: 'login.username'.tr(),
-                      hintText: 'login.username_hint'.tr(),
-                      controller: usernameController,
-                      // TODO: add regex 3-25 chars
-                    ),
-                    BoxSpacer.v16(),
-                    PassFieldInput(
-                      label: 'login.password'.tr(),
-                      controller: passController,
-                    ),
-                    TextButton(
-                      onPressed: () {
-                        //TODO FORGOT PASSWORD SCREEN GOES HERE
-                      },
-                      child: Text(
-                        'login.forgot_password'.tr(),
-                        style: TextStyles.defaultStyle,
+                      TextFieldInput(
+                        label: 'login.username'.tr(),
+                        hintText: 'login.username_hint'.tr(),
+                        controller: usernameController,
+                        // TODO: add regex 3-25 chars
                       ),
-                    ),
-                    SizedBox(
-                      height: 50,
-                      width: 250,
-                      child: ElevatedButton(
-                        onPressed: () => viewModel.submitLogin(
-                          username: usernameController.text,
-                          password: passController.text,
-                        ),
+                      BoxSpacer.v16(),
+                      PassFieldInput(
+                        label: 'login.password'.tr(),
+                        controller: passController,
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          //TODO FORGOT PASSWORD SCREEN GOES HERE
+                        },
                         child: Text(
-                          'login.login'.tr(),
-                          style: TextStyles.defaultStyleBoldLarge,
+                          'login.forgot_password'.tr(),
+                          style: TextStyles.defaultStyle,
                         ),
                       ),
-                    ),
-                    BoxSpacer.v32(),
-                    TextButton(
-                      onPressed: viewModel.toRegisterScreen,
-                      child: Text(
-                        'login.register_button'.tr(),
-                        style: TextStyles.defaultStyle,
+                      SizedBox(
+                        height: 50,
+                        width: 250,
+                        child: ElevatedButton(
+                          onPressed: () => viewModel.submitLogin(
+                            username: usernameController.text,
+                            password: passController.text,
+                          ),
+                          child: Text(
+                            'login.login'.tr(),
+                            style: TextStyles.defaultStyleBoldLarge,
+                          ),
+                        ),
                       ),
-                    ),
-                  ],
+                      BoxSpacer.v32(),
+                      TextButton(
+                        onPressed: viewModel.toRegisterScreen,
+                        child: Text(
+                          'login.register_button'.tr(),
+                          style: TextStyles.defaultStyleBold,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
-            ),
-        },
+          },
+        ),
       ),
     );
   }

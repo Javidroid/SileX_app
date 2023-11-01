@@ -10,17 +10,26 @@ class SignUpViewModel extends RootViewModel<SignUpViewState> {
 
   SignUpViewModel() : super(Loading());
 
+  DateTime get date => _date;
+  DateTime _date = DateTime.now();
+
+
+
   @override
   void onAttach() async {
     emitValue(Success());
   }
 
-  Future<void> submitSignUp({
-    required String username,
-    required String password,
-  }) async {
+  void toLoginScreen() => navigator.pop();
+
+  Future<void> submitSignUp() async {
     emitValue(Loading());
     // todo
+  }
+
+  void setDate(DateTime date) {
+    _date = date;
+    emitValue(Success());
   }
 }
 

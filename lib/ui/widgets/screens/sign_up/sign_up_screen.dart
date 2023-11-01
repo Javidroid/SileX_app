@@ -7,8 +7,7 @@ import 'package:tfg_v2/ui/widgets/components/app_logo.dart';
 import 'package:tfg_v2/ui/widgets/components/appbars/default_appbar.dart';
 import 'package:tfg_v2/ui/widgets/components/box_spacer.dart';
 import 'package:tfg_v2/ui/widgets/components/error_card.dart';
-import 'package:tfg_v2/ui/widgets/components/forms/pass_field_input.dart';
-import 'package:tfg_v2/ui/widgets/components/forms/text_field_input.dart';
+import 'package:tfg_v2/ui/widgets/components/forms/user_form.dart';
 import 'package:tfg_v2/ui/widgets/screens/root_screen.dart';
 
 class SignUpScreen
@@ -23,17 +22,16 @@ class SignUpScreen
 
 class _SignUpScreenState extends RootScreenState<SignUpViewState,
     SignUpViewModel, RootScreenStateful<SignUpViewState, SignUpViewModel>> {
-  final _formKey = GlobalKey<FormState>();
-  bool _validated = false; // TODO: validate
-
   bool _keyboardVisible = false;
 
   final usernameController = TextEditingController();
   final passController = TextEditingController();
-
-  bool validateInput() {
-    return _formKey.currentState!.validate();
-  }
+  final mailController = TextEditingController();
+  final nameController = TextEditingController();
+  final surnameController = TextEditingController();
+  final descriptionController = TextEditingController();
+  final degreeController = TextEditingController();
+  final centerController = TextEditingController();
 
   @override
   Widget buildView(
@@ -60,60 +58,34 @@ class _SignUpScreenState extends RootScreenState<SignUpViewState,
                       visible: !_keyboardVisible,
                       maintainAnimation: true,
                       maintainState: true,
-                      child: Column(
-                        children: [
-                          state is Error
-                              ? ErrorCard(error: state.error)
-                              : const Hero(
-                                  tag: 'main-logo',
-                                  child: AppLogo(size: 75),
-                                ),
-                          BoxSpacer.v32(),
-                        ],
-                      ),
+                      child: state is Error
+                          ? ErrorCard(error: state.error)
+                          : const Hero(
+                              tag: 'main-logo',
+                              child: AppLogo(size: 75),
+                            ),
                     ),
                   ),
-                  TextFieldInput(
-                    label: 'SignUp.username'.tr(),
-                    hintText: 'SignUp.username_hint'.tr(),
-                    controller: usernameController,
-                    // TODO: add regex 3-25 chars
+                  TextButton(
+                    onPressed: viewModel.toLoginScreen,
+                    child: Text(
+                      'signup.to_login_button'.tr(),
+                      style: TextStyles.defaultStyleBold,
+                    ),
                   ),
                   BoxSpacer.v16(),
-                  PassFieldInput(
-                    label: 'SignUp.password'.tr(),
-                    controller: passController,
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      //TODO FORGOT PASSWORD SCREEN GOES HERE
-                    },
-                    child: Text(
-                      'SignUp.forgot_password'.tr(),
-                      style: TextStyles.defaultStyle,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 50,
-                    width: 250,
-                    child: ElevatedButton(
-                      onPressed: () => viewModel.submitSignUp(
-                        username: usernameController.text,
-                        password: passController.text,
-                      ),
-                      child: Text(
-                        'SignUp.SignUp'.tr(),
-                        style: TextStyles.defaultStyleBoldLarge,
-                      ),
-                    ),
-                  ),
-                  BoxSpacer.v32(),
-                  TextButton(
-                    onPressed: () {},
-                    child: Text(
-                      'SignUp.register_button'.tr(),
-                      style: TextStyles.defaultStyle,
-                    ),
+                  UserForm(
+                    usernameController: usernameController,
+                    passController: passController,
+                    mailController: mailController,
+                    nameController: nameController,
+                    surnameController: surnameController,
+                    descriptionController: descriptionController,
+                    degreeController: degreeController,
+                    centerController: centerController,
+                    onSubmit: viewModel.submitSignUp,
+                    date: viewModel.date,
+                    setDate: viewModel.setDate,
                   ),
                 ],
               ),

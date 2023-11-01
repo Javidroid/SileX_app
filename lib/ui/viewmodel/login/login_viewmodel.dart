@@ -11,14 +11,14 @@ class LoginViewModel extends RootViewModel<LoginViewState> {
 
   final LoginUseCase loginUseCase;
 
-  LoginViewModel(this.loginUseCase) : super(Loading());
+  LoginViewModel(this.loginUseCase) : super(Success());
 
   @override
-  void onAttach() async {
-    emitValue(Success());
-  }
+  void onAttach() async {}
 
   void toRegisterScreen() => navigator.toSignUp();
+
+  void resetError() => emitValue(Success());
 
   Future<void> submitLogin({
     required String username,
