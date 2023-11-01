@@ -45,9 +45,7 @@ class _LoginScreenState extends RootScreenState<LoginViewState, LoginViewModel,
       appBar: DefaultAppBar(title: 'login.login'.tr()),
       body: Center(
         child: switch (state) {
-          Loading _ => const Center(
-              child: CircularProgressIndicator(),
-            ),
+          Loading _ => const CircularProgressIndicator(),
           Success _ || Error _ => SingleChildScrollView(
               child: Padding(
                 padding: Insets.a20,
@@ -64,7 +62,10 @@ class _LoginScreenState extends RootScreenState<LoginViewState, LoginViewModel,
                           children: [
                             state is Error
                                 ? ErrorCard(error: state.error)
-                                : const AppLogo(withText: true),
+                                : const Hero(
+                                    tag: 'main-logo',
+                                    child: AppLogo(withText: true),
+                                  ),
                             BoxSpacer.v32(),
                           ],
                         ),

@@ -8,7 +8,7 @@ import 'package:tfg_v2/ui/widgets/screens/direct_messages/direct_messages_screen
 import 'package:tfg_v2/ui/widgets/screens/faq/faq_screen.dart';
 import 'package:tfg_v2/ui/widgets/screens/home/home_screen.dart';
 import 'package:tfg_v2/ui/widgets/screens/login/login_screen.dart';
-import 'package:tfg_v2/ui/widgets/screens/login/register_screen.dart';
+import 'package:tfg_v2/ui/widgets/screens/sign_up/sign_up_screen.dart';
 import 'package:tfg_v2/ui/widgets/screens/notifications/notifications_screen.dart';
 import 'package:tfg_v2/ui/widgets/screens/plans/plan_detail_screen.dart';
 import 'package:tfg_v2/ui/widgets/screens/plans/plans_screen.dart';
