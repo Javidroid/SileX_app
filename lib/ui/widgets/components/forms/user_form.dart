@@ -14,24 +14,30 @@ class UserForm extends StatefulWidget {
     required this.passController,
     required this.mailController,
     required this.nameController,
-    required this.surnameController,
+    required this.surnamesController,
     required this.descriptionController,
     required this.degreeController,
     required this.centerController,
     required this.onSubmit,
-    required this.date,
-    required this.setDate,
   });
 
-  final VoidCallback onSubmit; // TODO: specify function
+  final Function({
+    required String center,
+    required String degree,
+    required DateTime birthday,
+    required String description,
+    required String email,
+    required String name,
+    required String password,
+    required String surnames,
+    required String username,
+  }) onSubmit; // TODO: specify function
 
-  final DateTime date;
-  final Function(DateTime) setDate;
   final TextEditingController usernameController,
       passController,
       mailController,
       nameController,
-      surnameController,
+      surnamesController,
       descriptionController,
       degreeController,
       centerController;
@@ -44,6 +50,8 @@ class _UserFormState extends State<UserForm> {
   final _formKey = GlobalKey<FormState>();
   bool _validated = false; // TODO: validate
 
+  DateTime _date = DateTime.now();
+
   bool validateInput() {
     return _formKey.currentState!.validate();
   }
@@ -52,6 +60,7 @@ class _UserFormState extends State<UserForm> {
   Widget build(BuildContext context) {
     return Form(
       key: _formKey,
+      onChanged: () => setState(() => _validated = validateInput()),
       child: Column(
         children: [
           TitleWithInfoTooltip(
@@ -88,7 +97,7 @@ class _UserFormState extends State<UserForm> {
           BoxSpacer.v16(),
           TextFieldInput(
             label: 'signup.surname'.tr(),
-            controller: widget.surnameController,
+            controller: widget.surnamesController,
           ),
           BoxSpacer.v16(),
           TextFieldInput(
@@ -96,31 +105,38 @@ class _UserFormState extends State<UserForm> {
             controller: widget.descriptionController,
           ),
           BoxSpacer.v16(),
-          TextButton(
-            child: Row(
-              children: [
-                Text(
-                  DateTimeUtils.dateTimeToString(widget.date),
-                  style: TextStyles.createPlanTextButton,
-                ),
-                BoxSpacer.h8(),
-                const Icon(Icons.edit),
-              ],
-            ),
-            onPressed: () async {
-              widget.setDate(
-                await showDatePicker(
-                      context: context,
-                      initialEntryMode: DatePickerEntryMode.inputOnly,
-                      initialDate: widget.date,
-                      firstDate: DateTime(
-                        DateTime.now().year - 75,
+          Row(
+            children: [
+              BoxSpacer.h8(),
+              Text('signup.birthday'.tr(), style: TextStyles.defaultStyleBold),
+              TextButton(
+                child: Row(
+                  children: [
+                    Text(
+                      DateTimeUtils.dateTimeToString(
+                        date: _date,
+                        appendWeekday: false,
                       ),
-                      lastDate: DateTime.now(),
-                    ) ??
-                    DateTime.now(),
-              );
-            },
+                      style: TextStyles.createPlanTextButton,
+                    ),
+                    BoxSpacer.h8(),
+                    const Icon(Icons.edit),
+                  ],
+                ),
+                onPressed: () async {
+                  _date = await showDatePicker(
+                        context: context,
+                        initialEntryMode: DatePickerEntryMode.inputOnly,
+                        initialDate: _date,
+                        firstDate: DateTime(
+                          DateTime.now().year - 75,
+                        ),
+                        lastDate: DateTime.now(),
+                      ) ??
+                      DateTime.now();
+                },
+              ),
+            ],
           ),
           BoxSpacer.v16(),
           TextFieldInput(
@@ -137,7 +153,19 @@ class _UserFormState extends State<UserForm> {
             height: 50,
             width: 250,
             child: ElevatedButton(
-              onPressed: () => widget.onSubmit(),
+              onPressed: _validated
+                  ? () => widget.onSubmit(
+                        username: widget.usernameController.text,
+                        password: widget.passController.text,
+                        email: widget.mailController.text,
+                        description: widget.descriptionController.text,
+                        birthday: _date,
+                        center: widget.centerController.text,
+                        degree: widget.degreeController.text,
+                        name: widget.nameController.text,
+                        surnames: widget.surnamesController.text,
+                      )
+                  : null,
               child: Text(
                 'signup.signup'.tr(),
                 style: TextStyles.defaultStyleBoldLarge,

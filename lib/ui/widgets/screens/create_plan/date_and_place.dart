@@ -48,7 +48,7 @@ class CreatePlanDateAndPlace extends StatelessWidget {
                       child: Row(
                         children: [
                           Text(
-                            DateTimeUtils.dateTimeToString(date),
+                            DateTimeUtils.dateTimeToString(date: date),
                             style: TextStyles.createPlanTextButton,
                           ),
                           BoxSpacer.h8(),

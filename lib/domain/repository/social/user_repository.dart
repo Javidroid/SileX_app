@@ -10,6 +10,8 @@ abstract interface class UserRepository {
 
   Future<Either<AppError, User>> getUserById(String userId);
 
+  Future<Either<AppError, bool>> checkUserExists(String username);
+
   Future<Either<AppError, User>> getCurrentLoggedUser();
 
   Future<Either<AppError, void>> saveCurrentLoggedUser(User user);
@@ -20,7 +22,7 @@ abstract interface class UserRepository {
 
   Future<Either<AppError, List<User>>> getUserListById(List<String> ids);
 
-  Future<Either<AppError, bool>> createUser(User username);
+  Future<Either<AppError, bool>> createUser(UserCreate user);
 
   Future<Either<AppError, bool>> updateUser(User username, String preUsername);
 
@@ -45,9 +47,8 @@ class UserRepositoryImpl implements UserRepository {
   UserRepositoryImpl(this._remote, this._local);
 
   @override
-  Future<Either<AppError, bool>> createUser(User username) {
-    // TODO: implement createUser
-    throw UnimplementedError();
+  Future<Either<AppError, bool>> createUser(UserCreate user) {
+    return _remote.createUser(user: user);
   }
 
   @override
@@ -112,5 +113,10 @@ class UserRepositoryImpl implements UserRepository {
   @override
   Future<Either<AppError, void>> clearCurrentLoggedUser() {
     return _local.clearCurrentLoggedUser();
+  }
+
+  @override
+  Future<Either<AppError, bool>> checkUserExists(String username) {
+    return _remote.checkUserExists(username);
   }
 }

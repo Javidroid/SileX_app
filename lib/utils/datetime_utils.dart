@@ -15,8 +15,13 @@ class DateTimeUtils {
     return DateTime(date.year, date.month, date.day, time.hour, time.minute);
   }
 
-  static String dateTimeToString(DateTime date) {
-    return "${getTranslatedWeekday(date.weekday)}, ${date.day}/${date.month}/${date.year}";
+  static String dateTimeToString({
+    required DateTime date,
+    bool appendWeekday = true,
+  }) {
+    return appendWeekday
+        ? "${getTranslatedWeekday(date.weekday)}, ${date.day}/${date.month}/${date.year}"
+        : "${date.day}/${date.month}/${date.year}";
   }
 
   static String timeOfDayToString(TimeOfDay time) {

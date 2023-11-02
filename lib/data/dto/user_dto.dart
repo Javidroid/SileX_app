@@ -68,3 +68,74 @@ class UserDto {
     );
   }
 }
+
+class UserCreateDto {
+  String username;
+  String email;
+  String name;
+  String surnames;
+  String description;
+  DateTime birthDate;
+  String profilePic;
+  String university;
+  String degree;
+  String center;
+
+  UserCreateDto({
+    required this.username,
+    required this.email,
+    required this.name,
+    required this.surnames,
+    required this.description,
+    required this.birthDate,
+    required this.profilePic,
+    required this.university,
+    required this.degree,
+    required this.center,
+  });
+
+  factory UserCreateDto.fromModel(UserCreate user) {
+    return UserCreateDto(
+      username: user.username,
+      email: user.email,
+      name: user.name,
+      surnames: user.surnames,
+      description: user.description,
+      birthDate: user.birthDate,
+      profilePic: user.profilePic,
+      university: user.university,
+      degree: user.degree,
+      center: user.center,
+    );
+  }
+
+  // When calling createUser, username is sent on path
+  Map<String, dynamic> toCreateUserJson() {
+    return {
+      "email": email,
+      "name": name,
+      "surnames": surnames,
+      "description": description,
+      "birthDate": birthDate.toIso8601String(),
+      "profilePic": profilePic,
+      "university": university,
+      "degree": degree,
+      "center": center,
+    };
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      "username": username,
+      "email": email,
+      "name": name,
+      "surnames": surnames,
+      "description": description,
+      "birthDate": birthDate.toIso8601String(),
+      "profilePic": profilePic,
+      "university": university,
+      "degree": degree,
+      "center": center,
+    };
+  }
+}

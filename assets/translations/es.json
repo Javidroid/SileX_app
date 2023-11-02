@@ -9,7 +9,8 @@
     "unauth": "Necesitas autenticarte para entrar",
     "confict": "Ha ocurrido un conflicto",
     "expired": "La sesión ha caducado",
-    "invalid_credentials": "Las credenciales no son correctas"
+    "invalid_credentials": "Las credenciales no son correctas",
+    "already_existing_user": "El nombre de usuario introducido ya está siendo utilizado."
   },
   "components": {
     "buttons": {
@@ -68,6 +69,7 @@
     "name": "Nombre",
     "surname": "Apellidos",
     "description": "Descripción",
+    "birthday": "Fecha de nacimiento: ",
     "degree": "Grado",
     "center": "Centro (Facultad o escuela)",
     "to_login_button": "¿Ya tienes cuenta? Inicia sesión"

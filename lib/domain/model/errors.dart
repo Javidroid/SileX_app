@@ -11,6 +11,8 @@ class UserNotFoundInLocalError extends AppError {}
 
 class NotLoggedInError extends AppError {}
 
+class AlreadyExistingUsernameError extends AppError {}
+
 class UnknownError extends AppError {}
 
 class ServerError extends AppError {}
@@ -43,6 +45,7 @@ extension ErrorMessage on AppError {
       ConflictError => 'errors.conflict'.tr(),
       ForbiddenError => 'errors.forbidden'.tr(),
       InvalidCredentials => 'errors.invalid_credentials'.tr(),
+      AlreadyExistingUsernameError => 'errors.already_existing_user'.tr(),
       _ => 'errors.generic'.tr(),
     };
   }

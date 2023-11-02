@@ -9,9 +9,11 @@ abstract interface class RemoteDatasource {
 
   Future<Either<AppError, User>> getUserById(String userId);
 
+  Future<Either<AppError, bool>> checkUserExists(String username);
+
   Future<Either<AppError, List<User>>> getUserListById(List<String> ids);
 
-  Future<Either<AppError, bool>> createUser(User username);
+  Future<Either<AppError, bool>> createUser({required UserCreate user});
 
   Future<Either<AppError, bool>> updateUser(User username, String preUsername);
 

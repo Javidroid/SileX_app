@@ -40,9 +40,18 @@ class DefaultRemoteDatasource implements RemoteDatasource {
   }
 
   @override
-  Future<Either<AppError, bool>> createUser(User username) {
-    // TODO: implement createUser
-    throw UnimplementedError();
+  Future<Either<AppError, bool>> createUser({required UserCreate user}) async {
+    final uri = Uri.parse('$_baseUrl/user/${user.username}');
+
+    final result = await _apiService.post(
+      uri,
+      headers: UserCreateDto.fromModel(user).toCreateUserJson(),
+    );
+
+    return result.either<AppError, bool>(
+          (left) => left,
+          (right) => true,
+    );
   }
 
   @override
@@ -275,5 +284,18 @@ class DefaultRemoteDatasource implements RemoteDatasource {
     // todo: store credentials, renew, clear etc
 
     throw UnimplementedError();
+  }
+
+  @override
+  Future<Either<AppError, bool>> checkUserExists(String username) async {
+    // TODO: create specific API call
+    final user = await getUser(username);
+
+    // if error is 404 (not found), then the call is successful, but false
+    // otherwise (different error), it should be treated as an error (Left)
+    return user.fold(
+      (left) => left is NotFoundError ? const Right(false) : Left(left),
+      (right) => const Right(true),
+    );
   }
 }
