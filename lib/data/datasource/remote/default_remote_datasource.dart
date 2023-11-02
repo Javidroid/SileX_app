@@ -43,14 +43,16 @@ class DefaultRemoteDatasource implements RemoteDatasource {
   Future<Either<AppError, bool>> createUser({required UserCreate user}) async {
     final uri = Uri.parse('$_baseUrl/user/${user.username}');
 
+    final data = UserCreateDto.fromModel(user).toCreateUserJson();
+
     final result = await _apiService.post(
       uri,
-      headers: UserCreateDto.fromModel(user).toCreateUserJson(),
+      headers: data,
     );
 
     return result.either<AppError, bool>(
-          (left) => left,
-          (right) => true,
+      (left) => left,
+      (right) => true,
     );
   }
 

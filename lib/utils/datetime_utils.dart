@@ -38,6 +38,9 @@ class DateTimeUtils {
     return '$hourLabel:$minuteLabel';
   }
 
+  static String toApiFormat(DateTime date) =>
+      DateFormat('yyyy-MM-dd').format(date);
+
   static String getTranslatedWeekday(int weekday) {
     return switch (weekday) {
       1 => 'weekdays.monday'.tr().toLowerCase(),

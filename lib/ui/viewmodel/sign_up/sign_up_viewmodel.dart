@@ -1,4 +1,3 @@
-import 'package:either_dart/either.dart';
 import 'package:injectable/injectable.dart';
 import 'package:tfg_v2/di/dependency_injection.dart';
 import 'package:tfg_v2/domain/model/errors.dart';
@@ -32,7 +31,7 @@ class SignUpViewModel extends RootViewModel<SignUpViewState> {
   }) async {
     emitValue(Loading());
     // todo handle errors
-    final result = _createUserUseCase(
+    final result = await _createUserUseCase(
       username: username,
       email: email,
       password: password,
@@ -50,7 +49,12 @@ class SignUpViewModel extends RootViewModel<SignUpViewState> {
     );
   }
 
-  void handleErrors(AppError error) {}
+  void handleErrors(AppError error) {
+    print(error.message);
+    switch (error) {
+      default: // todo: emit snackbar
+    }
+  }
 }
 
 sealed class SignUpViewState extends ViewState {}

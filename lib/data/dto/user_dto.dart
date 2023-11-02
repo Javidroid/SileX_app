@@ -1,6 +1,7 @@
 import 'package:tfg_v2/data/dto/profile_dto.dart';
 import 'package:tfg_v2/domain/model/user.dart';
 import 'package:tfg_v2/env/constants.dart';
+import 'package:tfg_v2/utils/datetime_utils.dart';
 
 class UserDto {
   String id;
@@ -116,11 +117,11 @@ class UserCreateDto {
       "name": name,
       "surnames": surnames,
       "description": description,
-      "birthDate": birthDate.toIso8601String(),
-      "profilePic": profilePic,
-      "university": university,
-      "degree": degree,
-      "center": center,
+      "birth_date": DateTimeUtils.toApiFormat(birthDate),
+      "profile_pic": profilePic,
+      "id_university": university,
+      "id_degree": degree,
+      "id_center": center,
     };
   }
 
@@ -131,11 +132,11 @@ class UserCreateDto {
       "name": name,
       "surnames": surnames,
       "description": description,
-      "birthDate": birthDate.toIso8601String(),
-      "profilePic": profilePic,
-      "university": university,
-      "degree": degree,
-      "center": center,
+      "birth_date": DateTimeUtils.toApiFormat(birthDate),
+      "profile_pic": profilePic,
+      "id_university": university,
+      "id_degree": degree,
+      "id_center": center,
     };
   }
 }

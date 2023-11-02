@@ -26,8 +26,8 @@ class CreateUserUseCase {
     final usernameExists = await _userRepository.checkUserExists(username);
     if (usernameExists.isLeft) return Left(usernameExists.left);
 
-    // if successful call but didn't found user
-    if (!usernameExists.right) return Left(AlreadyExistingUsernameError());
+    // if success and user exists, cancel operation
+    if (usernameExists.right) return Left(AlreadyExistingUsernameError());
 
     // TODO: add center, degree, etc
     final user = UserCreate(
