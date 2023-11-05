@@ -90,8 +90,10 @@ extension GetItInjectableX on _i1.GetIt {
         () => _i17.PlanRepositoryImpl(gh<_i11.RemoteDatasource>()));
     gh.factory<_i18.CategoryRepository>(
         () => _i18.PlanRepositoryImpl(gh<_i11.RemoteDatasource>()));
-    gh.factory<_i19.CreateUserUseCase>(
-        () => _i19.CreateUserUseCase(gh<_i16.UserRepository>()));
+    gh.factory<_i19.CreateUserUseCase>(() => _i19.CreateUserUseCase(
+          gh<_i16.UserRepository>(),
+          gh<_i17.AuthRepository>(),
+        ));
     gh.factory<_i20.FollowUserUseCase>(
         () => _i20.FollowUserUseCase(gh<_i16.UserRepository>()));
     gh.factory<_i21.GetUpdatedLoggedUserUseCase>(
@@ -110,8 +112,10 @@ extension GetItInjectableX on _i1.GetIt {
         ));
     gh.factory<_i26.PlanRepository>(
         () => _i26.PlanRepositoryImpl(gh<_i11.RemoteDatasource>()));
-    gh.factory<_i27.SignUpViewModel>(
-        () => _i27.SignUpViewModel(gh<_i19.CreateUserUseCase>()));
+    gh.factory<_i27.SignUpViewModel>(() => _i27.SignUpViewModel(
+          gh<_i19.CreateUserUseCase>(),
+          gh<_i23.LoginUseCase>(),
+        ));
     gh.factory<_i28.SplashViewModel>(
         () => _i28.SplashViewModel(gh<_i21.GetUpdatedLoggedUserUseCase>()));
     gh.factory<_i29.UserJoinQuitPlanUseCase>(() => _i29.UserJoinQuitPlanUseCase(

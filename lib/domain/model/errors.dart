@@ -33,6 +33,13 @@ class ExpiredSessionError extends AppError {}
 
 class LimitReachedError extends AppError {}
 
+/// Thrown when 2 or more system components differ
+class ConsistencyError extends AppError {
+  final AppError causingError;
+
+  ConsistencyError({required this.causingError});
+}
+
 /// Associated message to errors
 extension ErrorMessage on AppError {
   String get message {

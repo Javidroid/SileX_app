@@ -285,7 +285,14 @@ class DefaultRemoteDatasource implements RemoteDatasource {
     // TODO: implement signUp
     // todo: store credentials, renew, clear etc
 
-    throw UnimplementedError();
+    final result = await _authService.signUp(
+      email: email,
+      username: username,
+      password: password,
+    );
+
+    // todo determine error types
+    return result != null ? const Right(true) : Left(InvalidCredentials());
   }
 
   @override

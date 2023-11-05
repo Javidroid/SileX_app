@@ -1,6 +1,7 @@
 import 'package:injectable/injectable.dart';
 import 'package:tfg_v2/di/dependency_injection.dart';
 import 'package:tfg_v2/domain/model/errors.dart';
+import 'package:tfg_v2/domain/use_cases/auth/login.dart';
 import 'package:tfg_v2/domain/use_cases/social/create_user.dart';
 import 'package:tfg_v2/ui/navigation/navigator.dart';
 import 'package:tfg_v2/ui/viewmodel/root_viewmodel.dart';
@@ -10,8 +11,10 @@ class SignUpViewModel extends RootViewModel<SignUpViewState> {
   TfgNavigator get navigator => getIt<TfgNavigator>();
 
   final CreateUserUseCase _createUserUseCase;
+  final LoginUseCase _loginUseCase;
 
-  SignUpViewModel(this._createUserUseCase) : super(Success());
+  SignUpViewModel(this._createUserUseCase, this._loginUseCase)
+      : super(Success());
 
   @override
   void onAttach() async {}
@@ -45,7 +48,16 @@ class SignUpViewModel extends RootViewModel<SignUpViewState> {
 
     result.fold(
       (left) => handleErrors(left), // TODO: snackbar
-      (right) => null, // todo: login, navigate home
+      (right) async {
+        final login = await _loginUseCase(
+          username: username,
+          password: password,
+        );
+        login.fold(
+          (left) => handleErrors(left), // TODO: snackbar
+          (right) => navigator.replaceToHome(),
+        );
+      },
     );
   }
 

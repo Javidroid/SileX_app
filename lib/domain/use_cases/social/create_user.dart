@@ -2,14 +2,16 @@ import 'package:either_dart/either.dart';
 import 'package:injectable/injectable.dart';
 import 'package:tfg_v2/domain/model/errors.dart';
 import 'package:tfg_v2/domain/model/user.dart';
+import 'package:tfg_v2/domain/repository/auth/auth_repository.dart';
 import 'package:tfg_v2/domain/repository/social/user_repository.dart';
 import 'package:tfg_v2/env/constants.dart';
 
 @Injectable()
 class CreateUserUseCase {
   final UserRepository _userRepository;
+  final AuthRepository _authRepository;
 
-  CreateUserUseCase(this._userRepository);
+  CreateUserUseCase(this._userRepository, this._authRepository);
 
   Future<Either<AppError, bool>> call({
     required String username,
@@ -47,11 +49,28 @@ class CreateUserUseCase {
     final apiCreation = await _userRepository.createUser(user);
     if (apiCreation.isLeft) return Left(apiCreation.left);
 
-    // todo create user on API
-    // if correct, then create user on auth0
-    // if error, then delete user on API
-    // todo error cases
+    // if correct, then create user on auth system
+    final authCreation = await _authRepository.signUp(
+      username: username,
+      email: email,
+      password: password,
+    );
+
+    // if error on auth system, delete user on API
+    if (authCreation.isLeft) {
+      // delete user on api
+      final tryDelete = await _userRepository.deleteUser(username);
+      if (tryDelete.isLeft) {
+        // consistency error!!!
+        return Left(ConsistencyError(causingError: tryDelete.left));
+      }
+
+      // user successfully deleted on API => send auth error
+      return Left(authCreation.left);
+    }
+
     // if success, login with created user
+
     return const Right(true);
   }
 }

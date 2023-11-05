@@ -41,18 +41,24 @@ class AuthService {
     throw UnimplementedError();
   }
 
-  Future<DatabaseUser> signUp({
+  Future<DatabaseUser?> signUp({
     required String username,
     required String email,
     required String password,
   }) async {
-    final result = await _auth0.api.signup(
-      email: email,
-      password: password,
-      connection: _connection,
-    );
+    try {
+      final result = await _auth0.api.signup(
+        email: email,
+        username: username,
+        password: password,
+        connection: _connection,
+      );
 
-    return result;
+      return result;
+    } catch (e) {
+      print(e);
+      return null;
+    }
   }
 
   Future<bool> clearCredentials() async {

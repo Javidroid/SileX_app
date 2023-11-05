@@ -4,13 +4,12 @@ import 'package:tfg_v2/ui/styles/insets.dart';
 import 'package:tfg_v2/ui/styles/text_styles.dart';
 import 'package:tfg_v2/ui/viewmodel/login/login_viewmodel.dart';
 import 'package:tfg_v2/ui/widgets/components/app_logo.dart';
+import 'package:tfg_v2/ui/widgets/components/appbars/default_appbar.dart';
 import 'package:tfg_v2/ui/widgets/components/box_spacer.dart';
 import 'package:tfg_v2/ui/widgets/components/error_card.dart';
 import 'package:tfg_v2/ui/widgets/components/forms/pass_field_input.dart';
 import 'package:tfg_v2/ui/widgets/components/forms/text_field_input.dart';
 import 'package:tfg_v2/ui/widgets/screens/root_screen.dart';
-
-import '../../components/appbars/default_appbar.dart';
 
 class LoginScreen extends RootScreenStateful<LoginViewState, LoginViewModel> {
   const LoginScreen({super.key});
