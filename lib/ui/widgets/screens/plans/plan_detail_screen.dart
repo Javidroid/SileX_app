@@ -76,13 +76,19 @@ class PlanDetailScreen
                           radius: 30,
                         ),
                       ),
-                      Text(
-                        state.plan.place,
-                        style: TextStyles.defaultStyleBold,
-                      ),
-                      Text(
-                        DateFormat('dd-MM-yyyy, kk:mm').format(state.plan.date),
-                        style: TextStyles.defaultStyleBold,
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Text(
+                            state.plan.place,
+                            style: TextStyles.defaultStyleBold,
+                          ),
+                          Text(
+                            DateFormat('dd-MM-yyyy, kk:mm')
+                                .format(state.plan.date),
+                            style: TextStyles.defaultStyleBold,
+                          ),
+                        ],
                       ),
                     ],
                   ),

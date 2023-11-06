@@ -5,6 +5,7 @@ import 'package:tfg_v2/domain/model/user.dart';
 import 'package:tfg_v2/domain/repository/auth/auth_repository.dart';
 import 'package:tfg_v2/domain/repository/social/user_repository.dart';
 import 'package:tfg_v2/env/constants.dart';
+import 'package:tfg_v2/utils/profile_pic_generator.dart';
 
 @Injectable()
 class CreateUserUseCase {
@@ -42,8 +43,13 @@ class CreateUserUseCase {
       university: Constants.defaultUniversityId,
       degree: Constants.defaultDegreeId,
       center: Constants.defaultCenterId,
-      profilePic: Constants.defaultProfilePicUrl,
+      profilePic: ProfilePicGenerator.generateByName(
+        name: name,
+        surname: surnames,
+      ),
     );
+
+    // TODO: try to get image from auth0 service of signup dbuser result
 
     // create user on database
     final apiCreation = await _userRepository.createUser(user);
@@ -55,6 +61,9 @@ class CreateUserUseCase {
       email: email,
       password: password,
     );
+
+    // TODO: check error: al poner mal la contraseña no borra el usuario en BD
+    // TODO: hay que revisar las excepciones de la llamada a sign up
 
     // if error on auth system, delete user on API
     if (authCreation.isLeft) {

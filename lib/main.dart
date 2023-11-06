@@ -35,7 +35,7 @@ class TfgApp extends StatelessWidget {
             title: 'SileX',
             theme: ThemeGenerator.generateLightTheme(),
             darkTheme: ThemeGenerator.generateDarkTheme(),
-            themeMode: themeNotifier.modo ? ThemeMode.light : ThemeMode.dark,
+            themeMode: themeNotifier.mode ? ThemeMode.light : ThemeMode.dark,
             localizationsDelegates: context.localizationDelegates,
             supportedLocales: context.supportedLocales,
             locale: context.locale,

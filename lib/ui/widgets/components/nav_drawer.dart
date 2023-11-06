@@ -55,7 +55,7 @@ class _NavigationDrawerWithUserHeaderState
                 otherAccountsPictures: [
                   IconButton(
                     icon: Icon(
-                      themeNotifier.modo
+                      themeNotifier.mode
                           ? Icons.nightlight_round
                           : Icons.wb_sunny,
                     ),

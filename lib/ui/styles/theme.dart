@@ -100,7 +100,7 @@ class ThemeNotifier extends ChangeNotifier {
   /// True: Claro / False: Oscuro
   late bool _mode;
 
-  bool get modo => _mode;
+  bool get mode => _mode;
 
   /// El constructor genera un objeto con el [_mode] inicializado a Claro. Esto
   /// es por si es la primera vez que se ejecuta la app y no hay preferencias
@@ -125,7 +125,7 @@ class ThemeNotifier extends ChangeNotifier {
   }
 
   /// Establece manualmente el [_mode] y notifica a los observadores.
-  set modo(bool value) {
+  set mode(bool value) {
     _mode = value;
     SharedPreferencesTheme.setTheme(value: value);
     notifyListeners();

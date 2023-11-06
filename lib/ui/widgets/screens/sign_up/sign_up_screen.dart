@@ -43,6 +43,7 @@ class _SignUpScreenState extends RootScreenState<SignUpViewState,
     return Scaffold(
       appBar: DefaultAppBar(title: 'signup.signup'.tr()),
       body: switch (state) {
+        // TODO: crear pantalla de carga sobre la que ya estaba en oscuro
         Loading _ => const Center(
             child: CircularProgressIndicator(),
           ),

@@ -10,5 +10,5 @@ class Constants {
   static const String defaultDegreeId = '649a10699ed2b6f1a41084b1';
   static const String defaultCenterId = '649a10699ed2b6f1a4108436';
   static const String defaultProfilePicUrl =
-      'https://placehold.co/400x400?text=SileX';
+      'https://placehold.co/400x400.png?text=SileX';
 }

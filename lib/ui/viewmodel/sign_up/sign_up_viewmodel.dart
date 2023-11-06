@@ -13,6 +13,8 @@ class SignUpViewModel extends RootViewModel<SignUpViewState> {
   final CreateUserUseCase _createUserUseCase;
   final LoginUseCase _loginUseCase;
 
+  // TODO: add regex
+
   SignUpViewModel(this._createUserUseCase, this._loginUseCase)
       : super(Success());
 
