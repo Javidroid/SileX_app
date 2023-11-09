@@ -106,10 +106,8 @@ extension GetItInjectableX on _i1.GetIt {
         ));
     gh.factory<_i24.LoginViewModel>(
         () => _i24.LoginViewModel(gh<_i23.LoginUseCase>()));
-    gh.factory<_i25.LogoutUseCase>(() => _i25.LogoutUseCase(
-          gh<_i17.AuthRepository>(),
-          gh<_i16.UserRepository>(),
-        ));
+    gh.factory<_i25.LogoutUseCase>(
+        () => _i25.LogoutUseCase(gh<_i16.UserRepository>()));
     gh.factory<_i26.PlanRepository>(
         () => _i26.PlanRepositoryImpl(gh<_i11.RemoteDatasource>()));
     gh.factory<_i27.SignUpViewModel>(() => _i27.SignUpViewModel(

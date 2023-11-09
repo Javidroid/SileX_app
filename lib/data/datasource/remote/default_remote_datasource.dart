@@ -269,11 +269,9 @@ class DefaultRemoteDatasource implements RemoteDatasource {
   }
 
   @override
-  Future<Either<AppError, bool>> logout() async {
-    // TODO: implement logout
-    // todo: store credentials, renew, clear etc
-
-    throw UnimplementedError();
+  Future<Either<AppError, void>> logout() async {
+    _authService.logout();
+    return const Right(null);
   }
 
   @override

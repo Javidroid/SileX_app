@@ -9,7 +9,7 @@ abstract interface class AuthRepository {
     required String password,
   });
 
-  Future<Either<AppError, bool>> logout();
+  Future<Either<AppError, void>> logout();
 
   Future<Either<AppError, bool>> signUp({
     required String username,
@@ -33,7 +33,7 @@ class PlanRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<Either<AppError, bool>> logout() {
+  Future<Either<AppError, void>> logout() {
     return _remote.logout();
   }
 

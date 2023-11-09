@@ -36,10 +36,7 @@ class AuthService {
     }
   }
 
-  Future<bool> logout() {
-    // TODO: try clear local credentials
-    throw UnimplementedError();
-  }
+  Future<void> logout() async {}
 
   Future<DatabaseUser?> signUp({
     required String username,

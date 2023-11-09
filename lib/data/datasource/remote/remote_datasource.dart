@@ -54,7 +54,7 @@ abstract interface class RemoteDatasource {
     required String password,
   });
 
-  Future<Either<AppError, bool>> logout();
+  Future<Either<AppError, void>> logout();
 
   Future<Either<AppError, bool>> signUp({
     required String username,
