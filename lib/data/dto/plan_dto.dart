@@ -1,4 +1,4 @@
-import 'package:tfg_v2/domain/model/plan.dart';
+import 'package:tfg_v2/domain/model/social/plan.dart';
 import 'package:tfg_v2/utils/url_parser.dart';
 
 class PlanDto {

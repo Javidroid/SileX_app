@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:tfg_v2/domain/model/plan.dart';
-import 'package:tfg_v2/domain/model/user.dart';
+import 'package:tfg_v2/domain/model/social/plan.dart';
+import 'package:tfg_v2/domain/model/social/user.dart';
 import 'package:tfg_v2/ui/navigation/routes.dart';
 import 'package:tfg_v2/ui/widgets/screens/create_plan/create_plan_screen.dart';
 import 'package:tfg_v2/ui/widgets/screens/direct_messages/direct_messages_screen.dart';
 import 'package:tfg_v2/ui/widgets/screens/faq/faq_screen.dart';
 import 'package:tfg_v2/ui/widgets/screens/home/home_screen.dart';
 import 'package:tfg_v2/ui/widgets/screens/login/login_screen.dart';
-import 'package:tfg_v2/ui/widgets/screens/sign_up/sign_up_screen.dart';
 import 'package:tfg_v2/ui/widgets/screens/notifications/notifications_screen.dart';
 import 'package:tfg_v2/ui/widgets/screens/plans/plan_detail_screen.dart';
 import 'package:tfg_v2/ui/widgets/screens/plans/plans_screen.dart';
@@ -16,6 +15,7 @@ import 'package:tfg_v2/ui/widgets/screens/profile/edit_profile_screen.dart';
 import 'package:tfg_v2/ui/widgets/screens/profile/profile_screen.dart';
 import 'package:tfg_v2/ui/widgets/screens/search/search_screen.dart';
 import 'package:tfg_v2/ui/widgets/screens/settings/settings_screen.dart';
+import 'package:tfg_v2/ui/widgets/screens/sign_up/sign_up_screen.dart';
 import 'package:tfg_v2/ui/widgets/screens/splash/splash_screen.dart';
 
 final GlobalKey<NavigatorState> rootNavigatorKey =

@@ -2,7 +2,7 @@ import 'package:either_dart/either.dart';
 import 'package:injectable/injectable.dart';
 import 'package:tfg_v2/data/datasource/remote/remote_datasource.dart';
 import 'package:tfg_v2/domain/model/errors.dart';
-import 'package:tfg_v2/domain/model/plan.dart';
+import 'package:tfg_v2/domain/model/social/plan.dart';
 
 abstract interface class PlanRepository {
   Future<Either<AppError, List<Plan>>> getPlans();

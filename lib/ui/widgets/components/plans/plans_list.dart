@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tfg_v2/domain/model/plan.dart';
+import 'package:tfg_v2/domain/model/social/plan.dart';
 import 'package:tfg_v2/ui/widgets/components/box_spacer.dart';
 import 'package:tfg_v2/ui/widgets/components/list_items/plan_preview_item.dart';
 

@@ -1,4 +1,4 @@
-import 'package:tfg_v2/domain/model/plan_category.dart';
+import 'package:tfg_v2/domain/model/social/plan_category.dart';
 
 class PlanCategoryDto {
   final String idCategory;

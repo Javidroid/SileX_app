@@ -1,7 +1,7 @@
 import 'package:either_dart/either.dart';
 import 'package:injectable/injectable.dart';
 import 'package:tfg_v2/domain/model/errors.dart';
-import 'package:tfg_v2/domain/model/user.dart';
+import 'package:tfg_v2/domain/model/social/user.dart';
 import 'package:tfg_v2/domain/repository/social/user_repository.dart';
 
 @Injectable()

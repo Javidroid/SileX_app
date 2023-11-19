@@ -20,7 +20,7 @@ import 'package:tfg_v2/data/datasource/remote/remote_datasource.dart' as _i11;
 import 'package:tfg_v2/data/services/api_service.dart' as _i3;
 import 'package:tfg_v2/data/services/auth/auth0_services.dart' as _i4;
 import 'package:tfg_v2/di/dependency_injection.dart' as _i33;
-import 'package:tfg_v2/domain/model/plan.dart' as _i10;
+import 'package:tfg_v2/domain/model/social/plan.dart' as _i10;
 import 'package:tfg_v2/domain/repository/auth/auth_repository.dart' as _i17;
 import 'package:tfg_v2/domain/repository/social/category_repository.dart'
     as _i18;

@@ -1,5 +1,5 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:tfg_v2/ui/widgets/components/app_logo.dart';
 
 class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
   const DefaultAppBar({super.key, this.title});
@@ -12,7 +12,9 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: Text(title ?? 'app_title'.tr()),
+      title: title != null
+          ? Text(title!)
+          : const AppLogo(onlyText: true, size: kToolbarHeight),
     );
   }
 }

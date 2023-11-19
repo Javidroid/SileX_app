@@ -4,7 +4,7 @@ import 'package:tfg_v2/data/datasource/local/local_datasource.dart';
 import 'package:tfg_v2/data/services/shared_preferences/session_preferences.dart';
 import 'package:tfg_v2/di/dependency_injection.dart';
 import 'package:tfg_v2/domain/model/errors.dart';
-import 'package:tfg_v2/domain/model/user.dart';
+import 'package:tfg_v2/domain/model/social/user.dart';
 import 'package:tfg_v2/env/environment.dart';
 
 @Injectable(as: LocalDatasource)

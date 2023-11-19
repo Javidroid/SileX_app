@@ -1,8 +1,8 @@
 import 'package:either_dart/either.dart';
 import 'package:tfg_v2/domain/model/errors.dart';
-import 'package:tfg_v2/domain/model/plan.dart';
-import 'package:tfg_v2/domain/model/plan_category.dart';
-import 'package:tfg_v2/domain/model/user.dart';
+import 'package:tfg_v2/domain/model/social/plan.dart';
+import 'package:tfg_v2/domain/model/social/plan_category.dart';
+import 'package:tfg_v2/domain/model/social/user.dart';
 
 abstract interface class RemoteDatasource {
   Future<Either<AppError, User>> getUser(String username);

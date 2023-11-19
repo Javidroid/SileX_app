@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:tfg_v2/di/dependency_injection.dart';
-import 'package:tfg_v2/domain/model/plan.dart';
+import 'package:tfg_v2/domain/model/social/plan.dart';
 import 'package:tfg_v2/env/constants.dart';
 import 'package:tfg_v2/ui/navigation/navigator.dart';
 import 'package:tfg_v2/ui/styles/insets.dart';

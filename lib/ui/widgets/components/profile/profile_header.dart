@@ -2,7 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:expandable_text/expandable_text.dart';
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
-import 'package:tfg_v2/domain/model/profile.dart';
+import 'package:tfg_v2/domain/model/social/profile.dart';
 import 'package:tfg_v2/env/constants.dart';
 import 'package:tfg_v2/ui/styles/colors.dart';
 import 'package:tfg_v2/ui/styles/insets.dart';

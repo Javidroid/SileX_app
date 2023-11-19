@@ -1,7 +1,7 @@
 import 'package:either_dart/either.dart';
 import 'package:injectable/injectable.dart';
 import 'package:tfg_v2/domain/model/errors.dart';
-import 'package:tfg_v2/domain/model/plan.dart';
+import 'package:tfg_v2/domain/model/social/plan.dart';
 import 'package:tfg_v2/domain/repository/social/plan_repository.dart';
 import 'package:tfg_v2/domain/repository/social/user_repository.dart';
 

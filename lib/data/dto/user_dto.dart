@@ -1,5 +1,5 @@
 import 'package:tfg_v2/data/dto/profile_dto.dart';
-import 'package:tfg_v2/domain/model/user.dart';
+import 'package:tfg_v2/domain/model/social/user.dart';
 import 'package:tfg_v2/env/constants.dart';
 import 'package:tfg_v2/utils/datetime_utils.dart';
 

@@ -1,6 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:tfg_v2/domain/model/plan_category.dart';
+import 'package:tfg_v2/domain/model/social/plan_category.dart';
 import 'package:tfg_v2/ui/widgets/components/title_with_info_tooltip.dart';
 
 class CreatePlanPickCategory extends StatefulWidget {

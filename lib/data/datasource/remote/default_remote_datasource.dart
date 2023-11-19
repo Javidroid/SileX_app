@@ -8,9 +8,9 @@ import 'package:tfg_v2/data/services/api_service.dart';
 import 'package:tfg_v2/data/services/auth/auth0_services.dart';
 import 'package:tfg_v2/di/dependency_injection.dart';
 import 'package:tfg_v2/domain/model/errors.dart';
-import 'package:tfg_v2/domain/model/plan.dart';
-import 'package:tfg_v2/domain/model/plan_category.dart';
-import 'package:tfg_v2/domain/model/user.dart';
+import 'package:tfg_v2/domain/model/social/plan.dart';
+import 'package:tfg_v2/domain/model/social/plan_category.dart';
+import 'package:tfg_v2/domain/model/social/user.dart';
 import 'package:tfg_v2/env/environment.dart';
 
 @Injectable(as: RemoteDatasource)

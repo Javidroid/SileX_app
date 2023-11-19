@@ -1,4 +1,4 @@
-import 'package:tfg_v2/domain/model/profile.dart';
+import 'package:tfg_v2/domain/model/social/profile.dart';
 import 'package:tfg_v2/utils/datetime_utils.dart';
 
 class ProfileDto {

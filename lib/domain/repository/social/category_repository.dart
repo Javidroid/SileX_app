@@ -2,7 +2,7 @@ import 'package:either_dart/either.dart';
 import 'package:injectable/injectable.dart';
 import 'package:tfg_v2/data/datasource/remote/remote_datasource.dart';
 import 'package:tfg_v2/domain/model/errors.dart';
-import 'package:tfg_v2/domain/model/plan_category.dart';
+import 'package:tfg_v2/domain/model/social/plan_category.dart';
 
 abstract interface class CategoryRepository {
   Future<Either<AppError, List<PlanCategory>>> getCategories();

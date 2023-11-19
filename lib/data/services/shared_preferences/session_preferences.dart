@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tfg_v2/data/dto/user_dto.dart';
-import 'package:tfg_v2/domain/model/user.dart';
+import 'package:tfg_v2/domain/model/social/user.dart';
 
 class SessionSharedPreferences {
   static const _currentLoggedUser = "current_user";

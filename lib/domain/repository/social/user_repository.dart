@@ -3,7 +3,7 @@ import 'package:injectable/injectable.dart';
 import 'package:tfg_v2/data/datasource/local/local_datasource.dart';
 import 'package:tfg_v2/data/datasource/remote/remote_datasource.dart';
 import 'package:tfg_v2/domain/model/errors.dart';
-import 'package:tfg_v2/domain/model/user.dart';
+import 'package:tfg_v2/domain/model/social/user.dart';
 
 abstract interface class UserRepository {
   Future<Either<AppError, User>> getUser(String username);

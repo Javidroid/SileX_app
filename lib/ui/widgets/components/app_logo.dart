@@ -7,21 +7,27 @@ class AppLogo extends StatelessWidget {
     super.key,
     this.size = 250,
     this.withText = false,
+    this.onlyText = false,
   });
 
   final double size;
   final bool withText;
+  final bool onlyText;
 
   @override
   Widget build(BuildContext context) {
     return Consumer<ThemeNotifier>(
       builder: (context, ThemeNotifier themeNotifier, child) {
         return Image.asset(
-          withText
+          onlyText
               ? themeNotifier.mode
-                  ? 'assets/images/logo-name-black.png'
-                  : 'assets/images/logo-name-green.png'
-              : 'assets/images/logo.png',
+                  ? 'assets/images/name-black.png'
+                  : 'assets/images/name-green.png'
+              : withText
+                  ? themeNotifier.mode
+                      ? 'assets/images/logo-name-black.png'
+                      : 'assets/images/logo-name-green.png'
+                  : 'assets/images/logo.png',
           height: size,
         );
       },

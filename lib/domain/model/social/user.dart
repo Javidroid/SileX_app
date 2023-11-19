@@ -1,4 +1,4 @@
-import 'package:tfg_v2/domain/model/profile.dart';
+import 'package:tfg_v2/domain/model/social/profile.dart';
 import 'package:tfg_v2/env/constants.dart';
 
 /// The class that is used within the app. Holds all the information
