@@ -22,7 +22,7 @@ class AppLogo extends StatelessWidget {
           onlyText
               ? themeNotifier.mode
                   ? 'assets/images/name-black.png'
-                  : 'assets/images/name-green.png'
+                  : 'assets/images/name-yellow.png'
               : withText
                   ? themeNotifier.mode
                       ? 'assets/images/logo-name-black.png'
