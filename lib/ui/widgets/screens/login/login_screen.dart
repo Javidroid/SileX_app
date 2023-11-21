@@ -23,7 +23,7 @@ class LoginScreen extends RootScreenStateful<LoginViewState, LoginViewModel> {
 class _LoginScreenState extends RootScreenState<LoginViewState, LoginViewModel,
     RootScreenStateful<LoginViewState, LoginViewModel>> {
   final _formKey = GlobalKey<FormState>();
-  bool _validated = false; // TODO: validate
+  // bool _validated = false; // TODO: validate
 
   bool _keyboardVisible = false;
 
