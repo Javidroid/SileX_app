@@ -1,6 +1,6 @@
-# tfg_v2
+# SileX App
 
-Second version of TFG. Now with architecture
+Second version of TFG. Now with MVVM, Clean Architecture and lots of fun!
 
 ## Introduction
 
@@ -10,57 +10,26 @@ Project.
 This version pretends to implement a MVVM architecture so the code is easier to develop in the
 future.
 
-This project complements with the NodeJS API.
+This project complements with the NodeJS API: https://github.com/Javidroid/SileX_API
 
-## Execution
+> Disclaimer: Base project comes
+> from https://github.com/worldline-spain/flutter_architecture_template
 
-App has 2 environments:
+## Envs
 
 - dev
 - prod
 
-To run the app in a particular environment, run:
+## Run
 
-- dev:
+To run each environment:
 
-```bash
-flutter run --flavor dev --dart-define-from-file=auth_keys.env/dev.json
-```
+- dev: ```flutter run --flavor dev --dart-define-from-file=.env/dev.json```
+- prod: ```flutter run --flavor prod --dart-define-from-file=.env/prod.json```
 
-- prod:
+## Generate dependency injections
 
-```bash
-flutter run --flavor prod --dart-define-from-file=auth_keys.env/prod.json
-```
+When adding a new injectable class or interface, run the following command to generate the
+corresponding code:
 
-Also, you can configure your IDE to automatically run a defined behaviour
-
-## Dependency Injection
-
-Depencency injection is done with [get_it](https://pub.dev/packages/get_it) and
-[injectable](https://pub.dev/packages/injectable).
-
-If a new dependency is added or changed, you must run:
-
-```bash
-flutter pub run build_runner build
-```
-
-## To-Do List
-
-* Splash
-* Revisar los colores de la IU
-* Conectar con la API
-    * http vs dio package
-* Integrar arquitectura
-* Repasar fuentes y ver una forma mejor de ponerlas
-* Hacer los estilos de texto
-    * Revisar fuentes
-* Revisar themes
-* Repasar inyección de dependencias
-* Añadir localización
-* Entornos
-* Gestion de errores
-    * Mirar Either
-* Ver cómo separar las distintas carpetas de model
-* Refactorizar a inglés
+```flutter packages pub run build_runner build```
