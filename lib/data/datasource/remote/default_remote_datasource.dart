@@ -257,14 +257,11 @@ class DefaultRemoteDatasource implements RemoteDatasource {
     required String username,
     required String password,
   }) async {
-    // TODO: implement login
-    // todo: store credentials, renew, clear etc
     final creds = await _authService.login(
       username: username,
       password: password,
     );
 
-    // todo determine error types
     return creds != null ? const Right(true) : Left(InvalidCredentials());
   }
 
@@ -280,16 +277,12 @@ class DefaultRemoteDatasource implements RemoteDatasource {
     required String email,
     required String password,
   }) async {
-    // TODO: implement signUp
-    // todo: store credentials, renew, clear etc
-
     final result = await _authService.signUp(
       email: email,
       username: username,
       password: password,
     );
 
-    // todo determine error types
     return result != null ? const Right(true) : Left(InvalidCredentials());
   }
 

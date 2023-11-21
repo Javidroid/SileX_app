@@ -31,12 +31,9 @@ class AuthService {
 
       return result;
     } catch (e) {
-      print(e); // todo catch & transform errors. look for status codes
       return null;
     }
   }
-
-  Future<void> logout() async {}
 
   Future<DatabaseUser?> signUp({
     required String username,
@@ -57,6 +54,8 @@ class AuthService {
       return null;
     }
   }
+
+  Future<void> logout() async {}
 
   Future<bool> clearCredentials() async {
     final result = await _auth0.credentialsManager.clearCredentials();
