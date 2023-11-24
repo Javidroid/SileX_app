@@ -137,5 +137,9 @@
     "friday": "Viernes",
     "saturday": "Sábado",
     "sunday": "Domingo"
+  },
+  "lorem": {
+    "question": "Esto es una pregunta de prueba",
+    "answer": "Esto es una respuesta de prueba"
   }
 }
