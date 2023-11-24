@@ -2,6 +2,8 @@
 
 Second version of TFG. Now with MVVM, Clean Architecture and lots of fun!
 
+The GitHub repository of this project is https://github.com/Javidroid/SileX_app
+
 ## Introduction
 
 This project pretends to be the second version of the App that is intended to be develop as Final
