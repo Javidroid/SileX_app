@@ -17,15 +17,10 @@ class SplashViewModel extends RootViewModel<SplashViewState> {
   void onAttach() async {
     final result = await getUpdatedLoggedUserUseCase();
 
-    // todo change
     result.fold(
       (left) => navigator.toLogin(),
       (right) => navigator.replaceToHome(),
     );
-    // result.fold(
-    //   (left) => emitValue(Error(left)),
-    //   (right) => navigator.toLogin(), // navigator.replaceToHome(),
-    // );
   }
 }
 

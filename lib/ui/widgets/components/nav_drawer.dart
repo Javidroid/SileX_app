@@ -115,8 +115,7 @@ class _NavigationDrawerWithUserHeaderState
               ListTile(
                 title: Text('components.nav_drawer.invite_friends'.tr()),
                 onTap: () {
-                  // todo: check
-                  Navigator.pop(context);
+                  navigator.pop();
                 },
               ),
               AboutListTile(
@@ -126,10 +125,9 @@ class _NavigationDrawerWithUserHeaderState
                 applicationIcon: const Icon(
                   Icons.info_outline,
                 ),
-                // todo: formalize
-                applicationName: 'app_title'.tr(),
-                applicationVersion: 'v1.0.0',
-                applicationLegalese: 'Javier Florido Cartolano (UEx, 2023)',
+                applicationName: 'app_info.title'.tr(),
+                applicationVersion: 'app_info.version'.tr(),
+                applicationLegalese: 'app_info.legalese'.tr(),
                 child: Text('components.nav_drawer.about'.tr()),
               ),
             ],

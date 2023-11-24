@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tfg_v2/ui/styles/insets.dart';
 import 'package:tfg_v2/ui/styles/text_styles.dart';
 
 class ProfileNumberButton extends StatelessWidget {
@@ -11,12 +12,10 @@ class ProfileNumberButton extends StatelessWidget {
   final int value;
   final String text;
 
-  // todo: make generic enum types
-
   @override
   Widget build(BuildContext context) {
     return MaterialButton(
-      padding: const EdgeInsets.symmetric(vertical: 4),
+      padding: Insets.v4,
       onPressed: () {}, // todo: send to follows list screen
       child: Column(
         children: <Widget>[

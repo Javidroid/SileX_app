@@ -1,5 +1,9 @@
 {
-  "app_title": "SileX",
+  "app_info": {
+    "title": "SileX",
+    "version": "v1.0.0",
+    "legalese": "Javier Florido Cartolano (UEx, 2023)"
+  },
   "errors": {
     "no_internet": "No hay internet",
     "generic": "Ha ocurrido un error",

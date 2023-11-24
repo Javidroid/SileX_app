@@ -19,7 +19,6 @@ class SplashScreen extends RootScreen<SplashViewState, SplashViewModel> {
         child: Padding(
           padding: Insets.a20,
           child: switch (state) {
-            // TODO: set splash
             Loading _ || Success _ => const AppLogo(),
             Error _ => ErrorCard(error: state.error),
           },
