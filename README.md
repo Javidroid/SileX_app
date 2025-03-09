@@ -1,18 +1,17 @@
 # SileX App
 
-Second version of TFG. Now with MVVM, Clean Architecture and lots of fun!
+Now with MVVM, Clean Architecture and lots of fun!
 
 The GitHub repository of this project is https://github.com/Javidroid/SileX_app
 
 ## Introduction
 
-This project pretends to be the second version of the App that is intended to be develop as Final
-Project.
+This project is an app for my Degree's Final Project
 
-This version pretends to implement a MVVM architecture so the code is easier to develop in the
+This version now implements a MVVM architecture so the code is easier to develop in the
 future.
 
-This project complements with the NodeJS API: https://github.com/Javidroid/SileX_API
+This project complements with its respective NodeJS API: https://github.com/Javidroid/SileX_API
 
 > Disclaimer: Base project comes
 > from https://github.com/worldline-spain/flutter_architecture_template
